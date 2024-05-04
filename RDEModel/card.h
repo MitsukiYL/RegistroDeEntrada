@@ -10,7 +10,7 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class card {
-    public:
+    private:
         int code;
         int expirationDate;
         String^ permissionType;
@@ -19,6 +19,10 @@ namespace RDEModel {
         int emissionDate;
         int registrationDate;
         bool active;
+
+    public:
+	card();
+	card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
     };
 }
 
