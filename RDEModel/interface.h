@@ -10,12 +10,16 @@ using namespace System;
 
 namespace RDEModel {
     public ref class interface {
-    public:
+    private:
         int pin;
         String^ protocole;
         String^ producer;
         bool active;
         int registrationDate;
+
+    public:
+        interface();
+            interface(int pin, String^ protocole, String^ producer, bool active, int registrationDate);
     };
 }
 
