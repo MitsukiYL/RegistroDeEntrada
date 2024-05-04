@@ -20,9 +20,9 @@ namespace RDEModel {
         	int registrationDate;
         	bool active;
 
-    public:
-	card();
-	card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
+    	public:
+		card();
+		card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
     };
 }
 
