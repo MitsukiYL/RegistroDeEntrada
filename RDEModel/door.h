@@ -10,13 +10,17 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class door {
-    public:
-        String^ doorName;
-        bool active;
-        String^ location;
-        String^ doorType;
-        int openingTime;
-        int closingTime;
+    		private:
+        	String^ doorName;
+        	bool active;
+        	String^ location;
+        	String^ doorType;
+        	int openingTime;
+        	int closingTime;
+
+		public:
+		door();
+		door(String^ doorName, bool active, String^ location, String^ doorType, int openingTime, int closingTime);
     };
 }
 
