@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVehicle xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <vehicle>
+    <fuelType>diesel</fuelType>
+    <vehicleType>moto</vehicleType>
+    <registrationDate>0</registrationDate>
+    <plate>123-456</plate>
+    <brand>yamaha</brand>
+    <model>123</model>
+    <insurance>true</insurance>
+  </vehicle>
+  <vehicle>
+    <fuelType>electrico</fuelType>
+    <vehicleType>SUV</vehicleType>
+    <registrationDate>0</registrationDate>
+    <plate>123-235</plate>
+    <brand>toyota</brand>
+    <model>12355</model>
+    <insurance>true</insurance>
+  </vehicle>
+  <vehicle>
+    <fuelType>gas</fuelType>
+    <vehicleType>MiniVan</vehicleType>
+    <registrationDate>0</registrationDate>
+    <plate>XXX-XXX</plate>
+    <brand>Lamborghini</brand>
+    <model>12355424</model>
+    <insurance>true</insurance>
+  </vehicle>
+</ArrayOfVehicle>

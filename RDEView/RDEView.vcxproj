@@ -132,7 +132,7 @@
     <ClCompile Include="InterfaceProfile.cpp" />
     <ClCompile Include="InterfaceRDE.cpp" />
     <ClCompile Include="InterfaceRequest.cpp" />
-    <ClCompile Include="MantUser.cpp" />
+    <ClCompile Include="MantPerson.cpp" />
     <ClCompile Include="MantVehicles.cpp" />
     <ClCompile Include="RDELog.cpp" />
     <ClCompile Include="RDEMasterMenu.cpp" />
@@ -151,7 +151,7 @@
     <ClInclude Include="InterfaceRequest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MantUser.h">
+    <ClInclude Include="MantPerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MantVehicles.h">
@@ -180,8 +180,8 @@
     <EmbeddedResource Include="InterfaceRequest.resx">
       <DependentUpon>InterfaceRequest.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantUser.resx">
-      <DependentUpon>MantUser.h</DependentUpon>
+    <EmbeddedResource Include="MantPerson.resx">
+      <DependentUpon>MantPerson.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantVehicles.resx">
       <DependentUpon>MantVehicles.h</DependentUpon>

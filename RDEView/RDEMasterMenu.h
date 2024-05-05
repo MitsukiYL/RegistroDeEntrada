@@ -4,7 +4,7 @@
 #include "InterfaceProfile.h"
 #include "InterfaceRequest.h"
 #include "InterfaceRDE.h"
-#include "MantUser.h"
+#include "MantPerson.h"
 #include "MantVehicles.h"
 
 
@@ -89,6 +89,7 @@ namespace RDEView {
 			this->xdToolStripMenuItem3 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->usuariosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->vehiculosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->personasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->zonasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->estacionamientosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->playasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -98,7 +99,6 @@ namespace RDEView {
 			this->motoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->interfacesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->administradoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->personasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -125,6 +125,7 @@ namespace RDEView {
 			this->xdToolStripMenuItem->Name = L"xdToolStripMenuItem";
 			this->xdToolStripMenuItem->Size = System::Drawing::Size(70, 20);
 			this->xdToolStripMenuItem->Text = L"Interfaces";
+			this->xdToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::xdToolStripMenuItem_Click);
 			// 
 			// perfilDeUsuarioToolStripMenuItem
 			// 
@@ -158,9 +159,9 @@ namespace RDEView {
 			// 
 			this->xdToolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(12) {
 				this->usuariosToolStripMenuItem,
-					this->vehiculosToolStripMenuItem, this->zonasToolStripMenuItem, this->estacionamientosToolStripMenuItem, this->playasToolStripMenuItem,
-					this->tarjetasToolStripMenuItem, this->sensoresToolStripMenuItem, this->puertasToolStripMenuItem, this->motoresToolStripMenuItem,
-					this->interfacesToolStripMenuItem, this->administradoresToolStripMenuItem, this->personasToolStripMenuItem
+					this->vehiculosToolStripMenuItem, this->personasToolStripMenuItem, this->zonasToolStripMenuItem, this->estacionamientosToolStripMenuItem,
+					this->playasToolStripMenuItem, this->tarjetasToolStripMenuItem, this->sensoresToolStripMenuItem, this->puertasToolStripMenuItem,
+					this->motoresToolStripMenuItem, this->interfacesToolStripMenuItem, this->administradoresToolStripMenuItem
 			});
 			this->xdToolStripMenuItem3->Name = L"xdToolStripMenuItem3";
 			this->xdToolStripMenuItem3->Size = System::Drawing::Size(106, 20);
@@ -170,7 +171,7 @@ namespace RDEView {
 			// 
 			this->usuariosToolStripMenuItem->Name = L"usuariosToolStripMenuItem";
 			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(167, 22);
-			this->usuariosToolStripMenuItem->Text = L"Usuarios";
+			this->usuariosToolStripMenuItem->Text = L"Personas";
 			this->usuariosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::usuariosToolStripMenuItem_Click);
 			// 
 			// vehiculosToolStripMenuItem
@@ -179,6 +180,12 @@ namespace RDEView {
 			this->vehiculosToolStripMenuItem->Size = System::Drawing::Size(167, 22);
 			this->vehiculosToolStripMenuItem->Text = L"Vehiculos";
 			this->vehiculosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::vehiculosToolStripMenuItem_Click);
+			// 
+			// personasToolStripMenuItem
+			// 
+			this->personasToolStripMenuItem->Name = L"personasToolStripMenuItem";
+			this->personasToolStripMenuItem->Size = System::Drawing::Size(167, 22);
+			this->personasToolStripMenuItem->Text = L"Usuarios";
 			// 
 			// zonasToolStripMenuItem
 			// 
@@ -234,12 +241,6 @@ namespace RDEView {
 			this->administradoresToolStripMenuItem->Size = System::Drawing::Size(167, 22);
 			this->administradoresToolStripMenuItem->Text = L"Administradores";
 			// 
-			// personasToolStripMenuItem
-			// 
-			this->personasToolStripMenuItem->Name = L"personasToolStripMenuItem";
-			this->personasToolStripMenuItem->Size = System::Drawing::Size(167, 22);
-			this->personasToolStripMenuItem->Text = L"Personas";
-			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
@@ -256,6 +257,7 @@ namespace RDEView {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"RDEMasterMenu";
 			this->Text = L"RDEMasterMenu";
+			this->Load += gcnew System::EventHandler(this, &RDEMasterMenu::RDEMasterMenu_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -280,8 +282,8 @@ private: System::Void registroDeEntradaToolStripMenuItem_Click(System::Object^ s
 	rdeform->Show();
 }
 private: System::Void usuariosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	MantUser^ mantuserform = gcnew MantUser();
-	mantuserform->Show();
+	MantPerson^ mantpersonform = gcnew MantPerson();
+	mantpersonform->Show();
 }
 private: System::Void vehiculosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MantVehicles^ mantvehiclesform = gcnew MantVehicles();
@@ -289,6 +291,10 @@ private: System::Void vehiculosToolStripMenuItem_Click(System::Object^ sender, S
 }
 private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+}
+private: System::Void RDEMasterMenu_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void xdToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

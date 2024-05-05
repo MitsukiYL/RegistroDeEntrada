@@ -13,16 +13,17 @@ namespace RDEModel {
     public ref class person {
     public:
         String^ name;
+        String^ password;
         int code;
         int DNI;
         String^ mail;
         bool permission;
         char occupation;
         String^ gender;
-        int phone;
+        String^ phone;
         int age;
         bool isInside;
-        String^ password;
+        
     };
 }
 

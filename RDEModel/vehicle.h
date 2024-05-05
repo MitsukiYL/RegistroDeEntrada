@@ -17,7 +17,7 @@ namespace RDEModel {
         String^ plate;
         String^ brand;
         String^ model;
-        String^ insurance;
+        bool insurance;
     };
 }
 

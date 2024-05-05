@@ -36,10 +36,10 @@
     <ClCompile Include="InterfaceRDE.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="MantUser.cpp">
+    <ClCompile Include="MantVehicles.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="MantVehicles.cpp">
+    <ClCompile Include="MantPerson.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,10 +65,10 @@
     <ClInclude Include="InterfaceRDE.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="MantUser.h">
+    <ClInclude Include="MantVehicles.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="MantVehicles.h">
+    <ClInclude Include="MantPerson.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

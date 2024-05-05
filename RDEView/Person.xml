@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <person>
+    <name>Pepito</name>
+    <password>12345</password>
+    <code>232323</code>
+    <DNI>1</DNI>
+    <mail>2323</mail>
+    <permission>false</permission>
+    <occupation>0</occupation>
+    <phone>12134</phone>
+    <age>0</age>
+    <isInside>false</isInside>
+  </person>
+  <person>
+    <name>juan</name>
+    <password>12</password>
+    <code>2323</code>
+    <DNI>2</DNI>
+    <mail>2</mail>
+    <permission>false</permission>
+    <occupation>0</occupation>
+    <phone>121</phone>
+    <age>0</age>
+    <isInside>false</isInside>
+  </person>
+  <person>
+    <name>jose</name>
+    <password>3</password>
+    <code>3</code>
+    <DNI>3</DNI>
+    <mail>3</mail>
+    <permission>false</permission>
+    <occupation>0</occupation>
+    <phone>3</phone>
+    <age>0</age>
+    <isInside>false</isInside>
+  </person>
+</ArrayOfPerson>
