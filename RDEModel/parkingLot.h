@@ -10,13 +10,17 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class parkingLot {
-    public:
+    private:
         String^ name;
         char vehicleType;
         String^ ID;
         int capacity;
         int N_reserved;
         int N_inactive;
+
+	public:
+		parkingLot();
+			parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive);
     };
 }
 

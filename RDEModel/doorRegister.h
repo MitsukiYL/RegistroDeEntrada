@@ -10,11 +10,15 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class doorRegister {
-    public:
+    private:
         int entryTime;
         int exitTime;
         bool userIn;
         int code;
+
+	public:
+		doorRegister();
+		doorRegister(int entryTime, int exitTime, bool userIn, int code);
     };
 
 }

@@ -12,15 +12,19 @@ using namespace System;
 
 namespace RDEModel {
     public ref class admin : public person {
-    public:
-        int adminID;
-        String^ area;
-        String^ adminType;
-        String^ name;
-        String^ password;
-        int registrationDate;
-        int expirationDate;
-        int contractID;
+        private:
+            int adminID;
+            String^ area;
+            String^ adminType;
+            String^ name;
+            String^ password;
+            int registrationDate;
+            int expirationDate;
+            int contractID;
+
+        public:
+            admin();
+            admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID);
     };
 }
 

@@ -10,13 +10,17 @@ using namespace System;
 
 namespace RDEModel {
     public ref class motor {
-    public:
+    private:
         int pin;
         int RPM;
         String^ producer;
         bool active;
         int registrationDate;
         int power;
+
+        public:
+        motor();
+            motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power);
     };
 }
 
