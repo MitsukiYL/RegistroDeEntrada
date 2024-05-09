@@ -23,6 +23,24 @@ namespace RDEModel {
     	public:
 		card();
 		card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
+
+        int getcode();
+        int getexpirationDate();
+        String^ getpermissionType();
+        int getID();
+        bool getpermission();
+        int getemissionDate();
+        int getregistrationDate();
+        bool getactive();
+
+        void setcode(int code);
+        void setexpirationDate(int expirationDate);
+        void setpermissionType(String^ permissionType);
+        void setID(int ID);
+        void setpermission(bool permission);
+        void setemissionDate(int emissionDate);
+        void setregistrationDate(int registrationDate);
+        void setactive(bool active);
     };
 }
 

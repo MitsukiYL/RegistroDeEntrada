@@ -21,6 +21,20 @@ namespace RDEModel {
 		public:
 		door();
 		door(String^ doorName, bool active, String^ location, String^ doorType, int openingTime, int closingTime);
+
+        String^ getdoorName();
+        bool  getactive();
+        String^ getlocation();
+        int  getopeningTime();
+        int  getclosingTime();
+
+        void setdoorName(String^ doorName);
+        void setactive(bool active);
+        void setlocation(String^ location);
+        void setdoorType(String^ doorType);
+        void setopeningTime(int openingTime);
+        void setclosingTime(int closingTime);
+
     };
 }
 
