@@ -31,7 +31,7 @@ namespace RDEModel {
         String^ getproducer();
         void setproducer(String^ producer);
 
-        bool isactive();
+        bool getactive();
         void setactive(bool active);
 
         int getregistrationDate();
