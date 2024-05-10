@@ -32,7 +32,7 @@ void doorRegister::setExitTime(int exitTime) {
     this->exitTime = exitTime;
 }
 
-bool doorRegister::isUserIn() {
+bool doorRegister::getUserIn() {
     return this->userIn;
 }
 
