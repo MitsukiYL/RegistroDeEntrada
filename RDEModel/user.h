@@ -33,7 +33,7 @@ namespace RDEModel {
         String^ getPassword();
         void setPassword(String^ password);
 
-        bool isActive();
+        bool getActive();
         void setActive(bool active);
 
         int getUserID();
