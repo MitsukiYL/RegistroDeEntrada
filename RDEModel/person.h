@@ -60,8 +60,8 @@ namespace RDEModel {
         int getAge();
         void setAge(int age);
 
-        bool getInside();
-        void setInside(bool isInside);
+        bool getisInside();
+        void setisInside(bool isInside);
     };
 }
 
