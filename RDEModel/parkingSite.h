@@ -24,10 +24,10 @@ namespace RDEModel {
         String^ getID();
         void setID(String^ ID);
 
-        bool isReserved();
+        bool getReserved();
         void setReserved(bool reserved);
 
-        bool isActive();
+        bool getActive();
         void setActive(bool active);
     };
 }
