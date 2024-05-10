@@ -23,7 +23,7 @@ void parkingSite::setID(String^ ID) {
     this->ID = ID;
 }
 
-bool parkingSite::isReserved() {
+bool parkingSite::getReserved() {
     return this->reserved;
 }
 
@@ -31,7 +31,7 @@ void parkingSite::setReserved(bool reserved) {
     this->reserved = reserved;
 }
 
-bool parkingSite::isActive() {
+bool parkingSite::getActive() {
     return this->active;
 }
 
