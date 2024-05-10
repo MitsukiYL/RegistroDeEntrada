@@ -26,7 +26,7 @@ namespace RDEModel {
         int getExitTime();
         void setExitTime(int exitTime);
 
-        bool isUserIn();
+        bool getUserIn();
         void setUserIn(bool userIn);
 
         int getCode();
