@@ -10,10 +10,23 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class systemRegister {
-    public:
+    private:
         int date;
         String^ operationType;
         String^ IP;
+
+    public:
+        systemRegister();
+        systemRegister(int date, String^ operationType, String^ IP);
+
+        int getDate();
+        void setDate(int date);
+
+        String^ getOperationType();
+        void setOperationType(String^ operationType);
+
+        String^ getIP();
+        void setIP(String^ IP);
     };
 }
 

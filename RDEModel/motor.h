@@ -20,7 +20,25 @@ namespace RDEModel {
 
         public:
         motor();
-            motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power);
+        motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power);
+    
+        int getpin();
+        void setpin(int pin);
+
+        int getRPM();
+        void setRPM(int RPM);
+
+        String^ getproducer();
+        void setproducer(String^ producer);
+
+        bool isactive();
+        void setactive(bool active);
+
+        int getregistrationDate();
+        void setregistrationDate(int registrationDate);
+
+        int getpower();
+        void setpower(int power);
     };
 }
 

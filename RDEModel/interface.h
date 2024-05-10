@@ -19,7 +19,22 @@ namespace RDEModel {
 
     public:
         interface();
-            interface(int pin, String^ protocole, String^ producer, bool active, int registrationDate);
+        interface(int pin, String^ protocole, String^ producer, bool active, int registrationDate);  
+    
+        int getpin();
+        void setpin(int pin);
+
+        String^ getprotocol();
+        void setprotocol(String^ protocol);
+
+        String^ getproducer();
+        void setproducer(String^ producer);
+
+        bool isactive();
+        void setactive(bool active);
+
+        int getregistrationDate();
+        void setregistrationDate(int registrationDate);
     };
 }
 
