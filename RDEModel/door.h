@@ -25,6 +25,7 @@ namespace RDEModel {
         String^ getdoorName();
         bool  getactive();
         String^ getlocation();
+	String^ getdoorType();
         int  getopeningTime();
         int  getclosingTime();
 
