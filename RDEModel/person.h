@@ -45,7 +45,7 @@ namespace RDEModel {
         String^ getMail();
         void setMail(String^ mail);
 
-        bool hasPermission();
+        bool getPermission();
         void setPermission(bool permission);
 
         char getOccupation();
@@ -60,7 +60,7 @@ namespace RDEModel {
         int getAge();
         void setAge(int age);
 
-        bool isInside();
+        bool getInside();
         void setInside(bool isInside);
     };
 }
