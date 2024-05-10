@@ -41,7 +41,7 @@ void interface::setproducer(String^ producer) {
     this->producer = producer;
 }
 
-bool interface::isactive() {
+bool interface::getactive() {
     return this->active;
 }
 
