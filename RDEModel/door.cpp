@@ -10,6 +10,12 @@ using namespace RDEModel;
 door::door() {};
 door::door(String^ doorName, bool active, String^ location, String^ doorType, int openingTime, int closingTime) {
 
+    this->doorName = doorName;
+    this->active = active;
+    this->location = location;
+    this->doorType = doorType;
+    this->openingTime = openingTime;
+    this->closingTime = closingTime;
 }
 
 String^ door::getdoorName() {
@@ -21,6 +27,11 @@ bool  door::getactive() {
 String^ door::getlocation() {
     return this->location;
 }
+
+String^ door::getdoorType(){
+    return this->doorType;
+}
+    
 int  door::getopeningTime() {
     return this->openingTime;
 }
