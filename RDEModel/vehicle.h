@@ -41,7 +41,7 @@ namespace RDEModel {
         String^ getModel();
         void setModel(String^ model);
 
-        bool hasInsurance();
+        bool getInsurance();
         void setInsurance(bool insurance);
     };
 }
