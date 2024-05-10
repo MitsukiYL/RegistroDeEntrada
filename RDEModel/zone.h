@@ -34,7 +34,7 @@ namespace RDEModel {
         int getClosingTime();
         void setClosingTime(int closingTime);
 
-        bool isActive();
+        bool getActive();
         void setActive(bool active);
     };
 }
