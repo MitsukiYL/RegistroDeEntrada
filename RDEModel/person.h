@@ -11,7 +11,7 @@ using namespace System;
 
 namespace RDEModel {
     public ref class person {
-    private:
+    public:
         String^ name;
         String^ password;
         int code;
@@ -23,8 +23,6 @@ namespace RDEModel {
         String^ phone;
         int age;
         bool isInside;
-        
-    public:
         person();
         person(String^ name, String^ password, int code, int DNI, String^ mail,
             bool permission, char occupation, String^ gender, String^ phone,

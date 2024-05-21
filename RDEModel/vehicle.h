@@ -10,7 +10,11 @@ using namespace System;
 
 namespace RDEModel {
 	public ref class vehicle {
-    private:
+     /* NOTA:
+     * Para los métodos del entregable 2 (Ej: UpdateVehicle, DeletePerson), se deben colocar los atributos en public.
+     * Sino el controller no los podrá registrar.
+     */
+    public:
         String^ fuelType;
         String^ vehicleType;
         int registrationDate;
@@ -18,7 +22,7 @@ namespace RDEModel {
         String^ brand;
         String^ model;
         bool insurance;
-    public:
+
         vehicle();
         vehicle(String^ fuelType, String^ vehicleType, int registrationDate,
             String^ plate, String^ brand, String^ model, bool insurance);
