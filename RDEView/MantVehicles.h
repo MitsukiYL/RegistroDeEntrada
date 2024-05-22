@@ -303,7 +303,7 @@ namespace RDEView {
 		}
 
 void ShowVehicle() {
-			List<vehicle^>^ VehicleList = Controller::QueryAllVehicle();
+			/*List<vehicle^>^ VehicleList = Controller::QueryAllVehicle();
 			if (VehicleList != nullptr) {
 				Vehicle_DGV->Rows->Clear();
 				for (int i = 0; i < VehicleList->Count; i++) {
@@ -313,17 +313,17 @@ void ShowVehicle() {
 						VehicleList[i]->model, VehicleList[i]->fuelType, 
 						InsuranceString});
 				}
-			}
+			}*/
 		}
 
 #pragma endregion
 	private: System::Void MantVehicles_Load(System::Object^ sender, System::EventArgs^ e) {
-		ShowVehicle();
+		//ShowVehicle();
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	String^ plate = Vehicle_DGV->Rows[Vehicle_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString();
+	/*String^ plate = Vehicle_DGV->Rows[Vehicle_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString();
 	vehicle^ Vehicle = Controller::QueryVehiclebyPlate(plate);
 	if (Vehicle != nullptr) {
 		txt_plate->Text = Vehicle->plate;
@@ -331,11 +331,11 @@ private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Wind
 		txt_brand->Text = Vehicle->brand;
 		txt_model->Text = Vehicle->model;
 		txt_fuelType->Text = Vehicle->fuelType;
-	}
+	}*/
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	String^ plate = txt_plate->Text;
+	/*String^ plate = txt_plate->Text;
 	String^ vehicleType = txt_vehicleType->Text;
 	String^ brand = txt_brand->Text;
 	String^ model = txt_model->Text;
@@ -351,11 +351,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Vehicle->fuelType = fuelType;
 	Vehicle->insurance = (bool)insurance;
 	Controller::AddVehicle(Vehicle);
-	ShowVehicle();
+	ShowVehicle();*/
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	String^ plate = txt_plate->Text;
+	/*String^ plate = txt_plate->Text;
 	String^ vehicleType = txt_vehicleType->Text;
 	String^ brand = txt_brand->Text;
 	String^ model = txt_model->Text;
@@ -371,13 +371,13 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	Vehicle->fuelType = fuelType;
 	Vehicle->insurance = (bool)insurance;
 	Controller::UpdateVehicle(Vehicle);
-	ShowVehicle();
+	ShowVehicle();*/
 
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ plate = txt_plate->Text;
+	/*String^ plate = txt_plate->Text;
 	Controller::DeleteVehicle(plate);
-	ShowVehicle();
+	ShowVehicle();*/
 }
 };
 }

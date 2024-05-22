@@ -20,11 +20,12 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{8B6EC37C-CA1F-4A68-9DC9-1C3DF70DDFF7}</ProjectGuid>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ProjectGuid>{7D87B576-3BA3-401B-ADB9-9E5D38FEC6D7}</ProjectGuid>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>RDEModel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <EnableManagedPackageReferenceSupport>true</EnableManagedPackageReferenceSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

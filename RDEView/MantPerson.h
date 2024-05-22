@@ -68,6 +68,17 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
+	private: System::Windows::Forms::TextBox^ txt_age;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ txt_gender;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::TextBox^ txt_occupation;
+	private: System::Windows::Forms::Label^ label9;
 
 	private:
 		/// <summary>
@@ -104,6 +115,17 @@ namespace RDEView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->txt_age = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->txt_occupation = (gcnew System::Windows::Forms::TextBox());
+			this->label9 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -206,9 +228,9 @@ namespace RDEView {
 			// Person_DGV
 			// 
 			this->Person_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->Person_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->Person_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(11) {
 				this->Column1, this->Column2,
-					this->Column3, this->Column4, this->Column5, this->Column6
+					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9, this->Column10, this->Column11
 			});
 			this->Person_DGV->Location = System::Drawing::Point(15, 136);
 			this->Person_DGV->Name = L"Person_DGV";
@@ -276,11 +298,90 @@ namespace RDEView {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MantPerson::button3_Click);
 			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Permiso";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Cargo";
+			this->Column8->Name = L"Column8";
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Género";
+			this->Column9->Name = L"Column9";
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"Edad";
+			this->Column10->Name = L"Column10";
+			// 
+			// Column11
+			// 
+			this->Column11->HeaderText = L"Está adentro";
+			this->Column11->Name = L"Column11";
+			// 
+			// txt_age
+			// 
+			this->txt_age->Location = System::Drawing::Point(564, 62);
+			this->txt_age->Name = L"txt_age";
+			this->txt_age->Size = System::Drawing::Size(168, 20);
+			this->txt_age->TabIndex = 21;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(523, 65);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(32, 13);
+			this->label7->TabIndex = 20;
+			this->label7->Text = L"Edad";
+			// 
+			// txt_gender
+			// 
+			this->txt_gender->Location = System::Drawing::Point(564, 36);
+			this->txt_gender->Name = L"txt_gender";
+			this->txt_gender->Size = System::Drawing::Size(168, 20);
+			this->txt_gender->TabIndex = 19;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(516, 39);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(42, 13);
+			this->label8->TabIndex = 18;
+			this->label8->Text = L"Género";
+			// 
+			// txt_occupation
+			// 
+			this->txt_occupation->Location = System::Drawing::Point(564, 10);
+			this->txt_occupation->Name = L"txt_occupation";
+			this->txt_occupation->Size = System::Drawing::Size(168, 20);
+			this->txt_occupation->TabIndex = 17;
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(523, 13);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(35, 13);
+			this->label9->TabIndex = 16;
+			this->label9->Text = L"Cargo";
+			// 
 			// MantPerson
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(825, 437);
+			this->Controls->Add(this->txt_age);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->txt_gender);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->txt_occupation);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -307,21 +408,13 @@ namespace RDEView {
 		}
 
 void ShowPerson() {
-			List<person^>^ PersonList = Controller::QueryAllPerson();
-			if (PersonList != nullptr) {
-				Person_DGV->Rows->Clear();
-				for (int i = 0; i < PersonList->Count; i++) {
-					Person_DGV->Rows->Add(gcnew array<String^> {"" + PersonList[i]->DNI, PersonList[i]->name,
-						"" + PersonList[i]->code, PersonList[i]->mail, 
-						PersonList[i]->phone, PersonList[i]->password});
-				}
-			}
+		
 		}
 
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		int DNI = Convert::ToInt32(txt_dni->Text);
+		/*int DNI = Convert::ToInt32(txt_dni->Text);
 		String^ name = txt_name->Text;
 		int code = Convert::ToInt32(txt_code->Text);
 		String^ mail = txt_mail->Text;
@@ -337,10 +430,10 @@ void ShowPerson() {
 		Person->phone = phone;
 		Person->password = password;
 		Controller::AddPerson(Person);
-		ShowPerson();
+		ShowPerson();*/
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	int DNI = Convert::ToInt32(txt_dni->Text);
+/*int DNI = Convert::ToInt32(txt_dni->Text);
 	String^ name = txt_name->Text;
 	int code = Convert::ToInt32(txt_code->Text);
 	String^ mail = txt_mail->Text;
@@ -356,16 +449,20 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	Person->phone = phone;
 	Person->password = password;
 	Controller::UpdatePerson(Person);
-	ShowPerson();
+	ShowPerson();*/
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	int DNI = Convert::ToInt32(txt_dni->Text);
-	Controller::DeletePerson(DNI);
-	ShowPerson();
+	int filaSeleccionada = this->Person_DGV->SelectedRows[0]->Index; 
+	int DNI = Convert::ToInt32(this->Person_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	objPersonCtrl->eliminarPerson(DNI);
+	MessageBox::Show("La persona seleccionada ha sido eliminado correctamente");
+	this->Person_DGV->Rows->Clear();
 }
 private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int DNI = Int32::Parse(Person_DGV->Rows[Person_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
-	person^ Person = Controller::QueryPersonbyDNI(DNI);
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	person^ Person = objPersonCtrl->buscarPersonxDNI(DNI);;
 	if (Person != nullptr) {
 		txt_dni->Text = Convert::ToString(Person->DNI);
 		txt_code->Text = Convert::ToString(Person->code);
@@ -373,10 +470,13 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		txt_password->Text = Person->password;
 		txt_mail->Text = Person->mail;
 		txt_phone->Text = Person->phone;
+		txt_occupation->Text = Convert::ToString(Person->occupation);
+		txt_gender->Text = Person->gender;
+		txt_age->Text = Convert::ToString(Person->age);
 	}
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {
-	ShowPerson();
+	//ShowPerson();
 }
 };
 }

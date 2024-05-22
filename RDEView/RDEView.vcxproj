@@ -113,14 +113,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RDEController\RDEController.vcxproj">
-      <Project>{7242e9a7-ddee-45ed-bd39-d7135a181451}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\RDEModel\RDEModel.vcxproj">
-      <Project>{8b6ec37c-ca1f-4a68-9dc9-1c3df70ddff7}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -195,6 +187,14 @@
     <EmbeddedResource Include="RDEReg.resx">
       <DependentUpon>RDEReg.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RDEController\RDEController.vcxproj">
+      <Project>{526cfee5-c6bf-4b8e-9d9c-6fb75b96766f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RDEModel\RDEModel.vcxproj">
+      <Project>{7d87b576-3ba3-401b-adb9-9e5d38fec6d7}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

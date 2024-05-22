@@ -6,7 +6,7 @@
 
 #ifndef _PERSON_H
 #define _PERSON_H
-//PRUEBA
+
 using namespace System;
 
 namespace RDEModel {
@@ -23,10 +23,9 @@ namespace RDEModel {
         String^ phone;
         int age;
         bool isInside;
+
         person();
-        person(String^ name, String^ password, int code, int DNI, String^ mail,
-            bool permission, char occupation, String^ gender, String^ phone,
-            int age, bool isInside);
+        person(String^ name, String^ password, int code, int DNI, String^ mail, bool permission, char occupation, String^ gender, String^ phone, int age, bool isInside);
 
         String^ getName();
         void setName(String^ name);

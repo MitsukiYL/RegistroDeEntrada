@@ -15,38 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RDEController.h">
+    <ClInclude Include="PersonCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonController.h">
+    <ClInclude Include="VehicleCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RDEController.cpp">
+    <ClCompile Include="PersonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="AssemblyInfo.cpp">
+    <ClCompile Include="VehicleCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc">
-      <Filter>Archivos de recursos</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="app.ico">
-      <Filter>Archivos de recursos</Filter>
-    </Image>
   </ItemGroup>
 </Project>
