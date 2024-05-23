@@ -150,19 +150,33 @@
     <ClInclude Include="InterfaceRequest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MantAdmin.h" />
-    <ClInclude Include="MantCard.h" />
-    <ClInclude Include="MantDoor.h" />
-    <ClInclude Include="MantParkingLot.h" />
-    <ClInclude Include="MantParkingSite.h" />
+    <ClInclude Include="MantAdmin.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantCard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantDoor.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantParkingLot.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantParkingSite.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MantPerson.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MantUser.h" />
+    <ClInclude Include="MantUser.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MantVehicles.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MantZone.h" />
+    <ClInclude Include="MantZone.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="RDELog.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -186,19 +200,33 @@
     <EmbeddedResource Include="InterfaceRequest.resx">
       <DependentUpon>InterfaceRequest.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantAdmin.resx" />
-    <EmbeddedResource Include="MantCard.resx" />
-    <EmbeddedResource Include="MantDoor.resx" />
-    <EmbeddedResource Include="MantParkingLot.resx" />
-    <EmbeddedResource Include="MantParkingSite.resx" />
+    <EmbeddedResource Include="MantAdmin.resx">
+      <DependentUpon>MantAdmin.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantCard.resx">
+      <DependentUpon>MantCard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantDoor.resx">
+      <DependentUpon>MantDoor.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantParkingLot.resx">
+      <DependentUpon>MantParkingLot.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantParkingSite.resx">
+      <DependentUpon>MantParkingSite.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantPerson.resx">
       <DependentUpon>MantPerson.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantUser.resx" />
+    <EmbeddedResource Include="MantUser.resx">
+      <DependentUpon>MantUser.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantVehicles.resx">
       <DependentUpon>MantVehicles.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantZone.resx" />
+    <EmbeddedResource Include="MantZone.resx">
+      <DependentUpon>MantZone.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RDELog.resx">
       <DependentUpon>RDELog.h</DependentUpon>
     </EmbeddedResource>

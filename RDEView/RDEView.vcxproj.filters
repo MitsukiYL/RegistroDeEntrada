@@ -42,6 +42,9 @@
     <ClCompile Include="MantPerson.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MantUser.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="MantAdmin.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -55,9 +58,6 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="MantParkingSite.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="MantUser.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="MantZone.cpp">
@@ -92,6 +92,9 @@
     <ClInclude Include="MantPerson.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="MantUser.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="MantAdmin.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -107,34 +110,8 @@
     <ClInclude Include="MantParkingSite.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="MantUser.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MantZone.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MantAdmin.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantCard.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantDoor.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantParkingLot.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantParkingSite.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantUser.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantZone.resx">
-      <Filter>Archivos de recursos</Filter>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>
