@@ -21,12 +21,18 @@
     <ClInclude Include="VehicleCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="ParkingSiteCtrl.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PersonCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="VehicleCtrl.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="ParkingSiteCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

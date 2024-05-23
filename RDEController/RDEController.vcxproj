@@ -117,10 +117,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ParkingSiteCtrl.h" />
     <ClInclude Include="PersonCtrl.h" />
     <ClInclude Include="VehicleCtrl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ParkingSiteCtrl.cpp" />
     <ClCompile Include="PersonCtrl.cpp" />
     <ClCompile Include="VehicleCtrl.cpp" />
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "MantPerson.h"
 #include "MantVehicles.h"
 #include "MantUser.h"
+#include "MantParkingSite.h"
 
 
 namespace RDEView {
@@ -115,7 +116,7 @@ namespace RDEView {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1167, 35);
+			this->menuStrip1->Size = System::Drawing::Size(1167, 33);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -202,6 +203,7 @@ namespace RDEView {
 			this->estacionamientosToolStripMenuItem->Name = L"estacionamientosToolStripMenuItem";
 			this->estacionamientosToolStripMenuItem->Size = System::Drawing::Size(270, 34);
 			this->estacionamientosToolStripMenuItem->Text = L"Estacionamientos";
+			this->estacionamientosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::estacionamientosToolStripMenuItem_Click);
 			// 
 			// playasToolStripMenuItem
 			// 
@@ -305,6 +307,10 @@ private: System::Void personasToolStripMenuItem_Click(System::Object^ sender, Sy
 	MantUser^ mantuser = gcnew MantUser();
 	mantuser->Show();
 
+}
+private: System::Void estacionamientosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantParkingSite^ mantestaform = gcnew MantParkingSite();
+	mantestaform-> ShowDialog();
 }
 };
 }
