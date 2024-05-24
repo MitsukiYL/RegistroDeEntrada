@@ -1,0 +1,2 @@
+nombre;password;3053;72890017;@mail;False;alumno;gender;phone;1;False
+123;123;123;123;123;True;123;123;123;123;True

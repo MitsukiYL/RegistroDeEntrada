@@ -9,9 +9,7 @@ using namespace RDEModel;
 
 person::person() {}
 
-person::person(String^ name, String^ password, int code, int DNI, String^ mail,
-               bool permission, char occupation, String^ gender, String^ phone,
-               int age, bool isInside) {
+person::person(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
     this->name = name;
     this->password = password;
     this->code = code;
@@ -73,11 +71,11 @@ void person::setPermission(bool permission) {
     this->permission = permission;
 }
 
-char person::getOccupation() {
+String^ person::getOccupation() {
     return this->occupation;
 }
 
-void person::setOccupation(char occupation) {
+void person::setOccupation(String^ occupation) {
     this->occupation = occupation;
 }
 

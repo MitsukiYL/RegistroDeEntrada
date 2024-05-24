@@ -98,33 +98,31 @@ namespace RDEView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(320, 133);
-			this->button3->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button3->Location = System::Drawing::Point(213, 86);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(112, 35);
+			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 47;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(159, 133);
-			this->button2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button2->Location = System::Drawing::Point(106, 86);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(112, 35);
+			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 46;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(7, 133);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button1->Location = System::Drawing::Point(5, 86);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(112, 35);
+			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 45;
 			this->button1->Text = L"Añadir";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MantUser::button1_Click);
 			// 
 			// Person_DGV
 			// 
@@ -133,11 +131,10 @@ namespace RDEView {
 				this->Column1, this->Column2,
 					this->Column3, this->Column4, this->Column5, this->Column6
 			});
-			this->Person_DGV->Location = System::Drawing::Point(9, 197);
-			this->Person_DGV->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Person_DGV->Location = System::Drawing::Point(6, 128);
 			this->Person_DGV->Name = L"Person_DGV";
 			this->Person_DGV->RowHeadersWidth = 62;
-			this->Person_DGV->Size = System::Drawing::Size(973, 445);
+			this->Person_DGV->Size = System::Drawing::Size(649, 289);
 			this->Person_DGV->TabIndex = 44;
 			// 
 			// Column1
@@ -184,117 +181,105 @@ namespace RDEView {
 			// 
 			// txt_password
 			// 
-			this->txt_password->Location = System::Drawing::Point(503, 82);
-			this->txt_password->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_password->Location = System::Drawing::Point(335, 53);
 			this->txt_password->Name = L"txt_password";
-			this->txt_password->Size = System::Drawing::Size(250, 26);
+			this->txt_password->Size = System::Drawing::Size(168, 20);
 			this->txt_password->TabIndex = 43;
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(347, 88);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Location = System::Drawing::Point(231, 57);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(92, 20);
+			this->label4->Size = System::Drawing::Size(61, 13);
 			this->label4->TabIndex = 42;
 			this->label4->Text = L"Contraseña";
 			// 
 			// txt_phone
 			// 
-			this->txt_phone->Location = System::Drawing::Point(503, 42);
-			this->txt_phone->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_phone->Location = System::Drawing::Point(335, 27);
 			this->txt_phone->Name = L"txt_phone";
-			this->txt_phone->Size = System::Drawing::Size(250, 26);
+			this->txt_phone->Size = System::Drawing::Size(168, 20);
 			this->txt_phone->TabIndex = 41;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(347, 48);
-			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Location = System::Drawing::Point(231, 31);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(140, 20);
+			this->label5->Size = System::Drawing::Size(94, 13);
 			this->label5->TabIndex = 40;
 			this->label5->Text = L"Fecha de Registro";
 			// 
 			// txt_mail
 			// 
-			this->txt_mail->Location = System::Drawing::Point(503, 2);
-			this->txt_mail->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_mail->Location = System::Drawing::Point(335, 1);
 			this->txt_mail->Name = L"txt_mail";
-			this->txt_mail->Size = System::Drawing::Size(250, 26);
+			this->txt_mail->Size = System::Drawing::Size(168, 20);
 			this->txt_mail->TabIndex = 39;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(347, 9);
-			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Location = System::Drawing::Point(231, 6);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(120, 20);
+			this->label6->Size = System::Drawing::Size(82, 13);
 			this->label6->TabIndex = 38;
 			this->label6->Text = L"Tipo de Usuario";
 			// 
 			// txt_dni
 			// 
-			this->txt_dni->Location = System::Drawing::Point(67, 83);
-			this->txt_dni->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_dni->Location = System::Drawing::Point(45, 54);
 			this->txt_dni->Name = L"txt_dni";
-			this->txt_dni->Size = System::Drawing::Size(250, 26);
+			this->txt_dni->Size = System::Drawing::Size(168, 20);
 			this->txt_dni->TabIndex = 37;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(5, 88);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(3, 57);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(26, 20);
+			this->label3->Size = System::Drawing::Size(18, 13);
 			this->label3->TabIndex = 36;
 			this->label3->Text = L"ID";
 			// 
 			// txt_code
 			// 
-			this->txt_code->Location = System::Drawing::Point(67, 43);
-			this->txt_code->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_code->Location = System::Drawing::Point(45, 28);
 			this->txt_code->Name = L"txt_code";
-			this->txt_code->Size = System::Drawing::Size(250, 26);
+			this->txt_code->Size = System::Drawing::Size(168, 20);
 			this->txt_code->TabIndex = 35;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(5, 48);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(3, 31);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(60, 20);
+			this->label2->Size = System::Drawing::Size(40, 13);
 			this->label2->TabIndex = 34;
 			this->label2->Text = L"Estado";
 			// 
 			// txt_name
 			// 
-			this->txt_name->Location = System::Drawing::Point(67, 3);
-			this->txt_name->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->txt_name->Location = System::Drawing::Point(45, 2);
 			this->txt_name->Name = L"txt_name";
-			this->txt_name->Size = System::Drawing::Size(250, 26);
+			this->txt_name->Size = System::Drawing::Size(168, 20);
 			this->txt_name->TabIndex = 33;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(5, 8);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(3, 5);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(65, 20);
+			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 32;
 			this->label1->Text = L"Nombre";
 			// 
 			// MantUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(990, 629);
+			this->ClientSize = System::Drawing::Size(660, 409);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -311,6 +296,7 @@ namespace RDEView {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txt_name);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"MantUser";
 			this->Text = L"MantUser";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->EndInit();
@@ -319,5 +305,7 @@ namespace RDEView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

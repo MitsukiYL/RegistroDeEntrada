@@ -12,8 +12,8 @@ namespace RDEController {
 		List<person^>^ buscarPersonAll();
 		person^ buscarPersonxDNI(int DNIb);
 		void escribirArchivo(List<person^>^ listaPerson);
-		void agregarNewPerson(String^ name, String^ password, int code, int DNI, String^ mail, bool permission, char occupation, String^ gender, String^ phone, int age, bool isInside);
+		void agregarNewPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 		void eliminarPerson(int codigo);
-		void actualizarPerson(String^ name, String^ password, int code, int DNI, String^ mail, bool permission, char occupation, String^ gender, String^ phone, int age, bool isInside);
+		void actualizarPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 	};
 }

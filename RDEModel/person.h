@@ -18,14 +18,14 @@ namespace RDEModel {
         int DNI;
         String^ mail;
         bool permission;
-        char occupation;
+        String^ occupation;
         String^ gender;
         String^ phone;
         int age;
         bool isInside;
-
+    
         person();
-        person(String^ name, String^ password, int code, int DNI, String^ mail, bool permission, char occupation, String^ gender, String^ phone, int age, bool isInside);
+        person(int DNI, String^ name, int code,  String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 
         String^ getName();
         void setName(String^ name);
@@ -45,8 +45,8 @@ namespace RDEModel {
         bool getPermission();
         void setPermission(bool permission);
 
-        char getOccupation();
-        void setOccupation(char occupation);
+        String^ getOccupation();
+        void setOccupation(String^ occupation);
 
         String^ getGender();
         void setGender(String^ gender);

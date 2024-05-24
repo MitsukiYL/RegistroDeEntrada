@@ -117,14 +117,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminCtrl.h" />
+    <ClInclude Include="CardCtrl.h" />
+    <ClInclude Include="ParkingLotCtrl.h" />
     <ClInclude Include="ParkingSiteCtrl.h" />
     <ClInclude Include="PersonCtrl.h" />
+    <ClInclude Include="UserCtrl.h" />
     <ClInclude Include="VehicleCtrl.h" />
+    <ClInclude Include="ZoneCtrl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminCtrl.cpp" />
+    <ClCompile Include="CardCtrl.cpp" />
+    <ClCompile Include="ParkingLotCtrl.cpp" />
     <ClCompile Include="ParkingSiteCtrl.cpp" />
     <ClCompile Include="PersonCtrl.cpp" />
+    <ClCompile Include="UserCtrl.cpp" />
     <ClCompile Include="VehicleCtrl.cpp" />
+    <ClCompile Include="ZoneCtrl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

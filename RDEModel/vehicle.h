@@ -24,8 +24,7 @@ namespace RDEModel {
         bool insurance;
 
         vehicle();
-        vehicle(String^ fuelType, String^ vehicleType, int registrationDate,
-            String^ plate, String^ brand, String^ model, bool insurance);
+        vehicle(String^ fuelType, String^ vehicleType, int registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
 
         String^ getFuelType();
         void setFuelType(String^ fuelType);

@@ -6,21 +6,28 @@
 #ifndef _ZONE_H
 #define _ZONE_H
 
+#include "admin.h"
+
 using namespace System;
 
 namespace RDEModel {
 	public ref class zone {
     private:
+        int ID;
         String^ location;
         String^ name;
         int openingTime;
         int closingTime;
         bool active;
+        admin^ objAdmin;
+
     public:
 
         zone();
-        zone(String^ location, String^ name, int openingTime, int closingTime,
-            bool active);
+        zone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin);
+
+        int getID();
+        void setID(int ID);
 
         String^ getLocation();
         void setLocation(String^ location);
@@ -36,6 +43,9 @@ namespace RDEModel {
 
         bool getActive();
         void setActive(bool active);
+
+        admin^ getAdmin();
+        void setAdmin(admin^ objAdmin);
     };
 }
 

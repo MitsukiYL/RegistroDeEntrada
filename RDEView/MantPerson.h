@@ -79,6 +79,7 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::TextBox^ txt_occupation;
 	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Button^ button4;
 
 	private:
 		/// <summary>
@@ -112,20 +113,21 @@ namespace RDEView {
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->txt_age = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->txt_occupation = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -268,6 +270,31 @@ namespace RDEView {
 			this->Column6->HeaderText = L"Contraseña";
 			this->Column6->Name = L"Column6";
 			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Permiso";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Cargo";
+			this->Column8->Name = L"Column8";
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Género";
+			this->Column9->Name = L"Column9";
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"Edad";
+			this->Column10->Name = L"Column10";
+			// 
+			// Column11
+			// 
+			this->Column11->HeaderText = L"Está adentro";
+			this->Column11->Name = L"Column11";
+			// 
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(13, 94);
@@ -297,31 +324,6 @@ namespace RDEView {
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MantPerson::button3_Click);
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Permiso";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Cargo";
-			this->Column8->Name = L"Column8";
-			// 
-			// Column9
-			// 
-			this->Column9->HeaderText = L"Género";
-			this->Column9->Name = L"Column9";
-			// 
-			// Column10
-			// 
-			this->Column10->HeaderText = L"Edad";
-			this->Column10->Name = L"Column10";
-			// 
-			// Column11
-			// 
-			this->Column11->HeaderText = L"Está adentro";
-			this->Column11->Name = L"Column11";
 			// 
 			// txt_age
 			// 
@@ -371,11 +373,22 @@ namespace RDEView {
 			this->label9->TabIndex = 16;
 			this->label9->Text = L"Cargo";
 			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(711, 94);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(75, 23);
+			this->button4->TabIndex = 22;
+			this->button4->Text = L"Buscar";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MantPerson::button4_Click);
+			// 
 			// MantPerson
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(825, 437);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->txt_age);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txt_gender);
@@ -414,42 +427,57 @@ void ShowPerson() {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		/*int DNI = Convert::ToInt32(txt_dni->Text);
-		String^ name = txt_name->Text;
-		int code = Convert::ToInt32(txt_code->Text);
-		String^ mail = txt_mail->Text;
-		String^ phone = txt_phone->Text;
-		String^ password = txt_password->Text;
+		int DNIx = Convert::ToInt32(this->txt_dni->Text);
+		String^ name = this->txt_name->Text;
+		int code = Convert::ToInt32(this->txt_code->Text);
+		String^ mail = this->txt_mail->Text;
+		String^ phone = this->txt_phone->Text;
+		String^ password = this->txt_password->Text;
+		String^ occupation = this->txt_occupation->Text;
+		String^ gender = this->txt_gender->Text;
+		int age = Convert::ToInt32(this->txt_age->Text);
+		bool permission = true;//***************
+		bool isInside = true;//***************
 
+		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 
-		person^ Person = gcnew person();
-		Person->DNI = DNI;
-		Person->name = name;
-		Person->code = code;
-		Person->mail = mail;
-		Person->phone = phone;
-		Person->password = password;
-		Controller::AddPerson(Person);
-		ShowPerson();*/
+		objPersonCtrl->agregarNewPerson(DNIx, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+		MessageBox::Show("La persona ha sido agregada con éxito");
+
+		List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
+		mostrarGrilla(listPerson);
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-/*int DNI = Convert::ToInt32(txt_dni->Text);
-	String^ name = txt_name->Text;
-	int code = Convert::ToInt32(txt_code->Text);
-	String^ mail = txt_mail->Text;
-	String^ phone = txt_phone->Text;
-	String^ password = txt_password->Text;
 
+	int filaSeleccionada = this->Person_DGV->SelectedRows[0]->Index;
+	int DNIEditar = Convert::ToInt32(this->Person_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNIEditar);
 
-	person^ Person = gcnew person();
-	Person->DNI = DNI;
-	Person->name = name;
-	Person->code = code;
-	Person->mail = mail;
-	Person->phone = phone;
-	Person->password = password;
-	Controller::UpdatePerson(Person);
-	ShowPerson();*/
+	int DNI = Convert::ToInt32(this->txt_dni->Text);
+	String^ name = this->txt_name->Text;
+	int code = Convert::ToInt32(this->txt_code->Text);
+
+	String^ mail = this->txt_mail->Text;
+	String^ phone = this->txt_phone->Text;
+	String^ password = this->txt_password->Text;
+
+	String^ occupation = this->txt_occupation->Text;
+	String^ gender = this->txt_gender->Text;
+	int age = Convert::ToInt32(this->txt_age->Text);
+
+	bool permission = true;//***************
+	bool isInside = true;//***************
+
+	//PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+
+	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+	MessageBox::Show("La persona ha sido actualizada con éxito");
+
+	this->Person_DGV->Rows->Clear();
+
+	List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
+	mostrarGrilla(listPerson);
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	int filaSeleccionada = this->Person_DGV->SelectedRows[0]->Index; 
@@ -458,9 +486,32 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	objPersonCtrl->eliminarPerson(DNI);
 	MessageBox::Show("La persona seleccionada ha sido eliminado correctamente");
 	this->Person_DGV->Rows->Clear();
+
+	List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
+	mostrarGrilla(listPerson);
 }
+private: void mostrarGrilla(List<person^>^ listPerson) {
+		   this->Person_DGV->Rows->Clear();
+		   for (int i = 0; i < listPerson->Count; i++) {
+				person^ objPerson = listPerson[i];
+				array<String^>^ filaGrilla = gcnew array<String^>(11);
+				filaGrilla[0] = Convert::ToString(objPerson->getDNI());
+				filaGrilla[1] = objPerson->getName();
+				filaGrilla[2] = Convert::ToString(objPerson->getCode());
+				filaGrilla[3] = objPerson->getMail();
+				filaGrilla[4] = objPerson->getPhone();
+				filaGrilla[5] = objPerson->getPassword();
+				filaGrilla[6] = Convert::ToString(objPerson->getPermission());
+				filaGrilla[7] = objPerson->getOccupation();
+				filaGrilla[8] = objPerson->getGender();
+				filaGrilla[9] = Convert::ToString(objPerson->getAge());
+				filaGrilla[10] = Convert::ToString(objPerson->getisInside());
+				this->Person_DGV->Rows->Add(filaGrilla);
+		   }
+	   }
+
 private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int DNI = Int32::Parse(Person_DGV->Rows[Person_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+/*	int DNI = Int32::Parse(Person_DGV->Rows[Person_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	person^ Person = objPersonCtrl->buscarPersonxDNI(DNI);;
 	if (Person != nullptr) {
@@ -473,10 +524,25 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		txt_occupation->Text = Convert::ToString(Person->occupation);
 		txt_gender->Text = Person->gender;
 		txt_age->Text = Convert::ToString(Person->age);
-	}
+	}*/
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {
-	//ShowPerson();
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
+	
+	mostrarGrilla(listPerson);
+}
+
+
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	int DNIPerson = Convert::ToInt32(this->txt_dni->Text);
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNIPerson);
+	List<person^>^ listaPerson = gcnew List<person^>();
+	listaPerson->Add(objPerson);
+
+	mostrarGrilla(listaPerson);
 }
 };
 }
+

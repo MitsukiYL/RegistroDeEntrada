@@ -7,20 +7,28 @@ ParkingSiteCtrl::ParkingSiteCtrl() {
 
 }
 
-List <parkingSite^>^ ParkingSiteCtrl::BuscarEstacionamientoxID(String^ IDbuscar) {
+List <parkingSite^>^ ParkingSiteCtrl::BuscarSitexLot(int lotIDsearch) {
+
 	List<parkingSite^>^ listaesta = gcnew List<parkingSite^>();
 	array<String^>^ lineas = File::ReadAllLines("Estacionamientos.txt");
-	String^ separadores = ";"; /*Aqui defino el caracter por el cual voy a separar los elementos de una linea*/
+	String^ separadores = ";"; 
+
 	for each (String ^ lineaPeluche in lineas) {
-		/*Voy a separar los datos de una linea en sub strings*/
+		
 		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+
+		
+		//	FORMATO DEL ARCHIVO TXT
+		//	STRING ; BOOL ; BOOL ; INT
+		
+
 		String^ ID =  datos[0];
 		bool reserved = Convert::ToBoolean(datos[1]);
 		bool active = Convert::ToBoolean(datos[2]);
+		int lotID = Convert::ToInt32(datos[3]);
 		
-		
-		if (ID->CompareTo(IDbuscar) == 0) {
-			parkingSite^ objestac = gcnew parkingSite( ID,reserved,active);
+		if (lotID = lotIDsearch) {
+			parkingSite^ objestac = gcnew parkingSite(ID,reserved,active, lotID);
 			listaesta->Add(objestac);
 		}
 	}
@@ -30,22 +38,30 @@ List <parkingSite^>^ ParkingSiteCtrl::BuscarEstacionamientoxID(String^ IDbuscar)
 List <parkingSite^>^ ParkingSiteCtrl::AllEstacionamientos() {
 	List<parkingSite^>^ listaesta = gcnew List<parkingSite^>();
 	array<String^>^ lineas = File::ReadAllLines("Estacionamientos.txt");
-	String^ separadores = ";"; /*Aqui defino el caracter por el cual voy a separar los elementos de una linea*/
+	String^ separadores = ";"; 
 	for each (String ^ lineaPeluche in lineas) {
-		/*Voy a separar los datos de una linea en sub strings*/
+		
 		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+
+
+		//	FORMATO DEL ARCHIVO TXT
+		//	STRING ; BOOL ; BOOL ; INT
+
+
 		String^ ID = datos[0];
 		bool reserved = Convert::ToBoolean(datos[1]);
 		bool active = Convert::ToBoolean(datos[2]);
-		parkingSite^ objestac = gcnew parkingSite(ID, reserved, active);
+		int lotID = Convert::ToInt32(datos[3]);
+
+		parkingSite^ objestac = gcnew parkingSite(ID, reserved, active, lotID);
 		listaesta->Add(objestac);
 	}
 	return listaesta;
 }
 
-void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool active) {
+void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool active, int lotID) {
 	List<parkingSite^>^ listaesta = AllEstacionamientos();
-	parkingSite^ estacNuevo = gcnew parkingSite(ID, reserved, active);
+	parkingSite^ estacNuevo = gcnew parkingSite(ID, reserved, active, lotID);
 	listaesta->Add(estacNuevo);
 	escribirArchivo(listaesta);
 }
@@ -55,17 +71,18 @@ void ParkingSiteCtrl::escribirArchivo(List <parkingSite^>^ listaEstac) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaEstac->Count);
 	for (int i = 0; i < listaEstac->Count; i++) {
 		parkingSite^ objEstac = listaEstac[i];
-		lineasArchivo[i] = objEstac->getID() + ";" + Convert::ToString(objEstac->getReserved()) + ";" + Convert::ToString(objEstac->getActive());
+		lineasArchivo[i] = objEstac->getID() + ";" + Convert::ToString(objEstac->getReserved()) + ";" + Convert::ToString(objEstac->getActive()) + ";" + Convert::ToString(objEstac->getLotID());
 	}
 	File::WriteAllLines("Estacionamientos.txt", lineasArchivo);
 }
 
-void ParkingSiteCtrl::actualizarEstac(String^ ID, bool reserved, bool active) {
+void ParkingSiteCtrl::actualizarEstac(String^ ID, bool reserved, bool active, int lotID) {
 	List<parkingSite^>^ listaesta = AllEstacionamientos();
 	for (int i = 0; i < listaesta->Count; i++) {
 		if (listaesta[i]->getID() == ID) {
 			listaesta[i]->setReserved(reserved);
 			listaesta[i]->setActive(active);
+			listaesta[i]->setLotID(lotID);
 			break;
 		}
 	}
