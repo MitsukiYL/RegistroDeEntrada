@@ -318,7 +318,6 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
 	estacinctrl->eliminarEstac(ID);
 	txt_ID->Clear();
-
 }
 };
 }
