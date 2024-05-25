@@ -9,11 +9,8 @@ using namespace RDEModel;
 
 user::user() {}
 
-user::user(String^ userType, String^ name, String^ password, bool active,
-           int userID, int registrationDate) {
+user::user(String^ userType, bool active, int userID, int registrationDate, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) : person(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside){
     this->userType = userType;
-    this->name = name;
-    this->password = password;
     this->active = active;
     this->userID = userID;
     this->registrationDate = registrationDate;
@@ -27,21 +24,6 @@ void user::setUserType(String^ userType) {
     this->userType = userType;
 }
 
-String^ user::getName() {
-    return this->name;
-}
-
-void user::setName(String^ name) {
-    this->name = name;
-}
-
-String^ user::getPassword() {
-    return this->password;
-}
-
-void user::setPassword(String^ password) {
-    this->password = password;
-}
 
 bool user::getActive() {
     return this->active;

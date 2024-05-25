@@ -19,8 +19,6 @@ namespace RDEModel {
             int adminID;
             String^ area;
             String^ adminType;
-            String^ name;
-            String^ password;
             int registrationDate;
             int expirationDate;
             int contractID;
@@ -28,13 +26,11 @@ namespace RDEModel {
 
         public:
             admin();
-            admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours);
+            admin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 
             int getAdminID();
             String^ getArea();
             String^ getAdminType();
-            String^ getName();
-            String^ getPassword();
             int getRegistrationDate();
             int getExpirationDate();
             int getContractID();
@@ -43,8 +39,6 @@ namespace RDEModel {
             void setAdminID( int adminID);
             void setArea(String^ area);
             void setAdminType(String^ adminType);
-            void setName(String^ name);
-            void setPassword(String^ password);
             void setRegistrationDate(int registrationDate);
             void setExpirationDate(int expirationDate);
             void setContractID(int contractID);

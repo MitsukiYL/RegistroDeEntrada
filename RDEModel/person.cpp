@@ -103,10 +103,10 @@ void person::setAge(int age) {
     this->age = age;
 }
 
-bool person::getisInside() {
+bool person::getIsInside() {
     return this->isInside;
 }
 
-void person::setisInside(bool isInside) {
+void person::setIsInside(bool isInside) {
     this->isInside = isInside;
 }

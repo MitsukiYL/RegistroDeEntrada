@@ -4,13 +4,11 @@
 using namespace RDEModel;
 
 admin::admin() {};
-admin::admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours) {
+admin::admin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) : person(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside) {
 
 	this->adminID= adminID;
 	this->area = area;
 	this->adminType = adminType;
-	this->name = name;
-	this->password = password;
 	this->registrationDate = registrationDate;
 	this->expirationDate = expirationDate;
 	this->contractID = contractID;
@@ -26,12 +24,7 @@ String^ admin::getArea() {
 String^ admin::getAdminType() {
 	return this->adminType;
 }
-String^ admin::getName() {
-	return this->name;
-}
-String^ admin::getPassword() {
-	return this->password;
-}
+
 int admin::getRegistrationDate() {
 	return this->registrationDate;
 }
@@ -55,12 +48,7 @@ void admin::setArea(String^ area) {
 void admin::setAdminType(String^ adminType) {
 	this->adminType =adminType;
 }
-void admin::setName(String^ name) {
-	this-> name=name;
-}
-void admin::setPassword(String^ password) {
-	this-> password=password;
-}
+
 void admin::setRegistrationDate(int registrationDate) {
 	this->registrationDate =registrationDate;
 }

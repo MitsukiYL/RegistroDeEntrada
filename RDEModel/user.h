@@ -14,24 +14,15 @@ namespace RDEModel {
 	public ref class user : public person {
     private:
         String^ userType;
-        String^ name;
-        String^ password;
         bool active;
         int userID;
         int registrationDate;
     public:
         user();
-        user(String^ userType, String^ name, String^ password, bool active,
-            int userID, int registrationDate);
+        user(String^ userType, bool active, int userID, int registrationDate, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 
         String^ getUserType();
         void setUserType(String^ userType);
-
-        String^ getName();
-        void setName(String^ name);
-
-        String^ getPassword();
-        void setPassword(String^ password);
 
         bool getActive();
         void setActive(bool active);
