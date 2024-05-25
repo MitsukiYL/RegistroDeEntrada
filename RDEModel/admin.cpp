@@ -4,7 +4,7 @@
 using namespace RDEModel;
 
 admin::admin() {};
-admin::admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID) {
+admin::admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours) {
 
 	this->adminID= adminID;
 	this->area = area;
@@ -14,56 +14,62 @@ admin::admin(int adminID, String^ area, String^ adminType, String^ name, String^
 	this->registrationDate = registrationDate;
 	this->expirationDate = expirationDate;
 	this->contractID = contractID;
-
+	this->listWorkHours = listWorkHours;
 }
 
-int admin::getadminID(){
+int admin::getAdminID(){
 	return this->adminID;
 }
-String^ admin::getarea() {
+String^ admin::getArea() {
 	return this->area;
 }
-String^ admin::getadminType() {
+String^ admin::getAdminType() {
 	return this->adminType;
 }
-String^ admin::getname() {
+String^ admin::getName() {
 	return this->name;
 }
-String^ admin::getpassword() {
+String^ admin::getPassword() {
 	return this->password;
 }
-int admin::getregistrationDate() {
+int admin::getRegistrationDate() {
 	return this->registrationDate;
 }
-int admin::getexpirationDate() {
+int admin::getExpirationDate() {
 	return this->expirationDate;
 }
-int admin::getcontractID() {
+int admin::getContractID() {
 	return this->contractID;
 }
+List<workHours^>^ admin::getListWorkHours() {
+	return this->listWorkHours;
+}
 
-void admin::setadminID(int adminID) {
+void admin::setAdminID(int adminID) {
 	this->adminID=adminID;
 }
 
-void admin::setarea(String^ area) {
-	this->area =area ;
+void admin::setArea(String^ area) {
+	this->area =area;
 }
-void admin::setadminType(String^ adminType) {
+void admin::setAdminType(String^ adminType) {
 	this->adminType =adminType;
 }
-void admin::setname(String^ name) {
-	this-> name=name ;
+void admin::setName(String^ name) {
+	this-> name=name;
 }
-void admin::setpassword(String^ password) {
-	this-> password=password ;
+void admin::setPassword(String^ password) {
+	this-> password=password;
 }
-void admin::setregistrationDate(int registrationDate) {
-	this->registrationDate =registrationDate ;
+void admin::setRegistrationDate(int registrationDate) {
+	this->registrationDate =registrationDate;
 }
-void admin::setexpirationDate(int expirationDate) {
-	this->expirationDate =expirationDate ;
+void admin::setExpirationDate(int expirationDate) {
+	this->expirationDate =expirationDate;
 }
-void admin::setcontractID(int contractID) {
-	this-> contractID=contractID ;
+void admin::setContractID(int contractID) {
+	this-> contractID=contractID;
+}
+void admin::setListWorkHours(List<workHours^>^ listWorkHours) {
+	this->listWorkHours=listWorkHours;
 }

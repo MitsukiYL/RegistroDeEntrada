@@ -3,6 +3,7 @@
  */
 //prueba
 //otra prueba
+#include "workHours.h"
 
 #ifndef _ADMIN_H
 #define _ADMIN_H
@@ -10,6 +11,7 @@
 #include "person.h"
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 namespace RDEModel {
     public ref class admin : public person {
@@ -22,28 +24,31 @@ namespace RDEModel {
             int registrationDate;
             int expirationDate;
             int contractID;
+            List<workHours^>^ listWorkHours;
 
         public:
             admin();
-            admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID);
+            admin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours);
 
-            int getadminID();
-            String^ getarea();
-            String^ getadminType();
-            String^ getname();
-            String^ getpassword();
-            int getregistrationDate();
-            int getexpirationDate();
-            int getcontractID();
+            int getAdminID();
+            String^ getArea();
+            String^ getAdminType();
+            String^ getName();
+            String^ getPassword();
+            int getRegistrationDate();
+            int getExpirationDate();
+            int getContractID();
+            List<workHours^>^ getListWorkHours();
 
-            void setadminID( int adminID);
-            void setarea(String^ area);
-            void setadminType(String^ adminType);
-            void setname(String^ name);
-            void setpassword(String^ password);
-            void setregistrationDate(int registrationDate);
-            void setexpirationDate(int expirationDate);
-            void setcontractID(int contractID);
+            void setAdminID( int adminID);
+            void setArea(String^ area);
+            void setAdminType(String^ adminType);
+            void setName(String^ name);
+            void setPassword(String^ password);
+            void setRegistrationDate(int registrationDate);
+            void setExpirationDate(int expirationDate);
+            void setContractID(int contractID);
+            void setListWorkHours(List<workHours^>^ listWorkHours);
     };
 }
 

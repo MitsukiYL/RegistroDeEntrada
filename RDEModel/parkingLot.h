@@ -22,35 +22,35 @@ namespace RDEModel {
         int N_reserved;
         int N_inactive;
         zone^ objZone;
-        List<parkingSite^>^ listaParkingSite;
+        List<parkingSite^>^ listParkingSite;
 
 	public:
 		parkingLot();
-		parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite);
+		parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite);
     
-        String^ getname();
-        void setname(String^ name);
+        String^ getName();
+        void setName(String^ name);
 
-        char getvehicleType();
-        void setvehicleType(char vehicleType);
+        char getVehicleType();
+        void setVehicleType(char vehicleType);
 
         String^ getID();
         void setID(String^ ID);
 
-        int getcapacity();
-        void setcapacity(int capacity);
+        int getCapacity();
+        void setCapacity(int capacity);
 
-        int getNreserved();
-        void setNreserved(int N_reserver);
+        int getNReserved();
+        void setNReserved(int N_reserver);
 
-        int getNinactive();
-        void setNinactive(int N_inactive);
+        int getNInactive();
+        void setNInactive(int N_inactive);
 
         zone^ getZone();
         void setZone(zone^ objZone);
 
-        List<parkingSite^>^ getListaParkingSite();
-        void setListaParkingSite(List<parkingSite^>^ listaParkingSite);
+        List<parkingSite^>^ getListParkingSite();
+        void setListParkingSite(List<parkingSite^>^ listaParkingSite);
        
     };
 }

@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 parkingLot::parkingLot() {}
 
-parkingLot::parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
+parkingLot::parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite) {
     this->name = name;
     this->vehicleType = vehicleType;
     this->ID = ID;
@@ -17,22 +17,22 @@ parkingLot::parkingLot(String^ name, char vehicleType, String^ ID, int capacity,
     this->N_reserved = N_reserved;
     this->N_inactive = N_inactive;
     this->objZone = objZone;
-    this->listaParkingSite = listaParkingSite;
+    this->listParkingSite = listParkingSite;
 }
 
-String^ parkingLot::getname() {
+String^ parkingLot::getName() {
     return this->name;
 }
 
-void parkingLot::setname(String^ name) {
+void parkingLot::setName(String^ name) {
     this->name = name;
 }
 
-char parkingLot::getvehicleType() {
+char parkingLot::getVehicleType() {
     return this->vehicleType;
 }
 
-void parkingLot::setvehicleType(char vehicleType) {
+void parkingLot::setVehicleType(char vehicleType) {
     this->vehicleType = vehicleType;
 }
 
@@ -44,27 +44,27 @@ void parkingLot::setID(String^ ID) {
     this->ID = ID;
 }
 
-int parkingLot::getcapacity() {
+int parkingLot::getCapacity() {
     return this->capacity;
 }
 
-void parkingLot::setcapacity(int capacity) {
+void parkingLot::setCapacity(int capacity) {
     this->capacity = capacity;
 }
 
-int parkingLot::getNreserved() {
+int parkingLot::getNReserved() {
     return this->N_reserved;
 }
 
-void parkingLot::setNreserved(int N_reserved) {
+void parkingLot::setNReserved(int N_reserved) {
     this->N_reserved = N_reserved;
 }
 
-int parkingLot::getNinactive() {
+int parkingLot::getNInactive() {
     return this->N_inactive;
 }
 
-void parkingLot::setNinactive(int N_inactive) {
+void parkingLot::setNInactive(int N_inactive) {
     this->N_inactive = N_inactive;
 }
 
@@ -76,9 +76,9 @@ void parkingLot::setZone(zone^ objZone) {
     this->objZone = objZone;
 }
 
-List<parkingSite^>^ parkingLot::getListaParkingSite() {
-    return this->listaParkingSite;
+List<parkingSite^>^ parkingLot::getListParkingSite() {
+    return this->listParkingSite;
 }
-void parkingLot::setListaParkingSite(List<parkingSite^>^ listaParkingSite) {
-    this->listaParkingSite = listaParkingSite;
+void parkingLot::setListParkingSite(List<parkingSite^>^ listaParkingSite) {
+    this->listParkingSite = listParkingSite;
 }
