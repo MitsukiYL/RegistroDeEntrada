@@ -1,6 +1,6 @@
 /**
  * Project Untitled
- PRUEBA1*/
+ */
 
 #include "pch.h"
 #include "door.h"
