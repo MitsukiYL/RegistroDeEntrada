@@ -11,48 +11,48 @@ interface::interface() {}
 
 interface::interface(int pin, String^ protocol, String^ producer, bool active, int registrationDate) {
     this->pin = pin;
-    this->protocole = protocol;
+    this->protocol = protocol;
     this->producer = producer;
     this->active = active;
     this->registrationDate = registrationDate;
 }
 
-int interface::getpin() {
+int interface::getPin() {
     return this->pin;
 }
 
-void interface::setpin(int pin) {
+void interface::setPin(int pin) {
     this->pin = pin;
 }
 
-String^ interface::getprotocol() {
-    return this->protocole;
+String^ interface::getProtocol() {
+    return this->protocol;
 }
 
-void interface::setprotocol(String^ protocol) {
-    this->protocole = protocol;
+void interface::setProtocol(String^ protocol) {
+    this->protocol = protocol;
 }
 
-String^ interface::getproducer() {
+String^ interface::getProducer() {
     return this->producer;
 }
 
-void interface::setproducer(String^ producer) {
+void interface::setProducer(String^ producer) {
     this->producer = producer;
 }
 
-bool interface::getactive() {
+bool interface::getActive() {
     return this->active;
 }
 
-void interface::setactive(bool active) {
+void interface::setActive(bool active) {
     this->active = active;
 }
 
-int interface::getregistrationDate() {
+int interface::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void interface::setregistrationDate(int registrationDate) {
+void interface::setRegistrationDate(int registrationDate) {
     this->registrationDate = registrationDate;
 }

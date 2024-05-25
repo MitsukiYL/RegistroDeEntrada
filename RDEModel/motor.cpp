@@ -18,11 +18,11 @@ motor::motor(int pin, int RPM, String^ producer, bool active, int registrationDa
     this->power = power;
 }
 
-int motor::getpin() {
+int motor::getPin() {
     return this->pin;
 }
 
-void motor::setpin(int pin) {
+void motor::setPin(int pin) {
     this->pin = pin;
 }
 
@@ -34,34 +34,34 @@ void motor::setRPM(int RPM) {
     this->RPM = RPM;
 }
 
-String^ motor::getproducer() {
+String^ motor::getProducer() {
     return this->producer;
 }
 
-void motor::setproducer(String^ producer) {
+void motor::setProducer(String^ producer) {
     this->producer = producer;
 }
 
-bool motor::getactive() {
+bool motor::getActive() {
     return this->active;
 }
 
-void motor::setactive(bool active) {
+void motor::setActive(bool active) {
     this->active = active;
 }
 
-int motor::getregistrationDate() {
+int motor::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void motor::setregistrationDate(int registrationDate) {
+void motor::setRegistrationDate(int registrationDate) {
     this->registrationDate = registrationDate;
 }
 
-int motor::getpower() {
+int motor::getPower() {
     return this->power;
 }
 
-void motor::setpower(int power) {
+void motor::setPower(int power) {
     this->power = power;
 }

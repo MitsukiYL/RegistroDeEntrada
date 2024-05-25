@@ -12,29 +12,29 @@ namespace RDEModel {
     public ref class interface {
     private:
         int pin;
-        String^ protocole;
+        String^ protocol;
         String^ producer;
         bool active;
         int registrationDate;
 
     public:
         interface();
-        interface(int pin, String^ protocole, String^ producer, bool active, int registrationDate);  
+        interface(int pin, String^ protocol, String^ producer, bool active, int registrationDate);  
     
-        int getpin();
-        void setpin(int pin);
+        int getPin();
+        void setPin(int pin);
 
-        String^ getprotocol();
-        void setprotocol(String^ protocol);
+        String^ getProtocol();
+        void setProtocol(String^ protocol);
 
-        String^ getproducer();
-        void setproducer(String^ producer);
+        String^ getProducer();
+        void setProducer(String^ producer);
 
-        bool getactive();
-        void setactive(bool active);
+        bool getActive();
+        void setActive(bool active);
 
-        int getregistrationDate();
-        void setregistrationDate(int registrationDate);
+        int getRegistrationDate();
+        void setRegistrationDate(int registrationDate);
     };
 }
 

@@ -6,6 +6,8 @@
 #ifndef _CARD_H
 #define _CARD_H
 
+#include "user.h"
+
 using namespace System;
 
 namespace RDEModel {
@@ -19,28 +21,31 @@ namespace RDEModel {
         	int emissionDate;
         	int registrationDate;
         	bool active;
+            user^ objUser;
 
     	public:
 		card();
-		card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
+		card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
 
-        int getcode();
-        int getexpirationDate();
-        String^ getpermissionType();
+        int getCode();
+        int getExpirationDate();
+        String^ getPermissionType();
         int getID();
-        bool getpermission();
-        int getemissionDate();
-        int getregistrationDate();
-        bool getactive();
+        bool getPermission();
+        int getEmissionDate();
+        int getRegistrationDate();
+        bool getActive();
+        user^ getObjUser();
 
-        void setcode(int code);
-        void setexpirationDate(int expirationDate);
-        void setpermissionType(String^ permissionType);
+        void setCode(int code);
+        void setExpirationDate(int expirationDate);
+        void setPermissionType(String^ permissionType);
         void setID(int ID);
-        void setpermission(bool permission);
-        void setemissionDate(int emissionDate);
-        void setregistrationDate(int registrationDate);
-        void setactive(bool active);
+        void setPermission(bool permission);
+        void setEmissionDate(int emissionDate);
+        void setRegistrationDate(int registrationDate);
+        void setActive(bool active);
+        void setObjUser(user^ objUser);
     };
 }
 

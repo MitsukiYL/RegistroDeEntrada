@@ -22,23 +22,23 @@ namespace RDEModel {
         motor();
         motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power);
     
-        int getpin();
-        void setpin(int pin);
+        int getPin();
+        void setPin(int pin);
 
         int getRPM();
         void setRPM(int RPM);
 
-        String^ getproducer();
-        void setproducer(String^ producer);
+        String^ getProducer();
+        void setProducer(String^ producer);
 
-        bool getactive();
-        void setactive(bool active);
+        bool getActive();
+        void setActive(bool active);
 
-        int getregistrationDate();
-        void setregistrationDate(int registrationDate);
+        int getRegistrationDate();
+        void setRegistrationDate(int registrationDate);
 
-        int getpower();
-        void setpower(int power);
+        int getPower();
+        void setPower(int power);
     };
 }
 

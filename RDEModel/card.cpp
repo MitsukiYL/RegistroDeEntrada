@@ -6,7 +6,7 @@ using namespace RDEModel;
 
 card::card() {
 }
-card::card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active) {
+card::card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser) {
 
     this->code= code;
     this->expirationDate = expirationDate;
@@ -16,55 +16,61 @@ card::card(int code, int expirationDate, String^ permissionType, int ID, bool pe
     this->emissionDate = emissionDate;
     this->registrationDate = registrationDate;
     this->active = active;
-
+    this->objUser = objUser;
 }
 
-int card::getcode() {
+int card::getCode() {
     return this->code;
 }
-int card::getexpirationDate() {
+int card::getExpirationDate() {
     return this->expirationDate;
 }
-String^ card::getpermissionType() {
+String^ card::getPermissionType() {
     return this->permissionType;
 }
 int card::getID() {
     return this->ID;
 }
-bool card::getpermission() {
+bool card::getPermission() {
     return this->permission;
 }
-int card::getemissionDate() {
+int card::getEmissionDate() {
     return this->emissionDate;
 }
-int card::getregistrationDate() {
+int card::getRegistrationDate() {
     return this->registrationDate;
 }
-bool card::getactive() {
+bool card::getActive() {
     return this->active;
 }
+user^ card::getObjUser() {
+    return this->objUser;
+}
 
-void card::setcode(int code) {
+void card::setCode(int code) {
     this->code = code;
 }
-void card::setexpirationDate(int expirationDate) {
+void card::setExpirationDate(int expirationDate) {
     this->expirationDate = expirationDate;
 }
-void card::setpermissionType(String^ permissionType) {
-    this->permissionType =permissionType ;
+void card::setPermissionType(String^ permissionType) {
+    this->permissionType =permissionType;
 }
 void card::setID(int ID) {
-    this->ID =ID ;
+    this->ID =ID;
 }
-void card::setpermission(bool permission) {
-    this->permission =permission ;
+void card::setPermission(bool permission) {
+    this->permission =permission;
 }
-void card::setemissionDate(int emissionDate) {
-    this->emissionDate =emissionDate ;
+void card::setEmissionDate(int emissionDate) {
+    this->emissionDate =emissionDate;
 }
-void card::setregistrationDate(int registrationDate) {
-    this-> registrationDate=registrationDate ;
+void card::setRegistrationDate(int registrationDate) {
+    this-> registrationDate=registrationDate;
 }
-void card::setactive(bool active) {
-    this-> active=active ;
+void card::setActive(bool active) {
+    this-> active=active;
+}
+void card::setObjUser(user^ objUser) {
+    this->objUser = objUser;
 }

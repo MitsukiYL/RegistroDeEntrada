@@ -1,7 +1,7 @@
 /**
  * Project Untitled
  */
-
+#include "admin.h"
 
 #ifndef _SYSTEMREGISTER_H
 #define _SYSTEMREGISTER_H
@@ -14,10 +14,11 @@ namespace RDEModel {
         int date;
         String^ operationType;
         String^ IP;
+        admin^ objAdmin;
 
     public:
         systemRegister();
-        systemRegister(int date, String^ operationType, String^ IP);
+        systemRegister(int date, String^ operationType, String^ IP, admin^ objAdmin);
 
         int getDate();
         void setDate(int date);
@@ -27,6 +28,9 @@ namespace RDEModel {
 
         String^ getIP();
         void setIP(String^ IP);
+
+        admin^ getObjAdmin();
+        void setObjAdmin(admin^ objAdmin);
     };
 }
 

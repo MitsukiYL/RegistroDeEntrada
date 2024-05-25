@@ -9,10 +9,11 @@ using namespace RDEModel;
 
 systemRegister::systemRegister() {}
 
-systemRegister::systemRegister(int date, String^ operationType, String^ IP) {
+systemRegister::systemRegister(int date, String^ operationType, String^ IP, admin^ objAdmin) {
     this->date = date;
     this->operationType = operationType;
     this->IP = IP;
+    this->objAdmin = objAdmin;
 }
 
 int systemRegister::getDate() {
@@ -37,4 +38,11 @@ String^ systemRegister::getIP() {
 
 void systemRegister::setIP(String^ IP) {
     this->IP = IP;
+}
+
+admin^ systemRegister::getObjAdmin() {
+    return this->objAdmin;
+}
+void systemRegister::setObjAdmin(admin^ objAdmin) {
+    this->objAdmin;
 }
