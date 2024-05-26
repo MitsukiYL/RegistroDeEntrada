@@ -38,7 +38,8 @@ admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
 
 
 		if (adminID==IDbuscar) {
-			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, 
+				personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 		}
 	}
 	return objAdmin;

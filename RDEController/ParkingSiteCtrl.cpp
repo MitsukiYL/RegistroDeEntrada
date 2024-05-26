@@ -80,6 +80,7 @@ parkingSite^ ParkingSiteCtrl::BuscarSiteXID(String^ IDsearch) {
 
 		if (ID == IDsearch) {
 			objParkingSite = gcnew parkingSite(ID, reserved, active, lotID);
+			break;
 		}
 	}
 	return objParkingSite;

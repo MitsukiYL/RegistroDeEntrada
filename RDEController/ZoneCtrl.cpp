@@ -62,7 +62,7 @@ void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaZone->Count);
 	for (int i = 0; i < listaZone->Count; i++) {
 		zone^ objZone = listaZone[i];
-		lineasArchivo[i] = Convert::ToString(objZone->getID()) + ";" + objZone->getName() + ";" + objZone->getLocation() + ";" + Convert::ToString(objZone->getOpeningTime()) + ";" + Convert::ToString(objZone->getOpeningTime()) + ";" + Convert::ToString(objZone->getActive()) + ";" + Convert::ToString(objZone->getAdmin()->getadminID());
+		lineasArchivo[i] = Convert::ToString(objZone->getID()) + ";" + objZone->getName() + ";" + objZone->getLocation() + ";" + Convert::ToString(objZone->getOpeningTime()) + ";" + Convert::ToString(objZone->getOpeningTime()) + ";" + Convert::ToString(objZone->getActive()) + ";" + Convert::ToString(objZone->getAdmin()->getAdminID());
 	}
 	File::WriteAllLines("Zone.txt", lineasArchivo);
 }

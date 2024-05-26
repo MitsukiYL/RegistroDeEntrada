@@ -505,7 +505,7 @@ private: void mostrarGrilla(List<person^>^ listPerson) {
 				filaGrilla[7] = objPerson->getOccupation();
 				filaGrilla[8] = objPerson->getGender();
 				filaGrilla[9] = Convert::ToString(objPerson->getAge());
-				filaGrilla[10] = Convert::ToString(objPerson->getisInside());
+				filaGrilla[10] = Convert::ToString(objPerson->getIsInside());
 				this->Person_DGV->Rows->Add(filaGrilla);
 		   }
 	   }

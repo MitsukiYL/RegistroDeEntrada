@@ -15,9 +15,9 @@ using namespace System::Collections::Generic;
 namespace RDEModel {
 	public ref class user : public person {
         private:
+            int userID;
             String^ userType;
             bool active;
-            int userID;
             int registrationDate;
             parkingSite^ objParkingSite;
 
