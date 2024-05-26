@@ -70,6 +70,14 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_adminID;
 	private: System::Windows::Forms::Label^ label7;
 
+
+
+
+
+
+
+
+	private: System::Windows::Forms::CheckBox^ check_active;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
@@ -77,7 +85,6 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::CheckBox^ check_active;
 
 
 	private:
@@ -94,13 +101,6 @@ namespace RDEView {
 		void InitializeComponent(void)
 		{
 			this->Zone_DGV = (gcnew System::Windows::Forms::DataGridView());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -117,6 +117,13 @@ namespace RDEView {
 			this->txt_adminID = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Zone_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -135,51 +142,6 @@ namespace RDEView {
 			this->Zone_DGV->Size = System::Drawing::Size(1015, 178);
 			this->Zone_DGV->TabIndex = 46;
 			this->Zone_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantZone::Zone_DGV_CellClick);
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"ID";
-			this->Column6->Name = L"Column6";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Nombre";
-			this->Column1->MinimumWidth = 8;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 150;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Ubicacion";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Estado";
-			this->Column3->MinimumWidth = 8;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 150;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Hora de Apertura";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Hora de Cierre";
-			this->Column5->MinimumWidth = 8;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 150;
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Administrador";
-			this->Column7->Name = L"Column7";
 			// 
 			// button3
 			// 
@@ -317,6 +279,51 @@ namespace RDEView {
 			this->check_active->Text = L"Estado";
 			this->check_active->UseVisualStyleBackColor = true;
 			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"ID";
+			this->Column6->Name = L"Column6";
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Nombre";
+			this->Column1->MinimumWidth = 8;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 150;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Ubicacion";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 150;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Hora de Apertura";
+			this->Column3->MinimumWidth = 8;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 150;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Hora de Cierre";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Estado";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 150;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Administrador";
+			this->Column7->Name = L"Column7";
+			// 
 			// MantZone
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -415,7 +422,17 @@ private: void mostrarGrilla(List<zone^>^ listZone) {
 private: System::Void Zone_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int ZoneID = Int32::Parse(Zone_DGV->Rows[Zone_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 	ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-	zone^ Zone = objZoneCtrl->buscarZonaxID(ZoneID);;
+	zone^ Zone = objZoneCtrl->buscarZonaxID(ZoneID);
+	if (Zone != nullptr) {
+		this->txt_ID->Text = Convert::ToString(Zone->getID());
+		this->txt_name->Text = Zone->getName();
+		this->txt_location->Text = Zone->getLocation();
+		this->txt_openingTime->Text = Convert::ToString(Zone->getOpeningTime());
+		this->txt_closingTime->Text = Convert::ToString(Zone->getClosingTime());
+		this->check_active->Checked = Zone->getActive();
+		this->txt_adminID->Text = Convert::ToString(Zone->getAdmin()->getAdminID());
+	}
+
 }
 private: System::Void MantZone_Load(System::Object^ sender, System::EventArgs^ e) {
 	ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
