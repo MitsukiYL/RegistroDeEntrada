@@ -12,9 +12,9 @@ admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
 	admin^ objAdmin;
 	array<String^>^ lineas = File::ReadAllLines("Administradores.txt");
 	String^ separadores = ";"; 
-	for each (String ^ lineaPeluche in lineas) {
+	for each (String ^ lineaAdmin in lineas) {
 		
-		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+		array<String^>^ datos = lineaAdmin->Split(separadores->ToCharArray());
 
 		int adminID = Convert::ToInt32(datos[0]);
 		String^ area = datos[1];
@@ -83,24 +83,10 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 	}
 	
 
-void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, int personDNI) {
-	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-	person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
-
-	List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-	String^ name = objPerson->getName();
-	int code = objPerson->getCode();
-	String^ mail = objPerson->getMail();
-	String^ phone = objPerson->getPhone();
-	String^ password = objPerson->getPassword();
-	bool permission = objPerson->getPermission();
-	String^ occupation = objPerson->getOccupation();
-	String^ gender = objPerson->getGender();
-	int age = objPerson->getAge();
-	bool isInside = objPerson->getIsInside();
+void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
 
 	List<admin^>^ listaadmin = AllAdministradores();
-	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	listaadmin->Add(adminNuevo);
 	escribirArchivo(listaadmin);
 }
@@ -110,12 +96,16 @@ void AdminCtrl::escribirArchivo(List <admin^>^ listaadmin) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaadmin->Count);
 	for (int i = 0; i < listaadmin->Count; i++) {
 		admin^ objAdmin = listaadmin[i];
-		lineasArchivo[i] =Convert::ToString(objAdmin->getAdminID()) + ";" + Convert::ToString(objAdmin->getArea()) + ";" + Convert::ToString(objAdmin->getAdminType()) + ";" + Convert::ToString(objAdmin->getName()) + ";" + Convert::ToString(objAdmin->getPassword()) + ";" + Convert::ToString(objAdmin->getRegistrationDate()) + ";" + Convert::ToString(objAdmin->getExpirationDate()) + ";" + Convert::ToString(objAdmin->getContractID());
+		lineasArchivo[i] =Convert::ToString(objAdmin->getAdminID()) + ";" + Convert::ToString(objAdmin->getArea()) + ";" + Convert::ToString(objAdmin->getAdminType()) + ";" + Convert::ToString(objAdmin->getName()) + ";" + Convert::ToString(objAdmin->getPassword()) + ";" + Convert::ToString(objAdmin->getRegistrationDate()) + ";" + Convert::ToString(objAdmin->getExpirationDate()) + ";" + Convert::ToString(objAdmin->getContractID())
+			+ ";" + objAdmin->getName() + ";" + objAdmin->getPassword() + ";" + Convert::ToString(objAdmin->getCode())
+			+ ";" + Convert::ToString(objAdmin->getDNI()) + ";" + objAdmin->getMail() + ";" + Convert::ToString(objAdmin->getPermission())
+			+ ";" + Convert::ToString(objAdmin->getOccupation()) + ";" + objAdmin->getGender() + ";" + objAdmin->getPhone()
+			+ ";" + Convert::ToString(objAdmin->getAge()) + ";" + Convert::ToString(objAdmin->getIsInside());
 	}
 	File::WriteAllLines("Administradores.txt", lineasArchivo);
 }
 
-void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, int personDNI) {
+void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
 	List<admin^>^ listaadmin = AllAdministradores();
 	for (int i = 0; i < listaadmin->Count; i++) {
 		if (listaadmin[i]->getAdminID() == adminID) {
@@ -124,21 +114,17 @@ void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, in
 			listaadmin[i]->setRegistrationDate(registrationDate);
 			listaadmin[i]->setExpirationDate(expirationDate);
 			listaadmin[i]->setContractID(contractID);
-
-			PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-			person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
-
-			listaadmin[i]->setDNI(objPerson->getDNI());
-			listaadmin[i]->setName(objPerson->getName());
-			listaadmin[i]->setCode(objPerson->getCode());
-			listaadmin[i]->setMail(objPerson->getMail());
-			listaadmin[i]->setPhone(objPerson->getPhone());
-			listaadmin[i]->setPassword(objPerson->getPassword());
-			listaadmin[i]->setPermission(objPerson->getPermission());
-			listaadmin[i]->setOccupation(objPerson->getOccupation());
-			listaadmin[i]->setGender(objPerson->getGender());
-			listaadmin[i]->setAge(objPerson->getAge());
-			listaadmin[i]->setIsInside(objPerson->getIsInside());
+			listaadmin[i]->setDNI(DNI);
+			listaadmin[i]->setName(name);
+			listaadmin[i]->setCode(code);
+			listaadmin[i]->setMail(mail);
+			listaadmin[i]->setPhone(phone);
+			listaadmin[i]->setPassword(password);
+			listaadmin[i]->setPermission(permission);
+			listaadmin[i]->setOccupation(occupation);
+			listaadmin[i]->setGender(gender);
+			listaadmin[i]->setAge(age);
+			listaadmin[i]->setIsInside(isInside);
 			break;
 		}
 	}
@@ -146,10 +132,10 @@ void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, in
 
 }
 
-void AdminCtrl::eliminarAdmin(String^ ID) {
+void AdminCtrl::eliminarAdmin(int ID) {
 	List<admin^>^ listaadmin = AllAdministradores();
 	for (int i = 0; i < listaadmin->Count; i++) {
-		if (listaadmin[i]->getAdminID()) {
+		if (listaadmin[i]->getAdminID()==ID) {
 			listaadmin->RemoveAt(i);
 			break;
 		}

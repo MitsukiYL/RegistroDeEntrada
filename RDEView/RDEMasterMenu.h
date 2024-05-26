@@ -8,6 +8,10 @@
 #include "MantVehicles.h"
 #include "MantUser.h"
 #include "MantParkingSite.h"
+#include "MantZone.h"
+#include "MantCard.h"
+#include "MantParkingLot.h"
+#include "MantAdmin.h"
 
 
 namespace RDEView {
@@ -58,10 +62,10 @@ namespace RDEView {
 	private: System::Windows::Forms::ToolStripMenuItem^ estacionamientosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ playasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ tarjetasToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ sensoresToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ puertasToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ motoresToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ interfacesToolStripMenuItem;
+
+
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^ administradoresToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ personasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ menúDeInscripciónToolStripMenuItem;
@@ -96,10 +100,6 @@ namespace RDEView {
 			this->estacionamientosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->playasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tarjetasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->sensoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->puertasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->motoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->interfacesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->administradoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
@@ -108,7 +108,6 @@ namespace RDEView {
 			// menuStrip1
 			// 
 			this->menuStrip1->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->xdToolStripMenuItem,
@@ -116,7 +115,8 @@ namespace RDEView {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1167, 33);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 1, 0, 1);
+			this->menuStrip1->Size = System::Drawing::Size(778, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -127,141 +127,119 @@ namespace RDEView {
 					this->menúDeInscripciónToolStripMenuItem, this->menúDePeticionesToolStripMenuItem, this->registroDeEntradaToolStripMenuItem
 			});
 			this->xdToolStripMenuItem->Name = L"xdToolStripMenuItem";
-			this->xdToolStripMenuItem->Size = System::Drawing::Size(104, 29);
+			this->xdToolStripMenuItem->Size = System::Drawing::Size(70, 22);
 			this->xdToolStripMenuItem->Text = L"Interfaces";
 			this->xdToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::xdToolStripMenuItem_Click);
 			// 
 			// perfilDeUsuarioToolStripMenuItem
 			// 
 			this->perfilDeUsuarioToolStripMenuItem->Name = L"perfilDeUsuarioToolStripMenuItem";
-			this->perfilDeUsuarioToolStripMenuItem->Size = System::Drawing::Size(273, 34);
+			this->perfilDeUsuarioToolStripMenuItem->Size = System::Drawing::Size(182, 22);
 			this->perfilDeUsuarioToolStripMenuItem->Text = L"Perfil de Usuario";
 			this->perfilDeUsuarioToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::perfilDeUsuarioToolStripMenuItem_Click);
 			// 
 			// menúDeInscripciónToolStripMenuItem
 			// 
 			this->menúDeInscripciónToolStripMenuItem->Name = L"menúDeInscripciónToolStripMenuItem";
-			this->menúDeInscripciónToolStripMenuItem->Size = System::Drawing::Size(273, 34);
+			this->menúDeInscripciónToolStripMenuItem->Size = System::Drawing::Size(182, 22);
 			this->menúDeInscripciónToolStripMenuItem->Text = L"Menú de inscripción";
 			this->menúDeInscripciónToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::menúDeInscripciónToolStripMenuItem_Click);
 			// 
 			// menúDePeticionesToolStripMenuItem
 			// 
 			this->menúDePeticionesToolStripMenuItem->Name = L"menúDePeticionesToolStripMenuItem";
-			this->menúDePeticionesToolStripMenuItem->Size = System::Drawing::Size(273, 34);
+			this->menúDePeticionesToolStripMenuItem->Size = System::Drawing::Size(182, 22);
 			this->menúDePeticionesToolStripMenuItem->Text = L"Menú de peticiones";
 			this->menúDePeticionesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::menúDePeticionesToolStripMenuItem_Click);
 			// 
 			// registroDeEntradaToolStripMenuItem
 			// 
 			this->registroDeEntradaToolStripMenuItem->Name = L"registroDeEntradaToolStripMenuItem";
-			this->registroDeEntradaToolStripMenuItem->Size = System::Drawing::Size(273, 34);
+			this->registroDeEntradaToolStripMenuItem->Size = System::Drawing::Size(182, 22);
 			this->registroDeEntradaToolStripMenuItem->Text = L"Registro de Entrada";
 			this->registroDeEntradaToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::registroDeEntradaToolStripMenuItem_Click);
 			// 
 			// xdToolStripMenuItem3
 			// 
-			this->xdToolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(12) {
+			this->xdToolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(8) {
 				this->usuariosToolStripMenuItem,
-					this->vehiculosToolStripMenuItem, this->personasToolStripMenuItem, this->zonasToolStripMenuItem, this->estacionamientosToolStripMenuItem,
-					this->playasToolStripMenuItem, this->tarjetasToolStripMenuItem, this->sensoresToolStripMenuItem, this->puertasToolStripMenuItem,
-					this->motoresToolStripMenuItem, this->interfacesToolStripMenuItem, this->administradoresToolStripMenuItem
+					this->vehiculosToolStripMenuItem, this->personasToolStripMenuItem, this->administradoresToolStripMenuItem, this->zonasToolStripMenuItem,
+					this->estacionamientosToolStripMenuItem, this->playasToolStripMenuItem, this->tarjetasToolStripMenuItem
 			});
 			this->xdToolStripMenuItem3->Name = L"xdToolStripMenuItem3";
-			this->xdToolStripMenuItem3->Size = System::Drawing::Size(156, 29);
+			this->xdToolStripMenuItem3->Size = System::Drawing::Size(106, 22);
 			this->xdToolStripMenuItem3->Text = L"Mantenimientos";
 			// 
 			// usuariosToolStripMenuItem
 			// 
 			this->usuariosToolStripMenuItem->Name = L"usuariosToolStripMenuItem";
-			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->usuariosToolStripMenuItem->Text = L"Personas";
 			this->usuariosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::usuariosToolStripMenuItem_Click);
 			// 
 			// vehiculosToolStripMenuItem
 			// 
 			this->vehiculosToolStripMenuItem->Name = L"vehiculosToolStripMenuItem";
-			this->vehiculosToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->vehiculosToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->vehiculosToolStripMenuItem->Text = L"Vehiculos";
 			this->vehiculosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::vehiculosToolStripMenuItem_Click);
 			// 
 			// personasToolStripMenuItem
 			// 
 			this->personasToolStripMenuItem->Name = L"personasToolStripMenuItem";
-			this->personasToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->personasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->personasToolStripMenuItem->Text = L"Usuarios";
 			this->personasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::personasToolStripMenuItem_Click);
 			// 
 			// zonasToolStripMenuItem
 			// 
 			this->zonasToolStripMenuItem->Name = L"zonasToolStripMenuItem";
-			this->zonasToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->zonasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->zonasToolStripMenuItem->Text = L"Zonas";
+			this->zonasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::zonasToolStripMenuItem_Click);
 			// 
 			// estacionamientosToolStripMenuItem
 			// 
 			this->estacionamientosToolStripMenuItem->Name = L"estacionamientosToolStripMenuItem";
-			this->estacionamientosToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->estacionamientosToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->estacionamientosToolStripMenuItem->Text = L"Estacionamientos";
 			this->estacionamientosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::estacionamientosToolStripMenuItem_Click);
 			// 
 			// playasToolStripMenuItem
 			// 
 			this->playasToolStripMenuItem->Name = L"playasToolStripMenuItem";
-			this->playasToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->playasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->playasToolStripMenuItem->Text = L"Playas";
+			this->playasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::playasToolStripMenuItem_Click);
 			// 
 			// tarjetasToolStripMenuItem
 			// 
 			this->tarjetasToolStripMenuItem->Name = L"tarjetasToolStripMenuItem";
-			this->tarjetasToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->tarjetasToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->tarjetasToolStripMenuItem->Text = L"Tarjetas";
-			// 
-			// sensoresToolStripMenuItem
-			// 
-			this->sensoresToolStripMenuItem->Name = L"sensoresToolStripMenuItem";
-			this->sensoresToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->sensoresToolStripMenuItem->Text = L"Sensores";
-			// 
-			// puertasToolStripMenuItem
-			// 
-			this->puertasToolStripMenuItem->Name = L"puertasToolStripMenuItem";
-			this->puertasToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->puertasToolStripMenuItem->Text = L"Puertas";
-			// 
-			// motoresToolStripMenuItem
-			// 
-			this->motoresToolStripMenuItem->Name = L"motoresToolStripMenuItem";
-			this->motoresToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->motoresToolStripMenuItem->Text = L"Motores";
-			// 
-			// interfacesToolStripMenuItem
-			// 
-			this->interfacesToolStripMenuItem->Name = L"interfacesToolStripMenuItem";
-			this->interfacesToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->interfacesToolStripMenuItem->Text = L"Interfaces";
+			this->tarjetasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::tarjetasToolStripMenuItem_Click);
 			// 
 			// administradoresToolStripMenuItem
 			// 
 			this->administradoresToolStripMenuItem->Name = L"administradoresToolStripMenuItem";
-			this->administradoresToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->administradoresToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->administradoresToolStripMenuItem->Text = L"Administradores";
+			this->administradoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::administradoresToolStripMenuItem_Click);
 			// 
 			// salirToolStripMenuItem
 			// 
 			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(61, 29);
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(41, 22);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
 			// 
 			// RDEMasterMenu
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1167, 651);
+			this->ClientSize = System::Drawing::Size(778, 423);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"RDEMasterMenu";
 			this->Text = L"RDEMasterMenu";
 			this->Load += gcnew System::EventHandler(this, &RDEMasterMenu::RDEMasterMenu_Load);
@@ -311,6 +289,22 @@ private: System::Void personasToolStripMenuItem_Click(System::Object^ sender, Sy
 private: System::Void estacionamientosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MantParkingSite^ mantestaform = gcnew MantParkingSite();
 	mantestaform-> ShowDialog();
+}
+private: System::Void zonasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantZone^ mantzonaform = gcnew MantZone();
+	mantzonaform->Show();
+}
+private: System::Void administradoresToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantAdmin^ mantadminform = gcnew MantAdmin();
+	mantadminform->Show();
+}
+private: System::Void playasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantParkingLot^ mantparkinglotform = gcnew MantParkingLot();
+	mantparkinglotform->Show();
+}
+private: System::Void tarjetasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantCard^ mantcardform = gcnew MantCard();
+	mantcardform->Show();
 }
 };
 }
