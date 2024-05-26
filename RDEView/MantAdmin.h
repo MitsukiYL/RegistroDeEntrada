@@ -762,14 +762,14 @@ private: System::Void Admin_DGV_CellClick(System::Object^ sender, System::Window
 		this->txt_contractID->Text = Convert::ToString(Admin->getContractID());
 		this->txt_DNI->Text = Convert::ToString(Admin->getDNI());
 		this->txt_name->Text = Admin->name;
-		this->txt_code->Text = Admin->code.ToString();
+		this->txt_code->Text = Convert::ToString(Admin->code);
 		this->txt_mail->Text = Admin->mail;
 		this->txt_phone->Text = Admin->phone;
 		this->txt_password->Text = Admin->password;
 		this->check_perm->Checked = Admin->permission;
 		this->txt_occupation->Text = Admin->occupation;
 		this->txt_gender->Text = Admin->gender;
-		this->txt_age->Text = Admin->age.ToString();
+		this->txt_age->Text = Convert::ToString(Admin->age);
 		this->check_IsInside->Checked = Admin->isInside;
 	}
 }
