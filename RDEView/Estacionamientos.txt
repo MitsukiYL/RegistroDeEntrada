@@ -1,6 +1,1 @@
-001;True;True
-002;False;False
-003;True;False
-004;True;False
-005;True;False
-006;False;False
+1;True;False;

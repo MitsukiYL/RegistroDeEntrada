@@ -54,14 +54,17 @@ namespace RDEView {
 
 	private: System::Windows::Forms::Label^ label3;
 
-	private: System::Windows::Forms::Label^ label2;
+
 
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ txt_name;
+	private: System::Windows::Forms::TextBox^ txt_userID;
+
 	private: System::Windows::Forms::TextBox^ txt_code;
-	private: System::Windows::Forms::TextBox^ txt_dni;
+
+
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ txt_mail;
+	private: System::Windows::Forms::TextBox^ txt_userType;
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ txt_phone;
 	private: System::Windows::Forms::Label^ label4;
@@ -121,13 +124,11 @@ namespace RDEView {
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->txt_name = (gcnew System::Windows::Forms::TextBox());
+			this->txt_userID = (gcnew System::Windows::Forms::TextBox());
 			this->txt_code = (gcnew System::Windows::Forms::TextBox());
-			this->txt_dni = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->txt_mail = (gcnew System::Windows::Forms::TextBox());
+			this->txt_userType = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->txt_phone = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -193,6 +194,7 @@ namespace RDEView {
 			this->Person_DGV->RowHeadersWidth = 62;
 			this->Person_DGV->Size = System::Drawing::Size(1122, 289);
 			this->Person_DGV->TabIndex = 44;
+			this->Person_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantUser::Person_DGV_CellClick);
 			// 
 			// Column1
 			// 
@@ -254,50 +256,34 @@ namespace RDEView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(9, 9);
+			this->label3->Location = System::Drawing::Point(6, 9);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(72, 13);
 			this->label3->TabIndex = 36;
 			this->label3->Text = L"ID de Usuario";
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(12, 58);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(40, 13);
-			this->label2->TabIndex = 34;
-			this->label2->Text = L"Estado";
-			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(273, 84);
+			this->label1->Location = System::Drawing::Point(295, 82);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 32;
 			this->label1->Text = L"Nombre";
 			// 
-			// txt_name
+			// txt_userID
 			// 
-			this->txt_name->Location = System::Drawing::Point(99, 3);
-			this->txt_name->Name = L"txt_name";
-			this->txt_name->Size = System::Drawing::Size(168, 20);
-			this->txt_name->TabIndex = 33;
+			this->txt_userID->Location = System::Drawing::Point(110, 3);
+			this->txt_userID->Name = L"txt_userID";
+			this->txt_userID->Size = System::Drawing::Size(168, 20);
+			this->txt_userID->TabIndex = 33;
 			// 
 			// txt_code
 			// 
-			this->txt_code->Location = System::Drawing::Point(99, 83);
+			this->txt_code->Location = System::Drawing::Point(110, 83);
 			this->txt_code->Name = L"txt_code";
 			this->txt_code->Size = System::Drawing::Size(168, 20);
 			this->txt_code->TabIndex = 35;
-			// 
-			// txt_dni
-			// 
-			this->txt_dni->Location = System::Drawing::Point(99, 54);
-			this->txt_dni->Name = L"txt_dni";
-			this->txt_dni->Size = System::Drawing::Size(168, 20);
-			this->txt_dni->TabIndex = 37;
 			// 
 			// label6
 			// 
@@ -308,17 +294,17 @@ namespace RDEView {
 			this->label6->TabIndex = 38;
 			this->label6->Text = L"Tipo de Usuario";
 			// 
-			// txt_mail
+			// txt_userType
 			// 
-			this->txt_mail->Location = System::Drawing::Point(99, 28);
-			this->txt_mail->Name = L"txt_mail";
-			this->txt_mail->Size = System::Drawing::Size(168, 20);
-			this->txt_mail->TabIndex = 39;
+			this->txt_userType->Location = System::Drawing::Point(110, 28);
+			this->txt_userType->Name = L"txt_userType";
+			this->txt_userType->Size = System::Drawing::Size(168, 20);
+			this->txt_userType->TabIndex = 39;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(9, 88);
+			this->label5->Location = System::Drawing::Point(6, 88);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(94, 13);
 			this->label5->TabIndex = 40;
@@ -326,7 +312,7 @@ namespace RDEView {
 			// 
 			// txt_phone
 			// 
-			this->txt_phone->Location = System::Drawing::Point(346, 27);
+			this->txt_phone->Location = System::Drawing::Point(368, 25);
 			this->txt_phone->Name = L"txt_phone";
 			this->txt_phone->Size = System::Drawing::Size(168, 20);
 			this->txt_phone->TabIndex = 41;
@@ -334,7 +320,7 @@ namespace RDEView {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(273, 57);
+			this->label4->Location = System::Drawing::Point(295, 55);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(61, 13);
 			this->label4->TabIndex = 42;
@@ -342,14 +328,14 @@ namespace RDEView {
 			// 
 			// txt_password
 			// 
-			this->txt_password->Location = System::Drawing::Point(346, 53);
+			this->txt_password->Location = System::Drawing::Point(368, 51);
 			this->txt_password->Name = L"txt_password";
 			this->txt_password->Size = System::Drawing::Size(168, 20);
 			this->txt_password->TabIndex = 43;
 			// 
 			// txt_isInside
 			// 
-			this->txt_isInside->Location = System::Drawing::Point(854, 81);
+			this->txt_isInside->Location = System::Drawing::Point(897, 81);
 			this->txt_isInside->Name = L"txt_isInside";
 			this->txt_isInside->Size = System::Drawing::Size(168, 20);
 			this->txt_isInside->TabIndex = 107;
@@ -357,7 +343,7 @@ namespace RDEView {
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(770, 83);
+			this->label17->Location = System::Drawing::Point(813, 83);
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(67, 13);
 			this->label17->TabIndex = 106;
@@ -365,7 +351,7 @@ namespace RDEView {
 			// 
 			// txt_gender
 			// 
-			this->txt_gender->Location = System::Drawing::Point(854, 29);
+			this->txt_gender->Location = System::Drawing::Point(897, 29);
 			this->txt_gender->Name = L"txt_gender";
 			this->txt_gender->Size = System::Drawing::Size(168, 20);
 			this->txt_gender->TabIndex = 105;
@@ -373,7 +359,7 @@ namespace RDEView {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(770, 35);
+			this->label13->Location = System::Drawing::Point(813, 35);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(42, 13);
 			this->label13->TabIndex = 104;
@@ -381,7 +367,7 @@ namespace RDEView {
 			// 
 			// txt_occupation
 			// 
-			this->txt_occupation->Location = System::Drawing::Point(854, 3);
+			this->txt_occupation->Location = System::Drawing::Point(897, 3);
 			this->txt_occupation->Name = L"txt_occupation";
 			this->txt_occupation->Size = System::Drawing::Size(168, 20);
 			this->txt_occupation->TabIndex = 103;
@@ -389,7 +375,7 @@ namespace RDEView {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(770, 9);
+			this->label14->Location = System::Drawing::Point(813, 9);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(35, 13);
 			this->label14->TabIndex = 102;
@@ -397,7 +383,7 @@ namespace RDEView {
 			// 
 			// txt_age
 			// 
-			this->txt_age->Location = System::Drawing::Point(854, 55);
+			this->txt_age->Location = System::Drawing::Point(897, 55);
 			this->txt_age->Name = L"txt_age";
 			this->txt_age->Size = System::Drawing::Size(168, 20);
 			this->txt_age->TabIndex = 101;
@@ -405,7 +391,7 @@ namespace RDEView {
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(770, 57);
+			this->label15->Location = System::Drawing::Point(813, 57);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(32, 13);
 			this->label15->TabIndex = 100;
@@ -413,7 +399,7 @@ namespace RDEView {
 			// 
 			// txt_permission
 			// 
-			this->txt_permission->Location = System::Drawing::Point(578, 83);
+			this->txt_permission->Location = System::Drawing::Point(621, 83);
 			this->txt_permission->Name = L"txt_permission";
 			this->txt_permission->Size = System::Drawing::Size(168, 20);
 			this->txt_permission->TabIndex = 99;
@@ -421,7 +407,7 @@ namespace RDEView {
 			// label16
 			// 
 			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(520, 90);
+			this->label16->Location = System::Drawing::Point(563, 90);
 			this->label16->Name = L"label16";
 			this->label16->Size = System::Drawing::Size(44, 13);
 			this->label16->TabIndex = 98;
@@ -429,7 +415,7 @@ namespace RDEView {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(578, 54);
+			this->textBox1->Location = System::Drawing::Point(621, 54);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(168, 20);
 			this->textBox1->TabIndex = 97;
@@ -437,7 +423,7 @@ namespace RDEView {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(520, 61);
+			this->label12->Location = System::Drawing::Point(563, 61);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(50, 13);
 			this->label12->TabIndex = 96;
@@ -445,7 +431,7 @@ namespace RDEView {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(578, 28);
+			this->textBox2->Location = System::Drawing::Point(621, 28);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(168, 20);
 			this->textBox2->TabIndex = 95;
@@ -453,7 +439,7 @@ namespace RDEView {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(520, 35);
+			this->label11->Location = System::Drawing::Point(563, 35);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(38, 13);
 			this->label11->TabIndex = 94;
@@ -461,7 +447,7 @@ namespace RDEView {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(578, 2);
+			this->textBox4->Location = System::Drawing::Point(621, 2);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(168, 20);
 			this->textBox4->TabIndex = 91;
@@ -469,7 +455,7 @@ namespace RDEView {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(520, 9);
+			this->label8->Location = System::Drawing::Point(563, 9);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(40, 13);
 			this->label8->TabIndex = 90;
@@ -504,17 +490,16 @@ namespace RDEView {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->txt_phone);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->txt_mail);
+			this->Controls->Add(this->txt_userType);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->txt_dni);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->txt_code);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->txt_name);
+			this->Controls->Add(this->txt_userID);
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MantUser";
 			this->Text = L"MantUser";
+			this->Load += gcnew System::EventHandler(this, &MantUser::MantUser_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -526,6 +511,10 @@ namespace RDEView {
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
+}
+private: System::Void Person_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void MantUser_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

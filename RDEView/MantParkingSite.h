@@ -57,6 +57,7 @@ namespace RDEView {
 	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txt_lotID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 
 
 
@@ -89,22 +90,23 @@ namespace RDEView {
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->txt_lotID = (gcnew System::Windows::Forms::TextBox());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Column1,
-					this->Column2, this->Column3
+					this->Column2, this->Column3, this->Column4
 			});
-			this->dataGridView1->Location = System::Drawing::Point(7, 191);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->dataGridView1->Location = System::Drawing::Point(5, 155);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 62;
 			this->dataGridView1->RowTemplate->Height = 28;
-			this->dataGridView1->Size = System::Drawing::Size(457, 294);
+			this->dataGridView1->Size = System::Drawing::Size(618, 239);
 			this->dataGridView1->TabIndex = 42;
 			// 
 			// Column1
@@ -130,10 +132,9 @@ namespace RDEView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(221, 143);
-			this->button3->Margin = System::Windows::Forms::Padding(4);
+			this->button3->Location = System::Drawing::Point(166, 116);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(100, 28);
+			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 41;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -141,10 +142,9 @@ namespace RDEView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(114, 143);
-			this->button2->Margin = System::Windows::Forms::Padding(4);
+			this->button2->Location = System::Drawing::Point(86, 116);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(100, 28);
+			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 40;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
@@ -152,10 +152,9 @@ namespace RDEView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(7, 143);
-			this->button1->Margin = System::Windows::Forms::Padding(4);
+			this->button1->Location = System::Drawing::Point(5, 116);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 28);
+			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 39;
 			this->button1->Text = L"Añadir";
 			this->button1->UseVisualStyleBackColor = true;
@@ -164,47 +163,42 @@ namespace RDEView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(4, 77);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(3, 63);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(53, 16);
+			this->label3->Size = System::Drawing::Size(43, 13);
 			this->label3->TabIndex = 37;
 			this->label3->Text = L"Estado ";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(4, 37);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(3, 30);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(75, 16);
+			this->label2->Size = System::Drawing::Size(59, 13);
 			this->label2->TabIndex = 35;
 			this->label2->Text = L"Reservado";
 			// 
 			// txt_ID
 			// 
-			this->txt_ID->Location = System::Drawing::Point(104, 2);
-			this->txt_ID->Margin = System::Windows::Forms::Padding(4);
+			this->txt_ID->Location = System::Drawing::Point(78, 2);
 			this->txt_ID->Name = L"txt_ID";
-			this->txt_ID->Size = System::Drawing::Size(223, 22);
+			this->txt_ID->Size = System::Drawing::Size(168, 20);
 			this->txt_ID->TabIndex = 34;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(4, 5);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(3, 4);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(51, 16);
+			this->label1->Size = System::Drawing::Size(40, 13);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Codigo";
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(336, 143);
-			this->button4->Margin = System::Windows::Forms::Padding(4);
+			this->button4->Location = System::Drawing::Point(252, 116);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(100, 28);
+			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 43;
 			this->button4->Text = L"Buscar";
 			this->button4->UseVisualStyleBackColor = true;
@@ -214,45 +208,48 @@ namespace RDEView {
 			// 
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"true", L"false" });
-			this->comboBox1->Location = System::Drawing::Point(104, 37);
-			this->comboBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->comboBox1->Location = System::Drawing::Point(78, 30);
+			this->comboBox1->Margin = System::Windows::Forms::Padding(2);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(223, 24);
+			this->comboBox1->Size = System::Drawing::Size(168, 21);
 			this->comboBox1->TabIndex = 44;
 			// 
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
 			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"true", L"false" });
-			this->comboBox2->Location = System::Drawing::Point(104, 69);
-			this->comboBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->comboBox2->Location = System::Drawing::Point(78, 56);
+			this->comboBox2->Margin = System::Windows::Forms::Padding(2);
 			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(223, 24);
+			this->comboBox2->Size = System::Drawing::Size(168, 21);
 			this->comboBox2->TabIndex = 45;
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(4, 113);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Location = System::Drawing::Point(3, 92);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(42, 16);
+			this->label4->Size = System::Drawing::Size(33, 13);
 			this->label4->TabIndex = 46;
 			this->label4->Text = L"Playa";
 			// 
 			// txt_lotID
 			// 
-			this->txt_lotID->Location = System::Drawing::Point(104, 110);
-			this->txt_lotID->Margin = System::Windows::Forms::Padding(4);
+			this->txt_lotID->Location = System::Drawing::Point(78, 89);
 			this->txt_lotID->Name = L"txt_lotID";
-			this->txt_lotID->Size = System::Drawing::Size(223, 22);
+			this->txt_lotID->Size = System::Drawing::Size(168, 20);
 			this->txt_lotID->TabIndex = 47;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Playa";
+			this->Column4->Name = L"Column4";
 			// 
 			// MantParkingSite
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(476, 496);
+			this->ClientSize = System::Drawing::Size(634, 403);
 			this->Controls->Add(this->txt_lotID);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->comboBox2);
@@ -266,9 +263,10 @@ namespace RDEView {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txt_ID);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MantParkingSite";
 			this->Text = L"MantParkingSite";
+			this->Load += gcnew System::EventHandler(this, &MantParkingSite::MantParkingSite_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -296,10 +294,11 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		this->dataGridView1->Rows->Clear();
 		for (int i = 0; i < listaestacionamientos->Count; i++) {
 			parkingSite^ objesta = listaestacionamientos[i];
-			array<String^>^ filaGrilla = gcnew array<String^>(3);
+			array<String^>^ filaGrilla = gcnew array<String^>(4);
 			filaGrilla[0] = objesta->getID();
 			filaGrilla[1] = Convert::ToString(objesta->getReserved());
 			filaGrilla[2] = Convert::ToString(objesta->getActive());
+			filaGrilla[3] = Convert::ToString(objesta->getLotID());
 			this->dataGridView1->Rows->Add(filaGrilla);
 		}
 	}
@@ -319,6 +318,12 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	estacinctrl->eliminarEstac(ID);
 	MessageBox::Show("El estacionamiento se elimino con exito.");
 	txt_ID->Clear();
+}
+private: System::Void MantParkingSite_Load(System::Object^ sender, System::EventArgs^ e) {
+	ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
+	List<parkingSite^>^ listaParkingSite = objParkSiteCtrl->AllEstacionamientos();
+
+	ShowGrid(listaParkingSite);
 }
 };
 }
