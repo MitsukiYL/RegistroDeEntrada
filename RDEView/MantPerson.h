@@ -134,7 +134,7 @@ namespace RDEView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 13);
+			this->label1->Location = System::Drawing::Point(10, 42);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 0;
@@ -142,14 +142,14 @@ namespace RDEView {
 			// 
 			// txt_name
 			// 
-			this->txt_name->Location = System::Drawing::Point(53, 10);
+			this->txt_name->Location = System::Drawing::Point(51, 39);
 			this->txt_name->Name = L"txt_name";
 			this->txt_name->Size = System::Drawing::Size(168, 20);
 			this->txt_name->TabIndex = 1;
 			// 
 			// txt_code
 			// 
-			this->txt_code->Location = System::Drawing::Point(53, 36);
+			this->txt_code->Location = System::Drawing::Point(51, 65);
 			this->txt_code->Name = L"txt_code";
 			this->txt_code->Size = System::Drawing::Size(168, 20);
 			this->txt_code->TabIndex = 3;
@@ -157,7 +157,7 @@ namespace RDEView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(12, 39);
+			this->label2->Location = System::Drawing::Point(10, 68);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(40, 13);
 			this->label2->TabIndex = 2;
@@ -165,7 +165,7 @@ namespace RDEView {
 			// 
 			// txt_dni
 			// 
-			this->txt_dni->Location = System::Drawing::Point(53, 62);
+			this->txt_dni->Location = System::Drawing::Point(51, 10);
 			this->txt_dni->Name = L"txt_dni";
 			this->txt_dni->Size = System::Drawing::Size(168, 20);
 			this->txt_dni->TabIndex = 5;
@@ -173,7 +173,7 @@ namespace RDEView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(12, 65);
+			this->label3->Location = System::Drawing::Point(10, 13);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(26, 13);
 			this->label3->TabIndex = 4;
@@ -375,7 +375,7 @@ namespace RDEView {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(711, 94);
+			this->button4->Location = System::Drawing::Point(342, 94);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 22;
@@ -427,6 +427,7 @@ void ShowPerson() {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+
 		int DNIx = Convert::ToInt32(this->txt_dni->Text);
 		String^ name = this->txt_name->Text;
 		int code = Convert::ToInt32(this->txt_code->Text);
@@ -474,14 +475,13 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	MessageBox::Show("La persona ha sido actualizada con éxito");
 
-	this->Person_DGV->Rows->Clear();
-
 	List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
 	mostrarGrilla(listPerson);
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	int filaSeleccionada = this->Person_DGV->SelectedRows[0]->Index; 
 	int DNI = Convert::ToInt32(this->Person_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	objPersonCtrl->eliminarPerson(DNI);
 	MessageBox::Show("La persona seleccionada ha sido eliminado correctamente");
@@ -511,7 +511,7 @@ private: void mostrarGrilla(List<person^>^ listPerson) {
 	   }
 
 private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-/*	int DNI = Int32::Parse(Person_DGV->Rows[Person_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+	int DNI = Int32::Parse(Person_DGV->Rows[Person_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	person^ Person = objPersonCtrl->buscarPersonxDNI(DNI);;
 	if (Person != nullptr) {
@@ -524,7 +524,7 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		txt_occupation->Text = Convert::ToString(Person->occupation);
 		txt_gender->Text = Person->gender;
 		txt_age->Text = Convert::ToString(Person->age);
-	}*/
+	}
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();

@@ -1,0 +1,2 @@
+ABC123;v;m;m;c;123;True
+XXXXXX;v;marca;m;c;123;False

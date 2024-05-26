@@ -28,11 +28,11 @@ admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
 		String^ mail = datos[9];
 		String^ phone = datos[10];
 		String^ password = datos[11];
-		bool permission = Convert::ToBoolean(Convert::ToInt32(datos[12]));
+		bool permission = Convert::ToBoolean(datos[12]);
 		String^ occupation = datos[13];
 		String^ gender = datos[14];
 		int age = Convert::ToInt32(datos[15]);
-		bool isInside = Convert::ToBoolean(Convert::ToInt32(datos[16]));
+		bool isInside = Convert::ToBoolean(datos[16]);
 
 		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
 
@@ -68,11 +68,11 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		String^ mail = datos[9];
 		String^ phone = datos[10];
 		String^ password = datos[11];
-		bool permission = Convert::ToBoolean(Convert::ToInt32(datos[12]));
+		bool permission = Convert::ToBoolean(datos[12]);
 		String^ occupation = datos[13];
 		String^ gender = datos[14];
 		int age = Convert::ToInt32(datos[15]);
-		bool isInside = Convert::ToBoolean(Convert::ToInt32(datos[16]));
+		bool isInside = Convert::ToBoolean(datos[16]);
 
 		
 
@@ -96,11 +96,11 @@ void AdminCtrl::escribirArchivo(List <admin^>^ listaadmin) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaadmin->Count);
 	for (int i = 0; i < listaadmin->Count; i++) {
 		admin^ objAdmin = listaadmin[i];
-		lineasArchivo[i] =Convert::ToString(objAdmin->getAdminID()) + ";" + Convert::ToString(objAdmin->getArea()) + ";" + Convert::ToString(objAdmin->getAdminType()) + ";" + Convert::ToString(objAdmin->getName()) + ";" + Convert::ToString(objAdmin->getPassword()) + ";" + Convert::ToString(objAdmin->getRegistrationDate()) + ";" + Convert::ToString(objAdmin->getExpirationDate()) + ";" + Convert::ToString(objAdmin->getContractID())
-			+ ";" + objAdmin->getName() + ";" + objAdmin->getPassword() + ";" + Convert::ToString(objAdmin->getCode())
-			+ ";" + Convert::ToString(objAdmin->getDNI()) + ";" + objAdmin->getMail() + ";" + Convert::ToString(objAdmin->getPermission())
-			+ ";" + Convert::ToString(objAdmin->getOccupation()) + ";" + objAdmin->getGender() + ";" + objAdmin->getPhone()
-			+ ";" + Convert::ToString(objAdmin->getAge()) + ";" + Convert::ToString(objAdmin->getIsInside());
+		lineasArchivo[i] =Convert::ToString(objAdmin->getAdminID()) + ";" + objAdmin->getArea() + ";" + objAdmin->getAdminType() 
+			+ ";" + Convert::ToString(objAdmin->getRegistrationDate()) + ";" + Convert::ToString(objAdmin->getExpirationDate()) + ";" + Convert::ToString(objAdmin->getContractID())
+			+ ";" + Convert::ToString(objAdmin->getDNI()) + ";" + objAdmin->getName() + ";" + Convert::ToString(objAdmin->getCode())
+			+ ";" + objAdmin->getMail() + ";" + objAdmin->getPhone() + ";" + objAdmin->getPassword()+ ";" + Convert::ToString(objAdmin->getPermission())
+			+ ";" + objAdmin->getOccupation() + ";" + objAdmin->getGender() + ";" + Convert::ToString(objAdmin->getAge()) + ";" + Convert::ToString(objAdmin->getIsInside());
 	}
 	File::WriteAllLines("Administradores.txt", lineasArchivo);
 }

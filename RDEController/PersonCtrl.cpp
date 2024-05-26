@@ -14,21 +14,26 @@ List<person^>^ PersonCtrl::buscarPersonAll() {
 	for each (String ^ lineaPerson in lineas) {
 
 		array<String^>^ datos = lineaPerson->Split(separadores->ToCharArray());
-		
-		int DNI = Convert::ToInt32(datos[0]);
-		String^ name = datos[1];
-		int code = Convert::ToInt32(datos[2]);
-		String^ mail = datos[3];
-		String^ phone = datos[4];
-		String^ password = datos[5];
-		bool permission = Convert::ToBoolean(Convert::ToInt32(datos[6]));
-		String^ occupation = datos[7];
-		String^ gender = datos[8];
-		int age = Convert::ToInt32(datos[9]);
-		bool isInside = Convert::ToBoolean(Convert::ToInt32(datos[10]));
 
-		person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation,  gender, age, isInside);
-		listaPerson->Add(objPerson);
+		/*****FORMATO*******
+		INT ; STRING ; INT ; STRING ; STRING ; STRING ; BOOL ; STRING ; STRING ; INT ; BOOL
+		*/
+
+			int DNI = Convert::ToInt32(datos[0]);
+			String^ name = datos[1];
+			int code = Convert::ToInt32(datos[2]);
+			String^ mail = datos[3];
+			String^ phone = datos[4];
+			String^ password = datos[5];
+			bool permission = Convert::ToBoolean(datos[6]);
+			String^ occupation = datos[7];
+			String^ gender = datos[8];
+			int age = Convert::ToInt32(datos[9]);
+			bool isInside = Convert::ToBoolean(datos[10]);
+
+			person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+			listaPerson->Add(objPerson);
+		
 	}
 	return listaPerson;
 }
@@ -65,9 +70,9 @@ void PersonCtrl::escribirArchivo(List<person^>^ listaPerson) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaPerson->Count);
 	for (int i = 0; i < listaPerson->Count; i++) {
 		person^ objPerson = listaPerson[i];
-		lineasArchivo[i] = objPerson->getName() + ";" + objPerson->getPassword() + ";" + Convert::ToString(objPerson->getCode()) 
-						+ ";" + Convert::ToString(objPerson->getDNI()) + ";" + objPerson->getMail() + ";" + Convert::ToString(objPerson->getPermission())
-						+ ";" + Convert::ToString(objPerson->getOccupation()) + ";" + objPerson->getGender() + ";" + objPerson->getPhone()
+		lineasArchivo[i] = Convert::ToString(objPerson->getDNI()) + ";" + objPerson->getName()  + ";" + Convert::ToString(objPerson->getCode())
+						+ ";" + objPerson->getMail() + ";" + objPerson->getPhone() + ";" + objPerson->getPassword() 
+						+ ";" + Convert::ToString(objPerson->getPermission()) + ";" + objPerson->getOccupation() + ";" + objPerson->getGender()
 						+ ";" + Convert::ToString(objPerson->getAge()) + ";" + Convert::ToString(objPerson->getIsInside());
 	}
 	File::WriteAllLines("Person.txt", lineasArchivo);
@@ -83,7 +88,7 @@ void PersonCtrl::agregarNewPerson(int DNI, String^ name, int code, String^ mail,
 void PersonCtrl::eliminarPerson(int DNI) {
 	List<person^>^ listaPerson = buscarPersonAll();
 	for (int i = 0; i < listaPerson->Count; i++) {
-		if (listaPerson[i]->getCode() == DNI) {
+		if (listaPerson[i]->getDNI() == DNI) {
 			listaPerson->RemoveAt(i);
 			break;
 		}
@@ -93,8 +98,9 @@ void PersonCtrl::eliminarPerson(int DNI) {
 
 void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
 	List<person^>^ listaPerson = buscarPersonAll();
+	int x = 1;
 	for (int i = 0; i < listaPerson->Count; i++) {
-		if (listaPerson[i]->getCode() == DNI) {
+		if (listaPerson[i]->getDNI() == DNI) {
 			listaPerson[i]->setName(name);
 			listaPerson[i]->setPassword(password);
 			listaPerson[i]->setCode(code);

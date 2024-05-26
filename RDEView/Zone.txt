@@ -1,0 +1,2 @@
+1234;zona_name;zona_loc;5678;8765;True;12
+333;nombre;ubicacion;1234;1234;False;12

@@ -15,13 +15,13 @@ List<vehicle^>^ VehicleCtrl::buscarVehicleAll() {
 
 		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
 
-		String^ fuelType = datos[4];
-		String^ vehicleType = datos[1];
 		String^ plate = datos[0];
+		String^ vehicleType = datos[1];
 		String^ brand = datos[2];
 		String^ model = datos[3];
-		bool insurance = Convert::ToBoolean(datos[5]);
-		int registrationDate = 0001;
+		String^ fuelType = datos[4];
+		int registrationDate = Convert::ToInt32(datos[5]);
+		bool insurance = Convert::ToBoolean(datos[6]);
 		
 
 		vehicle^ objVehicle = gcnew vehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
@@ -38,13 +38,14 @@ vehicle^ VehicleCtrl::buscarVehiclexPlate(String^ plateB) {
 
 		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
 
-		String^ fuelType = datos[4];
-		String^ vehicleType = datos[1];
 		String^ plate = datos[0];
+		String^ vehicleType = datos[1];
 		String^ brand = datos[2];
 		String^ model = datos[3];
-		bool insurance = Convert::ToBoolean(datos[5]);
-		int registrationDate = 0001;
+		String^ fuelType = datos[4];
+		int registrationDate = Convert::ToInt32(datos[5]);
+		bool insurance = Convert::ToBoolean(datos[6]);
+		
 
 		if (plate == plateB) {
 			objVehicle = gcnew vehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
@@ -59,7 +60,7 @@ void VehicleCtrl::escribirArchivo(List<vehicle^>^ listaVehicle) {
 	for (int i = 0; i < listaVehicle->Count; i++) {
 		vehicle^ objVehicle = listaVehicle[i];
 		lineasArchivo[i] = objVehicle->getPlate() + ";" + objVehicle->getVehicleType() + ";" + objVehicle->getBrand()
-			+ ";" + objVehicle->getModel() + ";" + objVehicle->getFuelType() + ";" + Convert::ToString(objVehicle->getInsurance());
+			+ ";" + objVehicle->getModel() + ";" + objVehicle->getFuelType() + ";" + Convert::ToString(objVehicle->getRegistrationDate()) + ";" + Convert::ToString(objVehicle->getInsurance());
 	}
 	File::WriteAllLines("Vehicle.txt", lineasArchivo);
 }

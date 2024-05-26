@@ -97,12 +97,12 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_age;
 
 	private: System::Windows::Forms::Label^ label15;
-	private: System::Windows::Forms::TextBox^ txt_permission;
 
-	private: System::Windows::Forms::Label^ label16;
-	private: System::Windows::Forms::TextBox^ txt_isInside;
 
-	private: System::Windows::Forms::Label^ label17;
+
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
@@ -120,6 +120,9 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column15;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column16;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column17;
+private: System::Windows::Forms::CheckBox^ check_IsInside;
+
+private: System::Windows::Forms::CheckBox^ check_perm;
 
 	private:
 		/// <summary>
@@ -185,10 +188,8 @@ namespace RDEView {
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->txt_age = (gcnew System::Windows::Forms::TextBox());
 			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->txt_permission = (gcnew System::Windows::Forms::TextBox());
-			this->label16 = (gcnew System::Windows::Forms::Label());
-			this->txt_isInside = (gcnew System::Windows::Forms::TextBox());
-			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->check_IsInside = (gcnew System::Windows::Forms::CheckBox());
+			this->check_perm = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Admin_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -220,9 +221,9 @@ namespace RDEView {
 			this->label8->AutoSize = true;
 			this->label8->Location = System::Drawing::Point(8, 12);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(18, 13);
+			this->label8->Size = System::Drawing::Size(65, 13);
 			this->label8->TabIndex = 68;
-			this->label8->Text = L"ID";
+			this->label8->Text = L"ID de Admin";
 			// 
 			// button3
 			// 
@@ -267,6 +268,7 @@ namespace RDEView {
 			this->Admin_DGV->RowHeadersWidth = 62;
 			this->Admin_DGV->Size = System::Drawing::Size(1116, 289);
 			this->Admin_DGV->TabIndex = 64;
+			this->Admin_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantAdmin::Admin_DGV_CellClick);
 			// 
 			// Column1
 			// 
@@ -531,7 +533,7 @@ namespace RDEView {
 			// 
 			// txt_gender
 			// 
-			this->txt_gender->Location = System::Drawing::Point(937, 61);
+			this->txt_gender->Location = System::Drawing::Point(937, 34);
 			this->txt_gender->Name = L"txt_gender";
 			this->txt_gender->Size = System::Drawing::Size(168, 20);
 			this->txt_gender->TabIndex = 87;
@@ -539,7 +541,7 @@ namespace RDEView {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(853, 67);
+			this->label13->Location = System::Drawing::Point(853, 40);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(42, 13);
 			this->label13->TabIndex = 86;
@@ -547,7 +549,7 @@ namespace RDEView {
 			// 
 			// txt_occupation
 			// 
-			this->txt_occupation->Location = System::Drawing::Point(937, 35);
+			this->txt_occupation->Location = System::Drawing::Point(937, 8);
 			this->txt_occupation->Name = L"txt_occupation";
 			this->txt_occupation->Size = System::Drawing::Size(168, 20);
 			this->txt_occupation->TabIndex = 85;
@@ -555,7 +557,7 @@ namespace RDEView {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(853, 41);
+			this->label14->Location = System::Drawing::Point(853, 14);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(35, 13);
 			this->label14->TabIndex = 84;
@@ -563,7 +565,7 @@ namespace RDEView {
 			// 
 			// txt_age
 			// 
-			this->txt_age->Location = System::Drawing::Point(937, 87);
+			this->txt_age->Location = System::Drawing::Point(937, 60);
 			this->txt_age->Name = L"txt_age";
 			this->txt_age->Size = System::Drawing::Size(168, 20);
 			this->txt_age->TabIndex = 83;
@@ -571,59 +573,45 @@ namespace RDEView {
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(853, 89);
+			this->label15->Location = System::Drawing::Point(853, 62);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(32, 13);
 			this->label15->TabIndex = 82;
 			this->label15->Text = L"Edad";
 			// 
-			// txt_permission
+			// check_IsInside
 			// 
-			this->txt_permission->Location = System::Drawing::Point(937, 9);
-			this->txt_permission->Name = L"txt_permission";
-			this->txt_permission->Size = System::Drawing::Size(168, 20);
-			this->txt_permission->TabIndex = 81;
+			this->check_IsInside->AutoSize = true;
+			this->check_IsInside->Location = System::Drawing::Point(968, 91);
+			this->check_IsInside->Name = L"check_IsInside";
+			this->check_IsInside->Size = System::Drawing::Size(87, 17);
+			this->check_IsInside->TabIndex = 89;
+			this->check_IsInside->Text = L"Está Adentro";
+			this->check_IsInside->UseVisualStyleBackColor = true;
 			// 
-			// label16
+			// check_perm
 			// 
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(853, 15);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(44, 13);
-			this->label16->TabIndex = 80;
-			this->label16->Text = L"Permiso";
-			// 
-			// txt_isInside
-			// 
-			this->txt_isInside->Location = System::Drawing::Point(937, 113);
-			this->txt_isInside->Name = L"txt_isInside";
-			this->txt_isInside->Size = System::Drawing::Size(168, 20);
-			this->txt_isInside->TabIndex = 89;
-			// 
-			// label17
-			// 
-			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(853, 115);
-			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(67, 13);
-			this->label17->TabIndex = 88;
-			this->label17->Text = L"Está adentro";
+			this->check_perm->AutoSize = true;
+			this->check_perm->Location = System::Drawing::Point(855, 91);
+			this->check_perm->Name = L"check_perm";
+			this->check_perm->Size = System::Drawing::Size(63, 17);
+			this->check_perm->TabIndex = 90;
+			this->check_perm->Text = L"Permiso";
+			this->check_perm->UseVisualStyleBackColor = true;
 			// 
 			// MantAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1140, 478);
-			this->Controls->Add(this->txt_isInside);
-			this->Controls->Add(this->label17);
+			this->Controls->Add(this->check_perm);
+			this->Controls->Add(this->check_IsInside);
 			this->Controls->Add(this->txt_gender);
 			this->Controls->Add(this->label13);
 			this->Controls->Add(this->txt_occupation);
 			this->Controls->Add(this->label14);
 			this->Controls->Add(this->txt_age);
 			this->Controls->Add(this->label15);
-			this->Controls->Add(this->txt_permission);
-			this->Controls->Add(this->label16);
 			this->Controls->Add(this->txt_phone);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->txt_mail);
@@ -655,6 +643,7 @@ namespace RDEView {
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MantAdmin";
 			this->Text = L"MantAdmin";
+			this->Load += gcnew System::EventHandler(this, &MantAdmin::MantAdmin_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Admin_DGV))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -662,54 +651,61 @@ namespace RDEView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
-		int adminID = Convert::ToInt32(txt_ID->Text);
-		String^ area = txt_area->Text;
-		String^ adminType = txt_type->Text;
-		int registrationDate = Convert::ToInt32(txt_registrationDate->Text);
-		int expirationDate = Convert::ToInt32(txt_expirationDate->Text);
-		int contractID = Convert::ToInt32(txt_contractID->Text);
-		int personDNI = Convert::ToInt32(txt_DNI->Text);
-		String^ name = txt_name->Text;
-		int code = Convert::ToInt32(txt_code->Text);
-		String^ mail = txt_mail->Text;
-		String^ phone = txt_phone->Text;
-		String^ password = txt_password->Text;
-		bool permission = Convert::ToBoolean(Convert::ToInt32(txt_permission->Text));
-		String^ occupation = txt_occupation->Text;
-		String^ gender = txt_gender->Text;
-		int age = Convert::ToInt32(txt_age->Text);
-		bool isInside = Convert::ToBoolean(Convert::ToInt32(txt_isInside->Text));
+
+		int adminID = Convert::ToInt32(this->txt_ID->Text);
+		String^ area = this->txt_area->Text;
+		String^ adminType = this->txt_type->Text;
+		int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+		int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+		int contractID = Convert::ToInt32(this->txt_contractID->Text);
+		int personDNI = Convert::ToInt32(this->txt_DNI->Text);
+		String^ name = this->txt_name->Text;
+		int code = Convert::ToInt32(this->txt_code->Text);
+		String^ mail = this->txt_mail->Text;
+		String^ phone = this->txt_phone->Text;
+		String^ password = this->txt_password->Text;
+		bool permission = this->check_perm->Checked;
+		String^ occupation = this->txt_occupation->Text;
+		String^ gender = this->txt_gender->Text;
+		int age = Convert::ToInt32(this->txt_age->Text);
+		bool isInside = this->check_IsInside->Checked;
 
 		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
 
 		AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
 		objAdminCtrl->agregarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 		txt_ID->Clear();
+
+		List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();
+		mostrarGrilla(listaAdmin);
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
-	int adminID = Convert::ToInt32(txt_ID->Text);
-	String^ area = txt_area->Text;
-	String^ adminType = txt_type->Text;
-	int registrationDate = Convert::ToInt32(txt_registrationDate->Text);
-	int expirationDate = Convert::ToInt32(txt_expirationDate->Text);
-	int contractID = Convert::ToInt32(txt_contractID->Text);
-	int personDNI = Convert::ToInt32(txt_DNI->Text);
-	String^ name = txt_name->Text;
-	int code = Convert::ToInt32(txt_code->Text);
-	String^ mail = txt_mail->Text;
-	String^ phone = txt_phone->Text;
-	String^ password = txt_password->Text;
-	bool permission = Convert::ToBoolean(Convert::ToInt32(txt_permission->Text));
-	String^ occupation = txt_occupation->Text;
-	String^ gender = txt_gender->Text;
-	int age = Convert::ToInt32(txt_age->Text);
-	bool isInside = Convert::ToBoolean(Convert::ToInt32(txt_isInside->Text));
+	int adminID = Convert::ToInt32(this->txt_ID->Text);
+	String^ area = this->txt_area->Text;
+	String^ adminType = this->txt_type->Text;
+	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+	int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+	int contractID = Convert::ToInt32(this->txt_contractID->Text);
+	int personDNI = Convert::ToInt32(this->txt_DNI->Text);
+	String^ name = this->txt_name->Text;
+	int code = Convert::ToInt32(this->txt_code->Text);
+	String^ mail = this->txt_mail->Text;
+	String^ phone = this->txt_phone->Text;
+	String^ password = this->txt_password->Text;
+	bool permission = this->check_perm->Checked;
+	String^ occupation = this->txt_occupation->Text;
+	String^ gender = this->txt_gender->Text;
+	int age = Convert::ToInt32(this->txt_age->Text);
+	bool isInside = this->check_IsInside->Checked;
 
 	List<workHours^>^ listWorkHours = gcnew List<workHours^>();
 
 	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
 	objAdminCtrl->actualizarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	txt_ID->Clear();
+
+	List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();
+	mostrarGrilla(listaAdmin);
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
 	int filaSeleccionada = this->Admin_DGV->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
@@ -718,6 +714,64 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	objAdminCtrl->eliminarAdmin(codigoEliminar);
 	MessageBox::Show("El administrador seleccionada ha sido eliminado correctamente");
 	this->Admin_DGV->Rows->Clear();
+
+	List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();
+	mostrarGrilla(listaAdmin);
+}
+private: System::Void MantAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
+	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
+	List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();
+
+	mostrarGrilla(listaAdmin);
+}
+private: void mostrarGrilla(List<admin^>^ listAdm) {
+	 this->Admin_DGV->Rows->Clear();
+	for (int i = 0; i < listAdm->Count; i++) {
+		admin^ objAdm = listAdm[i];
+		array<String^>^ filaGrilla = gcnew array<String^>(17);
+		filaGrilla[0] = Convert::ToString(objAdm->getAdminID());
+		filaGrilla[1] = objAdm->getArea();
+		filaGrilla[2] = objAdm->getAdminType();
+		filaGrilla[3] = Convert::ToString(objAdm->getRegistrationDate());
+		filaGrilla[4] = Convert::ToString(objAdm->getExpirationDate());
+		filaGrilla[5] = Convert::ToString(objAdm->getContractID());
+		filaGrilla[6] = Convert::ToString(objAdm->getDNI());
+		filaGrilla[7] = objAdm->getName();
+		filaGrilla[8] = Convert::ToString(objAdm->getCode());
+		filaGrilla[9] = objAdm->getMail();
+		filaGrilla[10] = objAdm->getPhone();
+		filaGrilla[11] = objAdm->getPassword();
+		filaGrilla[12] = Convert::ToString(objAdm->getPermission());
+		filaGrilla[13] = objAdm->getOccupation();
+		filaGrilla[14] = objAdm->getGender();
+		filaGrilla[15] = Convert::ToString(objAdm->getAge());
+		filaGrilla[16] = Convert::ToString(objAdm->getIsInside());
+		this->Admin_DGV->Rows->Add(filaGrilla);
+	}
+}
+private: System::Void Admin_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int AdminID = Int32::Parse(Admin_DGV->Rows[Admin_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
+	admin^ Admin = objAdminCtrl->BuscarAdminxID(AdminID);;
+	if (Admin != nullptr) {
+		this->txt_ID->Text = Convert::ToString(Admin->getAdminID());
+		this->txt_area->Text = Admin->getArea();
+		this->txt_type->Text = Admin->getAdminType();
+		this->txt_registrationDate->Text = Convert::ToString(Admin->getRegistrationDate());
+		this->txt_expirationDate->Text = Convert::ToString(Admin->getExpirationDate());
+		this->txt_contractID->Text = Convert::ToString(Admin->getContractID());
+		this->txt_DNI->Text = Convert::ToString(Admin->getDNI());
+		this->txt_name->Text = Admin->name;
+		this->txt_code->Text = Admin->code.ToString();
+		this->txt_mail->Text = Admin->mail;
+		this->txt_phone->Text = Admin->phone;
+		this->txt_password->Text = Admin->password;
+		this->check_perm->Checked = Admin->permission;
+		this->txt_occupation->Text = Admin->occupation;
+		this->txt_gender->Text = Admin->gender;
+		this->txt_age->Text = Admin->age.ToString();
+		this->check_IsInside->Checked = Admin->isInside;
+	}
 }
 };
 }

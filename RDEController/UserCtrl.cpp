@@ -88,31 +88,16 @@ void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaUser->Count);
 	for (int i = 0; i < listaUser->Count; i++) {
 		user^ objUser = listaUser[i];
-		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getName() + ";" + Convert::ToString(objUser->getActive())
-			+ ";" + objUser->getUserType() + ";" + Convert::ToString(objUser->getRegistrationDate()) + ";" + objUser->getPassword();
+		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getUserType() +";"+objUser->getName() + ";" + Convert::ToString(objUser->getActive())
+			+ ";" + Convert::ToString(objUser->getRegistrationDate()) + ";" + ";" + objUser->getPassword();
 	}
 	File::WriteAllLines("User.txt", lineasArchivo);
 }
 
-void UserCtrl::agregarNewUser(String^ userType, bool active, int userID, int registrationDate, parkingSite^ objParkingSite, int personDNI) {
-
-	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-	person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
-
-	List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-	String^ name = objPerson->getName();
-	int code = objPerson->getCode();
-	String^ mail = objPerson->getMail();
-	String^ phone = objPerson->getPhone();
-	String^ password = objPerson->getPassword();
-	bool permission = objPerson->getPermission();
-	String^ occupation = objPerson->getOccupation();
-	String^ gender = objPerson->getGender();
-	int age = objPerson->getAge();
-	bool isInside = objPerson->getIsInside();
+void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
 
 	List<user^>^ listaUser = buscarUserAll();
-	user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+	user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	listaUser->Add(objUser);
 	escribirArchivo(listaUser);
 }
@@ -128,7 +113,7 @@ void UserCtrl::eliminarUser(int userID) {
 	escribirArchivo(listaUser);
 }
 
-void UserCtrl::actualizarUser(String^ userType, bool active, int userID, int registrationDate, parkingSite^ objParkingSite, int personDNI){
+void UserCtrl::actualizarUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside){
 	List<user^>^ listaUser = buscarUserAll();
 	for (int i = 0; i < listaUser->Count; i++) {
 		if (listaUser[i]->getUserID() == userID) {
@@ -136,20 +121,6 @@ void UserCtrl::actualizarUser(String^ userType, bool active, int userID, int reg
 			listaUser[i]->setUserType(userType);
 			listaUser[i]->setRegistrationDate(registrationDate);
 
-			PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-			person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
-
-			listaUser[i]->setDNI(objPerson->getDNI());
-			listaUser[i]->setName(objPerson->getName());
-			listaUser[i]->setCode(objPerson->getCode());
-			listaUser[i]->setMail(objPerson->getMail());
-			listaUser[i]->setPhone(objPerson->getPhone());
-			listaUser[i]->setPassword(objPerson->getPassword());
-			listaUser[i]->setPermission(objPerson->getPermission());
-			listaUser[i]->setOccupation(objPerson->getOccupation());
-			listaUser[i]->setGender(objPerson->getGender());
-			listaUser[i]->setAge(objPerson->getAge());
-			listaUser[i]->setIsInside(objPerson->getIsInside());
 			break;
 		}
 	}
