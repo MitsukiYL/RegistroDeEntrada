@@ -413,7 +413,7 @@ namespace RDEView {
 		}
 #pragma endregion
 
-		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 
 			int code = Convert::ToInt32(this->txt_code->Text);
 			int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
@@ -462,13 +462,6 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	MessageBox::Show("La tarjeta seleccionada ha sido eliminado correctamente");
 	this->dataGridView1->Rows->Clear();
 }
-
-
-
-
-
-
-
 
 	};
 }

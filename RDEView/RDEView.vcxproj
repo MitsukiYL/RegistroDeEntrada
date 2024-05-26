@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnrolamientoTarjeta.cpp" />
     <ClCompile Include="InterfaceInscription.cpp" />
     <ClCompile Include="InterfaceProfile.cpp" />
     <ClCompile Include="InterfaceRDE.cpp" />
@@ -138,6 +139,9 @@
     <ClCompile Include="RDEReg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EnrolamientoTarjeta.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="InterfaceInscription.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -188,6 +192,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EnrolamientoTarjeta.resx">
+      <DependentUpon>EnrolamientoTarjeta.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InterfaceInscription.resx">
       <DependentUpon>InterfaceInscription.h</DependentUpon>
     </EmbeddedResource>
