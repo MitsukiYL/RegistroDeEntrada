@@ -8,6 +8,9 @@ namespace RDEView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RDEController;
+	using namespace RDEModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de MantCard
@@ -66,6 +69,15 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label9;
 
+	private: System::Windows::Forms::TextBox^ txt_expirationDate;
+	private: System::Windows::Forms::TextBox^ txt_permissionType;
+	private: System::Windows::Forms::TextBox^ txt_ID;
+	private: System::Windows::Forms::TextBox^ txt_permission;
+	private: System::Windows::Forms::TextBox^ txt_emissionDate;
+	private: System::Windows::Forms::TextBox^ txt_registrationDate;
+	private: System::Windows::Forms::TextBox^ txt_active;
+	private: System::Windows::Forms::TextBox^ txt_userID;
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -109,6 +121,16 @@ namespace RDEView {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+
+			this->txt_expirationDate = (gcnew System::Windows::Forms::TextBox());
+			this->txt_permissionType = (gcnew System::Windows::Forms::TextBox());
+			this->txt_ID = (gcnew System::Windows::Forms::TextBox());
+			this->txt_permission = (gcnew System::Windows::Forms::TextBox());
+			this->txt_emissionDate = (gcnew System::Windows::Forms::TextBox());
+			this->txt_registrationDate = (gcnew System::Windows::Forms::TextBox());
+			this->txt_active = (gcnew System::Windows::Forms::TextBox());
+			this->txt_userID = (gcnew System::Windows::Forms::TextBox());
+
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -390,5 +412,63 @@ namespace RDEView {
 
 		}
 #pragma endregion
+
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
+
+			int code = Convert::ToInt32(this->txt_code->Text);
+			int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+			String^ permissionType = this->txt_permissionType->Text;
+			int ID = Convert::ToInt32(this->txt_ID->Text);
+			bool permission = Convert::ToBoolean(this->txt_permission->Text);
+			int emissionDate = Convert::ToInt32(this->txt_emissionDate->Text);
+			int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+			bool active = Convert::ToBoolean(this->txt_active->Text);
+			int userID = Convert::ToInt32(this->txt_userID->Text);
+
+			UserCtrl^ objUserCtrl = gcnew UserCtrl();
+			user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
+			CardCtrl^ objCardCtrl = gcnew CardCtrl();
+			objCardCtrl->agregarNewCard(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
+			txt_code->Clear();
+		}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
+	
+	int code = Convert::ToInt32(this->txt_code->Text);
+	int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+	String^ permissionType = this->txt_permissionType->Text;
+	int ID = Convert::ToInt32(this->txt_ID->Text);
+	bool permission = Convert::ToBoolean(this->txt_permission->Text);
+	int emissionDate = Convert::ToInt32(this->txt_emissionDate->Text);
+	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+	bool active = Convert::ToBoolean(this->txt_active->Text);
+	int userID = Convert::ToInt32(this->txt_userID->Text);
+
+	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
+	CardCtrl^ objCardCtrl = gcnew CardCtrl();
+	objCardCtrl->actualizarCard(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
+	txt_code->Clear();
+
+	MessageBox::Show("La tarjeta se actualizo con exito.");
+
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
+	int filaSeleccionada = this->dataGridView1->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
+	int codigoEliminar = Convert::ToInt32(this->dataGridView1->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+	CardCtrl^ objCardCtrl = gcnew CardCtrl();
+	objCardCtrl->eliminarCard(codigoEliminar);
+	MessageBox::Show("La tarjeta seleccionada ha sido eliminado correctamente");
+	this->dataGridView1->Rows->Clear();
+}
+
+
+
+
+
+
+
+
 	};
 }

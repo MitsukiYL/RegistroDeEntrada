@@ -12,8 +12,6 @@ namespace RDEView {
 	using namespace RDEController;
 	using namespace RDEModel;
 
-
-
 	/// <summary>
 	/// Resumen de MantVehicles
 	/// </summary>
@@ -39,6 +37,10 @@ namespace RDEView {
 				delete components;
 			}
 		}
+
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	protected:
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ txt_plate;
 	private: System::Windows::Forms::TextBox^ txt_vehicleType;
@@ -70,6 +72,10 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_model;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_fuelType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_insurance;
+
+	private: System::Windows::Forms::TextBox^ txt_registrationDate;
+	private: System::Windows::Forms::TextBox^ txt_insurance;
+
 	protected:
 
 	private:
@@ -106,6 +112,10 @@ namespace RDEView {
 			this->Column_model = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column_fuelType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column_insurance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+
+			this->txt_insurance = (gcnew System::Windows::Forms::TextBox());
+			this->txt_registrationDate = (gcnew System::Windows::Forms::TextBox());
+
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Vehicle_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -333,7 +343,7 @@ private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Wind
 		txt_fuelType->Text = Vehicle->fuelType;
 	}*/
 }
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 
 	/*String^ plate = txt_plate->Text;
 	String^ vehicleType = txt_vehicleType->Text;
@@ -352,8 +362,21 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Vehicle->insurance = (bool)insurance;
 	Controller::AddVehicle(Vehicle);
 	ShowVehicle();*/
+
+	String^ fuelType = this->txt_fuelType->Text;
+	String^ vehicleType = this->txt_vehicleType->Text;
+	String^ plate = this->txt_plate->Text;
+	String^ brand = this->txt_brand->Text;
+	String^ model = this->txt_model->Text;
+	bool insurance = Convert::ToBoolean(this->txt_insurance->Text);
+	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+
+
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+	objVehicleCtrl->agregarNewVehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
+	txt_plate->Clear();
 }
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 
 	/*String^ plate = txt_plate->Text;
 	String^ vehicleType = txt_vehicleType->Text;
@@ -373,11 +396,30 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	Controller::UpdateVehicle(Vehicle);
 	ShowVehicle();*/
 
+	String^ fuelType = this->txt_fuelType->Text;
+	String^ vehicleType = this->txt_vehicleType->Text;
+	String^ plate = this->txt_plate->Text;
+	String^ brand = this->txt_brand->Text;
+	String^ model = this->txt_model->Text;
+	bool insurance = Convert::ToBoolean(this->txt_insurance->Text);
+	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+	objVehicleCtrl->actualizarVehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
+	txt_plate->Clear();
+
 }
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
 	/*String^ plate = txt_plate->Text;
 	Controller::DeleteVehicle(plate);
 	ShowVehicle();*/
+
+	int filaSeleccionada = this->dataGridView1->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
+	String^ placaEliminar = this->dataGridView1->Rows[filaSeleccionada]->Cells[0]->Value->ToString();
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+	objVehicleCtrl->eliminarVehicle(placaEliminar);
+	MessageBox::Show("El vehiculo seleccionado a ha sido eliminado correctamente");
+	this->dataGridView1->Rows->Clear();
 }
 };
 }
