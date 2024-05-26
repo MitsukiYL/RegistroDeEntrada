@@ -15,16 +15,15 @@ List<card^>^ CardCtrl::buscarCardAll() {
 	for each (String ^ lineaCard in lineas) {
 
 		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
-
 		int code = Convert::ToInt32(datos[0]);
-		int expirationDate = Convert::ToInt32(datos[5]);
-		String^ permissionType = "Total";
 		int ID = Convert::ToInt32(datos[1]);
 		bool permission = Convert::ToBoolean(datos[2]);
-		int emissionDate = Convert::ToInt32(datos[3]);
-		int registrationDate = Convert::ToInt32(datos[4]);
-		bool active = Convert::ToBoolean(datos[6]);
-		int userID = Convert::ToInt32(datos[7]);
+		String^ permissionType = datos[3];
+		int emissionDate = Convert::ToInt32(datos[4]);
+		int registrationDate = Convert::ToInt32(datos[5]);
+		int expirationDate = Convert::ToInt32(datos[6]);
+		bool active = Convert::ToBoolean(datos[7]);
+		int userID = Convert::ToInt32(datos[8]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
@@ -43,14 +42,14 @@ card^ CardCtrl::buscarCardxCode(int codigoB) {
 
 		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
 		int code = Convert::ToInt32(datos[0]);
-		int expirationDate = Convert::ToInt32(datos[5]);
-		String^ permissionType = "Total";
 		int ID = Convert::ToInt32(datos[1]);
 		bool permission = Convert::ToBoolean(datos[2]);
-		int emissionDate = Convert::ToInt32(datos[3]);
-		int registrationDate = Convert::ToInt32(datos[4]);
-		bool active = Convert::ToBoolean(datos[6]);
-		int userID = Convert::ToInt32(datos[7]);
+		String^ permissionType = datos[3];
+		int emissionDate = Convert::ToInt32(datos[4]);
+		int registrationDate = Convert::ToInt32(datos[5]);
+		int expirationDate = Convert::ToInt32(datos[6]);
+		bool active = Convert::ToBoolean(datos[7]);
+		int userID = Convert::ToInt32(datos[8]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
@@ -67,7 +66,7 @@ void CardCtrl::escribirArchivo(List<card^>^ listaCard) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaCard->Count);
 	for (int i = 0; i < listaCard->Count; i++) {
 		card^ objCard = listaCard[i];
-		lineasArchivo[i] = Convert::ToString(objCard->getCode()) + ";" + Convert::ToString(objCard->getID()) + ";" + Convert::ToString(objCard->getPermission())
+		lineasArchivo[i] = Convert::ToString(objCard->getCode()) + ";" + Convert::ToString(objCard->getID()) + ";" + Convert::ToString(objCard->getPermission()) + ";" + objCard->getPermissionType()
 			+ ";" + Convert::ToString(objCard->getEmissionDate()) + ";" + Convert::ToString(objCard->getRegistrationDate())
 			+ ";" + Convert::ToString(objCard->getExpirationDate()) + ";" + Convert::ToString(objCard->getActive()) + ";" + Convert::ToString(objCard->getObjUser()->getUserID());
 	}
@@ -108,3 +107,4 @@ void CardCtrl::actualizarCard(int code, int expirationDate, String^ permissionTy
 	}
 	escribirArchivo(listaCard);
 }
+
