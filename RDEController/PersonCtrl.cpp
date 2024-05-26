@@ -68,7 +68,7 @@ void PersonCtrl::escribirArchivo(List<person^>^ listaPerson) {
 		lineasArchivo[i] = objPerson->getName() + ";" + objPerson->getPassword() + ";" + Convert::ToString(objPerson->getCode()) 
 						+ ";" + Convert::ToString(objPerson->getDNI()) + ";" + objPerson->getMail() + ";" + Convert::ToString(objPerson->getPermission())
 						+ ";" + Convert::ToString(objPerson->getOccupation()) + ";" + objPerson->getGender() + ";" + objPerson->getPhone()
-						+ ";" + Convert::ToString(objPerson->getAge()) + ";" + Convert::ToString(objPerson->getisInside());
+						+ ";" + Convert::ToString(objPerson->getAge()) + ";" + Convert::ToString(objPerson->getIsInside());
 	}
 	File::WriteAllLines("Person.txt", lineasArchivo);
 }
@@ -103,7 +103,7 @@ void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail,
 			listaPerson[i]->setGender(gender);
 			listaPerson[i]->setPhone(phone);
 			listaPerson[i]->setAge(age);
-			listaPerson[i]->setisInside(isInside);
+			listaPerson[i]->setIsInside(isInside);
 			break;
 		}
 	}

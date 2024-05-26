@@ -12,8 +12,8 @@ namespace RDEController {
 		List<card^>^ buscarCardAll();
 		card^ buscarCardxCode(int codigoB);
 		void escribirArchivo(List<card^>^ listaCard);
-		void agregarNewCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
+		void agregarNewCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
 		void eliminarCard(int codigo);
-		void actualizarCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active);
+		void actualizarCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
 	};
 }

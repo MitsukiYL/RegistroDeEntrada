@@ -11,9 +11,9 @@ public:
 	AdminCtrl();
 	admin^ BuscarAdminxID(int IDbuscar);
 	List <admin^>^ AllAdministradores();
-	void agregarAdmin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID);
+	void agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, int personDNI);
 	void escribirArchivo(List <admin^>^ listaEstac);
-	void actualizarAdmin(int adminID, String^ area, String^ adminType, String^ name, String^ password, int registrationDate, int expirationDate, int contractID);
+	void actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, int personDNI);
 	void eliminarAdmin(String^ ID);
 };
 }

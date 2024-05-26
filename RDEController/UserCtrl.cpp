@@ -1,4 +1,6 @@
 #include "UserCtrl.h"
+#include "ParkingSiteCtrl.h"
+#include "PersonCtrl.h"
 
 using namespace RDEController;
 using namespace System::IO;
@@ -21,8 +23,16 @@ List<user^>^ UserCtrl::buscarUserAll() {
 		bool active = Convert::ToBoolean(datos[2]);
 		int userID = Convert::ToInt32(datos[0]);
 		int registrationDate = Convert::ToInt32(datos[4]);
+		String^ parkingSiteID = datos[5];
+		int personDNI = Convert::ToInt32(datos[6]);
 
-		user^ objUser = gcnew user(userType, name, password, active, userID, registrationDate);
+		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
+		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
+
+		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
+
+		user^ objUser = gcnew user(userType, name, password, active, userID, registrationDate, objParkingSite);
 		listaUser->Add(objUser);
 	}
 	return listaUser;
@@ -61,7 +71,7 @@ void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
 	File::WriteAllLines("User.txt", lineasArchivo);
 }
 
-void UserCtrl::agregarNewUser(String^ userType, String^ name, String^ password, bool active, int userID, int registrationDate){
+void UserCtrl::agregarNewUser(String^ userType, String^ name, String^ password, bool active, int userID, int registrationDate, int personDNI) {
 	List<user^>^ listaUser = buscarUserAll();
 	user^ objUser = gcnew user(userType, name, password, active, userID, registrationDate);
 	listaUser->Add(objUser);
@@ -79,7 +89,7 @@ void UserCtrl::eliminarUser(int userID) {
 	escribirArchivo(listaUser);
 }
 
-void UserCtrl::actualizarUser(String^ userType, String^ name, String^ password, bool active, int userID, int registrationDate) {
+void UserCtrl::actualizarUser(String^ userType, String^ name, String^ password, bool active, int userID, int registrationDate, int personDNI){
 	List<user^>^ listaUser = buscarUserAll();
 	for (int i = 0; i < listaUser->Count; i++) {
 		if (listaUser[i]->getUserID() == userID) {

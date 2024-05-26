@@ -83,7 +83,7 @@ void ParkingLotCtrl::escribirArchivo(List <parkingLot^>^ listaplaya) {
 	array<String^>^ lineasarchivo = gcnew array<String^>(listaplaya->Count);
 	for (int i = 0; i < listaplaya->Count; i++) {
 		parkingLot^ objparkinglot = listaplaya[i];
-		lineasarchivo[i] = Convert::ToString(objparkinglot->getname()) + ";" + Convert::ToString(objparkinglot->getvehicleType()) + ";" + Convert::ToString(objparkinglot->getID()) + ";" + Convert::ToString(objparkinglot->getcapacity()) + ";" + Convert::ToString(objparkinglot->getNreserved()) + ";" + Convert::ToString(objparkinglot->getNinactive());
+		lineasarchivo[i] = Convert::ToString(objparkinglot->getName()) + ";" + Convert::ToString(objparkinglot->getVehicleType()) + ";" + Convert::ToString(objparkinglot->getID()) + ";" + Convert::ToString(objparkinglot->getCapacity()) + ";" + Convert::ToString(objparkinglot->getNReserved()) + ";" + Convert::ToString(objparkinglot->getNInactive());
 	}
 	File::WriteAllLines("ParkingLot.txt", lineasarchivo);
 }
@@ -92,13 +92,13 @@ void ParkingLotCtrl::actualizarPlaya(String^ name, char vehicleType, String^ ID,
 	List<parkingLot^>^ listaplaya = AllPlayas();
 	for (int i = 0; i < listaplaya->Count; i++) {
 		if (listaplaya[i]->getID() == ID) {
-			listaplaya[i]->setname(name);
-			listaplaya[i]->setvehicleType(vehicleType);
-			listaplaya[i]->setcapacity(capacity);
-			listaplaya[i]->setNreserved(N_reserved);
-			listaplaya[i]->setNinactive(N_inactive);
+			listaplaya[i]->setName(name);
+			listaplaya[i]->setVehicleType(vehicleType);
+			listaplaya[i]->setCapacity(capacity);
+			listaplaya[i]->setNReserved(N_reserved);
+			listaplaya[i]->setNInactive(N_inactive);
 			listaplaya[i]->setZone(objZone);
-			listaplaya[i]->setListaParkingSite(listaParkingSite);
+			listaplaya[i]->setListParkingSite(listaParkingSite);
 			break;
 		}
 	}

@@ -44,16 +44,24 @@ namespace RDEView {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ txt_phone;
+	private: System::Windows::Forms::TextBox^ txt_closingTime;
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ txt_mail;
+	private: System::Windows::Forms::TextBox^ txt_openingTime;
+
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ txt_dni;
+	private: System::Windows::Forms::TextBox^ txt_active;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ txt_code;
-	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txt_name;
+
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::TextBox^ txt_location;
+
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ txt_adminID;
+
 
 	private:
 		/// <summary>
@@ -77,16 +85,18 @@ namespace RDEView {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->txt_phone = (gcnew System::Windows::Forms::TextBox());
+			this->txt_closingTime = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->txt_mail = (gcnew System::Windows::Forms::TextBox());
+			this->txt_openingTime = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->txt_dni = (gcnew System::Windows::Forms::TextBox());
+			this->txt_active = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->txt_code = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txt_name = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->txt_location = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->txt_adminID = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,11 +107,12 @@ namespace RDEView {
 				this->Column1,
 					this->Column2, this->Column3, this->Column4, this->Column5
 			});
-			this->dataGridView1->Location = System::Drawing::Point(17, 194);
+			this->dataGridView1->Location = System::Drawing::Point(11, 126);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 62;
 			this->dataGridView1->RowTemplate->Height = 28;
-			this->dataGridView1->Size = System::Drawing::Size(873, 274);
+			this->dataGridView1->Size = System::Drawing::Size(813, 178);
 			this->dataGridView1->TabIndex = 46;
 			// 
 			// Column1
@@ -141,143 +152,152 @@ namespace RDEView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(328, 134);
-			this->button3->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button3->Location = System::Drawing::Point(219, 87);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(112, 35);
+			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 45;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MantZone::button3_Click);
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(167, 134);
-			this->button2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button2->Location = System::Drawing::Point(111, 87);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(112, 35);
+			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 44;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MantZone::button2_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(15, 134);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button1->Location = System::Drawing::Point(10, 87);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(112, 35);
+			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 43;
 			this->button1->Text = L"Añadir";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MantZone::button1_Click);
 			// 
-			// txt_phone
+			// txt_closingTime
 			// 
-			this->txt_phone->Location = System::Drawing::Point(495, 46);
-			this->txt_phone->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->txt_phone->Name = L"txt_phone";
-			this->txt_phone->Size = System::Drawing::Size(250, 26);
-			this->txt_phone->TabIndex = 42;
+			this->txt_closingTime->Location = System::Drawing::Point(347, 31);
+			this->txt_closingTime->Name = L"txt_closingTime";
+			this->txt_closingTime->Size = System::Drawing::Size(168, 20);
+			this->txt_closingTime->TabIndex = 42;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(355, 49);
-			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Location = System::Drawing::Point(254, 33);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(112, 20);
+			this->label5->Size = System::Drawing::Size(75, 13);
 			this->label5->TabIndex = 41;
 			this->label5->Text = L"Hora de Cierre";
 			// 
-			// txt_mail
+			// txt_openingTime
 			// 
-			this->txt_mail->Location = System::Drawing::Point(495, 3);
-			this->txt_mail->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->txt_mail->Name = L"txt_mail";
-			this->txt_mail->Size = System::Drawing::Size(250, 26);
-			this->txt_mail->TabIndex = 40;
+			this->txt_openingTime->Location = System::Drawing::Point(347, 3);
+			this->txt_openingTime->Name = L"txt_openingTime";
+			this->txt_openingTime->Size = System::Drawing::Size(168, 20);
+			this->txt_openingTime->TabIndex = 40;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(355, 9);
-			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Location = System::Drawing::Point(254, 7);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(132, 20);
+			this->label6->Size = System::Drawing::Size(88, 13);
 			this->label6->TabIndex = 39;
 			this->label6->Text = L"Hora de Apertura";
 			// 
-			// txt_dni
+			// txt_active
 			// 
-			this->txt_dni->Location = System::Drawing::Point(75, 84);
-			this->txt_dni->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->txt_dni->Name = L"txt_dni";
-			this->txt_dni->Size = System::Drawing::Size(250, 26);
-			this->txt_dni->TabIndex = 38;
+			this->txt_active->Location = System::Drawing::Point(67, 56);
+			this->txt_active->Name = L"txt_active";
+			this->txt_active->Size = System::Drawing::Size(168, 20);
+			this->txt_active->TabIndex = 38;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(13, 89);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(9, 58);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(60, 20);
+			this->label3->Size = System::Drawing::Size(40, 13);
 			this->label3->TabIndex = 37;
 			this->label3->Text = L"Estado";
 			// 
-			// txt_code
+			// txt_name
 			// 
-			this->txt_code->Location = System::Drawing::Point(75, 44);
-			this->txt_code->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->txt_code->Name = L"txt_code";
-			this->txt_code->Size = System::Drawing::Size(250, 26);
-			this->txt_code->TabIndex = 36;
+			this->txt_name->Location = System::Drawing::Point(67, 30);
+			this->txt_name->Name = L"txt_name";
+			this->txt_name->Size = System::Drawing::Size(168, 20);
+			this->txt_name->TabIndex = 36;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(13, 49);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(9, 32);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(65, 20);
+			this->label2->Size = System::Drawing::Size(44, 13);
 			this->label2->TabIndex = 35;
 			this->label2->Text = L"Nombre";
 			// 
-			// txt_name
+			// txt_location
 			// 
-			this->txt_name->Location = System::Drawing::Point(75, 4);
-			this->txt_name->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->txt_name->Name = L"txt_name";
-			this->txt_name->Size = System::Drawing::Size(250, 26);
-			this->txt_name->TabIndex = 34;
+			this->txt_location->Location = System::Drawing::Point(67, 4);
+			this->txt_location->Name = L"txt_location";
+			this->txt_location->Size = System::Drawing::Size(168, 20);
+			this->txt_location->TabIndex = 34;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(13, 9);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(9, 6);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(79, 20);
+			this->label1->Size = System::Drawing::Size(55, 13);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ubicacion";
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(254, 60);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(70, 13);
+			this->label4->TabIndex = 47;
+			this->label4->Text = L"Administrador";
+			// 
+			// txt_adminID
+			// 
+			this->txt_adminID->Location = System::Drawing::Point(347, 58);
+			this->txt_adminID->Name = L"txt_adminID";
+			this->txt_adminID->Size = System::Drawing::Size(168, 20);
+			this->txt_adminID->TabIndex = 48;
+			// 
 			// MantZone
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(985, 466);
+			this->ClientSize = System::Drawing::Size(838, 316);
+			this->Controls->Add(this->txt_adminID);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->txt_phone);
+			this->Controls->Add(this->txt_closingTime);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->txt_mail);
+			this->Controls->Add(this->txt_openingTime);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->txt_dni);
+			this->Controls->Add(this->txt_active);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->txt_code);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txt_name);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->txt_location);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MantZone";
 			this->Text = L"MantZone";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -286,5 +306,11 @@ namespace RDEView {
 
 		}
 #pragma endregion
-	};
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
+}
+};
 }

@@ -27,7 +27,7 @@ List <parkingSite^>^ ParkingSiteCtrl::BuscarSitexLot(int lotIDsearch) {
 		bool active = Convert::ToBoolean(datos[2]);
 		int lotID = Convert::ToInt32(datos[3]);
 		
-		if (lotID = lotIDsearch) {
+		if (lotID == lotIDsearch) {
 			parkingSite^ objestac = gcnew parkingSite(ID,reserved,active, lotID);
 			listaesta->Add(objestac);
 		}
@@ -57,6 +57,32 @@ List <parkingSite^>^ ParkingSiteCtrl::AllEstacionamientos() {
 		listaesta->Add(objestac);
 	}
 	return listaesta;
+}
+
+parkingSite^ ParkingSiteCtrl::BuscarSiteXID(String^ IDsearch) {
+	parkingSite^ objParkingSite;
+	array<String^>^ lineas = File::ReadAllLines("Estacionamientos.txt");
+	String^ separadores = ";";
+
+	for each (String ^ lineaPeluche in lineas) {
+
+		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+
+
+		//	FORMATO DEL ARCHIVO TXT
+		//	STRING ; BOOL ; BOOL ; INT
+
+
+		String^ ID = datos[0];
+		bool reserved = Convert::ToBoolean(datos[1]);
+		bool active = Convert::ToBoolean(datos[2]);
+		int lotID = Convert::ToInt32(datos[3]);
+
+		if (ID == IDsearch) {
+			objParkingSite = gcnew parkingSite(ID, reserved, active, lotID);
+		}
+	}
+	return objParkingSite;
 }
 
 void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool active, int lotID) {

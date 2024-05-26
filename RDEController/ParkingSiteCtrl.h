@@ -11,6 +11,7 @@ namespace RDEController {
 		ParkingSiteCtrl();
 		List <parkingSite^>^ BuscarSitexLot(int lotIDsearch);
 		List <parkingSite^>^ AllEstacionamientos();
+		parkingSite^ BuscarSiteXID(String^ IDsearch);
 		void agregarEstacionamiento(String^ ID, bool reserved, bool active, int lotID);
 		void escribirArchivo(List <parkingSite^>^ listaEstac);
 		void actualizarEstac(String^ ID, bool reserved, bool active, int lotID);

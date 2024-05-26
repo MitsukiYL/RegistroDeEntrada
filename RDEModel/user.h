@@ -19,9 +19,10 @@ namespace RDEModel {
         int userID;
         int registrationDate;
         parkingSite^ objParkingSite;
+
     public:
         user();
-        user(String^ userType, bool active, int userID, int registrationDate, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside, parkingSite^ objParkingSite);
+        user(String^ userType, bool active, int userID, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 
         String^ getUserType();
         void setUserType(String^ userType);
@@ -35,8 +36,9 @@ namespace RDEModel {
         int getRegistrationDate();
         void setRegistrationDate(int registrationDate);
 
-        parkingSite^ getObjParkingSite();
-        void setObjParkingSite(parkingSite^ objParkingSite);
+        parkingSite^ getParkingSite();
+        void setParkingSite(parkingSite^ objParkingSite);
+
     };
 }
 

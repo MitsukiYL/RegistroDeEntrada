@@ -6,6 +6,8 @@
 #ifndef _PARKINGSITE_H
 #define _PARKINGSITE_H
 
+#include "user.h"
+
 using namespace System;
 
 namespace RDEModel {
@@ -33,6 +35,7 @@ namespace RDEModel {
 
         int getLotID();
         void setLotID(int lotID);
+
     };
 }
 
