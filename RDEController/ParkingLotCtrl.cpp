@@ -66,8 +66,8 @@ List <parkingLot^>^ ParkingLotCtrl::AllPlayas() {
 
 		parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
 		listaplaya->Add(objplaya);
-		return listaplaya;
 	}
+	return listaplaya;
 }
 
 

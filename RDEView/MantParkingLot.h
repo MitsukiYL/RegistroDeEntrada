@@ -399,7 +399,7 @@ namespace RDEView {
 		ParkingLotCtrl^ playactrl = gcnew ParkingLotCtrl();
 		playactrl->agregarPlaya(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listParkingSite);
 		txt_ID->Clear();
-		MessageBox::Show("La playa se actualizo con exito.");
+		MessageBox::Show("La playa se agrego con exito.");
 
 		List<parkingLot^>^ listaParkingLot = playactrl->AllPlayas();
 		mostrarGrilla(listaParkingLot);
@@ -409,6 +409,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	String^ ID = this->txt_ID->Text;
 	ParkingLotCtrl^ playactrl = gcnew ParkingLotCtrl();
 	playactrl->eliminarPlaya(ID);
+	MessageBox::Show("La playa se elimino con exito.");
 	txt_ID->Clear();
 
 	List<parkingLot^>^ listaParkingLot = playactrl->AllPlayas();

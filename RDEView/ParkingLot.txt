@@ -1,2 +1,3 @@
-123XXX;Moto;Ciencias;10;2;1;123
-123456;Carro;nombre;123;123;12;123
+123XXX;Carro;Ciencias;20;2;1;123
+456XXX;Moto;Ciencias;23;2;1;123
+789XXX;Carro;Cia;45;3;1;123
