@@ -10,34 +10,35 @@
 #include "parkingSite.h"
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 namespace RDEModel {
 	public ref class user : public person {
-    private:
-        String^ userType;
-        bool active;
-        int userID;
-        int registrationDate;
-        parkingSite^ objParkingSite;
+        private:
+            String^ userType;
+            bool active;
+            int userID;
+            int registrationDate;
+            parkingSite^ objParkingSite;
 
-    public:
-        user();
-        user(String^ userType, bool active, int userID, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+        public:
+            user();
+            user(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 
-        String^ getUserType();
-        void setUserType(String^ userType);
+            String^ getUserType();
+            void setUserType(String^ userType);
 
-        bool getActive();
-        void setActive(bool active);
+            bool getActive();
+            void setActive(bool active);
 
-        int getUserID();
-        void setUserID(int userID);
+            int getUserID();
+            void setUserID(int userID);
 
-        int getRegistrationDate();
-        void setRegistrationDate(int registrationDate);
+            int getRegistrationDate();
+            void setRegistrationDate(int registrationDate);
 
-        parkingSite^ getParkingSite();
-        void setParkingSite(parkingSite^ objParkingSite);
+            parkingSite^ getParkingSite();
+            void setParkingSite(parkingSite^ objParkingSite);
 
     };
 }

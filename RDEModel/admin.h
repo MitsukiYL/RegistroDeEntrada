@@ -1,9 +1,7 @@
 /**
  * Project Untitled
  */
-//prueba
-//otra prueba
-//HOLAAAAA
+
 #include "workHours.h"
 
 #ifndef _ADMIN_H

@@ -58,6 +58,9 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		int registrationDate = Convert::ToInt32(datos[3]);
 		int expirationDate = Convert::ToInt32(datos[4]);
 		int contractID = Convert::ToInt32(datos[5]);
+
+		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
+
 		int personDNI = Convert::ToInt32(datos[6]);
 		String^ name = datos[7];
 		int code = Convert::ToInt32(datos[8]);
@@ -70,7 +73,7 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		int age = Convert::ToInt32(datos[15]);
 		bool isInside = Convert::ToBoolean(Convert::ToInt32(datos[16]));
 
-		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
+		
 
 			admin^ objestac = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, personDNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 			listaadmin->Add(objestac);

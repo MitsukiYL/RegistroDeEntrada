@@ -17,22 +17,29 @@ List<user^>^ UserCtrl::buscarUserAll() {
 
 		array<String^>^ datos = lineaUser->Split(separadores->ToCharArray());
 
-		String^ userType = datos[3];
-		String^ name = datos[1];
-		String^ password = datos[5];
-		bool active = Convert::ToBoolean(datos[2]);
 		int userID = Convert::ToInt32(datos[0]);
-		int registrationDate = Convert::ToInt32(datos[4]);
-		String^ parkingSiteID = datos[5];
-		int personDNI = Convert::ToInt32(datos[6]);
+		String^ userType = datos[1];
+		bool active = Convert::ToBoolean(datos[2]);
+		int registrationDate = Convert::ToInt32(datos[3]);
+		String^ parkingSiteID = datos[4];
 
 		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
 		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
 
-		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
+		int personDNI = Convert::ToInt32(datos[5]);
+		String^ name = datos[6];
+		int code = Convert::ToInt32(datos[7]);
+		String^ mail = datos[8];
+		String^ phone = datos[9];
+		String^ password = datos[11];
+		bool permission = Convert::ToBoolean(Convert::ToInt32(datos[11]));
+		String^ occupation = datos[12];
+		String^ gender = datos[13];
+		int age = Convert::ToInt32(datos[14]);
+		bool isInside = Convert::ToBoolean(Convert::ToInt32(datos[15]));
 
-		user^ objUser = gcnew user(userType, name, password, active, userID, registrationDate, objParkingSite);
+		//int, string, bool, int, parkingsite, int, string, int, string, string, string, bool, string, string, int, bool
+		user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, personDNI,  name,  code,  mail,  phone,  password,  permission,  occupation,  gender,  age,  isInside);
 		listaUser->Add(objUser);
 	}
 	return listaUser;
