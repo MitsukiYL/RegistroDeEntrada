@@ -752,7 +752,7 @@ private: void mostrarGrilla(List<admin^>^ listAdm) {
 private: System::Void Admin_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int AdminID = Int32::Parse(Admin_DGV->Rows[Admin_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
-	admin^ Admin = objAdminCtrl->BuscarAdminxID(AdminID);;
+	admin^ Admin = objAdminCtrl->BuscarAdminxID(AdminID);
 	if (Admin != nullptr) {
 		this->txt_ID->Text = Convert::ToString(Admin->getAdminID());
 		this->txt_area->Text = Admin->getArea();

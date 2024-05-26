@@ -51,7 +51,7 @@ zone^ ZoneCtrl::buscarZonaxID(int searchID) {
 		admin^ objAdmin = objAdminCtrl->BuscarAdminxID(adminID);
 
 		if (ID == searchID) {
-			zone^ objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objAdmin);
+			objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objAdmin);
 		}
 		
 	}

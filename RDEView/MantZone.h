@@ -422,15 +422,16 @@ private: void mostrarGrilla(List<zone^>^ listZone) {
 private: System::Void Zone_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int ZoneID = Int32::Parse(Zone_DGV->Rows[Zone_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 	ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-	zone^ Zone = objZoneCtrl->buscarZonaxID(ZoneID);
-	if (Zone != nullptr) {
-		this->txt_ID->Text = Convert::ToString(Zone->getID());
-		this->txt_name->Text = Zone->getName();
-		this->txt_location->Text = Zone->getLocation();
-		this->txt_openingTime->Text = Convert::ToString(Zone->getOpeningTime());
-		this->txt_closingTime->Text = Convert::ToString(Zone->getClosingTime());
-		this->check_active->Checked = Zone->getActive();
-		this->txt_adminID->Text = Convert::ToString(Zone->getAdmin()->getAdminID());
+	zone^ objZone = objZoneCtrl->buscarZonaxID(ZoneID);
+
+	if (objZone != nullptr) {
+		this->txt_ID->Text = Convert::ToString(objZone->getID());
+		this->txt_name->Text = objZone->getName();
+		this->txt_location->Text = objZone->getLocation();
+		this->txt_openingTime->Text = Convert::ToString(objZone->getOpeningTime());
+		this->txt_closingTime->Text = Convert::ToString(objZone->getClosingTime());
+		this->check_active->Checked = objZone->getActive();
+		this->txt_adminID->Text = Convert::ToString(objZone->getAdmin()->getAdminID());
 	}
 
 }
