@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 parkingLot::parkingLot() {}
 
-parkingLot::parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite) {
+parkingLot::parkingLot(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite) {
     this->name = name;
     this->vehicleType = vehicleType;
     this->ID = ID;
@@ -28,11 +28,11 @@ void parkingLot::setName(String^ name) {
     this->name = name;
 }
 
-char parkingLot::getVehicleType() {
+String^ parkingLot::getVehicleType() {
     return this->vehicleType;
 }
 
-void parkingLot::setVehicleType(char vehicleType) {
+void parkingLot::setVehicleType(String^ vehicleType) {
     this->vehicleType = vehicleType;
 }
 

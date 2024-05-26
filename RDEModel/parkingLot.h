@@ -16,7 +16,7 @@ namespace RDEModel {
 	public ref class parkingLot {
     private:
         String^ name;
-        char vehicleType;
+        String^ vehicleType;
         String^ ID;
         int capacity;
         int N_reserved;
@@ -26,13 +26,13 @@ namespace RDEModel {
 
 	public:
 		parkingLot();
-		parkingLot(String^ name, char vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite);
+		parkingLot(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite);
     
         String^ getName();
         void setName(String^ name);
 
-        char getVehicleType();
-        void setVehicleType(char vehicleType);
+        String^ getVehicleType();
+        void setVehicleType(String^ vehicleType);
 
         String^ getID();
         void setID(String^ ID);
