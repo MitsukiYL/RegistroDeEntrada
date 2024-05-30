@@ -119,6 +119,7 @@
   <ItemGroup>
     <ClInclude Include="AdminCtrl.h" />
     <ClInclude Include="CardCtrl.h" />
+    <ClInclude Include="DateTimeHelper.h" />
     <ClInclude Include="ParkingLotCtrl.h" />
     <ClInclude Include="ParkingSiteCtrl.h" />
     <ClInclude Include="PersonCtrl.h" />
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="AdminCtrl.cpp" />
     <ClCompile Include="CardCtrl.cpp" />
+    <ClCompile Include="DateTimeHelper.cpp" />
     <ClCompile Include="ParkingLotCtrl.cpp" />
     <ClCompile Include="ParkingSiteCtrl.cpp" />
     <ClCompile Include="PersonCtrl.cpp" />

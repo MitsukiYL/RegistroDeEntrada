@@ -69,7 +69,22 @@ void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
 
 void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin) {
 	List<zone^>^ listaZone = buscarZoneAll();
-	zone^ objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objAdmin);
+
+	int newID = 1,val=1;
+	while (val) {
+		val = 0;
+		for (int i = 0; i < listaZone->Count; i++) {
+			if (listaZone[i]->getID() == newID) {
+				val = 1;
+				break;
+			}
+		}
+		if (!val) { break; }
+		newID++;
+	}
+	
+
+	zone^ objZone = gcnew zone(newID, name, location, openingTime, closingTime, active, objAdmin);
 	listaZone->Add(objZone);
 	escribirArchivo(listaZone);
 }
