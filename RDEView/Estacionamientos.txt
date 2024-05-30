@@ -1,5 +1,7 @@
 1;True;False;123
-2;True;False;123
-3;True;False;123
-4;True;False;123
+2;True;True;123
 5;True;False;123
+3;True;False;123
+4;False;True;123
+6;True;False;12
+7;True;True;12
