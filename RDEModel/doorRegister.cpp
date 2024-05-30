@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 doorRegister::doorRegister() {}
 
-doorRegister::doorRegister(int entryTime, int exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor){
+doorRegister::doorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor){
     this->entryTime = entryTime;
     this->exitTime = exitTime;
     this->userIn = userIn;
@@ -18,19 +18,19 @@ doorRegister::doorRegister(int entryTime, int exitTime, bool userIn, int code, c
     this->objSensor = objSensor;
 }
 
-int doorRegister::getEntryTime() {
+String^ doorRegister::getEntryTime() {
     return this->entryTime;
 }
 
-void doorRegister::setEntryTime(int entryTime) {
+void doorRegister::setEntryTime(String^ entryTime) {
     this->entryTime = entryTime;
 }
 
-int doorRegister::getExitTime() {
+String^ doorRegister::getExitTime() {
     return this->exitTime;
 }
 
-void doorRegister::setExitTime(int exitTime) {
+void doorRegister::setExitTime(String^ exitTime) {
     this->exitTime = exitTime;
 }
 

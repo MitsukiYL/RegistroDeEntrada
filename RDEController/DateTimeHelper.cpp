@@ -5,6 +5,8 @@ using namespace System;
 using namespace std;
 using namespace RDEController;
 
+DateTimeHelper::DateTimeHelper() {};
+
 String^ DateTimeHelper::horaActual() {
     time_t now = time(0);
     tm* local_tm = localtime(&now);

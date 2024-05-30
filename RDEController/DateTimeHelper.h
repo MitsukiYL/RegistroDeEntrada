@@ -8,6 +8,7 @@ namespace RDEController {
     public ref class DateTimeHelper
     {
     public:
+        DateTimeHelper();
         static String^ horaActual();
         static String^ fechaActual();
     };

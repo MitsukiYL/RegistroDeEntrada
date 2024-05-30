@@ -13,8 +13,8 @@ using namespace System;
 namespace RDEModel {
     public ref class doorRegister {
     private:
-        int entryTime;
-        int exitTime;
+        String^ entryTime;
+        String^ exitTime;
         bool userIn;
         int code;
         card^ objCard;
@@ -22,13 +22,13 @@ namespace RDEModel {
 
     public:
         doorRegister();
-        doorRegister(int entryTime, int exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor);
+        doorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor);
 
-        int getEntryTime();
-        void setEntryTime(int entryTime);
+        String^ getEntryTime();
+        void setEntryTime(String^ entryTime);
 
-        int getExitTime();
-        void setExitTime(int exitTime);
+        String^ getExitTime();
+        void setExitTime(String^ exitTime);
 
         bool getUserIn();
         void setUserIn(bool userIn);
