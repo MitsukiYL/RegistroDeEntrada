@@ -3,3 +3,5 @@
 2;zonaA;hhh;12;2;False;12
 1;zonaA;hhh;12;2;False;12
 3;zonaA;hhh;12;2;False;12
+4;name;location;1234555;123455;False;12
+5;name;location;1234555;123455;False;12

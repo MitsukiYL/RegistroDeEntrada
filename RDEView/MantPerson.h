@@ -80,6 +80,8 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_occupation;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::CheckBox^ check_permission;
+	private: System::Windows::Forms::CheckBox^ check_isInside;
 
 	private:
 		/// <summary>
@@ -128,6 +130,8 @@ namespace RDEView {
 			this->txt_occupation = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->check_permission = (gcnew System::Windows::Forms::CheckBox());
+			this->check_isInside = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -383,11 +387,33 @@ namespace RDEView {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &MantPerson::button4_Click);
 			// 
+			// check_permission
+			// 
+			this->check_permission->AutoSize = true;
+			this->check_permission->Location = System::Drawing::Point(564, 100);
+			this->check_permission->Name = L"check_permission";
+			this->check_permission->Size = System::Drawing::Size(63, 17);
+			this->check_permission->TabIndex = 23;
+			this->check_permission->Text = L"Permiso";
+			this->check_permission->UseVisualStyleBackColor = true;
+			// 
+			// check_isInside
+			// 
+			this->check_isInside->AutoSize = true;
+			this->check_isInside->Location = System::Drawing::Point(676, 100);
+			this->check_isInside->Name = L"check_isInside";
+			this->check_isInside->Size = System::Drawing::Size(86, 17);
+			this->check_isInside->TabIndex = 24;
+			this->check_isInside->Text = L"Está adentro";
+			this->check_isInside->UseVisualStyleBackColor = true;
+			// 
 			// MantPerson
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(825, 437);
+			this->Controls->Add(this->check_isInside);
+			this->Controls->Add(this->check_permission);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->txt_age);
 			this->Controls->Add(this->label7);
@@ -437,8 +463,8 @@ void ShowPerson() {
 		String^ occupation = this->txt_occupation->Text;
 		String^ gender = this->txt_gender->Text;
 		int age = Convert::ToInt32(this->txt_age->Text);
-		bool permission = true;//***************
-		bool isInside = true;//***************
+		bool permission = this->check_permission->Checked;//***************
+		bool isInside = this->check_isInside->Checked;//***************
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 
@@ -467,10 +493,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ gender = this->txt_gender->Text;
 	int age = Convert::ToInt32(this->txt_age->Text);
 
-	bool permission = true;//***************
-	bool isInside = true;//***************
-
-	//PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	bool permission = this->check_permission->Checked;//***************
+	bool isInside = this->check_isInside->Checked;//***************
 
 	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	MessageBox::Show("La persona ha sido actualizada con éxito");
@@ -524,6 +548,8 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		txt_occupation->Text = Convert::ToString(Person->occupation);
 		txt_gender->Text = Person->gender;
 		txt_age->Text = Convert::ToString(Person->age);
+		check_permission->Checked = Convert::ToBoolean(Person->permission);
+		check_isInside->Checked = Convert::ToBoolean(Person->isInside);
 	}
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {
