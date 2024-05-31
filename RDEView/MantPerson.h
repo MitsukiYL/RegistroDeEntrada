@@ -77,11 +77,12 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ txt_gender;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::TextBox^ txt_occupation;
+
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::CheckBox^ check_permission;
 	private: System::Windows::Forms::CheckBox^ check_isInside;
+	private: System::Windows::Forms::ComboBox^ combox_occupation;
 
 	private:
 		/// <summary>
@@ -127,11 +128,11 @@ namespace RDEView {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->txt_occupation = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->check_permission = (gcnew System::Windows::Forms::CheckBox());
 			this->check_isInside = (gcnew System::Windows::Forms::CheckBox());
+			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -361,13 +362,6 @@ namespace RDEView {
 			this->label8->TabIndex = 18;
 			this->label8->Text = L"Género";
 			// 
-			// txt_occupation
-			// 
-			this->txt_occupation->Location = System::Drawing::Point(564, 10);
-			this->txt_occupation->Name = L"txt_occupation";
-			this->txt_occupation->Size = System::Drawing::Size(168, 20);
-			this->txt_occupation->TabIndex = 17;
-			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
@@ -407,11 +401,24 @@ namespace RDEView {
 			this->check_isInside->Text = L"Está adentro";
 			this->check_isInside->UseVisualStyleBackColor = true;
 			// 
+			// combox_occupation
+			// 
+			this->combox_occupation->FormattingEnabled = true;
+			this->combox_occupation->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
+				L"Estudiante", L"Jefe de Práctica", L"Docente",
+					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L""
+			});
+			this->combox_occupation->Location = System::Drawing::Point(564, 10);
+			this->combox_occupation->Name = L"combox_occupation";
+			this->combox_occupation->Size = System::Drawing::Size(168, 21);
+			this->combox_occupation->TabIndex = 25;
+			// 
 			// MantPerson
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(825, 437);
+			this->Controls->Add(this->combox_occupation);
 			this->Controls->Add(this->check_isInside);
 			this->Controls->Add(this->check_permission);
 			this->Controls->Add(this->button4);
@@ -419,7 +426,6 @@ namespace RDEView {
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txt_gender);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->txt_occupation);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
@@ -460,11 +466,12 @@ void ShowPerson() {
 		String^ mail = this->txt_mail->Text;
 		String^ phone = this->txt_phone->Text;
 		String^ password = this->txt_password->Text;
-		String^ occupation = this->txt_occupation->Text;
+		String^ occupation = this->combox_occupation->Text;
 		String^ gender = this->txt_gender->Text;
 		int age = Convert::ToInt32(this->txt_age->Text);
-		bool permission = this->check_permission->Checked;//***************
-		bool isInside = this->check_isInside->Checked;//***************
+		bool permission = this->check_permission->Checked;
+		bool isInside = this->check_isInside->Checked;
+
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 
@@ -489,12 +496,12 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ phone = this->txt_phone->Text;
 	String^ password = this->txt_password->Text;
 
-	String^ occupation = this->txt_occupation->Text;
+	String^ occupation = this->combox_occupation->Text;
 	String^ gender = this->txt_gender->Text;
 	int age = Convert::ToInt32(this->txt_age->Text);
 
-	bool permission = this->check_permission->Checked;//***************
-	bool isInside = this->check_isInside->Checked;//***************
+	bool permission = this->check_permission->Checked;
+	bool isInside = this->check_isInside->Checked;
 
 	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
 	MessageBox::Show("La persona ha sido actualizada con éxito");
@@ -515,6 +522,8 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	mostrarGrilla(listPerson);
 }
 private: void mostrarGrilla(List<person^>^ listPerson) {
+	String^ txt_permission = "";
+	String^ txt_isInside = "";
 		   this->Person_DGV->Rows->Clear();
 		   for (int i = 0; i < listPerson->Count; i++) {
 				person^ objPerson = listPerson[i];
@@ -525,11 +534,23 @@ private: void mostrarGrilla(List<person^>^ listPerson) {
 				filaGrilla[3] = objPerson->getMail();
 				filaGrilla[4] = objPerson->getPhone();
 				filaGrilla[5] = objPerson->getPassword();
-				filaGrilla[6] = Convert::ToString(objPerson->getPermission());
+				if (objPerson->getPermission()) {
+					txt_permission = "Si";
+				}
+				else {
+					txt_permission = "No";
+				}
+				filaGrilla[6] = txt_permission;
 				filaGrilla[7] = objPerson->getOccupation();
 				filaGrilla[8] = objPerson->getGender();
 				filaGrilla[9] = Convert::ToString(objPerson->getAge());
-				filaGrilla[10] = Convert::ToString(objPerson->getIsInside());
+				if (objPerson->getIsInside()) {
+					txt_isInside = "Si";
+				}
+				else {
+					txt_isInside = "No";
+				}
+				filaGrilla[10] = txt_isInside;
 				this->Person_DGV->Rows->Add(filaGrilla);
 		   }
 	   }
@@ -545,7 +566,7 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		txt_password->Text = Person->password;
 		txt_mail->Text = Person->mail;
 		txt_phone->Text = Person->phone;
-		txt_occupation->Text = Convert::ToString(Person->occupation);
+		combox_occupation->Text = Convert::ToString(Person->occupation);
 		txt_gender->Text = Person->gender;
 		txt_age->Text = Convert::ToString(Person->age);
 		check_permission->Checked = Convert::ToBoolean(Person->permission);

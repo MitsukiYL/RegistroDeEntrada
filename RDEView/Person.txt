@@ -1,2 +1,7 @@
-1;2;3;12;2;3;True;1;2;3;True
-72890017;name;1234567;@mail;contact;password;True;occupation;gender;123;False
+78901234;Juan José;20211234;jj@pucp.edu.pe;999123456;juanjose;False;Estudiante;Masculino;19;False
+78901235;Liliana Chavez;20212345;lchavez@pucp.edu.pe;999654321;lilichavez;False;Estudiante;Femenino;19;False
+78903456;Raul Ramirez;20213456;ramirez@pucp.pe;998998998;ramirez123;False;Docente;Masculino;32;True
+65123456;David Allasi;20091234;david.allasi@pucp.pe;998999999;allasidavid;False;Docente;Masculino;33;False
+76543210;Alexa Diaz;20121234;alexa.diaz123@hotmail.com;999987654;adiaz12345;False;Personal de Seguridad;Femenino;27;False
+76540987;Sebastian Calderon;12345678;calderon@pucp.edu.pe;987987987;contraseña;True;Personal Administrativo;Masculino;42;False
+12345678;name;12345678;mail;contact;password;True;Jefe de Práctica;gender;23;False
