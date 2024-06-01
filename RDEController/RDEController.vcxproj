@@ -123,6 +123,7 @@
     <ClInclude Include="ParkingLotCtrl.h" />
     <ClInclude Include="ParkingSiteCtrl.h" />
     <ClInclude Include="PersonCtrl.h" />
+    <ClInclude Include="RequestCtrl.h" />
     <ClInclude Include="UserCtrl.h" />
     <ClInclude Include="VehicleCtrl.h" />
     <ClInclude Include="ZoneCtrl.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="ParkingLotCtrl.cpp" />
     <ClCompile Include="ParkingSiteCtrl.cpp" />
     <ClCompile Include="PersonCtrl.cpp" />
+    <ClCompile Include="RequestCtrl.cpp" />
     <ClCompile Include="UserCtrl.cpp" />
     <ClCompile Include="VehicleCtrl.cpp" />
     <ClCompile Include="ZoneCtrl.cpp" />
