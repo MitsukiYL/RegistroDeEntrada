@@ -72,6 +72,9 @@
     <ClInclude Include="request.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="doorRegisterxCard.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RDEModel.cpp">
@@ -129,6 +132,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="request.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="doorRegisterxCard.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
