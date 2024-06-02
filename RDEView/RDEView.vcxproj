@@ -131,6 +131,7 @@
     <ClCompile Include="MantParkingLot.cpp" />
     <ClCompile Include="MantParkingSite.cpp" />
     <ClCompile Include="MantPerson.cpp" />
+    <ClCompile Include="MantRequest.cpp" />
     <ClCompile Include="MantUser.cpp" />
     <ClCompile Include="MantVehicles.cpp" />
     <ClCompile Include="MantZone.cpp" />
@@ -170,6 +171,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MantPerson.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantRequest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MantUser.h">
