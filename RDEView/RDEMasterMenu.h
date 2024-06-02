@@ -323,7 +323,6 @@ private: System::Void xdToolStripMenuItem_Click(System::Object^ sender, System::
 private: System::Void personasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MantUser^ mantuser = gcnew MantUser();
 	mantuser->Show();
-
 }
 private: System::Void estacionamientosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MantParkingSite^ mantestaform = gcnew MantParkingSite();

@@ -5,3 +5,4 @@
 76543210;Alexa Diaz;20121234;alexa.diaz123@hotmail.com;999987654;adiaz12345;False;Personal de Seguridad;Femenino;27;False
 76540987;Sebastian Calderon;12345678;calderon@pucp.edu.pe;987987987;contraseña;True;Personal Administrativo;Masculino;42;False
 12345678;name;12345678;mail;contact;password;True;Jefe de Práctica;gender;23;False
+10000000;admin;10000000;@admin;999999999;admin;True;Administrador;admin;999999999;True

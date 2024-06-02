@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BuscarPerson.cpp" />
     <ClCompile Include="EnrolamientoTarjeta.cpp" />
     <ClCompile Include="InterfaceInscription.cpp" />
     <ClCompile Include="InterfaceProfile.cpp" />
@@ -141,6 +142,9 @@
     <ClCompile Include="RDEReg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuscarPerson.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="EnrolamientoTarjeta.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -214,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceRequest.resx">
       <DependentUpon>InterfaceRequest.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfaceSolUser.resx">
+      <DependentUpon>InterfaceSolUser.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantAdmin.resx">
       <DependentUpon>MantAdmin.h</DependentUpon>

@@ -10,12 +10,12 @@ namespace RDEView {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for InterfaceSolUser
+	/// Summary for BuscarPerson
 	/// </summary>
-	public ref class InterfaceSolUser : public System::Windows::Forms::Form
+	public ref class BuscarPerson : public System::Windows::Forms::Form
 	{
 	public:
-		InterfaceSolUser(void)
+		BuscarPerson(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace RDEView {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~InterfaceSolUser()
+		~BuscarPerson()
 		{
 			if (components)
 			{
@@ -48,17 +48,11 @@ namespace RDEView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->SuspendLayout();
-			// 
-			// InterfaceSolUser
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->components = gcnew System::ComponentModel::Container();
+			this->Size = System::Drawing::Size(300,300);
+			this->Text = L"BuscarPerson";
+			this->Padding = System::Windows::Forms::Padding(0);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(701, 347);
-			this->Name = L"InterfaceSolUser";
-			this->Text = L"InterfaceSolUser";
-			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 	};

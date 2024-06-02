@@ -406,7 +406,7 @@ namespace RDEView {
 			this->combox_occupation->FormattingEnabled = true;
 			this->combox_occupation->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Estudiante", L"Jefe de Práctica", L"Docente",
-					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L""
+					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L"Administrador"
 			});
 			this->combox_occupation->Location = System::Drawing::Point(564, 10);
 			this->combox_occupation->Name = L"combox_occupation";

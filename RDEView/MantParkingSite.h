@@ -287,8 +287,6 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	ParkingSiteCtrl^ estaCtrl = gcnew ParkingSiteCtrl();
 	List<parkingSite^>^ listaestacionamientos = estaCtrl->BuscarSitexLot(IDbuscar);
 	ShowGrid(listaestacionamientos);
-
-
 }
 
 	private: void ShowGrid(List<parkingSite^>^ listaestacionamientos) {

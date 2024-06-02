@@ -72,6 +72,9 @@
     <ClCompile Include="InterfaceSolUser.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="BuscarPerson.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RDELog.h">
@@ -129,6 +132,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="InterfaceSolUser.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="BuscarPerson.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
