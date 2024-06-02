@@ -12,13 +12,14 @@ namespace RDEModel {
         String^ type;
         String^ newOccupation;
         String^ comment;
+        bool active;
         user^ objUser;
 
 
     public:
 
         request();
-        request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation,  String^ comment, user^ objUser);
+        request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
 
         int getID();
         void setID(int ID);
@@ -37,6 +38,9 @@ namespace RDEModel {
 
         String^ getComment();
         void setComment(String^ comment);
+
+        bool getActive();
+        void setActive(bool active);
 
         user^ getUser();
         void setUser(user^ objUser);

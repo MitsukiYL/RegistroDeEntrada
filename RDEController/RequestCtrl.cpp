@@ -20,12 +20,13 @@ List<request^>^ RequestCtrl::buscarRequestAll() {
 		String^ type = datos[3];
 		String^ newOccupation = datos[4];
 		String^ comment = datos[5];
-		int userID = Convert::ToInt32(datos[6]);
+		bool active = Convert::ToBoolean(datos[6]);
+		int userID = Convert::ToInt32(datos[7]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-		request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
+		request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
 		listaRequest->Add(ObjRequest);
 	}
 	return listaRequest;
@@ -42,13 +43,14 @@ request^ RequestCtrl::buscarRequestxID(int IDsearch) {
 		String^ type = datos[3];
 		String^ newOccupation = datos[4];
 		String^ comment = datos[5];
-		int userID = Convert::ToInt32(datos[6]);
+		bool active = Convert::ToBoolean(datos[6]);
+		int userID = Convert::ToInt32(datos[7]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
 		if (ID == IDsearch) {
-			objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
+			objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
 			break;
 		}
 	}
@@ -59,13 +61,14 @@ void RequestCtrl::escribirArchivo(List<request^>^ listaRequest) {
 	for (int i = 0; i < listaRequest->Count; i++) {
 		request^ objRequest = listaRequest[i];
 		lineasArchivo[i] = Convert::ToString(objRequest->getID()) + ";" + Convert::ToString(objRequest->getEmissionDate()) + ";" + Convert::ToString(objRequest->getResponseDate())
-			+ ";" + objRequest->getType() + ";" + objRequest->getNewOccupation() + ";" + objRequest->getComment() + ";" + Convert::ToString(objRequest->getUser()->getUserID());
+			+ ";" + objRequest->getType() + ";" + objRequest->getNewOccupation() + ";" + objRequest->getComment() + ";" + Convert::ToString(objRequest->getActive())
+			+ ";" + Convert::ToString(objRequest->getUser()->getUserID());
 	}
 	File::WriteAllLines("Request.txt", lineasArchivo);
 }
-void RequestCtrl::agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+void RequestCtrl::agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser) {
 	List<request^>^ listaRequest = buscarRequestAll();
-	request^ objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
+	request^ objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
 	listaRequest->Add(objRequest);
 	escribirArchivo(listaRequest);
 }
@@ -79,7 +82,7 @@ void RequestCtrl::eliminarRequest(int ID) {
 	}
 	escribirArchivo(listaRequest);
 }
-void RequestCtrl::actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+void RequestCtrl::actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser) {
 	List<request^>^ listaRequest = buscarRequestAll();
 	for (int i = 0; i < listaRequest->Count; i++) {
 		if (listaRequest[i]->getID() == ID) {
@@ -88,6 +91,7 @@ void RequestCtrl::actualizarRequest(int ID, int emissionDate, int responseDate, 
 			listaRequest[i]->setType(type);
 			listaRequest[i]->setNewOccupation(newOccupation);
 			listaRequest[i]->setComment(comment);
+			listaRequest[i]->setActive(active);
 			listaRequest[i]->setUser(objUser);
 			break;
 		}

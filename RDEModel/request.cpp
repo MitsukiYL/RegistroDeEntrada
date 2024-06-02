@@ -8,13 +8,14 @@ request::request() {
 
 }
 
-request::request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+request::request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser) {
     this->ID = ID;
     this->emissionDate = emissionDate;
     this->responseDate = responseDate;
     this->type = type;
     this->newOccupation = newOccupation;
     this->comment = comment;
+    this->active = active;
     this->objUser = objUser;
 }
 
@@ -62,6 +63,13 @@ String^ request::getComment() {
 
 void request::setComment(String^ comment) {
     this->comment = comment;
+}
+
+bool request::getActive() {
+    return active;
+}
+void request::setActive(bool active) {
+    this->active = active;
 }
 
 user^ request::getUser() {

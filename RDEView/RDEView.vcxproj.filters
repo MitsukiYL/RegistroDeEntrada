@@ -69,6 +69,9 @@
     <ClCompile Include="MantRequest.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="InterfaceSolUser.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RDELog.h">
@@ -123,6 +126,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="MantRequest.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceSolUser.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

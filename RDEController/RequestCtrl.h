@@ -12,8 +12,8 @@ namespace RDEController {
 		List<request^>^ buscarRequestAll();
 		request^ buscarRequestxID(int IDsearch);
 		void escribirArchivo(List<request^>^ listaRequest);
-		void agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser);
+		void agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
 		void eliminarRequest(int ID);
-		void actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser);
+		void actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
 	};
 }
