@@ -98,10 +98,10 @@ namespace RDEView {
 
 		for (int i = 0; listaDoorRegisterxCard->Count; i++) {
 
-			this->chart1->Series["Series1"]->Points->Add(listaDoorRegisterxCard[i]->getCodeDoorRegister());
+			this->chart1->Series["Series1"]->Points->Add(listaDoorRegisterxCard[i]->getCantRegister());
 			this->chart1->Series["Series1"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCodeCard());
 			this->chart1->Series["Series1"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCodeCard());
-			this->chart1->Series["Series1"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCodeDoorRegister());
+			this->chart1->Series["Series1"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantRegister());
 		}
 	}
 	};

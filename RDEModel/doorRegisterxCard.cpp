@@ -7,10 +7,10 @@ using namespace RDEModel;
 
 doorRegisterxCard::doorRegisterxCard() {}
 
-doorRegisterxCard::doorRegisterxCard(int codeCard, int codeDoorRegister) {
+doorRegisterxCard::doorRegisterxCard(int codeCard, int cantRegister) {
 
 	this->codeCard = codeCard;
-	this->codeDoorRegister = codeDoorRegister;
+	this->cantRegister = cantRegister;
 }
 
 int doorRegisterxCard::getCodeCard() {
@@ -21,12 +21,12 @@ void doorRegisterxCard::setCodeCard(int codeCard) {
 	this->codeCard = codeCard;
 }
 
-int doorRegisterxCard::getCodeDoorRegister() {
-	return this->codeDoorRegister;
+int doorRegisterxCard::getCantRegister() {
+	return this->cantRegister;
 }
 
-void doorRegisterxCard::setCodeDoorRegister(int codeDoorRegister) {
-	this->codeDoorRegister = codeDoorRegister;
+void doorRegisterxCard::setCantRegister(int cantRegister) {
+	this->cantRegister = cantRegister;
 }
 
 
