@@ -15,6 +15,7 @@
 #include "EnrolamientoTarjeta.h"
 #include "MantRequest.h"
 #include "InterfaceSolUser.h"
+#include "ReporteDoorRegisterxCard.h"
 
 namespace RDEView {
 
@@ -375,6 +376,9 @@ private: System::Void solicitudDeUsuarioToolStripMenuItem_Click(System::Object^ 
 	interfaceSolUser->Show();
 }
 private: System::Void reportesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	ReporteDoorRegisterxCard^ reportedoorregisterxcard = gcnew ReporteDoorRegisterxCard();
+	reportedoorregisterxcard->Show();
 }
 };
 }
