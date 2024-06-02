@@ -1,0 +1,1 @@
+23;UART;Remesas;True;080913;87654;FXXXD
