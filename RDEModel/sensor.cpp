@@ -44,7 +44,7 @@ void sensor::setProducer(String^ producer) {
     this->producer = producer;
 }
 
-bool sensor::isActive() {
+bool sensor::getActive() {
     return this->active;
 }
 
