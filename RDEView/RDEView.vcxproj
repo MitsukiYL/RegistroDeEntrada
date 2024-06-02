@@ -140,6 +140,7 @@
     <ClCompile Include="RDELog.cpp" />
     <ClCompile Include="RDEMasterMenu.cpp" />
     <ClCompile Include="RDEReg.cpp" />
+    <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuscarPerson.h">
@@ -200,6 +201,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RDEReg.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReporteDoorRegisterxCard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

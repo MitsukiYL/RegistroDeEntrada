@@ -78,6 +78,8 @@ namespace RDEView {
 	private: System::Windows::Forms::ToolStripMenuItem^ solicitudesToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ solicitudDeUsuarioToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ revisiónDeSolicitudesToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ reportesToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ reportesToolStripMenuItem1;
 
 
 	private:
@@ -100,6 +102,8 @@ namespace RDEView {
 			this->menúDePeticionesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registroDeEntradaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->enrolamientoDeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->solicitudDeUsuarioToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->revisiónDeSolicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->xdToolStripMenuItem3 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->usuariosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->vehiculosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -111,8 +115,8 @@ namespace RDEView {
 			this->tarjetasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->solicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->solicitudDeUsuarioToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->revisiónDeSolicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->reportesToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -120,9 +124,9 @@ namespace RDEView {
 			// 
 			this->menuStrip1->BackColor = System::Drawing::SystemColors::AppWorkspace;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->xdToolStripMenuItem,
-					this->xdToolStripMenuItem3, this->salirToolStripMenuItem
+					this->xdToolStripMenuItem3, this->reportesToolStripMenuItem, this->salirToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -177,6 +181,19 @@ namespace RDEView {
 			this->enrolamientoDeToolStripMenuItem->Size = System::Drawing::Size(198, 22);
 			this->enrolamientoDeToolStripMenuItem->Text = L"Enrolamiento de Tarjeta";
 			this->enrolamientoDeToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::enrolamientoDeToolStripMenuItem_Click);
+			// 
+			// solicitudDeUsuarioToolStripMenuItem
+			// 
+			this->solicitudDeUsuarioToolStripMenuItem->Name = L"solicitudDeUsuarioToolStripMenuItem";
+			this->solicitudDeUsuarioToolStripMenuItem->Size = System::Drawing::Size(198, 22);
+			this->solicitudDeUsuarioToolStripMenuItem->Text = L"Solicitud de Usuario";
+			this->solicitudDeUsuarioToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::solicitudDeUsuarioToolStripMenuItem_Click);
+			// 
+			// revisiónDeSolicitudesToolStripMenuItem
+			// 
+			this->revisiónDeSolicitudesToolStripMenuItem->Name = L"revisiónDeSolicitudesToolStripMenuItem";
+			this->revisiónDeSolicitudesToolStripMenuItem->Size = System::Drawing::Size(198, 22);
+			this->revisiónDeSolicitudesToolStripMenuItem->Text = L"Revisión de Solicitudes";
 			// 
 			// xdToolStripMenuItem3
 			// 
@@ -259,18 +276,19 @@ namespace RDEView {
 			this->salirToolStripMenuItem->Text = L"Salir";
 			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
 			// 
-			// solicitudDeUsuarioToolStripMenuItem
+			// reportesToolStripMenuItem
 			// 
-			this->solicitudDeUsuarioToolStripMenuItem->Name = L"solicitudDeUsuarioToolStripMenuItem";
-			this->solicitudDeUsuarioToolStripMenuItem->Size = System::Drawing::Size(198, 22);
-			this->solicitudDeUsuarioToolStripMenuItem->Text = L"Solicitud de Usuario";
-			this->solicitudDeUsuarioToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::solicitudDeUsuarioToolStripMenuItem_Click);
+			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->reportesToolStripMenuItem1 });
+			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
+			this->reportesToolStripMenuItem->Size = System::Drawing::Size(65, 22);
+			this->reportesToolStripMenuItem->Text = L"Reportes";
 			// 
-			// revisiónDeSolicitudesToolStripMenuItem
+			// reportesToolStripMenuItem1
 			// 
-			this->revisiónDeSolicitudesToolStripMenuItem->Name = L"revisiónDeSolicitudesToolStripMenuItem";
-			this->revisiónDeSolicitudesToolStripMenuItem->Size = System::Drawing::Size(198, 22);
-			this->revisiónDeSolicitudesToolStripMenuItem->Text = L"Revisión de Solicitudes";
+			this->reportesToolStripMenuItem1->Name = L"reportesToolStripMenuItem1";
+			this->reportesToolStripMenuItem1->Size = System::Drawing::Size(216, 22);
+			this->reportesToolStripMenuItem1->Text = L"Registro de puerta x Tarjeta";
+			this->reportesToolStripMenuItem1->Click += gcnew System::EventHandler(this, &RDEMasterMenu::reportesToolStripMenuItem1_Click);
 			// 
 			// RDEMasterMenu
 			// 
@@ -355,6 +373,8 @@ private: System::Void solicitudesToolStripMenuItem_Click(System::Object^ sender,
 private: System::Void solicitudDeUsuarioToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	InterfaceSolUser^ interfaceSolUser = gcnew InterfaceSolUser();
 	interfaceSolUser->Show();
+}
+private: System::Void reportesToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
