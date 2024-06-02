@@ -8,9 +8,10 @@ request::request() {
 
 }
 
-request::request(int ID, int date, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+request::request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
     this->ID = ID;
-    this->date = date;
+    this->emissionDate = emissionDate;
+    this->responseDate = responseDate;
     this->type = type;
     this->newOccupation = newOccupation;
     this->comment = comment;
@@ -25,12 +26,18 @@ void request::setID(int ID) {
     this->ID = ID;
 }
 
-int request::getDate() {
-    return date;
+int request::getEmissionDate() {
+    return emissionDate;
+}
+void request::setEmissionDate(int emissionDate) {
+    this->emissionDate = emissionDate;
 }
 
-void request::setDate(int date) {
-    this->date = date;
+int request::getResponseDate() {
+    return responseDate;
+}
+void request::setResponseDate(int responseDate) {
+    this->responseDate = responseDate;
 }
 
 String^ request::getType() {

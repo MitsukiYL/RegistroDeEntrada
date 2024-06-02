@@ -7,7 +7,8 @@ namespace RDEModel {
     private:
 
         int ID;
-        int date;
+        int emissionDate;
+        int responseDate;
         String^ type;
         String^ newOccupation;
         String^ comment;
@@ -17,13 +18,16 @@ namespace RDEModel {
     public:
 
         request();
-        request(int ID, int date, String^ type, String^ newOccupation,  String^ comment, user^ objUser);
+        request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation,  String^ comment, user^ objUser);
 
         int getID();
         void setID(int ID);
 
-        int getDate();
-        void setDate(int date);
+        int getEmissionDate();
+        void setEmissionDate(int emissionDate);
+
+        int getResponseDate();
+        void setResponseDate(int responseDate);
 
         String^ getType();
         void setType(String^ type);

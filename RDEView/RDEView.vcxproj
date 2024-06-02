@@ -229,6 +229,9 @@
     <EmbeddedResource Include="MantPerson.resx">
       <DependentUpon>MantPerson.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantRequest.resx">
+      <DependentUpon>MantRequest.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantUser.resx">
       <DependentUpon>MantUser.h</DependentUpon>
     </EmbeddedResource>

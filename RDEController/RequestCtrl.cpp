@@ -15,16 +15,17 @@ List<request^>^ RequestCtrl::buscarRequestAll() {
 
 		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
 		int ID = Convert::ToInt32(datos[0]);
-		int date = Convert::ToInt32(datos[1]);
-		String^ type = datos[2];
-		String^ newOccupation = datos[3];
-		String^ comment = datos[4];
-		int userID = Convert::ToInt32(datos[5]);
+		int emissionDate = Convert::ToInt32(datos[1]);
+		int responseDate = Convert::ToInt32(datos[2]);
+		String^ type = datos[3];
+		String^ newOccupation = datos[4];
+		String^ comment = datos[5];
+		int userID = Convert::ToInt32(datos[6]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-		request^ ObjRequest = gcnew request(ID, date, type, newOccupation, comment, objUser);
+		request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
 		listaRequest->Add(ObjRequest);
 	}
 	return listaRequest;
@@ -36,17 +37,18 @@ request^ RequestCtrl::buscarRequestxID(int IDsearch) {
 	for each (String ^ lineaReq in lineas) {
 		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
 		int ID = Convert::ToInt32(datos[0]);
-		int date = Convert::ToInt32(datos[1]);
-		String^ type = datos[2];
-		String^ newOccupation = datos[3];
-		String^ comment = datos[4];
-		int userID = Convert::ToInt32(datos[5]);
+		int emissionDate = Convert::ToInt32(datos[1]);
+		int responseDate = Convert::ToInt32(datos[2]);
+		String^ type = datos[3];
+		String^ newOccupation = datos[4];
+		String^ comment = datos[5];
+		int userID = Convert::ToInt32(datos[6]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
 		if (ID == IDsearch) {
-			request^ objRequest = gcnew request(ID, date, type, newOccupation, comment, objUser);
+			objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
 			break;
 		}
 	}
@@ -56,14 +58,14 @@ void RequestCtrl::escribirArchivo(List<request^>^ listaRequest) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaRequest->Count);
 	for (int i = 0; i < listaRequest->Count; i++) {
 		request^ objRequest = listaRequest[i];
-		lineasArchivo[i] = Convert::ToString(objRequest->getID()) + ";" + Convert::ToString(objRequest->getDate()) + ";" + objRequest->getType()
-			+ ";" + objRequest->getNewOccupation() + ";" + objRequest->getComment() + ";" + Convert::ToString(objRequest->getUser()->getUserID());
+		lineasArchivo[i] = Convert::ToString(objRequest->getID()) + ";" + Convert::ToString(objRequest->getEmissionDate()) + ";" + Convert::ToString(objRequest->getResponseDate())
+			+ ";" + objRequest->getType() + ";" + objRequest->getNewOccupation() + ";" + objRequest->getComment() + ";" + Convert::ToString(objRequest->getUser()->getUserID());
 	}
 	File::WriteAllLines("Request.txt", lineasArchivo);
 }
-void RequestCtrl::agregarNewRequest(int ID, int date, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+void RequestCtrl::agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
 	List<request^>^ listaRequest = buscarRequestAll();
-	request^ objRequest = gcnew request(ID, date, type, newOccupation, comment, objUser);
+	request^ objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, objUser);
 	listaRequest->Add(objRequest);
 	escribirArchivo(listaRequest);
 }
@@ -77,11 +79,12 @@ void RequestCtrl::eliminarRequest(int ID) {
 	}
 	escribirArchivo(listaRequest);
 }
-void RequestCtrl::actualizarRequest(int ID, int date, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
+void RequestCtrl::actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, user^ objUser) {
 	List<request^>^ listaRequest = buscarRequestAll();
 	for (int i = 0; i < listaRequest->Count; i++) {
 		if (listaRequest[i]->getID() == ID) {
-			listaRequest[i]->setDate(date);
+			listaRequest[i]->setEmissionDate(emissionDate);
+			listaRequest[i]->setResponseDate(responseDate);
 			listaRequest[i]->setType(type);
 			listaRequest[i]->setNewOccupation(newOccupation);
 			listaRequest[i]->setComment(comment);
