@@ -13,7 +13,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RDEModel {
-    public ref class admin : public person {
+    public ref class admin {
         private:
             int adminID;
             String^ area;
@@ -22,10 +22,11 @@ namespace RDEModel {
             int expirationDate;
             int contractID;
             List<workHours^>^ listWorkHours;
+            person^ objPerson;
 
         public:
             admin();
-            admin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+            admin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
 
             int getAdminID();
             String^ getArea();
@@ -34,6 +35,7 @@ namespace RDEModel {
             int getExpirationDate();
             int getContractID();
             List<workHours^>^ getListWorkHours();
+            person^ getPerson();
 
             void setAdminID( int adminID);
             void setArea(String^ area);
@@ -42,6 +44,7 @@ namespace RDEModel {
             void setExpirationDate(int expirationDate);
             void setContractID(int contractID);
             void setListWorkHours(List<workHours^>^ listWorkHours);
+            void setPerson(person^ objPerson);
     };
 }
 

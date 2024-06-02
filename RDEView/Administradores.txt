@@ -1,2 +1,2 @@
-12;area;tipo123;123;123;123;72890000;name;7654;@mail;phone;pass;False;occ;gender;21;False
-15;CIA;General;1234;1234;1234;7777777;juan;12342023;@mail;999999999;12345678;True;Administrador;Hombre;33;False
+12;area;tipo123;123;123;123;76540987
+15;CIA;General;1234;1234;1234;10000000

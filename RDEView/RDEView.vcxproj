@@ -209,6 +209,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BuscarPerson.resx">
+      <DependentUpon>BuscarPerson.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EnrolamientoTarjeta.resx">
       <DependentUpon>EnrolamientoTarjeta.h</DependentUpon>
     </EmbeddedResource>

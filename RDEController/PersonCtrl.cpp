@@ -98,8 +98,8 @@ void PersonCtrl::eliminarPerson(int DNI) {
 
 void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
 	List<person^>^ listaPerson = buscarPersonAll();
-	int x = 1;
 	for (int i = 0; i < listaPerson->Count; i++) {
+
 		if (listaPerson[i]->getDNI() == DNI) {
 			listaPerson[i]->setName(name);
 			listaPerson[i]->setPassword(password);

@@ -10,10 +10,11 @@ public ref class AdminCtrl {
 public:
 	AdminCtrl();
 	admin^ BuscarAdminxID(int IDbuscar);
+	admin^ BuscarAdminxPersonDNI(int DNIbuscar);
 	List <admin^>^ AllAdministradores();
-	void agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+	void agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
 	void escribirArchivo(List <admin^>^ listaEstac);
-	void actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+	void actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
 	void eliminarAdmin(int ID);
 };
 }
