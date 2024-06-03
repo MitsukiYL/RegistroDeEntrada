@@ -4,8 +4,9 @@
 65123456;David Allasi;20091234;david.allasi@pucp.pe;998999999;allasidavid;False;Docente;Masculino;33;False
 76543210;Alexa Diaz;20121234;alexa.diaz123@hotmail.com;999987654;adiaz12345;False;Personal de Seguridad;Femenino;27;False
 76540987;Sebastian Calderon;12345678;calderon@pucp.edu.pe;987987987;contraseña;True;Personal Administrativo;Masculino;42;False
-12345678;name;12345678;mail;contact;password;True;Jefe de Práctica;gender;23;False
 10000000;admin;10000000;@admin;100000000;admin;True;Administrador;gender;123;True
 9357677;Pedro Yasuda;98765432;pedro@gmail.com;999123580;contraseña;False;occupation;gender;999;False
 63287788;Laura Galvez;20161987;lgalvez@pucp.edu.pe;909090909;galvez;False;occupation;gender;999;False
 20302030;Kendrick Lamar;20156160;euphoria;meetthegrahams;notlikeus;False;occupation;gender;999;False
+99999999;user;12345678;@user;100000000;user;True;Administrador;gender;123;False
+88888888;admintest;88888888;@admintest;88888888;admintest;True;Administrador;gender;123;True

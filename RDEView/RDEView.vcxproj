@@ -142,6 +142,7 @@
     <ClCompile Include="RDEMasterMenu.cpp" />
     <ClCompile Include="RDEReg.cpp" />
     <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
+    <ClCompile Include="UsuarioAdmin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuscarPerson.h">
@@ -205,6 +206,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReporteDoorRegisterxCard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UsuarioAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -271,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteDoorRegisterxCard.resx">
       <DependentUpon>ReporteDoorRegisterxCard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsuarioAdmin.resx">
+      <DependentUpon>UsuarioAdmin.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

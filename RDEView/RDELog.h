@@ -1,6 +1,7 @@
 #pragma once
 #include "RDEReg.h"
 #include "RDEMasterMenu.h"
+#include "UsuarioAdmin.h"
 
 namespace RDEView {
 
@@ -150,13 +151,14 @@ namespace RDEView {
 		}
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	bool found = false;
+	//CODIGO DE EVALUCIAN DE USUARIO/ADMINISTRADOR, EN COMENTARIOS POR EL MOMENTO
+	/*	bool found = false;
 
 	String^ txt = this->txt_codemail->Text;
 	String^ password = this->txt_password->Text;
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 
 	List<person^>^ listaPerson = objPersonCtrl->buscarPersonAll();
@@ -166,6 +168,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		for (int i = 0; i < listaPerson->Count; i++) {
+
+
 			bool DNIMatch = Convert::ToString(listaPerson[i]->getDNI()) == txt;
 			bool mailMatch = listaPerson[i]->getMail() == txt;
 			bool codeMatch = Convert::ToString(listaPerson[i]->getCode()) == txt;
@@ -177,15 +181,34 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			}
 		}
 		if (found) {
-			RDEMasterMenu^ logform = gcnew RDEMasterMenu();
-			logform->Show();
+			person^ objPerson = objPersonCtrl->buscarPersonxPassword(password);
+			user^ UserLog = objUserCtrl->buscarUserxPersonDNI(objPerson->getDNI());
+			admin^ AdminLog = objAdminCtrl->BuscarAdminxPersonDNI(objPerson->getDNI());
+			if ((UserLog != nullptr)&&(AdminLog == nullptr)) {
+				MessageBox::Show("Bienvenido "+objPerson->getName());
+			}
+			else if ((UserLog == nullptr)&&(AdminLog != nullptr)) {
+				MessageBox::Show("Modo administrador");
+				RDEMasterMenu^ logform = gcnew RDEMasterMenu();
+				logform->Show();
+			}
+			else if ((UserLog != nullptr)&&(AdminLog != nullptr)) {
+				UsuarioAdmin^ formUserAdmin = gcnew UsuarioAdmin();
+				formUserAdmin->ShowDialog();
+				this->Close();
+			}
+
+
 		}
 		else {
 			txt_codemail->Clear();
 			txt_password->Clear();
 			MessageBox::Show("Datos incorrectos");
 		}
-	}
+	}*/
+
+	RDEMasterMenu^ logform = gcnew RDEMasterMenu();
+	logform->Show();
 
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {

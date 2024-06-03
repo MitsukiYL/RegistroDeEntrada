@@ -66,6 +66,34 @@ person^ PersonCtrl::buscarPersonxDNI(int DNIb) {
 	return objPerson;
 }
 
+person^ PersonCtrl::buscarPersonxPassword(String^ passwordSearch) {
+	person^ objPerson;
+	array<String^>^ lineas = File::ReadAllLines("Person.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaPerson in lineas) {
+
+		array<String^>^ datos = lineaPerson->Split(separadores->ToCharArray());
+
+		int DNI = Convert::ToInt32(datos[0]);
+		String^ name = datos[1];
+		int code = Convert::ToInt32(datos[2]);
+		String^ mail = datos[3];
+		String^ phone = datos[4];
+		String^ password = datos[5];
+		bool permission = Convert::ToBoolean(datos[6]);
+		String^ occupation = datos[7];
+		String^ gender = datos[8];
+		int age = Convert::ToInt32(datos[9]);
+		bool isInside = Convert::ToBoolean(datos[10]);
+
+		if (password == passwordSearch) {
+			objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+			break;
+		}
+	}
+	return objPerson;
+}
+
 void PersonCtrl::escribirArchivo(List<person^>^ listaPerson) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaPerson->Count);
 	for (int i = 0; i < listaPerson->Count; i++) {
