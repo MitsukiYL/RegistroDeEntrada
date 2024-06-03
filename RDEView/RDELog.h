@@ -197,6 +197,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				formUserAdmin->ShowDialog();
 				this->Close();
 			}
+			else{
+				MessageBox::Show("Persona no relacionada a ningún User/Admin");
+			}
 
 
 		}
