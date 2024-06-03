@@ -34,15 +34,17 @@ namespace RDEView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ combox_permType;
+	protected:
+
 	protected:
 
 
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox4;
+
+
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ProgressBar^ progressBar1;
@@ -54,6 +56,7 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::ComboBox^ combox_occupation;
 
 	private:
 		/// <summary>
@@ -68,12 +71,9 @@ namespace RDEView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->combox_permType = (gcnew System::Windows::Forms::ComboBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
@@ -85,19 +85,20 @@ namespace RDEView {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
-			// comboBox1
+			// combox_permType
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
-				L"Alumno", L"Jefe de Práctica", L"Docente", L"Coordinador",
-					L"Personal Administrativo", L"Personal de Seguridad", L"Personal de Mantenimiento", L"Otros"
+			this->combox_permType->FormattingEnabled = true;
+			this->combox_permType->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
+				L"Alumno", L"Jefe de Práctica", L"Docente",
+					L"Coordinador", L"Personal Administrativo", L"Personal de Seguridad", L"Personal de Mantenimiento", L"Otros"
 			});
-			this->comboBox1->Location = System::Drawing::Point(135, 128);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->TabIndex = 0;
+			this->combox_permType->Location = System::Drawing::Point(135, 128);
+			this->combox_permType->Name = L"combox_permType";
+			this->combox_permType->Size = System::Drawing::Size(121, 21);
+			this->combox_permType->TabIndex = 0;
 			// 
 			// textBox2
 			// 
@@ -114,29 +115,6 @@ namespace RDEView {
 			this->label2->Size = System::Drawing::Size(26, 13);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"DNI";
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(135, 76);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(121, 20);
-			this->textBox3->TabIndex = 6;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(16, 76);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(94, 13);
-			this->label3->TabIndex = 5;
-			this->label3->Text = L"Fecha de Registro";
-			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(135, 102);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(121, 20);
-			this->textBox4->TabIndex = 8;
 			// 
 			// label4
 			// 
@@ -235,11 +213,24 @@ namespace RDEView {
 			this->checkBox1->Text = L"Confirmar";
 			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
+			// combox_occupation
+			// 
+			this->combox_occupation->FormattingEnabled = true;
+			this->combox_occupation->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
+				L"Alumno", L"Jefe de Práctica", L"Docente",
+					L"Coordinador", L"Personal Administrativo", L"Personal de Seguridad", L"Personal de Mantenimiento", L"Otros"
+			});
+			this->combox_occupation->Location = System::Drawing::Point(135, 99);
+			this->combox_occupation->Name = L"combox_occupation";
+			this->combox_occupation->Size = System::Drawing::Size(121, 21);
+			this->combox_occupation->TabIndex = 19;
+			// 
 			// EnrolamientoTarjeta
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(279, 396);
+			this->Controls->Add(this->combox_occupation);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox5);
@@ -250,13 +241,10 @@ namespace RDEView {
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->combox_permType);
 			this->Name = L"EnrolamientoTarjeta";
 			this->Text = L"EnrolamientoTarjeta";
 			this->ResumeLayout(false);
