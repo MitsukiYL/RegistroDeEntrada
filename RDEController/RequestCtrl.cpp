@@ -31,6 +31,35 @@ List<request^>^ RequestCtrl::buscarRequestAll() {
 	}
 	return listaRequest;
 }
+
+List<request^>^ RequestCtrl::buscarRequestxActive() {
+	List<request^>^ listaRequest = gcnew List<request^>();
+	array<String^>^ lineas = File::ReadAllLines("Request.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaReq in lineas) {
+
+		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
+		int ID = Convert::ToInt32(datos[0]);
+		int emissionDate = Convert::ToInt32(datos[1]);
+		int responseDate = Convert::ToInt32(datos[2]);
+		String^ type = datos[3];
+		String^ newOccupation = datos[4];
+		String^ comment = datos[5];
+		bool active = Convert::ToBoolean(datos[6]);
+		int userID = Convert::ToInt32(datos[7]);
+
+		UserCtrl^ objUserCtrl = gcnew UserCtrl();
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
+		if (active) {
+			request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+			listaRequest->Add(ObjRequest);
+		}
+
+	}
+	return listaRequest;
+}
+
 request^ RequestCtrl::buscarRequestxID(int IDsearch) {
 	request^ objRequest;
 	array<String^>^ lineas = File::ReadAllLines("Request.txt");

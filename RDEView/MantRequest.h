@@ -153,6 +153,14 @@ namespace RDEView {
 			this->txt_user = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->Request_DGV = (gcnew System::Windows::Forms::DataGridView());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->txt_ID = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -169,14 +177,6 @@ namespace RDEView {
 			this->rtxt_comment = (gcnew System::Windows::Forms::RichTextBox());
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
 			this->combtext_type = (gcnew System::Windows::Forms::ComboBox());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Request_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -211,6 +211,56 @@ namespace RDEView {
 			this->Request_DGV->Size = System::Drawing::Size(807, 213);
 			this->Request_DGV->TabIndex = 112;
 			this->Request_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantRequest::Request_DGV_CellClick);
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Fecha de Emision";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 150;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Fecha de Respuesta";
+			this->Column6->MinimumWidth = 8;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 150;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Tipo";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Nuevo Cargo";
+			this->Column8->MinimumWidth = 8;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 150;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Comentario";
+			this->Column3->Name = L"Column3";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Activo";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Usuario";
+			this->Column1->Name = L"Column1";
 			// 
 			// txt_ID
 			// 
@@ -318,7 +368,7 @@ namespace RDEView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(571, 15);
+			this->label5->Location = System::Drawing::Point(582, 14);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(60, 13);
 			this->label5->TabIndex = 123;
@@ -351,56 +401,6 @@ namespace RDEView {
 			this->combtext_type->Name = L"combtext_type";
 			this->combtext_type->Size = System::Drawing::Size(168, 21);
 			this->combtext_type->TabIndex = 126;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"ID";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Fecha de Emision";
-			this->Column5->MinimumWidth = 8;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 150;
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Fecha de Respuesta";
-			this->Column6->MinimumWidth = 8;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 150;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Tipo";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Nuevo Cargo";
-			this->Column8->MinimumWidth = 8;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 150;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Comentario";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Activo";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Usuario";
-			this->Column1->Name = L"Column1";
 			// 
 			// MantRequest
 			// 

@@ -15,6 +15,7 @@
 #include "EnrolamientoTarjeta.h"
 #include "MantRequest.h"
 #include "InterfaceSolUser.h"
+#include "InterfaceSolAdmin.h"
 #include "ReporteDoorRegisterxCard.h"
 
 namespace RDEView {
@@ -115,9 +116,9 @@ namespace RDEView {
 			this->playasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tarjetasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->solicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -195,6 +196,7 @@ namespace RDEView {
 			this->revisiónDeSolicitudesToolStripMenuItem->Name = L"revisiónDeSolicitudesToolStripMenuItem";
 			this->revisiónDeSolicitudesToolStripMenuItem->Size = System::Drawing::Size(198, 22);
 			this->revisiónDeSolicitudesToolStripMenuItem->Text = L"Revisión de Solicitudes";
+			this->revisiónDeSolicitudesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::revisiónDeSolicitudesToolStripMenuItem_Click);
 			// 
 			// xdToolStripMenuItem3
 			// 
@@ -270,13 +272,6 @@ namespace RDEView {
 			this->solicitudesToolStripMenuItem->Text = L"Solicitudes";
 			this->solicitudesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::solicitudesToolStripMenuItem_Click);
 			// 
-			// salirToolStripMenuItem
-			// 
-			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(41, 22);
-			this->salirToolStripMenuItem->Text = L"Salir";
-			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
-			// 
 			// reportesToolStripMenuItem
 			// 
 			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->reportesToolStripMenuItem1 });
@@ -290,6 +285,13 @@ namespace RDEView {
 			this->reportesToolStripMenuItem1->Size = System::Drawing::Size(216, 22);
 			this->reportesToolStripMenuItem1->Text = L"Registro de puerta x Tarjeta";
 			this->reportesToolStripMenuItem1->Click += gcnew System::EventHandler(this, &RDEMasterMenu::reportesToolStripMenuItem1_Click);
+			// 
+			// salirToolStripMenuItem
+			// 
+			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(41, 22);
+			this->salirToolStripMenuItem->Text = L"Salir";
+			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
 			// 
 			// RDEMasterMenu
 			// 
@@ -379,6 +381,10 @@ private: System::Void reportesToolStripMenuItem1_Click(System::Object^ sender, S
 
 	ReporteDoorRegisterxCard^ reportedoorregisterxcard = gcnew ReporteDoorRegisterxCard();
 	reportedoorregisterxcard->Show();
+}
+private: System::Void revisiónDeSolicitudesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	InterfaceSolAdmin^ interfaceSolAdmin = gcnew InterfaceSolAdmin();
+	interfaceSolAdmin->Show();
 }
 };
 }

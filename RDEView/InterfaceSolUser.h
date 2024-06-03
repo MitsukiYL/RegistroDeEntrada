@@ -230,7 +230,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		
 		objRequestCtrl->agregarNewRequest(IDnew, emissionDate, responseDate, type, newoccupation, comment, active, objUser);
-		
+		MessageBox::Show("La solicitud se creó con exito.");
 	}
 private: System::Void combox_type_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	String^ txt = this->combox_type->Text;

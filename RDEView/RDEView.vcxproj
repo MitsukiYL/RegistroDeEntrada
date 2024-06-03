@@ -127,6 +127,7 @@
     <ClCompile Include="InterfaceProfile.cpp" />
     <ClCompile Include="InterfaceRDE.cpp" />
     <ClCompile Include="InterfaceRequest.cpp" />
+    <ClCompile Include="InterfaceSolAdmin.cpp" />
     <ClCompile Include="InterfaceSolUser.cpp" />
     <ClCompile Include="MantAdmin.cpp" />
     <ClCompile Include="MantCard.cpp" />
@@ -161,6 +162,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InterfaceRequest.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="InterfaceSolAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InterfaceSolUser.h">
@@ -230,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceRequest.resx">
       <DependentUpon>InterfaceRequest.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfaceSolAdmin.resx">
+      <DependentUpon>InterfaceSolAdmin.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceSolUser.resx">
       <DependentUpon>InterfaceSolUser.h</DependentUpon>
