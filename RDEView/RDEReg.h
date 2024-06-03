@@ -258,12 +258,15 @@ namespace RDEView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
 		bool Person_Repeated = true;
 
-		//ATRIBUTOS FIJOS
-		int DNI = Convert::ToInt32(this->txt_DNI->Text);
+		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+		UserCtrl^ objUserCtrl = gcnew UserCtrl();
+
+		//ATRIBUTOS FIJOS 
+		
 		String^ name = this->txt_name->Text;
-		int code = Convert::ToInt32(this->txt_code->Text);
 		String^ mail = this->txt_mail->Text;
 		String^ phone = this->txt_phone->Text;
 		String^ password = this->txt_password->Text;
@@ -271,72 +274,81 @@ namespace RDEView {
 
 		//ATRIBUTOS VARIABLES - SOLO PLACEHOLDERS
 		String^ occupation = "occupation";
-		String ^ gender = "gender";
+		String^ gender = "gender";
 		int age = 999;
 		bool permission = false;
 		bool isInside = false;
 
-		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-		List<person^>^ listaPerson = objPersonCtrl->buscarPersonAll();
-
-		
-
-		for (int i = 0; i < listaPerson->Count; i++) {
-			if ((listaPerson[i]->getDNI() == DNI)||(listaPerson[i]->getCode() == code)) {
-				Person_Repeated = false;
-				break;
-			}
-		}
-		
-		if (!Person_Repeated) {
-			MessageBox::Show("Datos incorrectos");
-			txt_DNI->Clear();
-			txt_code->Clear();
-			txt_confirmPassword->Clear();
-			txt_password->Clear();
+		if ((this->txt_DNI->Text=="") || (this->txt_code->Text =="") || (name=="") 
+			|| (mail=="") || (phone=="") || (password=="") || (confirm_password=="")) {
+			MessageBox::Show("No se han ingresado todos los datos");
 		}
 		else {
-			if (confirm_password != password) {
-				MessageBox::Show("Las contraseñas no coinciden");
+
+			//ATRIBUTOS FIJOS
+			int DNI = Convert::ToInt32(this->txt_DNI->Text);
+			int code = Convert::ToInt32(this->txt_code->Text);
+			List<person^>^ listaPerson = objPersonCtrl->buscarPersonAll();
+
+			for (int i = 0; i < listaPerson->Count; i++) {
+				if ((listaPerson[i]->getDNI() == DNI) || (listaPerson[i]->getCode() == code) || (listaPerson[i]->getMail() == mail)) {
+					Person_Repeated = false;
+					break;
+				}
+			}
+
+			if (!Person_Repeated) {
+				MessageBox::Show("Datos incorrectos");
+				txt_DNI->Clear();
+				txt_code->Clear();
+				txt_mail->Clear();
 				txt_confirmPassword->Clear();
 				txt_password->Clear();
 			}
 			else {
-				objPersonCtrl->agregarNewPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
-				person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
-
-				DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
-				ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-				UserCtrl^ objUserCtrl = gcnew UserCtrl();
-
-				//ATRIBUTOS DE USUARIO
-
-				List<user^>^ listaUser = objUserCtrl->buscarUserAll();
-
-				int userID = 1, val = 1;
-				while (val) {
-					val = 0;
-					for (int i = 0; i < listaUser->Count; i++) {
-						if (listaUser[i]->getUserID() == userID) {
-							val = 1;
-							break;
-						}
-					}
-					if (!val) { break; }
-					userID++;
+				if (confirm_password != password) {
+					MessageBox::Show("Las contraseñas no coinciden");
+					txt_confirmPassword->Clear();
+					txt_password->Clear();
 				}
+				else {
+					objPersonCtrl->agregarNewPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+					person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
 
-				String^ userType = occupation;
-				bool active = true;
-				int intregDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
-				String^ parkSiteID = "PLACEHOLDER";
-				parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkSiteID);
+					DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
+					ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
 
-				objUserCtrl->agregarNewUser(userID, userType, active, intregDate, objParkingSite, objPerson);
+					//ATRIBUTOS DE USUARIO
 
-				MessageBox::Show("El usuario ha sido agregada con éxito");
+					List<user^>^ listaUser = objUserCtrl->buscarUserAll();
+
+					int userID = 1, val = 1;
+					while (val) {
+						val = 0;
+						for (int i = 0; i < listaUser->Count; i++) {
+							if (listaUser[i]->getUserID() == userID) {
+								val = 1;
+								break;
+							}
+						}
+						if (!val) { break; }
+						userID++;
+					}
+
+					String^ userType = occupation;
+					bool active = true;
+					int intregDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
+					String^ parkSiteID = "PLACEHOLDER";
+					parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkSiteID);
+
+					objUserCtrl->agregarNewUser(userID, userType, active, intregDate, objParkingSite, objPerson);
+
+					MessageBox::Show("El usuario ha sido agregado con éxito");
+					this->Close();
+				}
 			}
 		}
+		
 	}
 };
 }

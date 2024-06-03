@@ -8,3 +8,4 @@
 10000000;admin;10000000;@admin;100000000;admin;True;Administrador;gender;123;True
 9357677;Pedro Yasuda;98765432;pedro@gmail.com;999123580;contraseña;False;occupation;gender;999;False
 63287788;Laura Galvez;20161987;lgalvez@pucp.edu.pe;909090909;galvez;False;occupation;gender;999;False
+20302030;Kendrick Lamar;20156160;euphoria;meetthegrahams;notlikeus;False;occupation;gender;999;False
