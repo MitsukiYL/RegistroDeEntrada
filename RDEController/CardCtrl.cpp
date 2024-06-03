@@ -62,6 +62,34 @@ card^ CardCtrl::buscarCardxCode(int codigoB) {
 	return objCard;
 }
 
+card^ CardCtrl::buscarCardxUserID(int userIDsearch) {
+	card^ objCard;
+	array<String^>^ lineas = File::ReadAllLines("Card.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaCard in lineas) {
+
+		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
+		int code = Convert::ToInt32(datos[0]);
+		int ID = Convert::ToInt32(datos[1]);
+		bool permission = Convert::ToBoolean(datos[2]);
+		String^ permissionType = datos[3];
+		int emissionDate = Convert::ToInt32(datos[4]);
+		int registrationDate = Convert::ToInt32(datos[5]);
+		int expirationDate = Convert::ToInt32(datos[6]);
+		bool active = Convert::ToBoolean(datos[7]);
+		int userID = Convert::ToInt32(datos[8]);
+
+		UserCtrl^ objUserCtrl = gcnew UserCtrl();
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
+		if (userID == userIDsearch) {
+			objCard = gcnew card(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
+			break;
+		}
+	}
+	return objCard;
+}
+
 void CardCtrl::escribirArchivo(List<card^>^ listaCard) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaCard->Count);
 	for (int i = 0; i < listaCard->Count; i++) {

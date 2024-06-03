@@ -143,6 +143,7 @@
     <ClCompile Include="RDEMasterMenu.cpp" />
     <ClCompile Include="RDEReg.cpp" />
     <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
+    <ClCompile Include="SolNuevaTarjeta.cpp" />
     <ClCompile Include="UsuarioAdmin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +211,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReporteDoorRegisterxCard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SolNuevaTarjeta.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UsuarioAdmin.h">

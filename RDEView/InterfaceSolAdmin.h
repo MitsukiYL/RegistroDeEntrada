@@ -60,11 +60,14 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::CheckBox^ check_active;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button_nuevocargo;
+
 	private: System::Windows::Forms::CheckBox^ check_confirm;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button_nuevatarjeta;
+
 	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button_otro;
+
 
 	private:
 		/// <summary>
@@ -101,11 +104,11 @@ namespace RDEView {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button_nuevocargo = (gcnew System::Windows::Forms::Button());
 			this->check_confirm = (gcnew System::Windows::Forms::CheckBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button_nuevatarjeta = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button_otro = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Request_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -292,15 +295,16 @@ namespace RDEView {
 			this->check_active->Text = L"Activo";
 			this->check_active->UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// button_nuevocargo
 			// 
-			this->button1->Location = System::Drawing::Point(128, 318);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(151, 23);
-			this->button1->TabIndex = 142;
-			this->button1->Text = L"Aceptar Nuevo Cargo";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button1_Click);
+			this->button_nuevocargo->Enabled = false;
+			this->button_nuevocargo->Location = System::Drawing::Point(155, 318);
+			this->button_nuevocargo->Name = L"button_nuevocargo";
+			this->button_nuevocargo->Size = System::Drawing::Size(151, 23);
+			this->button_nuevocargo->TabIndex = 142;
+			this->button_nuevocargo->Text = L"Aceptar Nuevo Cargo";
+			this->button_nuevocargo->UseVisualStyleBackColor = true;
+			this->button_nuevocargo->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button1_Click);
 			// 
 			// check_confirm
 			// 
@@ -312,15 +316,16 @@ namespace RDEView {
 			this->check_confirm->Text = L"Confirmar solicitud";
 			this->check_confirm->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// button_nuevatarjeta
 			// 
-			this->button2->Location = System::Drawing::Point(323, 318);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(151, 23);
-			this->button2->TabIndex = 144;
-			this->button2->Text = L"Aceptar Nueva Tarjeta";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button2_Click);
+			this->button_nuevatarjeta->Enabled = false;
+			this->button_nuevatarjeta->Location = System::Drawing::Point(340, 318);
+			this->button_nuevatarjeta->Name = L"button_nuevatarjeta";
+			this->button_nuevatarjeta->Size = System::Drawing::Size(151, 23);
+			this->button_nuevatarjeta->TabIndex = 144;
+			this->button_nuevatarjeta->Text = L"Aceptar Nueva Tarjeta";
+			this->button_nuevatarjeta->UseVisualStyleBackColor = true;
+			this->button_nuevatarjeta->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button2_Click);
 			// 
 			// button4
 			// 
@@ -332,15 +337,16 @@ namespace RDEView {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button4_Click);
 			// 
-			// button3
+			// button_otro
 			// 
-			this->button3->Location = System::Drawing::Point(524, 318);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(151, 23);
-			this->button3->TabIndex = 145;
-			this->button3->Text = L"Aceptar Otro";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button3_Click);
+			this->button_otro->Enabled = false;
+			this->button_otro->Location = System::Drawing::Point(524, 318);
+			this->button_otro->Name = L"button_otro";
+			this->button_otro->Size = System::Drawing::Size(151, 23);
+			this->button_otro->TabIndex = 145;
+			this->button_otro->Text = L"Aceptar Otro";
+			this->button_otro->UseVisualStyleBackColor = true;
+			this->button_otro->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button3_Click);
 			// 
 			// InterfaceSolAdmin
 			// 
@@ -348,10 +354,10 @@ namespace RDEView {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(688, 382);
 			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button_otro);
+			this->Controls->Add(this->button_nuevatarjeta);
 			this->Controls->Add(this->check_confirm);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->button_nuevocargo);
 			this->Controls->Add(this->check_active);
 			this->Controls->Add(this->combtext_type);
 			this->Controls->Add(this->rtxt_comment);
@@ -389,6 +395,21 @@ private: System::Void Request_DGV_CellClick(System::Object^ sender, System::Wind
 			this->check_active->Checked = objReq->getActive();
 			this->txt_user->Text = Convert::ToString(objReq->getUser()->getUserID());
 		}
+		if (objReq->getType() == "Nuevo Cargo") {
+			this->button_nuevocargo->Enabled = true;
+			this->button_nuevatarjeta->Enabled = false;
+			this->button_otro->Enabled = false;
+		}
+		else if (objReq->getType() == "Nueva Tarjeta") {
+			this->button_nuevocargo->Enabled = false;
+			this->button_nuevatarjeta->Enabled = true;
+			this->button_otro->Enabled = false;
+		}
+		else if (objReq->getType() == "Otro") {
+			this->button_nuevocargo->Enabled = false;
+			this->button_nuevatarjeta->Enabled = false;
+			this->button_otro->Enabled = true;
+		}
 	}
 private: void mostrarGrilla(List<request^>^ listaRequest) {
 	this->Request_DGV->Rows->Clear();
@@ -421,90 +442,49 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR OTRO
 	if (this->check_confirm->Checked) {
-		int filaSeleccionada = this->Request_DGV->SelectedRows[0]->Index;
-		int IDeliminar = Convert::ToInt32(this->Request_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
-
-		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
-		
-		int ID = Convert::ToInt32(this->txt_ID->Text);
-		int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-		int responseDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
-		String^ type = this->combtext_type->Text;
-		String^ newOccupation = this->txt_newoccupation->Text;
-		String^ comment = this->rtxt_comment->Text;
-		bool active = false;
-		int userID = Convert::ToInt32(this->txt_user->Text);
-
-		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
-		objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+		ActualizarFormRequest();
 
 		MessageBox::Show("La solicitud se aceptó con éxito.");
-
+		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
 		mostrarGrilla(listaRequest);
 	}
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR NUEVA TARJETA
 	if (this->check_confirm->Checked) {
-		int filaSeleccionada = this->Request_DGV->SelectedRows[0]->Index;
-		int IDeliminar = Convert::ToInt32(this->Request_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
 
-		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
-		CardCtrl^ objCardCtrl = gcnew CardCtrl();
-
-		int ID = Convert::ToInt32(this->txt_ID->Text);
-		int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-		int responseDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
-		String^ type = this->combtext_type->Text;
-		String^ newOccupation = this->txt_newoccupation->Text;
-		String^ comment = this->rtxt_comment->Text;
-		bool active = false;
-		int userID = Convert::ToInt32(this->txt_user->Text);
-
-		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
-		objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
-
-		
-
-		MessageBox::Show("La solicitud se aceptó con éxito. Nueva tarjeta creada");
-
-		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
-		mostrarGrilla(listaRequest);
 	}
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {//RECHAZAR SOLICITUD
 	if (this->check_confirm->Checked) {
-		int filaSeleccionada = this->Request_DGV->SelectedRows[0]->Index;
-		int IDeliminar = Convert::ToInt32(this->Request_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
 
-		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
-
-		int ID = Convert::ToInt32(this->txt_ID->Text);
-		int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-		int responseDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
-		String^ type = this->combtext_type->Text;
-		String^ newOccupation = this->txt_newoccupation->Text;
-		String^ comment = this->rtxt_comment->Text;
-		bool active = false;
-		int userID = Convert::ToInt32(this->txt_user->Text);
-
-		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
-		objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+		ActualizarFormRequest();
 
 		MessageBox::Show("La solicitud se rechazó con éxito.");
-
+		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
 		mostrarGrilla(listaRequest);
 	}
+}
+private: void ActualizarFormRequest() {
+	int filaSeleccionada = this->Request_DGV->SelectedRows[0]->Index;
+
+	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+	DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
+
+	int ID = Convert::ToInt32(this->txt_ID->Text);
+	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
+	int responseDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
+	String^ type = this->combtext_type->Text;
+	String^ newOccupation = this->txt_newoccupation->Text;
+	String^ comment = this->rtxt_comment->Text;
+	bool active = false;
+	int userID = Convert::ToInt32(this->txt_user->Text);
+
+	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
+	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
 }
 };
 }

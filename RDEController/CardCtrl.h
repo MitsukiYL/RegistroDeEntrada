@@ -11,6 +11,7 @@ namespace RDEController {
 		CardCtrl();
 		List<card^>^ buscarCardAll();
 		card^ buscarCardxCode(int codigoB);
+		card^ buscarCardxUserID(int userIDsearch);
 		void escribirArchivo(List<card^>^ listaCard);
 		void agregarNewCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
 		void eliminarCard(int codigo);
