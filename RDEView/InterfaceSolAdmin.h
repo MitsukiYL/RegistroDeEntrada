@@ -1,4 +1,5 @@
 #pragma once
+#include "EnrolamientoTarjeta.h"
 
 namespace RDEView {
 
@@ -21,6 +22,7 @@ namespace RDEView {
 		InterfaceSolAdmin(void)
 		{
 			InitializeComponent();
+			this->objRequest = gcnew request();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -61,7 +63,7 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::CheckBox^ check_active;
 	private: System::Windows::Forms::Button^ button_nuevocargo;
-
+	private: request^ objRequest;
 	private: System::Windows::Forms::CheckBox^ check_confirm;
 	private: System::Windows::Forms::Button^ button_nuevatarjeta;
 
@@ -124,7 +126,7 @@ namespace RDEView {
 			this->Request_DGV->Name = L"Request_DGV";
 			this->Request_DGV->RowHeadersWidth = 62;
 			this->Request_DGV->RowTemplate->Height = 28;
-			this->Request_DGV->Size = System::Drawing::Size(664, 205);
+			this->Request_DGV->Size = System::Drawing::Size(799, 205);
 			this->Request_DGV->TabIndex = 113;
 			this->Request_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &InterfaceSolAdmin::Request_DGV_CellClick);
 			// 
@@ -185,13 +187,13 @@ namespace RDEView {
 			this->combtext_type->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Nuevo Cargo", L"Nueva Tarjeta", L"Otro" });
 			this->combtext_type->Location = System::Drawing::Point(122, 64);
 			this->combtext_type->Name = L"combtext_type";
-			this->combtext_type->Size = System::Drawing::Size(100, 21);
+			this->combtext_type->Size = System::Drawing::Size(148, 21);
 			this->combtext_type->TabIndex = 140;
 			// 
 			// rtxt_comment
 			// 
 			this->rtxt_comment->Enabled = false;
-			this->rtxt_comment->Location = System::Drawing::Point(518, 10);
+			this->rtxt_comment->Location = System::Drawing::Point(652, 6);
 			this->rtxt_comment->Name = L"rtxt_comment";
 			this->rtxt_comment->Size = System::Drawing::Size(157, 74);
 			this->rtxt_comment->TabIndex = 139;
@@ -200,7 +202,7 @@ namespace RDEView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(452, 17);
+			this->label5->Location = System::Drawing::Point(586, 13);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(60, 13);
 			this->label5->TabIndex = 138;
@@ -220,13 +222,13 @@ namespace RDEView {
 			this->txt_emisionDate->Enabled = false;
 			this->txt_emisionDate->Location = System::Drawing::Point(122, 38);
 			this->txt_emisionDate->Name = L"txt_emisionDate";
-			this->txt_emisionDate->Size = System::Drawing::Size(100, 20);
+			this->txt_emisionDate->Size = System::Drawing::Size(148, 20);
 			this->txt_emisionDate->TabIndex = 135;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(236, 14);
+			this->label1->Location = System::Drawing::Point(296, 14);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(70, 13);
 			this->label1->TabIndex = 134;
@@ -235,23 +237,23 @@ namespace RDEView {
 			// txt_newoccupation
 			// 
 			this->txt_newoccupation->Enabled = false;
-			this->txt_newoccupation->Location = System::Drawing::Point(340, 10);
+			this->txt_newoccupation->Location = System::Drawing::Point(400, 10);
 			this->txt_newoccupation->Name = L"txt_newoccupation";
-			this->txt_newoccupation->Size = System::Drawing::Size(100, 20);
+			this->txt_newoccupation->Size = System::Drawing::Size(153, 20);
 			this->txt_newoccupation->TabIndex = 133;
 			// 
 			// txt_user
 			// 
 			this->txt_user->Enabled = false;
-			this->txt_user->Location = System::Drawing::Point(340, 38);
+			this->txt_user->Location = System::Drawing::Point(400, 38);
 			this->txt_user->Name = L"txt_user";
-			this->txt_user->Size = System::Drawing::Size(100, 20);
+			this->txt_user->Size = System::Drawing::Size(153, 20);
 			this->txt_user->TabIndex = 132;
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(236, 41);
+			this->label9->Location = System::Drawing::Point(296, 41);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(43, 13);
 			this->label9->TabIndex = 131;
@@ -262,7 +264,7 @@ namespace RDEView {
 			this->txt_ID->Enabled = false;
 			this->txt_ID->Location = System::Drawing::Point(122, 14);
 			this->txt_ID->Name = L"txt_ID";
-			this->txt_ID->Size = System::Drawing::Size(100, 20);
+			this->txt_ID->Size = System::Drawing::Size(148, 20);
 			this->txt_ID->TabIndex = 130;
 			// 
 			// label8
@@ -288,7 +290,7 @@ namespace RDEView {
 			this->check_active->AutoSize = true;
 			this->check_active->Enabled = false;
 			this->check_active->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->check_active->Location = System::Drawing::Point(340, 68);
+			this->check_active->Location = System::Drawing::Point(400, 68);
 			this->check_active->Name = L"check_active";
 			this->check_active->Size = System::Drawing::Size(56, 17);
 			this->check_active->TabIndex = 141;
@@ -352,7 +354,7 @@ namespace RDEView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(688, 382);
+			this->ClientSize = System::Drawing::Size(821, 382);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button_otro);
 			this->Controls->Add(this->button_nuevatarjeta);
@@ -438,6 +440,22 @@ private: System::Void InterfaceSolAdmin_Load(System::Object^ sender, System::Eve
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR NUEVO CARGO
 	if (this->check_confirm->Checked) {
 
+		int ID = Convert::ToInt32(this->txt_ID->Text);
+
+		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+		request^ objRequest = objRequestCtrl->buscarRequestxID(ID);
+
+		EnrolamientoTarjeta^ mantBuscarPerson = gcnew EnrolamientoTarjeta(objRequest);
+		mantBuscarPerson->ShowDialog();
+
+		ActualizarFormRequest();
+
+		MessageBox::Show("La solicitud de Nuevo Cargo se aceptó con éxito.");
+		
+		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
+		mostrarGrilla(listaRequest);
+
+		this->check_confirm->Checked = false;
 	}
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR OTRO
@@ -448,11 +466,28 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
 		mostrarGrilla(listaRequest);
+
+		this->check_confirm->Checked = false;
 	}
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR NUEVA TARJETA
 	if (this->check_confirm->Checked) {
 
+		int ID = Convert::ToInt32(this->txt_ID->Text);
+
+		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+		request^ objRequest = objRequestCtrl->buscarRequestxID(ID);
+
+		EnrolamientoTarjeta^ mantBuscarPerson = gcnew EnrolamientoTarjeta(objRequest);
+		mantBuscarPerson->ShowDialog();
+
+		ActualizarFormRequest();
+
+		MessageBox::Show("La solicitud de Nueva Tarjeta se aceptó con éxito.");
+		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
+		mostrarGrilla(listaRequest);
+
+		this->check_confirm->Checked = false;
 	}
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {//RECHAZAR SOLICITUD
@@ -464,6 +499,8 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
 		mostrarGrilla(listaRequest);
+
+		this->check_confirm->Checked = false;
 	}
 }
 private: void ActualizarFormRequest() {

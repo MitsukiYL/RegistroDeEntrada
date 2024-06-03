@@ -70,7 +70,7 @@ namespace RDEView {
 
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ txt_newoccupation;
+
 
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ txt_emisionDate;
@@ -97,6 +97,7 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::ComboBox^ combox_newoccupation;
 
 
 
@@ -169,7 +170,6 @@ namespace RDEView {
 			this->txt_responseDate = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->txt_newoccupation = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txt_emisionDate = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -177,6 +177,7 @@ namespace RDEView {
 			this->rtxt_comment = (gcnew System::Windows::Forms::RichTextBox());
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
 			this->combtext_type = (gcnew System::Windows::Forms::ComboBox());
+			this->combox_newoccupation = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Request_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -333,13 +334,6 @@ namespace RDEView {
 			this->label1->TabIndex = 118;
 			this->label1->Text = L"Nuevo Cargo";
 			// 
-			// txt_newoccupation
-			// 
-			this->txt_newoccupation->Location = System::Drawing::Point(400, 39);
-			this->txt_newoccupation->Name = L"txt_newoccupation";
-			this->txt_newoccupation->Size = System::Drawing::Size(168, 20);
-			this->txt_newoccupation->TabIndex = 117;
-			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
@@ -402,11 +396,24 @@ namespace RDEView {
 			this->combtext_type->Size = System::Drawing::Size(168, 21);
 			this->combtext_type->TabIndex = 126;
 			// 
+			// combox_newoccupation
+			// 
+			this->combox_newoccupation->FormattingEnabled = true;
+			this->combox_newoccupation->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
+				L"Estudiante", L"Jefe de Práctica",
+					L"Docente", L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L"Administrador"
+			});
+			this->combox_newoccupation->Location = System::Drawing::Point(400, 39);
+			this->combox_newoccupation->Name = L"combox_newoccupation";
+			this->combox_newoccupation->Size = System::Drawing::Size(168, 21);
+			this->combox_newoccupation->TabIndex = 127;
+			// 
 			// MantRequest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(843, 410);
+			this->Controls->Add(this->combox_newoccupation);
 			this->Controls->Add(this->combtext_type);
 			this->Controls->Add(this->check_active);
 			this->Controls->Add(this->rtxt_comment);
@@ -415,7 +422,6 @@ namespace RDEView {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->txt_emisionDate);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->txt_newoccupation);
 			this->Controls->Add(this->txt_user);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->Request_DGV);
@@ -440,7 +446,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
 	int responseDate = Convert::ToInt32(this->txt_responseDate->Text);
 	String^ type = this->combtext_type->Text;
-	String^ newOccupation = this->txt_newoccupation->Text;
+	String^ newOccupation = this->combox_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = this->check_active->Checked;
 	int userID = Convert::ToInt32(this->txt_user->Text);
@@ -460,7 +466,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
 	int responseDate = Convert::ToInt32(this->txt_responseDate->Text);
 	String^ type = this->combtext_type->Text;
-	String^ newOccupation = this->txt_newoccupation->Text;
+	String^ newOccupation = this->combox_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = this->check_active->Checked;
 	int userID = Convert::ToInt32(this->txt_user->Text);
@@ -517,7 +523,7 @@ private: System::Void Request_DGV_CellClick(System::Object^ sender, System::Wind
 		this->txt_emisionDate->Text = Convert::ToString(objReq->getEmissionDate());
 		this->txt_responseDate->Text = Convert::ToString(objReq->getResponseDate());
 		this->combtext_type->Text = objReq->getType();
-		this->txt_newoccupation->Text = objReq->getNewOccupation();
+		this->combox_newoccupation->Text = objReq->getNewOccupation();
 		this->rtxt_comment->Text = objReq->getComment();
 		this->check_active->Checked = objReq->getActive();
 		this->txt_user->Text = Convert::ToString(objReq->getUser()->getUserID());

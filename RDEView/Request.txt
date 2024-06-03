@@ -1,7 +1,17 @@
 1;1200;1300;Nuevo Cargo;Docente;sin comentarios;False;5
 2;1200;1300;Observacion;12345;12345;False;666
-4;1800;1800;Nuevo Cargo;Docente;sin comentarios;True;1
-3;262024;0;Nuevo Cargo;Personal Académico;comentario;True;4
+4;1800;362024;Nuevo Cargo;Docente;sin comentarios;False;1
+3;262024;362024;Nuevo Cargo;Personal Académico;comentario;False;4
 5;262024;262024;Otro;;test;False;4
 6;262024;362024;Nueva Tarjeta;;nueva tarjeta;False;4
 7;362024;362024;Nueva Tarjeta;;nueva tarjetaasdasd;False;4
+8;362024;362024;Nuevo Cargo;Personal Administrativo;123;False;4
+9;1200;362024;Nuevo Cargo;12345;12345;False;666
+10;362024;362024;Nuevo Cargo;Administrador;nuevo cargo prueba;False;5
+11;362024;362024;Nueva Tarjeta;;nueva tarjeta prueba;False;666
+12;362024;362024;Otro;;prueba;False;1
+13;362024;0;Nuevo Cargo;Estudiante;estudiante;True;4
+14;362024;362024;Nueva Tarjeta;;new card;False;3
+15;362024;362024;Nueva Tarjeta;;new card;False;5
+16;362024;362024;Nueva Tarjeta;;new card;False;6
+17;362024;362024;Nueva Tarjeta;;nueva nueva tarjeta;False;6

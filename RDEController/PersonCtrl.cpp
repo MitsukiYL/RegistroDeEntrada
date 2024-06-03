@@ -134,6 +134,7 @@ void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail,
 			listaPerson[i]->setCode(code);
 			listaPerson[i]->setMail(mail);
 			listaPerson[i]->setPermission(permission);
+			listaPerson[i]->setOccupation(occupation);
 			listaPerson[i]->setGender(gender);
 			listaPerson[i]->setPhone(phone);
 			listaPerson[i]->setAge(age);

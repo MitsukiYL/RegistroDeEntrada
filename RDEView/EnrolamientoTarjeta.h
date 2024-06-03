@@ -30,6 +30,11 @@ namespace RDEView {
 			//
 		}
 
+		EnrolamientoTarjeta(request^ objRequest) {
+			InitializeComponent(); 
+			this->objRequest = objRequest;
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -46,27 +51,19 @@ namespace RDEView {
 	protected:
 
 	protected:
-
-
-
 	private: System::Windows::Forms::Label^ label2;
-
-
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ProgressBar^ progressBar1;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ txt_code;
-
-
-
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
-	private: System::Windows::Forms::ComboBox^ combox_occupation;
 
+	private: request^ objRequest;
+	private: System::Windows::Forms::TextBox^ txt_newOccupation;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -92,7 +89,7 @@ namespace RDEView {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
+			this->txt_newOccupation = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// combox_permType
@@ -104,14 +101,14 @@ namespace RDEView {
 			});
 			this->combox_permType->Location = System::Drawing::Point(135, 237);
 			this->combox_permType->Name = L"combox_permType";
-			this->combox_permType->Size = System::Drawing::Size(121, 21);
+			this->combox_permType->Size = System::Drawing::Size(174, 21);
 			this->combox_permType->TabIndex = 0;
 			// 
 			// txt_DNI
 			// 
 			this->txt_DNI->Location = System::Drawing::Point(135, 50);
 			this->txt_DNI->Name = L"txt_DNI";
-			this->txt_DNI->Size = System::Drawing::Size(121, 20);
+			this->txt_DNI->Size = System::Drawing::Size(174, 20);
 			this->txt_DNI->TabIndex = 4;
 			// 
 			// label2
@@ -145,7 +142,7 @@ namespace RDEView {
 			// 
 			this->progressBar1->Location = System::Drawing::Point(12, 126);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(252, 23);
+			this->progressBar1->Size = System::Drawing::Size(305, 23);
 			this->progressBar1->TabIndex = 10;
 			// 
 			// label6
@@ -172,7 +169,7 @@ namespace RDEView {
 			// 
 			this->txt_code->Location = System::Drawing::Point(135, 211);
 			this->txt_code->Name = L"txt_code";
-			this->txt_code->Size = System::Drawing::Size(121, 20);
+			this->txt_code->Size = System::Drawing::Size(174, 20);
 			this->txt_code->TabIndex = 14;
 			// 
 			// label9
@@ -186,7 +183,7 @@ namespace RDEView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(70, 306);
+			this->button1->Location = System::Drawing::Point(95, 308);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(140, 32);
 			this->button1->TabIndex = 17;
@@ -197,31 +194,26 @@ namespace RDEView {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(19, 283);
+			this->checkBox1->Location = System::Drawing::Point(19, 268);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(70, 17);
 			this->checkBox1->TabIndex = 18;
 			this->checkBox1->Text = L"Confirmar";
 			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
-			// combox_occupation
+			// txt_newOccupation
 			// 
-			this->combox_occupation->FormattingEnabled = true;
-			this->combox_occupation->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
-				L"Alumno", L"Jefe de Práctica", L"Docente",
-					L"Coordinador", L"Personal Administrativo", L"Personal de Seguridad", L"Personal de Mantenimiento", L"Otros"
-			});
-			this->combox_occupation->Location = System::Drawing::Point(135, 76);
-			this->combox_occupation->Name = L"combox_occupation";
-			this->combox_occupation->Size = System::Drawing::Size(121, 21);
-			this->combox_occupation->TabIndex = 19;
+			this->txt_newOccupation->Location = System::Drawing::Point(135, 76);
+			this->txt_newOccupation->Name = L"txt_newOccupation";
+			this->txt_newOccupation->Size = System::Drawing::Size(174, 20);
+			this->txt_newOccupation->TabIndex = 19;
 			// 
 			// EnrolamientoTarjeta
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(279, 352);
-			this->Controls->Add(this->combox_occupation);
+			this->ClientSize = System::Drawing::Size(330, 352);
+			this->Controls->Add(this->txt_newOccupation);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txt_code);
@@ -236,6 +228,7 @@ namespace RDEView {
 			this->Controls->Add(this->combox_permType);
 			this->Name = L"EnrolamientoTarjeta";
 			this->Text = L"EnrolamientoTarjeta";
+			this->Load += gcnew System::EventHandler(this, &EnrolamientoTarjeta::EnrolamientoTarjeta_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -292,10 +285,43 @@ namespace RDEView {
 
 			objCardCtrl->agregarNewCard(codeNew, expirationDateNew, permissionTypeNew, IDnew, permissionNew, emissionDateNew, registrationDateNew, activeNew, objUser);
 			MessageBox::Show("Tarjeta enlazada correctamente");
+			this->Close();
 		}
 		else {
 			MessageBox::Show("Confirme el enlazamiento de tarjeta");
 		}
 	}
+private: System::Void EnrolamientoTarjeta_Load(System::Object^ sender, System::EventArgs^ e) {
+	if (this->objRequest != nullptr) {
+		if (this->objRequest->getType() == "Nuevo Cargo") {
+
+			this->txt_DNI->Enabled = false;
+			this->txt_newOccupation->Enabled = false;
+
+			this->txt_newOccupation->Text = this->objRequest->getNewOccupation();
+		}
+		else if (this->objRequest->getType() == "Nueva Tarjeta") {
+
+			this->txt_DNI->Enabled = false;
+			this->txt_newOccupation->Enabled = false;
+			
+
+			this->txt_newOccupation->Text = this->objRequest->getUser()->getPerson()->getOccupation();
+
+			CardCtrl^ objCardCtrl = gcnew CardCtrl();
+			List<card^>^ listaCard = objCardCtrl->buscarCardxUserID(this->objRequest->getUser()->getUserID());
+
+			int i = (listaCard->Count);
+			if (i > 0) {
+				card^ objCard = listaCard[(listaCard->Count) - 1];
+
+				this->combox_permType->Enabled = false;
+				this->combox_permType->Text = objCard->getPermissionType();
+			}
+
+		}
+		this->txt_DNI->Text = Convert::ToString(this->objRequest->getUser()->getPerson()->getDNI());
+	}
+}
 };
 }

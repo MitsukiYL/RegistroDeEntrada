@@ -547,17 +547,17 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	person^ Person = objPersonCtrl->buscarPersonxDNI(DNI);;
 	if (Person != nullptr) {
-		txt_dni->Text = Convert::ToString(Person->DNI);
-		txt_code->Text = Convert::ToString(Person->code);
-		txt_name->Text = Person->name;
-		txt_password->Text = Person->password;
-		txt_mail->Text = Person->mail;
-		txt_phone->Text = Person->phone;
-		combox_occupation->Text = Convert::ToString(Person->occupation);
-		txt_gender->Text = Person->gender;
-		txt_age->Text = Convert::ToString(Person->age);
-		check_permission->Checked = Convert::ToBoolean(Person->permission);
-		check_isInside->Checked = Convert::ToBoolean(Person->isInside);
+		this->txt_dni->Text = Convert::ToString(Person->getDNI());
+		this->txt_code->Text = Convert::ToString(Person->getCode());
+		this->txt_name->Text = Person->getName();
+		this->txt_password->Text = Person->getPassword();
+		this->txt_mail->Text = Person->getMail();
+		this->txt_phone->Text = Person->getPhone();
+		this->combox_occupation->Text = Convert::ToString(Person->getOccupation());
+		this->txt_gender->Text = Person->getGender();
+		this->txt_age->Text = Convert::ToString(Person->getAge());
+		this->check_permission->Checked = Convert::ToBoolean(Person->getPermission());
+		this->check_isInside->Checked = Convert::ToBoolean(Person->getIsInside());
 	}
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {
