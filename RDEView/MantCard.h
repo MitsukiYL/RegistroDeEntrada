@@ -66,7 +66,7 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_emmDate;
 
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ txt_permType;
+
 
 
 
@@ -86,6 +86,18 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_registrationDate;
 	private: System::Windows::Forms::TextBox^ txt_active;
 	private: System::Windows::Forms::TextBox^ txt_userID;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::CheckBox^ check_active;
+
+	private: System::Windows::Forms::CheckBox^ check_perm;
+	private: System::Windows::Forms::ComboBox^ combox_permType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -94,9 +106,8 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
-	private: System::Windows::Forms::CheckBox^ check_active;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 
-	private: System::Windows::Forms::CheckBox^ check_perm;
 
 
 	private:
@@ -113,14 +124,6 @@ namespace RDEView {
 		void InitializeComponent(void)
 		{
 			this->Card_DGV = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->txt_cardID = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -132,7 +135,6 @@ namespace RDEView {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->txt_emmDate = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->txt_permType = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txt_code = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -148,15 +150,25 @@ namespace RDEView {
 			this->txt_userID = (gcnew System::Windows::Forms::TextBox());
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
 			this->check_perm = (gcnew System::Windows::Forms::CheckBox());
+			this->combox_permType = (gcnew System::Windows::Forms::ComboBox());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Card_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// Card_DGV
 			// 
 			this->Card_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->Card_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+			this->Card_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
 				this->Column1, this->Column2,
-					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
+					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9
 			});
 			this->Card_DGV->Location = System::Drawing::Point(8, 172);
 			this->Card_DGV->Margin = System::Windows::Forms::Padding(2);
@@ -166,62 +178,6 @@ namespace RDEView {
 			this->Card_DGV->Size = System::Drawing::Size(807, 213);
 			this->Card_DGV->TabIndex = 92;
 			this->Card_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantCard::Card_DGV_CellClick);
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Codigo";
-			this->Column1->MinimumWidth = 8;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 150;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"ID";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Permiso";
-			this->Column3->MinimumWidth = 8;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 150;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Tipo de Permiso";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Fecha de Emision";
-			this->Column5->MinimumWidth = 8;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 150;
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Fecha de Registro";
-			this->Column6->MinimumWidth = 8;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 150;
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Fecha de Expiracion";
-			this->Column7->MinimumWidth = 8;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 150;
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Estado";
-			this->Column8->MinimumWidth = 8;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 150;
 			// 
 			// txt_cardID
 			// 
@@ -316,13 +272,6 @@ namespace RDEView {
 			this->label6->Size = System::Drawing::Size(94, 13);
 			this->label6->TabIndex = 79;
 			this->label6->Text = L"Fecha de Registro";
-			// 
-			// txt_permType
-			// 
-			this->txt_permType->Location = System::Drawing::Point(90, 54);
-			this->txt_permType->Name = L"txt_permType";
-			this->txt_permType->Size = System::Drawing::Size(168, 20);
-			this->txt_permType->TabIndex = 76;
 			// 
 			// label2
 			// 
@@ -443,11 +392,85 @@ namespace RDEView {
 			this->check_perm->Text = L"Permiso";
 			this->check_perm->UseVisualStyleBackColor = true;
 			// 
+			// combox_permType
+			// 
+			this->combox_permType->FormattingEnabled = true;
+			this->combox_permType->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"General", L"Excepcional", L"Mantenimiento",
+					L"Administrador"
+			});
+			this->combox_permType->Location = System::Drawing::Point(90, 53);
+			this->combox_permType->Name = L"combox_permType";
+			this->combox_permType->Size = System::Drawing::Size(168, 21);
+			this->combox_permType->TabIndex = 97;
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Codigo";
+			this->Column1->MinimumWidth = 8;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 150;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 150;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Permiso";
+			this->Column3->MinimumWidth = 8;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 150;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Tipo de Permiso";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Fecha de Emision";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 150;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Fecha de Registro";
+			this->Column6->MinimumWidth = 8;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 150;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Fecha de Expiracion";
+			this->Column7->MinimumWidth = 8;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 150;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Estado";
+			this->Column8->MinimumWidth = 8;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 150;
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Usuario";
+			this->Column9->Name = L"Column9";
+			// 
 			// MantCard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(828, 396);
+			this->Controls->Add(this->combox_permType);
 			this->Controls->Add(this->check_perm);
 			this->Controls->Add(this->check_active);
 			this->Controls->Add(this->txt_user);
@@ -464,7 +487,6 @@ namespace RDEView {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->txt_emmDate);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->txt_permType);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txt_code);
 			this->Controls->Add(this->label1);
@@ -482,7 +504,7 @@ namespace RDEView {
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 		int code = Convert::ToInt32(this->txt_code->Text);
 		int expirationDate = Convert::ToInt32(this->txt_expDate->Text);
-		String^ permissionType = this->txt_permType->Text;
+		String^ permissionType = this->combox_permType->Text;
 		int ID = Convert::ToInt32(this->txt_cardID->Text);
 		bool permission = this->check_perm->Checked;
 		int emissionDate = Convert::ToInt32(this->txt_emmDate->Text);
@@ -504,7 +526,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 	int code = Convert::ToInt32(this->txt_code->Text);
 	int expirationDate = Convert::ToInt32(this->txt_expDate->Text);
-	String^ permissionType = this->txt_permType->Text;
+	String^ permissionType = this->combox_permType->Text;
 	int ID = Convert::ToInt32(this->txt_cardID->Text);
 	bool permission = this->check_perm->Checked;
 	int emissionDate = Convert::ToInt32(this->txt_emmDate->Text);
@@ -542,7 +564,7 @@ private: System::Void Card_DGV_CellClick(System::Object^ sender, System::Windows
 
 	if (objCard != nullptr) {
 		this->txt_code->Text = Convert::ToString(objCard->getCode());
-		this->txt_permType->Text = objCard->getPermissionType();
+		this->combox_permType->Text = objCard->getPermissionType();
 		this->txt_cardID->Text = Convert::ToString(objCard->getID());
 		this->check_perm->Checked = objCard->getPermission();
 		this->txt_emmDate->Text = Convert::ToString(objCard->getEmissionDate());
@@ -562,7 +584,7 @@ private: void mostrarGrilla(List<card^>^ listCard) {
 
 	for (int i = 0; i < listCard->Count; i++) {
 		card^ objCard = listCard[i];
-		array<String^>^ filaGrilla = gcnew array<String^>(8);
+		array<String^>^ filaGrilla = gcnew array<String^>(9);
 		filaGrilla[0] = Convert::ToString(objCard->getCode());
 		filaGrilla[1] = Convert::ToString(objCard->getID());
 		filaGrilla[2] = Convert::ToString(objCard->getPermission());
@@ -570,7 +592,8 @@ private: void mostrarGrilla(List<card^>^ listCard) {
 		filaGrilla[4] = Convert::ToString(objCard->getEmissionDate());
 		filaGrilla[5] = Convert::ToString(objCard->getRegistrationDate());
 		filaGrilla[6] = Convert::ToString(objCard->getExpirationDate());
-		filaGrilla[6] = Convert::ToString(objCard->getObjUser()->getUserID());
+		filaGrilla[7] = Convert::ToString(objCard->getActive());
+		filaGrilla[8] = Convert::ToString(objCard->getObjUser()->getPerson()->getName());
 		this->Card_DGV->Rows->Add(filaGrilla);
 	}
 }
