@@ -79,7 +79,7 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label8;
 
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Button^ button4;
+
 	private: System::Windows::Forms::CheckBox^ check_permission;
 	private: System::Windows::Forms::CheckBox^ check_isInside;
 	private: System::Windows::Forms::ComboBox^ combox_occupation;
@@ -129,7 +129,6 @@ namespace RDEView {
 			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->check_permission = (gcnew System::Windows::Forms::CheckBox());
 			this->check_isInside = (gcnew System::Windows::Forms::CheckBox());
 			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
@@ -371,16 +370,6 @@ namespace RDEView {
 			this->label9->TabIndex = 16;
 			this->label9->Text = L"Cargo";
 			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(342, 94);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(75, 23);
-			this->button4->TabIndex = 22;
-			this->button4->Text = L"Buscar";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MantPerson::button4_Click);
-			// 
 			// check_permission
 			// 
 			this->check_permission->AutoSize = true;
@@ -421,7 +410,6 @@ namespace RDEView {
 			this->Controls->Add(this->combox_occupation);
 			this->Controls->Add(this->check_isInside);
 			this->Controls->Add(this->check_permission);
-			this->Controls->Add(this->button4);
 			this->Controls->Add(this->txt_age);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txt_gender);
@@ -458,7 +446,6 @@ void ShowPerson() {
 
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
 
 		int DNIx = Convert::ToInt32(this->txt_dni->Text);
 		String^ name = this->txt_name->Text;
@@ -524,7 +511,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 private: void mostrarGrilla(List<person^>^ listPerson) {
 	String^ txt_permission = "";
 	String^ txt_isInside = "";
-		   this->Person_DGV->Rows->Clear();
+	this->Person_DGV->Rows->Clear();
 		   for (int i = 0; i < listPerson->Count; i++) {
 				person^ objPerson = listPerson[i];
 				array<String^>^ filaGrilla = gcnew array<String^>(11);
@@ -580,16 +567,6 @@ private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^
 	mostrarGrilla(listPerson);
 }
 
-
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	int DNIPerson = Convert::ToInt32(this->txt_dni->Text);
-	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNIPerson);
-	List<person^>^ listaPerson = gcnew List<person^>();
-	listaPerson->Add(objPerson);
-
-	mostrarGrilla(listaPerson);
-}
 };
 }
 

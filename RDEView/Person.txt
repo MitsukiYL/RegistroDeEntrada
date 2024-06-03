@@ -6,3 +6,5 @@
 76540987;Sebastian Calderon;12345678;calderon@pucp.edu.pe;987987987;contraseña;True;Personal Administrativo;Masculino;42;False
 12345678;name;12345678;mail;contact;password;True;Jefe de Práctica;gender;23;False
 10000000;admin;10000000;@admin;100000000;admin;True;Administrador;gender;123;True
+9357677;Pedro Yasuda;98765432;pedro@gmail.com;999123580;contraseña;False;occupation;gender;999;False
+63287788;Laura Galvez;20161987;lgalvez@pucp.edu.pe;909090909;galvez;False;occupation;gender;999;False

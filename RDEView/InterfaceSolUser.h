@@ -35,6 +35,9 @@ namespace RDEView {
 			}
 		}
 
+	protected:
+
+
 	private:
 		/// <summary>
 		/// Required designer variable.
