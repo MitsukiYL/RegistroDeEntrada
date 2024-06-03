@@ -1,2 +1,3 @@
-444;Alumno;True;123456;1;72897289;Mitsuki;20216553;@pucp;999333222;True;True;Usuario;Hombre;19;False
-555;Profesor;False;555333;2;12345678;Chirinos;12349876;@pucp.edu.pe;33412414;True;True;Usuario;Hombre;50;True
+444;Alumno;True;123456;1;78901234
+555;Profesor;False;555333;2;12345678
+666;Profesor;False;15000;5;65123456

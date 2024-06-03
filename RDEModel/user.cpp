@@ -9,12 +9,13 @@ using namespace RDEModel;
 
 user::user() {}
 
-user::user(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) : person(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside) {
+user::user(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson){
     this->userType = userType;
     this->active = active;
     this->userID = userID;
     this->registrationDate = registrationDate;
     this->objParkingSite = objParkingSite;
+    this->objPerson = objPerson;
     
 }
 
@@ -54,6 +55,15 @@ void user::setRegistrationDate(int registrationDate) {
 parkingSite^ user::getParkingSite() {
     return this->objParkingSite;
 }
+
 void user::setParkingSite(parkingSite^ objParkingSite) {
     this->objParkingSite = objParkingSite;
+}
+
+person^ user::getPerson() {
+    return this->objPerson;
+}
+
+void user::setPerson(person^ objPerson) {
+    this->objPerson = objPerson;
 }

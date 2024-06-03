@@ -27,10 +27,6 @@ namespace RDEView {
 			//TODO: agregar código de constructor aquí
 			//
 		}
-		MantAdmin(person^ objPerson)
-		{
-			
-		}
 
 	protected:
 		/// <summary>
@@ -312,6 +308,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 			// 
 			// txt_DNI
 			// 
+			this->txt_DNI->Enabled = false;
 			this->txt_DNI->Location = System::Drawing::Point(517, 60);
 			this->txt_DNI->Name = L"txt_DNI";
 			this->txt_DNI->Size = System::Drawing::Size(168, 20);
@@ -461,7 +458,8 @@ private: System::Void Admin_DGV_CellClick(System::Object^ sender, System::Window
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {//BUSCAR PERSON
 	BuscarPerson^ mantBuscarPerson = gcnew BuscarPerson(this->objPerson);
-	mantBuscarPerson->Show();
+	mantBuscarPerson->ShowDialog();
+
 	this->txt_DNI->Text = Convert::ToString(this->objPerson->getDNI());
 }
 };
