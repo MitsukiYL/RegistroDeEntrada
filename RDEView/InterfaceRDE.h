@@ -144,9 +144,9 @@ namespace RDEView {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(27, 52);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(79, 13);
+			this->label5->Size = System::Drawing::Size(90, 13);
 			this->label5->TabIndex = 7;
-			this->label5->Text = L"ID de la tarjeta:";
+			this->label5->Text = L"Codigo de tarjeta:";
 			// 
 			// textBox4
 			// 
@@ -180,12 +180,42 @@ namespace RDEView {
 #pragma endregion
 	private: System::Void InterfaceRDE_Load(System::Object^ sender, System::EventArgs^ e) {
 		DateTimeHelper^ datetime = gcnew DateTimeHelper();
-		card^ objCard = gcnew card();
+
+		//datetime->horaActual();
+		//datetime->fechaActual();
 		
-		int ID = Convert::ToInt32(this->textBox4->Text);
-		this->textBox1->Text = datetime->horaActual();
-		this->textBox2->Text = datetime->fechaActual();
-		int horaSalida = Convert::ToInt32(this->textBox3->Text);
+		int codeCard = Convert::ToInt32(this->textBox4->Text);
+		int fechaActual = Convert::ToInt32(this->textBox2->Text);
+		String^ horaEntrada = this->textBox1->Text;
+		String^ horaSalida = this->textBox3->Text;
+
+		int horaActual = Convert::ToInt32(datetime->horaActual());
+
+		int orden = 1;//se actualizara el orden luego
+
+		bool estaAdentro = false;
+
+		int NhoraEntrada = Convert::ToInt32(horaEntrada);
+		int NhoraSalida = Convert::ToInt32(horaSalida);
+	
+		if ((horaActual > NhoraEntrada) && (horaActual < NhoraSalida)) {
+
+			bool estaAdentro = true;
+		}
+
+		CardCtrl^ objCardCtrl = gcnew CardCtrl();
+		SensorCtrl^ obbjSensorCtrl = gcnew SensorCtrl();
+		DoorRegisterCtrl^ objDoorRegisterCtrl = gcnew DoorRegisterCtrl();
+
+		int sensorID = 87654;//este codigo es de prueba
+
+		card^ objCard = objCardCtrl->buscarCardxCode(codeCard);
+		sensor^ objSensor = obbjSensorCtrl->buscarSensorxID(sensorID);
+
+		objDoorRegisterCtrl->agregarNewDoorRegister(horaEntrada, horaSalida, estaAdentro, orden, objCard, objSensor);
+
+		MessageBox::Show("Registro de entrada realizado correctamente");
+		this->Close();
 	}
 };
 }
