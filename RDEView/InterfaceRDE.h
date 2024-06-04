@@ -184,11 +184,13 @@ namespace RDEView {
 		//datetime->horaActual();
 		//datetime->fechaActual();
 		
-		int codeCard = Convert::ToInt32(this->textBox4->Text);
-		int fechaActual = Convert::ToInt32(this->textBox2->Text);
 		String^ horaEntrada = this->textBox1->Text;
+		this->textBox2->Text = datetime->fechaActual();
 		String^ horaSalida = this->textBox3->Text;
-
+		//int codeCard = 0000;
+		int codeCard = Convert::ToInt32(this->textBox4->Text);
+		
+		int fechaActual = Convert::ToInt32(datetime->fechaActual());
 		int horaActual = Convert::ToInt32(datetime->horaActual());
 
 		int orden = 1;//se actualizara el orden luego

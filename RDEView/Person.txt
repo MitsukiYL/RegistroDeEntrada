@@ -12,3 +12,4 @@
 88888888;admintest;88888888;@admintest;88888888;admintest;True;Administrador;gender;123;True
 54322090;usuario prueba;20905432;@usertest;987321456;test;True;occupation;gender;999;True
 6947619;Anibal;20203456;a20203456@pucp.edu.pe;968020541;password;True;Docente;gender;50;False
+77889966;Juan;11111111;juan.11@gmail.com;989898989;qwerty;False;Personal Académico;H;34;False
