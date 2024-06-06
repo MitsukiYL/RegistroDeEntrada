@@ -129,6 +129,7 @@
     <ClInclude Include="motor.h" />
     <ClInclude Include="parkingLot.h" />
     <ClInclude Include="parkingSite.h" />
+    <ClInclude Include="ParkingSitexParkingLot.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="person.h" />
     <ClInclude Include="RDEModel.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="motor.cpp" />
     <ClCompile Include="parkingLot.cpp" />
     <ClCompile Include="parkingSite.cpp" />
+    <ClCompile Include="ParkingSitexParkingLot.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

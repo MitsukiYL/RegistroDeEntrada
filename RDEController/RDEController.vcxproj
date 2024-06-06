@@ -124,6 +124,7 @@
     <ClInclude Include="EntryReportCtrl.h" />
     <ClInclude Include="ParkingLotCtrl.h" />
     <ClInclude Include="ParkingSiteCtrl.h" />
+    <ClInclude Include="ParkingSitexLotCtrl.h" />
     <ClInclude Include="PersonCtrl.h" />
     <ClInclude Include="RequestCtrl.h" />
     <ClInclude Include="SensorCtrl.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="EntryReportCtrl.cpp" />
     <ClCompile Include="ParkingLotCtrl.cpp" />
     <ClCompile Include="ParkingSiteCtrl.cpp" />
+    <ClCompile Include="ParkingSitexLotCtrl.cpp" />
     <ClCompile Include="PersonCtrl.cpp" />
     <ClCompile Include="RequestCtrl.cpp" />
     <ClCompile Include="SensorCtrl.cpp" />

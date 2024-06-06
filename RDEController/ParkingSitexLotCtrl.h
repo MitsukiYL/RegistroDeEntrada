@@ -1,0 +1,14 @@
+#pragma once
+
+namespace RDEController {
+
+	using namespace System;
+	using namespace System::Collections::Generic;
+	using namespace RDEModel;
+	public ref class ParkingSitexLotCtrl {
+	public:
+		ParkingSitexLotCtrl();
+		List<ParkingSitexParkingLot^>^ generarReporte();
+	};
+
+}
