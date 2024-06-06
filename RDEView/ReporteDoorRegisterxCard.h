@@ -96,7 +96,7 @@ namespace RDEView {
 		List<doorRegisterxCard^>^ listaDoorRegisterxCard = objReporte->generarReporte();
 		this->chart1->Series["Series1"]->Points->Clear();
 
-		for (int i = 0; listaDoorRegisterxCard->Count; i++) {
+		for (int i = 0;i< listaDoorRegisterxCard->Count; i++) {
 
 			this->chart1->Series["Series1"]->Points->Add(listaDoorRegisterxCard[i]->getCantRegister());
 			this->chart1->Series["Series1"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());

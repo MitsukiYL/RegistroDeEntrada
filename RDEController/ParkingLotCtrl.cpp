@@ -78,9 +78,9 @@ ParkingLotCtrl::ParkingLotCtrl() {
 	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
 	 array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
 	 String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	 for each (String ^ lineapeluche in lineas) {
+	 for each (String ^ lineaplaya in lineas) {
 		 /*voy a separar los datos de una linea en sub strings*/
-		 array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
+		 array<String^>^ datos = lineaplaya->Split(separadores->ToCharArray());
 
 		 String^ ID = datos[0];
 		 String^ vehicleType = datos[1];

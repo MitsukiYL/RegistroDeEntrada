@@ -1,7 +1,4 @@
-123;zonaXD;lugar;1234;1234;False;12
-124;zonaA;hhh;12;2;False;12
-2;zonaA;hhh;12;2;False;12
-1;zonaA;hhh;12;2;False;12
-3;zonaA;hhh;12;2;False;12
-4;name;location;1234555;123455;False;12
-5;name;location;1234555;123455;False;12
+1;Pabellon V;ubi;12;2;False;12
+2;Pabellon K;ubi;12;2;False;12
+3;Pabellon H;ubi;12;2;False;12
+4;Pabellon W;ubi;12;2;False;12

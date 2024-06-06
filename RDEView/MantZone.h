@@ -357,7 +357,7 @@ namespace RDEView {
 		}
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
-	int ID = Convert::ToInt32(this->txt_ID->Text);
+	int ID = 0;
 	String^ name = this->txt_name->Text;
 	String^ location = this->txt_location->Text;
 	int openingTime = Convert::ToInt32(this->txt_openingTime->Text);
@@ -402,6 +402,9 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	objZoneCtrl->eliminarZone(codigoEliminar);
 	MessageBox::Show("La zona seleccionada ha sido eliminado correctamente");
 	this->Zone_DGV->Rows->Clear();
+
+	List<zone^>^ listaZone = objZoneCtrl->buscarZoneAll();
+	mostrarGrilla(listaZone);
 }
 private: void mostrarGrilla(List<zone^>^ listZone) {
 	this->Zone_DGV->Rows->Clear();
