@@ -17,8 +17,14 @@ List<ParkingSitexParkingLot^>^ ParkingSitexLotCtrl::generarReporte() {
 		String^ IDParkingLot = listaPlayas[i]->getID();
 		List<parkingSite^>^ ListaSites = objSiteCtrl->BuscarSitexLot(Convert::ToInt32(IDParkingLot));
 		int cantParkingSitesxlot = ListaSites->Count;
+		int cantInactives = 0;
+		int cantReserveds = 0;
+		for (int h = 0; h < ListaSites->Count; h++) {
+			if (!(ListaSites[h]->getActive())) { cantInactives++; }
+			if (ListaSites[h]->getReserved()) { cantReserveds++; }
+		}
 
-		ParkingSitexParkingLot^ objEstacionamientosPlaya = gcnew ParkingSitexParkingLot(IDParkingLot, cantParkingSitesxlot);
+		ParkingSitexParkingLot^ objEstacionamientosPlaya = gcnew ParkingSitexParkingLot(IDParkingLot, cantParkingSitesxlot,cantInactives,cantReserveds);
 		listSitexLot->Add(objEstacionamientosPlaya);
 
 	}

@@ -8,15 +8,22 @@ namespace RDEModel {
 	private:
 		String^ IDParkingLot;
 		int cantParkingSite;
+		int cantInactives;
+		int cantReserveds;
 	public:
 		ParkingSitexParkingLot();
-		ParkingSitexParkingLot(String^ IDParkingLot, int cantParkingSite);
+		ParkingSitexParkingLot(String^ IDParkingLot, int cantParkingSite,int cantInactive,int cantReserveds);
 
 		String^ getIDParkingLot();
 		int getcantParkingSite();
+		int getcantInactives();
+		int getcantReserveds();
 
 		void setIDParkingLot(String^ IDParkingLot);
 		void setcantParkingSite(int cantParkingSite);
+		void setcantInactives(int cantInactives);
+		void setcantReserveds(int cantReserveds);
+
 	};
 
 }

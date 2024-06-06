@@ -53,28 +53,39 @@ namespace RDEView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// chart1
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chart1->Legends->Add(legend2);
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(12, 12);
 			this->chart1->Name = L"chart1";
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Total";
 			series2->ChartArea = L"ChartArea1";
 			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
+			series2->Name = L"Inactivos";
+			series3->ChartArea = L"ChartArea1";
+			series3->Legend = L"Legend1";
+			series3->Name = L"Reservados";
+			this->chart1->Series->Add(series1);
 			this->chart1->Series->Add(series2);
-			this->chart1->Size = System::Drawing::Size(696, 475);
+			this->chart1->Series->Add(series3);
+			this->chart1->Size = System::Drawing::Size(892, 475);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
+			this->chart1->Click += gcnew System::EventHandler(this, &ReportePlayaxEstacionamiento::chart1_Click);
 			// 
 			// ReportePlayaxEstacionamiento
 			// 
@@ -93,13 +104,27 @@ namespace RDEView {
 	private: System::Void ReportePlayaxEstacionamiento_Load(System::Object^ sender, System::EventArgs^ e) {
 		ParkingSitexLotCtrl^ reporteSitexlotctrl = gcnew ParkingSitexLotCtrl();
 		List<ParkingSitexParkingLot^>^ listaSitexLot = reporteSitexlotctrl->generarReporte();
-		this->chart1->Series["Series1"]->Points->Clear();
+		this->chart1->Series["Total"]->Points->Clear();
+		this->chart1->Series["Inactivos"]->Points->Clear();
+		this->chart1->Series["Reservados"]->Points->Clear();
 		for (int i = 0; i < listaSitexLot->Count; i++) {
-			this->chart1->Series["Series1"]->Points->Add(listaSitexLot[i]->getcantParkingSite());
-			this->chart1->Series["Series1"]->Points[i]->AxisLabel = listaSitexLot[i]->getIDParkingLot();
-			this->chart1->Series["Series1"]->Points[i]->LegendText = listaSitexLot[i]->getIDParkingLot();
-			this->chart1->Series["Series1"]->Points[i]->LegendText = Convert::ToString(listaSitexLot[i]->getcantParkingSite());
+			this->chart1->Series["Total"]->Points->Add(listaSitexLot[i]->getcantParkingSite());
+			this->chart1->Series["Total"]->Points[i]->AxisLabel = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Total"]->Points[i]->LegendText = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Total"]->Points[i]->Label = Convert::ToString(listaSitexLot[i]->getcantParkingSite());
+
+			this->chart1->Series["Inactivos"]->Points->Add(listaSitexLot[i]->getcantInactives());
+			this->chart1->Series["Inactivos"]->Points[i]->AxisLabel = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Inactivos"]->Points[i]->LegendText = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Inactivos"]->Points[i]->Label = Convert::ToString(listaSitexLot[i]->getcantInactives());
+
+			this->chart1->Series["Reservados"]->Points->Add(listaSitexLot[i]->getcantReserveds());
+			this->chart1->Series["Reservados"]->Points[i]->AxisLabel = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Reservados"]->Points[i]->LegendText = listaSitexLot[i]->getIDParkingLot();
+			this->chart1->Series["Reservados"]->Points[i]->Label = Convert::ToString(listaSitexLot[i]->getcantReserveds());
 		}
+	}
+	private: System::Void chart1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	};
 }
