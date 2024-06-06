@@ -125,6 +125,7 @@
     <ClInclude Include="door.h" />
     <ClInclude Include="doorRegister.h" />
     <ClInclude Include="doorRegisterxCard.h" />
+    <ClInclude Include="doorRegisterxDay.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="motor.h" />
     <ClInclude Include="parkingLot.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="door.cpp" />
     <ClCompile Include="doorRegister.cpp" />
     <ClCompile Include="doorRegisterxCard.cpp" />
+    <ClCompile Include="doorRegisterxDay.cpp" />
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="motor.cpp" />
     <ClCompile Include="parkingLot.cpp" />

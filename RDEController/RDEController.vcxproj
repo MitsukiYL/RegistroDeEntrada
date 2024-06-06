@@ -121,6 +121,7 @@
     <ClInclude Include="CardCtrl.h" />
     <ClInclude Include="DateTimeHelper.h" />
     <ClInclude Include="DoorRegisterCtrl.h" />
+    <ClInclude Include="doorRegisterxDayCtrl.h" />
     <ClInclude Include="EntryReportCtrl.h" />
     <ClInclude Include="ParkingLotCtrl.h" />
     <ClInclude Include="ParkingSiteCtrl.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="CardCtrl.cpp" />
     <ClCompile Include="DateTimeHelper.cpp" />
     <ClCompile Include="DoorRegisterCtrl.cpp" />
+    <ClCompile Include="doorRegisterxDayCtrl.cpp" />
     <ClCompile Include="EntryReportCtrl.cpp" />
     <ClCompile Include="ParkingLotCtrl.cpp" />
     <ClCompile Include="ParkingSiteCtrl.cpp" />

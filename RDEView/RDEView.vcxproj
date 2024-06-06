@@ -295,6 +295,9 @@
     <EmbeddedResource Include="ReporteDoorRegisterxCard.resx">
       <DependentUpon>ReporteDoorRegisterxCard.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDoorRegisterxDay.resx">
+      <DependentUpon>ReporteDoorRegisterxDay.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportePlayaxEstacionamiento.resx">
       <DependentUpon>ReportePlayaxEstacionamiento.h</DependentUpon>
     </EmbeddedResource>
