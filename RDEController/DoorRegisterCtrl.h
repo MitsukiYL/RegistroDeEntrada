@@ -11,6 +11,7 @@ namespace RDEController {
 		DoorRegisterCtrl();
 		List<doorRegister^>^ buscarDoorRegisterAll();
 		List<doorRegister^>^ buscarDoorRegisterxCard(int codeCard);
+		List<doorRegister^>^ buscarDoorRegisterxDate(String^ date);
 		void escribirArchivo(List<doorRegister^>^ listaDoorRegister);
 		void agregarNewDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor);
 	};
