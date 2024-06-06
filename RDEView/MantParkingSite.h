@@ -39,9 +39,9 @@ namespace RDEView {
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	protected:
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+
+
+
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button1;
@@ -57,9 +57,14 @@ namespace RDEView {
 
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txt_lotID;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+
 	private: System::Windows::Forms::CheckBox^ checkReserved;
 	private: System::Windows::Forms::CheckBox^ checkActive;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 
 
 
@@ -80,10 +85,6 @@ namespace RDEView {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -94,15 +95,20 @@ namespace RDEView {
 			this->txt_lotID = (gcnew System::Windows::Forms::TextBox());
 			this->checkReserved = (gcnew System::Windows::Forms::CheckBox());
 			this->checkActive = (gcnew System::Windows::Forms::CheckBox());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->Column1,
-					this->Column2, this->Column3, this->Column4
+					this->Column2, this->Column3, this->Column4, this->Column5
 			});
 			this->dataGridView1->Location = System::Drawing::Point(8, 154);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -112,34 +118,6 @@ namespace RDEView {
 			this->dataGridView1->TabIndex = 42;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantParkingSite::dataGridView1_CellClick);
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantParkingSite::dataGridView1_CellContentClick);
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Codigo";
-			this->Column1->MinimumWidth = 8;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 150;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Reservado";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Estado";
-			this->Column3->MinimumWidth = 8;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 150;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Playa";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
 			// 
 			// button3
 			// 
@@ -241,6 +219,41 @@ namespace RDEView {
 			this->checkActive->Text = L"Activo";
 			this->checkActive->UseVisualStyleBackColor = true;
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Codigo";
+			this->Column1->MinimumWidth = 8;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 150;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Reservado";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 150;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Estado";
+			this->Column3->MinimumWidth = 8;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 150;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Ocupado";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Playa";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 150;
+			// 
 			// MantParkingSite
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -270,48 +283,80 @@ namespace RDEView {
 		String^ ID = this->txt_ID->Text;
 		bool reserved = this->checkReserved->Checked;
 		bool active = this->checkActive->Checked;
-		int lotID = Convert::ToInt32(this->txt_lotID->Text);
+		String^ lotID = this->txt_lotID->Text;
 
-		ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
-		estacinctrl->agregarEstacionamiento(ID, reserved, active, lotID);
-		txt_ID->Clear();
+		int val = 0;
+		ParkingLotCtrl^ playaCtrl;
+		List<parkingLot^>^ listaplayas = playaCtrl->AllPlayas();
+		for (int i = 0; i < listaplayas->Count; i++) {
+			if (lotID->CompareTo(listaplayas[i]->getID()) == 0) { val = 1; }
+		}
 
 		ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
+		if (val) {
+			// creacion de codigo nuevo
+			List<parkingSite^>^ listaxLot = objParkSiteCtrl->BuscarSitexLot(lotID);
+			String^ newID = lotID + listaxLot->Count;
+
+			ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
+			estacinctrl->agregarEstacionamiento(newID, reserved, active, lotID);
+			MessageBox::Show("Se agrego correctamente \n ID="+ newID);
+			txt_ID->Clear();
+		}
+		else {
+			MessageBox::Show("La playa no existe");
+		}
+
 		List<parkingSite^>^ listaParkingSite = objParkSiteCtrl->AllEstacionamientos();
+		
 
 		ShowGrid(listaParkingSite);
 
 	}
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	int IDbuscar = Convert::ToInt32(this->txt_lotID->Text);
+	String^ IDbuscar = this->txt_lotID->Text;
 	ParkingSiteCtrl^ estaCtrl = gcnew ParkingSiteCtrl();
 	List<parkingSite^>^ listaestacionamientos = estaCtrl->BuscarSitexLot(IDbuscar);
 	ShowGrid(listaestacionamientos);
 }
 
-	private: void ShowGrid(List<parkingSite^>^ listaestacionamientos) {
-		this->dataGridView1->Rows->Clear();
-		for (int i = 0; i < listaestacionamientos->Count; i++) {
-			parkingSite^ objesta = listaestacionamientos[i];
-			array<String^>^ filaGrilla = gcnew array<String^>(4);
-			filaGrilla[0] = objesta->getID();
-			filaGrilla[1] = Convert::ToString(objesta->getReserved());
-			filaGrilla[2] = Convert::ToString(objesta->getActive());
-			filaGrilla[3] = Convert::ToString(objesta->getLotID());
-			this->dataGridView1->Rows->Add(filaGrilla);
-		}
+private: void ShowGrid(List<parkingSite^>^ listaestacionamientos) {
+	this->dataGridView1->Rows->Clear();
+	for (int i = 0; i < listaestacionamientos->Count; i++) {
+		parkingSite^ objesta = listaestacionamientos[i];
+		array<String^>^ filaGrilla = gcnew array<String^>(5);
+		filaGrilla[0] = objesta->getID();
+		filaGrilla[1] = Convert::ToString(objesta->getReserved());
+		filaGrilla[2] = Convert::ToString(objesta->getActive());
+		filaGrilla[3] = Convert::ToString(objesta->getbusy());
+		filaGrilla[4] = Convert::ToString(objesta->getLotID());
+		this->dataGridView1->Rows->Add(filaGrilla);
 	}
+}
+
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ ID = this->txt_ID->Text; 
 	bool reserved = this->checkReserved->Checked;
 	bool active = this->checkActive->Checked;
-	int lotID = Convert::ToInt32(this->txt_lotID->Text);
-	ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
-	estacinctrl->actualizarEstac(ID, reserved, active,lotID);
-	txt_ID->Clear();
-	MessageBox::Show("El estacionamiento se actualizo con exito.\nCodigo"+ID);
+	String^ lotID = this->txt_lotID->Text;
 
+	int val = 0;
+	ParkingLotCtrl^ playaCtrl;
+	List<parkingLot^>^ listaplayas = playaCtrl->AllPlayas();
+	for (int i = 0; i < listaplayas->Count; i++) {
+		if (lotID->CompareTo(listaplayas[i]->getID()) == 0) { val = 1; }
+	}
 	ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
+	if (val) {
+		ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
+		estacinctrl->actualizarEstac(ID, reserved, active, lotID);
+		MessageBox::Show("Se actualizo correctamente \n ID=" + ID);
+		txt_ID->Clear();
+	}
+	else {
+		MessageBox::Show("La playa no existe");
+	}
+
 	List<parkingSite^>^ listaParkingSite = objParkSiteCtrl->AllEstacionamientos();
 
 	ShowGrid(listaParkingSite);

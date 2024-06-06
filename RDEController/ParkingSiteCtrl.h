@@ -9,12 +9,12 @@ namespace RDEController {
 	public ref class ParkingSiteCtrl {
 	public:
 		ParkingSiteCtrl();
-		List <parkingSite^>^ BuscarSitexLot(int lotIDsearch);
+		List <parkingSite^>^ BuscarSitexLot(String^ lotIDsearch);
 		List <parkingSite^>^ AllEstacionamientos();
 		parkingSite^ BuscarSiteXID(String^ IDsearch);
-		void agregarEstacionamiento(String^ ID, bool reserved, bool active, int lotID);
+		void agregarEstacionamiento(String^ ID, bool reserved, bool active, String^ lotID);
 		void escribirArchivo(List <parkingSite^>^ listaEstac);
-		void actualizarEstac(String^ ID, bool reserved, bool active, int lotID);
+		void actualizarEstac(String^ ID, bool reserved, bool active, String^ lotID);
 		void eliminarEstac(String^ ID);
 	};
 }

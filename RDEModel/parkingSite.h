@@ -15,12 +15,13 @@ namespace RDEModel {
         String^ ID;
         bool reserved;
         bool active;
-        int lotID;
+        bool busy;
+        String^ lotID;
 
     public:
 
         parkingSite();
-        parkingSite(String^ ID, bool reserved, bool active, int lotID);
+        parkingSite(String^ ID, bool reserved, bool active,bool busy, String^ lotID);
 
         String^ getID();
         void setID(String^ ID);
@@ -28,12 +29,14 @@ namespace RDEModel {
         bool getReserved();
         void setReserved(bool reserved);
 
+        bool getbusy();
+        void setbusy(bool busy);
+
         bool getActive();
         void setActive(bool active);
 
-        int getLotID();
-        void setLotID(int lotID);
-
+        String^ getLotID();
+        void setLotID(String^ lotID);
     };
 }
 

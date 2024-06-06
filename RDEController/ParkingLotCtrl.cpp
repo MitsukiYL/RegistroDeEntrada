@@ -42,39 +42,72 @@ ParkingLotCtrl::ParkingLotCtrl() {
 	return objParkingLot;
 }
 
-List <parkingLot^>^ ParkingLotCtrl::AllPlayas() {
-	List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
-	array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
-	String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	for each (String ^ lineapeluche in lineas) {
-		/*voy a separar los datos de una linea en sub strings*/
-		array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
+ List <parkingLot^>^ ParkingLotCtrl::PlayasxZona(int IDzone) {
+	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
+	 array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
+	 String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
+	 for each (String ^ lineapeluche in lineas) {
+		 /*voy a separar los datos de una linea en sub strings*/
+		 array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
 
-		String^ ID = datos[0]; 
-		String^ vehicleType = datos[1];
-		String^ name = datos[2];
-		int capacity = Convert::ToInt32(datos[3]);
-		int N_reserved = Convert::ToInt32(datos[4]);
-		int N_inactive = Convert::ToInt32(datos[5]);
-		int zoneID = Convert::ToInt32(datos[6]);
+		 String^ ID = datos[0];
+		 String^ vehicleType = datos[1];
+		 String^ name = datos[2];
+		 int capacity = Convert::ToInt32(datos[3]);
+		 int N_reserved = Convert::ToInt32(datos[4]);
+		 int N_inactive = Convert::ToInt32(datos[5]);
+		 int zoneID = Convert::ToInt32(datos[6]);
 
-		ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-		zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
+		 zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
 
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
+		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
+		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
 
-		parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
-		listaplaya->Add(objplaya);
-	}
-	return listaplaya;
-}
+		 if (objZone->getID() == IDzone) {
+			 parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+			 listaplaya->Add(objplaya);
+		 }
+		 
+	 }
+	 return listaplaya;
+ }
+
+
+ List <parkingLot^>^ ParkingLotCtrl::AllPlayas() {
+	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
+	 array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
+	 String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
+	 for each (String ^ lineapeluche in lineas) {
+		 /*voy a separar los datos de una linea en sub strings*/
+		 array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
+
+		 String^ ID = datos[0];
+		 String^ vehicleType = datos[1];
+		 String^ name = datos[2];
+		 int capacity = Convert::ToInt32(datos[3]);
+		 int N_reserved = Convert::ToInt32(datos[4]);
+		 int N_inactive = Convert::ToInt32(datos[5]);
+		 int zoneID = Convert::ToInt32(datos[6]);
+
+		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
+		 zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+
+		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
+		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
+
+		 parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 listaplaya->Add(objplaya);
+	 }
+	 return listaplaya;
+ }
 
 
 void ParkingLotCtrl::agregarPlaya(String ^ name, String^ vehicleType, String ^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
-	List<parkingLot^>^ listaplaya = AllPlayas();
-	parkingLot^ PlayaNueva = gcnew parkingLot(name,vehicleType,ID,capacity, N_reserved, N_inactive, objZone, listaParkingSite);
-	listaplaya->Add(PlayaNueva);
+	List<parkingLot^>^ listaplaya = AllPlayas();	
+	String^ newcode = Convert::ToString(objZone->getID()) + Convert::ToString(Convert::ToChar('A' + PlayasxZona(objZone->getID())->Count));///problemaaaaaa
+	parkingLot^ PlayaNueva = gcnew parkingLot(name, vehicleType, newcode, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+	listaplaya->Add(PlayaNueva);	
 	escribirArchivo(listaplaya);
 }
 

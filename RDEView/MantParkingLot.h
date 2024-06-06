@@ -392,15 +392,26 @@ namespace RDEView {
 		int zoneID = Convert::ToInt32(this->txt_ZoneID->Text);
 
 		ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-		zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+		List<zone^>^ listazonas = objZoneCtrl->buscarZoneAll();
 
-		List<parkingSite^>^ listParkingSite = gcnew List<parkingSite^>();
+		int val = 0;
+		for (int i = 0; i < listazonas->Count; i++) {
+			if (listazonas[i]->getID() == zoneID) { val = 1; }
+		}
 
 		ParkingLotCtrl^ playactrl = gcnew ParkingLotCtrl();
-		playactrl->agregarPlaya(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listParkingSite);
-		txt_ID->Clear();
-		MessageBox::Show("La playa se agrego con exito.");
+		if (val) {
+			zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+			List<parkingSite^>^ listParkingSite = gcnew List<parkingSite^>();
+			playactrl->agregarPlaya(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listParkingSite);
+			txt_ID->Clear();
+			MessageBox::Show("La playa se agrego con exito.");
 
+		}
+		else {
+			MessageBox::Show("La zona no existe");
+		}
+		
 		List<parkingLot^>^ listaParkingLot = playactrl->AllPlayas();
 		mostrarGrilla(listaParkingLot);
 

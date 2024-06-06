@@ -9,10 +9,11 @@ using namespace RDEModel;
 
 parkingSite::parkingSite() {}
 
-parkingSite::parkingSite(String^ ID, bool reserved, bool active, int lotID) {
+parkingSite::parkingSite(String^ ID, bool reserved, bool active,bool busy, String^ lotID) {
     this->ID = ID;
     this->reserved = reserved;
     this->active = active;
+    this->busy = busy;
     this->lotID = lotID;
 }
 
@@ -40,9 +41,16 @@ void parkingSite::setActive(bool active) {
     this->active = active;
 }
 
-int parkingSite::getLotID() {
+bool parkingSite::getbusy() {
+    return this->busy;
+}
+void parkingSite::setbusy(bool busy) {
+    this->busy = busy;
+}
+
+String^ parkingSite::getLotID() {
     return this->lotID;
 }
-void parkingSite::setLotID(int lotID) {
+void parkingSite::setLotID(String^ lotID) {
     this->lotID = lotID;
 }

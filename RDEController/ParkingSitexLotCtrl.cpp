@@ -15,7 +15,7 @@ List<ParkingSitexParkingLot^>^ ParkingSitexLotCtrl::generarReporte() {
 	for (int i = 0;i< listaPlayas->Count; i++) {
 
 		String^ IDParkingLot = listaPlayas[i]->getID();
-		List<parkingSite^>^ ListaSites = objSiteCtrl->BuscarSitexLot(Convert::ToInt32(IDParkingLot));
+		List<parkingSite^>^ ListaSites = objSiteCtrl->BuscarSitexLot(IDParkingLot);
 		int cantParkingSitesxlot = ListaSites->Count;
 		int cantInactives = 0;
 		int cantReserveds = 0;
