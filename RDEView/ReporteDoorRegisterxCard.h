@@ -70,7 +70,7 @@ namespace RDEView {
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
+			series1->Name = L"N_visitas";
 			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(510, 343);
 			this->chart1->TabIndex = 0;
@@ -94,14 +94,14 @@ namespace RDEView {
 
 		EntryReportCtrl^ objReporte = gcnew EntryReportCtrl();
 		List<doorRegisterxCard^>^ listaDoorRegisterxCard = objReporte->generarReporte();
-		this->chart1->Series["Series1"]->Points->Clear();
+		this->chart1->Series["N_visitas"]->Points->Clear();
 
 		for (int i = 0;i< listaDoorRegisterxCard->Count; i++) {
 
-			this->chart1->Series["Series1"]->Points->Add(listaDoorRegisterxCard[i]->getCantRegister());
-			this->chart1->Series["Series1"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
-			this->chart1->Series["Series1"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
-			this->chart1->Series["Series1"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantRegister());
+			this->chart1->Series["N_visitas"]->Points->Add(listaDoorRegisterxCard[i]->getCantRegister());
+			this->chart1->Series["N_visitas"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_visitas"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_visitas"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantRegister());
 		}
 	}
 	};
