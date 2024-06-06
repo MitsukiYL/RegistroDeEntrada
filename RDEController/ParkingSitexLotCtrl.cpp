@@ -12,7 +12,7 @@ List<ParkingSitexParkingLot^>^ ParkingSitexLotCtrl::generarReporte() {
 	ParkingLotCtrl^ objPlayaCtrl = gcnew ParkingLotCtrl();
 	List<parkingLot^>^ listaPlayas = objPlayaCtrl->AllPlayas();
 	ParkingSiteCtrl^ objSiteCtrl= gcnew ParkingSiteCtrl();
-	for (int i = 0; listaPlayas->Count; i++) {
+	for (int i = 0;i< listaPlayas->Count; i++) {
 
 		String^ IDParkingLot = listaPlayas[i]->getID();
 		List<parkingSite^>^ ListaSites = objSiteCtrl->BuscarSitexLot(Convert::ToInt32(IDParkingLot));
