@@ -144,3 +144,14 @@ void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail,
 	}
 	escribirArchivo(listaPerson);
 }
+void PersonCtrl::actualizarPersonIsInside(int DNI, bool isInside) {
+	List<person^>^ listaPerson = buscarPersonAll();
+	for (int i = 0; i < listaPerson->Count; i++) {
+
+		if (listaPerson[i]->getDNI() == DNI) {
+			listaPerson[i]->setIsInside(isInside);
+			break;
+		}
+	}
+	escribirArchivo(listaPerson);
+}

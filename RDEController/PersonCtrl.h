@@ -16,5 +16,6 @@ namespace RDEController {
 		void agregarNewPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
 		void eliminarPerson(int codigo);
 		void actualizarPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+		void actualizarPersonIsInside(int DNI, bool isInside);
 	};
 }

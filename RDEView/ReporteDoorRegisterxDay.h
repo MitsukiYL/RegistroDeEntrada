@@ -90,7 +90,6 @@ namespace RDEView {
 			this->Load += gcnew System::EventHandler(this, &ReporteDoorRegisterxDay::ReporteDoorRegisterxDay_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 	private: System::Void ReporteDoorRegisterxDay_Load(System::Object^ sender, System::EventArgs^ e) {

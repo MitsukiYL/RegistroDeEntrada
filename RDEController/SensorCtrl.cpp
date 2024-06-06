@@ -54,7 +54,8 @@ sensor^ SensorCtrl::buscarSensorxID(int IDb) {
 
 		if (ID == IDb) {
 
-			sensor^ objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
+			objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
+			break;
 		}
 
 	}
