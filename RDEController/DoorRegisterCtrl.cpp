@@ -67,9 +67,9 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
 	return listaDoorRegister;
 }
 
-List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDate(String^ date) {
-
+List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch) {
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
+	String^ daystring = "";
 	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaDoorRegister in lineas) {
@@ -89,15 +89,55 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDate(String^ date) {
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
 		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
-		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+		int date_int = Convert::ToInt32(entryTime);
+		int day = date_int / 100000;
+		int month = (date_int / 10000) % 10;
+		int year = date_int % 10000;
 
-		if (entryTime == date) {
-			listaDoorRegister->Add(objDoorRegister);
+		if (month == 1 || month == 2) {
+			month += 12;
+			year -= 1;
 		}
 
+		int j = year / 100;
+		int k = year % 100;
+		int h = (day + 13 * (month + 1) / 5 + k + k / 4 + j / 4 + 5 * j) % 7;
+
+		switch (h) {
+		case 0:
+			daystring = "Sábado";
+			break;
+		case 1:
+			daystring = "Domingo";
+			break;
+		case 2:
+			daystring = "Lunes";
+			break;
+		case 3:
+			daystring = "Martes";
+			break;
+		case 4:
+			daystring = "Miércoles";
+			break;
+		case 5:
+			daystring = "Jueves";
+			break;
+		case 6:
+			daystring = "Viernes";
+			break;
+		default:
+			daystring = "";
+			break;
+		}
+
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+
+		if (daystring == daysearch) {
+			listaDoorRegister->Add(objDoorRegister);
+		}
 	}
 	return listaDoorRegister;
-
+;
 }
 
 void DoorRegisterCtrl::escribirArchivo(List<doorRegister^>^ listaDoorRegister) {
