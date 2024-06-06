@@ -143,6 +143,7 @@
     <ClCompile Include="RDEMasterMenu.cpp" />
     <ClCompile Include="RDEReg.cpp" />
     <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
+    <ClCompile Include="ReporteDoorRegisterxDay.cpp" />
     <ClCompile Include="ReportePlayaxEstacionamiento.cpp" />
     <ClCompile Include="SolNuevaTarjeta.cpp" />
     <ClCompile Include="UsuarioAdmin.cpp" />
@@ -212,6 +213,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReporteDoorRegisterxCard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReporteDoorRegisterxDay.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReportePlayaxEstacionamiento.h">
