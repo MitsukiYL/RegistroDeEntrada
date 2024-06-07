@@ -21,9 +21,19 @@ List<doorRegisterxCard^>^ EntryReportCtrl::generarReporte() {
 		int code = listaCard[i]->getCode();
 		int ID = listaCard[i]->getID();
 
+		
+
 		List<doorRegister^>^ listDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterxCard(code);
-		int cantDoorRegister = listDoorRegister->Count;
-		doorRegisterxCard^ objDoorRegisterxCard = gcnew doorRegisterxCard(ID, cantDoorRegister);
+		//int cantDoorRegister = listDoorRegister->Count;
+
+		int cantEntradas = 0;
+		int cantSalidas = 0;
+		for (int h = 0; h < listDoorRegister->Count; h++) {
+			if ((listDoorRegister[h]->getEntryTime()) != "00000000" ) { cantEntradas++; }//string vacio
+			if ((listDoorRegister[h]->getExitTime()) != "00000000") { cantSalidas++; }//string vacio
+		}
+
+		doorRegisterxCard^ objDoorRegisterxCard = gcnew doorRegisterxCard(ID, cantEntradas, cantSalidas);
 		listaDoorRegisterxCard->Add(objDoorRegisterxCard);
 	}
 

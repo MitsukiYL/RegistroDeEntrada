@@ -56,6 +56,7 @@ namespace RDEView {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->SuspendLayout();
@@ -70,8 +71,12 @@ namespace RDEView {
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"N_visitas";
+			series1->Name = L"N_entradas";
+			series2->ChartArea = L"ChartArea1";
+			series2->Legend = L"Legend1";
+			series2->Name = L"N_salidas";
 			this->chart1->Series->Add(series1);
+			this->chart1->Series->Add(series2);
 			this->chart1->Size = System::Drawing::Size(510, 343);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -94,14 +99,20 @@ namespace RDEView {
 
 		EntryReportCtrl^ objReporte = gcnew EntryReportCtrl();
 		List<doorRegisterxCard^>^ listaDoorRegisterxCard = objReporte->generarReporte();
-		this->chart1->Series["N_visitas"]->Points->Clear();
+		this->chart1->Series["N_entradas"]->Points->Clear();
+		this->chart1->Series["N_salidas"]->Points->Clear();
 
 		for (int i = 0;i< listaDoorRegisterxCard->Count; i++) {
 
-			this->chart1->Series["N_visitas"]->Points->Add(listaDoorRegisterxCard[i]->getCantRegister());
-			this->chart1->Series["N_visitas"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
-			this->chart1->Series["N_visitas"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
-			this->chart1->Series["N_visitas"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantRegister());
+			this->chart1->Series["N_entradas"]->Points->Add(listaDoorRegisterxCard[i]->getCantEntradas());
+			this->chart1->Series["N_entradas"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_entradas"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_entradas"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantEntradas());
+
+			this->chart1->Series["N_salidas"]->Points->Add(listaDoorRegisterxCard[i]->getCantSalidas());
+			this->chart1->Series["N_salidas"]->Points[i]->AxisLabel = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_salidas"]->Points[i]->LegendText = Convert::ToString(listaDoorRegisterxCard[i]->getCardID());
+			this->chart1->Series["N_salidas"]->Points[i]->Label = Convert::ToString(listaDoorRegisterxCard[i]->getCantSalidas());
 		}
 	}
 	};

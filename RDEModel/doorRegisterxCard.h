@@ -8,16 +8,20 @@ namespace RDEModel {
 	public ref class doorRegisterxCard {
 	private:
 		int cardID;//codigo unico de la tarjeta
-		int cantRegister;//cantidad de veces que entro y salio la persona
+		int cantEntradas;//cantidad de veces que entro y salio la persona
+		int cantSalidas;
 
 	public:
 		doorRegisterxCard();
-		doorRegisterxCard(int cardID, int cantRegister);
+		doorRegisterxCard(int cardID, int cantEntradas, int cantSalidas);
 
 		int getCardID();
 		void setCardID(int cardID);
 
-		int getCantRegister();
-		void setCantRegister(int cantRegister);
+		int getCantEntradas();
+		void setCantEntradas(int cantEntradas);
+
+		int getCantSalidas();
+		void setCantSalidas(int cantSalidas);
 	};
 }
