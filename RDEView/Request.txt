@@ -15,3 +15,4 @@
 15;362024;362024;Nueva Tarjeta;;new card;False;5
 16;362024;362024;Nueva Tarjeta;;new card;False;6
 17;362024;362024;Nueva Tarjeta;;nueva nueva tarjeta;False;6
+18;662024;662024;Nuevo Cargo;Docente;;False;4
