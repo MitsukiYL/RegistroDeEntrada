@@ -151,7 +151,7 @@ namespace RDEView {
 		}
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	//CODIGO DE EVALUCIAN DE USUARIO/ADMINISTRADOR, EN COMENTARIOS POR EL MOMENTO
+	//CODIGO DE EVALUCION DE USUARIO/ADMINISTRADOR, EN COMENTARIOS POR EL MOMENTO
 	/*	bool found = false;
 
 	String^ txt = this->txt_codemail->Text;

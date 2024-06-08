@@ -261,7 +261,14 @@ namespace RDEView {
 			String^ emissionDateNew = objDateTimeHelper->fechaActual();
 			String^ registrationDateNew = objDateTimeHelper->fechaActual();
 			//TO DO: CAMBIAR EL EXPIRATIONDATE A UNA FECHA QUE REFLEJE LA DURACIÓN DE VALIDEZ DE LA TARJETA
-			String^ expirationDateNew = objDateTimeHelper->fechaActual();
+
+			String^ separador_regDate = "/";
+			
+			array<String^>^ array_regDate = registrationDateNew->Split(separador_regDate->ToCharArray());
+
+			int int_yyExpirationDate = Convert::ToInt32(array_regDate[2])+1;
+
+			String^ expirationDateNew = array_regDate[0] + "/" + array_regDate[1] + "/" + Convert::ToString(int_yyExpirationDate);
 			String^ permissionTypeNew = this->combox_permType->Text;
 			bool permissionNew = true;
 			bool activeNew = true;
