@@ -30,9 +30,6 @@
     <ClCompile Include="InterfaceInscription.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="InterfaceRequest.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="InterfaceRDE.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
     <ClCompile Include="InterfaceSolAdmin.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="SolNuevaTarjeta.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="ReportePlayaxEstacionamiento.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -108,9 +102,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="InterfaceInscription.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InterfaceRequest.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="InterfaceRDE.h">
@@ -162,9 +153,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="InterfaceSolAdmin.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SolNuevaTarjeta.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ReportePlayaxEstacionamiento.h">

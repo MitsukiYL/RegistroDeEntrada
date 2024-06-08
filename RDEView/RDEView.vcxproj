@@ -126,7 +126,6 @@
     <ClCompile Include="InterfaceInscription.cpp" />
     <ClCompile Include="InterfaceProfile.cpp" />
     <ClCompile Include="InterfaceRDE.cpp" />
-    <ClCompile Include="InterfaceRequest.cpp" />
     <ClCompile Include="InterfaceSolAdmin.cpp" />
     <ClCompile Include="InterfaceSolUser.cpp" />
     <ClCompile Include="MantAdmin.cpp" />
@@ -145,7 +144,6 @@
     <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
     <ClCompile Include="ReporteDoorRegisterxDay.cpp" />
     <ClCompile Include="ReportePlayaxEstacionamiento.cpp" />
-    <ClCompile Include="SolNuevaTarjeta.cpp" />
     <ClCompile Include="UsuarioAdmin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +160,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InterfaceRDE.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="InterfaceRequest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InterfaceSolAdmin.h">
@@ -221,9 +216,6 @@
     <ClInclude Include="ReportePlayaxEstacionamiento.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="SolNuevaTarjeta.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="UsuarioAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -243,9 +235,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceRDE.resx">
       <DependentUpon>InterfaceRDE.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InterfaceRequest.resx">
-      <DependentUpon>InterfaceRequest.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceSolAdmin.resx">
       <DependentUpon>InterfaceSolAdmin.h</DependentUpon>

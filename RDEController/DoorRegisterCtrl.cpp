@@ -89,10 +89,17 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch)
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
 		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
-		int date_int = Convert::ToInt32(entryTime);
-		int day = date_int / 100000;
-		int month = (date_int / 10000) % 10;
-		int year = date_int % 10000;
+		String^ separador_dates = "-";
+		array<String^>^ dates = entryTime->Split(separador_dates->ToCharArray());
+
+		String^ ddmmyy = dates[1];
+
+		String^ separador_ddmmyy = "/";
+		array<String^>^ array_ddmmyy = ddmmyy->Split(separador_ddmmyy->ToCharArray());
+
+		int day = Convert::ToInt32(array_ddmmyy[0]);
+		int month = Convert::ToInt32(array_ddmmyy[1]);
+		int year = Convert::ToInt32(array_ddmmyy[2]);
 
 		if (month == 1 || month == 2) {
 			month += 12;

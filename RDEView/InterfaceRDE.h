@@ -178,45 +178,7 @@ namespace RDEView {
 		}
 #pragma endregion
 	private: System::Void InterfaceRDE_Load(System::Object^ sender, System::EventArgs^ e) {
-		/*DateTimeHelper^ datetime = gcnew DateTimeHelper();
 
-		//datetime->horaActual();
-		//datetime->fechaActual();
-		
-		String^ horaEntrada = this->textBox1->Text;
-		this->textBox2->Text = datetime->fechaActual();
-		String^ horaSalida = this->textBox3->Text;
-		//int codeCard = 0000;
-		int codeCard = Convert::ToInt32(this->textBox4->Text);
-		
-		int fechaActual = Convert::ToInt32(datetime->fechaActual());
-		int horaActual = Convert::ToInt32(datetime->horaActual());
-
-		int orden = 1;//se actualizara el orden luego
-
-		bool estaAdentro = false;
-
-		int NhoraEntrada = Convert::ToInt32(horaEntrada);
-		int NhoraSalida = Convert::ToInt32(horaSalida);
-	
-		if ((horaActual > NhoraEntrada) && (horaActual < NhoraSalida)) {
-
-			bool estaAdentro = true;
-		}
-
-		CardCtrl^ objCardCtrl = gcnew CardCtrl();
-		SensorCtrl^ obbjSensorCtrl = gcnew SensorCtrl();
-		DoorRegisterCtrl^ objDoorRegisterCtrl = gcnew DoorRegisterCtrl();
-
-		int sensorID = 87654;//este codigo es de prueba
-
-		card^ objCard = objCardCtrl->buscarCardxCode(codeCard);
-		sensor^ objSensor = obbjSensorCtrl->buscarSensorxID(sensorID);
-
-		objDoorRegisterCtrl->agregarNewDoorRegister(horaEntrada, horaSalida, estaAdentro, orden, objCard, objSensor);
-
-		MessageBox::Show("Registro de entrada realizado correctamente");
-		this->Close();*/
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
@@ -265,7 +227,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 
 		if (i > 0) {
-			String^ exitTime = (objDateTimeHelper->horaActual()) + ":" + (objDateTimeHelper->fechaActual());
+			String^ exitTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
 			objDoorRegisterCtrl->actualizarDoorRegister(lastDoorRegister->getEntryTime(), exitTime, false, lastDoorRegister->getCode(),
 				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor());
 		}
@@ -275,7 +237,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		
-		String^ entryTime = (objDateTimeHelper->horaActual()) + ":" + (objDateTimeHelper->fechaActual());
+		String^ entryTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
 
 		List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterAll();
 
