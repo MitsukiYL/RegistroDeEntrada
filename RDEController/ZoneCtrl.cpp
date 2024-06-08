@@ -17,8 +17,8 @@ List<zone^>^ ZoneCtrl::buscarZoneAll() {
 		int ID = Convert::ToInt32(datos[0]);
 		String^ name = datos[1];
 		String^ location = datos[2];
-		int openingTime = Convert::ToInt32(datos[3]);
-		int closingTime = Convert::ToInt32(datos[4]);
+		String^ openingTime = datos[3];
+		String^ closingTime = datos[4];
 		bool active = Convert::ToBoolean(datos[5]);
 		int adminID = Convert::ToInt32(datos[6]);
 
@@ -42,8 +42,8 @@ zone^ ZoneCtrl::buscarZonaxID(int searchID) {
 		int ID = Convert::ToInt32(datos[0]);
 		String^ name = datos[1];
 		String^ location = datos[2];
-		int openingTime = Convert::ToInt32(datos[3]);
-		int closingTime = Convert::ToInt32(datos[4]);
+		String^ openingTime = datos[3];
+		String^ closingTime = datos[4];
 		bool active = Convert::ToBoolean(datos[5]);
 		int adminID = Convert::ToInt32(datos[6]);
 
@@ -62,12 +62,12 @@ void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaZone->Count);
 	for (int i = 0; i < listaZone->Count; i++) {
 		zone^ objZone = listaZone[i];
-		lineasArchivo[i] = Convert::ToString(objZone->getID()) + ";" + objZone->getName() + ";" + objZone->getLocation() + ";" + Convert::ToString(objZone->getOpeningTime()) + ";" + Convert::ToString(objZone->getClosingTime()) + ";" + Convert::ToString(objZone->getActive()) + ";" + Convert::ToString(objZone->getAdmin()->getAdminID());
+		lineasArchivo[i] = Convert::ToString(objZone->getID()) + ";" + objZone->getName() + ";" + objZone->getLocation() + ";" + objZone->getOpeningTime() + ";" + objZone->getClosingTime() + ";" + Convert::ToString(objZone->getActive()) + ";" + Convert::ToString(objZone->getAdmin()->getAdminID());
 	}
 	File::WriteAllLines("Zone.txt", lineasArchivo);
 }
 
-void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin) {
+void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
 	List<zone^>^ listaZone = buscarZoneAll();
 
 	int newID = 1,val=1;
@@ -100,7 +100,7 @@ void ZoneCtrl::eliminarZone(int ID) {
 	escribirArchivo(listaZone);
 }
 
-void ZoneCtrl::actualizarZone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin) {
+void ZoneCtrl::actualizarZone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
 	List<zone^>^ lista = buscarZoneAll();
 	for (int i = 0; i < lista->Count; i++) {
 		if (lista[i]->getID() == ID) {

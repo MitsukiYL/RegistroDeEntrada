@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 zone::zone() {}
 
-zone::zone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin) {
+zone::zone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
     this->ID = ID;
     this->location = location;
     this->name = name;
@@ -42,19 +42,19 @@ void zone::setName(String^ name) {
     this->name = name;
 }
 
-int zone::getOpeningTime() {
+String^ zone::getOpeningTime() {
     return this->openingTime;
 }
 
-void zone::setOpeningTime(int openingTime) {
+void zone::setOpeningTime(String^ openingTime) {
     this->openingTime = openingTime;
 }
 
-int zone::getClosingTime() {
+String^ zone::getClosingTime() {
     return this->closingTime;
 }
 
-void zone::setClosingTime(int closingTime) {
+void zone::setClosingTime(String^ closingTime) {
     this->closingTime = closingTime;
 }
 

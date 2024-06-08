@@ -7,28 +7,29 @@ namespace RDEModel {
     private:
 
         int ID;
-        int emissionDate;
-        int responseDate;
+        String^ emissionDate;
+        String^ responseDate;
         String^ type;
         String^ newOccupation;
         String^ comment;
         bool active;
+        bool accepted;
         user^ objUser;
 
 
     public:
 
         request();
-        request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
+        request(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted, user^ objUser);
 
         int getID();
         void setID(int ID);
 
-        int getEmissionDate();
-        void setEmissionDate(int emissionDate);
+        String^ getEmissionDate();
+        void setEmissionDate(String^ emissionDate);
 
-        int getResponseDate();
-        void setResponseDate(int responseDate);
+        String^ getResponseDate();
+        void setResponseDate(String^ responseDate);
 
         String^ getType();
         void setType(String^ type);
@@ -41,6 +42,9 @@ namespace RDEModel {
 
         bool getActive();
         void setActive(bool active);
+
+        bool getAccepted();
+        void setAccepted(bool accepted);
 
         user^ getUser();
         void setUser(user^ objUser);

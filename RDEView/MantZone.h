@@ -360,8 +360,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	int ID = 0;
 	String^ name = this->txt_name->Text;
 	String^ location = this->txt_location->Text;
-	int openingTime = Convert::ToInt32(this->txt_openingTime->Text);
-	int closingTime = Convert::ToInt32(this->txt_closingTime->Text);
+	String^ openingTime = this->txt_openingTime->Text;
+	String^ closingTime = this->txt_closingTime->Text;
 	bool active = this->check_active->Checked;
 	int adminID = Convert::ToInt32(this->txt_adminID->Text);
 
@@ -378,8 +378,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int ID = Convert::ToInt32(this->txt_ID->Text);
 	String^ name = this->txt_name->Text;
 	String^ location = this->txt_location->Text;
-	int openingTime = Convert::ToInt32(this->txt_openingTime->Text);
-	int closingTime = Convert::ToInt32(this->txt_closingTime->Text);
+	String^ openingTime = this->txt_openingTime->Text;
+	String^ closingTime = this->txt_closingTime->Text;
 	bool active = this->check_active->Checked;
 	int adminID = Convert::ToInt32(this->txt_adminID->Text);
 
@@ -415,8 +415,8 @@ private: void mostrarGrilla(List<zone^>^ listZone) {
 		filaGrilla[0] = Convert::ToString(objZone->getID());
 		filaGrilla[1] = objZone->getName();
 		filaGrilla[2] = objZone->getLocation();
-		filaGrilla[3] = Convert::ToString(objZone->getOpeningTime());
-		filaGrilla[4] = Convert::ToString(objZone->getClosingTime());
+		filaGrilla[3] = objZone->getOpeningTime();
+		filaGrilla[4] = objZone->getClosingTime();
 		filaGrilla[5] = Convert::ToString(objZone->getActive());
 		filaGrilla[6] = Convert::ToString(objZone->getAdmin()->getAdminID());
 		this->Zone_DGV->Rows->Add(filaGrilla);
@@ -431,8 +431,8 @@ private: System::Void Zone_DGV_CellClick(System::Object^ sender, System::Windows
 		this->txt_ID->Text = Convert::ToString(objZone->getID());
 		this->txt_name->Text = objZone->getName();
 		this->txt_location->Text = objZone->getLocation();
-		this->txt_openingTime->Text = Convert::ToString(objZone->getOpeningTime());
-		this->txt_closingTime->Text = Convert::ToString(objZone->getClosingTime());
+		this->txt_openingTime->Text = objZone->getOpeningTime();
+		this->txt_closingTime->Text = objZone->getClosingTime();
 		this->check_active->Checked = objZone->getActive();
 		this->txt_adminID->Text = Convert::ToString(objZone->getAdmin()->getAdminID());
 	}

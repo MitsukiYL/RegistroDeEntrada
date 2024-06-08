@@ -89,6 +89,15 @@ namespace RDEView {
 
 	private: System::Windows::Forms::CheckBox^ check_active;
 	private: System::Windows::Forms::ComboBox^ combtext_type;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::ComboBox^ combox_newoccupation;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
@@ -96,8 +105,9 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::ComboBox^ combox_newoccupation;
+	private: System::Windows::Forms::CheckBox^ check_accepted;
 
 
 
@@ -154,14 +164,6 @@ namespace RDEView {
 			this->txt_user = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->Request_DGV = (gcnew System::Windows::Forms::DataGridView());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->txt_ID = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -178,6 +180,16 @@ namespace RDEView {
 			this->check_active = (gcnew System::Windows::Forms::CheckBox());
 			this->combtext_type = (gcnew System::Windows::Forms::ComboBox());
 			this->combox_newoccupation = (gcnew System::Windows::Forms::ComboBox());
+			this->check_accepted = (gcnew System::Windows::Forms::CheckBox());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Request_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -200,9 +212,9 @@ namespace RDEView {
 			// Request_DGV
 			// 
 			this->Request_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->Request_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+			this->Request_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
 				this->Column2,
-					this->Column5, this->Column6, this->Column4, this->Column8, this->Column3, this->Column7, this->Column1
+					this->Column5, this->Column6, this->Column4, this->Column8, this->Column3, this->Column7, this->Column9, this->Column1
 			});
 			this->Request_DGV->Location = System::Drawing::Point(15, 182);
 			this->Request_DGV->Margin = System::Windows::Forms::Padding(2);
@@ -212,56 +224,6 @@ namespace RDEView {
 			this->Request_DGV->Size = System::Drawing::Size(807, 213);
 			this->Request_DGV->TabIndex = 112;
 			this->Request_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantRequest::Request_DGV_CellClick);
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"ID";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Fecha de Emision";
-			this->Column5->MinimumWidth = 8;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 150;
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Fecha de Respuesta";
-			this->Column6->MinimumWidth = 8;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 150;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Tipo";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Nuevo Cargo";
-			this->Column8->MinimumWidth = 8;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 150;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Comentario";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Activo";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Usuario";
-			this->Column1->Name = L"Column1";
 			// 
 			// txt_ID
 			// 
@@ -408,11 +370,78 @@ namespace RDEView {
 			this->combox_newoccupation->Size = System::Drawing::Size(168, 21);
 			this->combox_newoccupation->TabIndex = 127;
 			// 
+			// check_accepted
+			// 
+			this->check_accepted->AutoSize = true;
+			this->check_accepted->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->check_accepted->Location = System::Drawing::Point(299, 102);
+			this->check_accepted->Name = L"check_accepted";
+			this->check_accepted->Size = System::Drawing::Size(72, 17);
+			this->check_accepted->TabIndex = 128;
+			this->check_accepted->Text = L"Aceptado";
+			this->check_accepted->UseVisualStyleBackColor = true;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Fecha de Emision";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 150;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Fecha de Respuesta";
+			this->Column6->MinimumWidth = 8;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 150;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Tipo";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Nuevo Cargo";
+			this->Column8->MinimumWidth = 8;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 150;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Comentario";
+			this->Column3->Name = L"Column3";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Activo";
+			this->Column7->Name = L"Column7";
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Aceptado";
+			this->Column9->Name = L"Column9";
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Usuario";
+			this->Column1->Name = L"Column1";
+			// 
 			// MantRequest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(843, 410);
+			this->Controls->Add(this->check_accepted);
 			this->Controls->Add(this->combox_newoccupation);
 			this->Controls->Add(this->combtext_type);
 			this->Controls->Add(this->check_active);
@@ -443,19 +472,20 @@ namespace RDEView {
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 	int ID = Convert::ToInt32(this->txt_ID->Text);
-	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-	int responseDate = Convert::ToInt32(this->txt_responseDate->Text);
+	String^ emissionDate = this->txt_emisionDate->Text;
+	String^ responseDate = this->txt_responseDate->Text;
 	String^ type = this->combtext_type->Text;
 	String^ newOccupation = this->combox_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = this->check_active->Checked;
+	bool accepted = this->check_accepted->Checked;
 	int userID = Convert::ToInt32(this->txt_user->Text);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
 	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-	objRequestCtrl->agregarNewRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+	objRequestCtrl->agregarNewRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
 	txt_ID->Clear();
 
 	List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
@@ -463,19 +493,20 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 	int ID = Convert::ToInt32(this->txt_ID->Text);
-	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-	int responseDate = Convert::ToInt32(this->txt_responseDate->Text);
+	String^ emissionDate = this->txt_emisionDate->Text;
+	String^ responseDate = this->txt_responseDate->Text;
 	String^ type = this->combtext_type->Text;
 	String^ newOccupation = this->combox_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = this->check_active->Checked;
+	bool accepted = this->check_accepted->Checked;
 	int userID = Convert::ToInt32(this->txt_user->Text);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
 	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
 	txt_ID->Clear();
 
 	MessageBox::Show("La solicitud se actualizo con exito.");
@@ -500,7 +531,7 @@ private: void mostrarGrilla(List<request^>^ listaRequest) {
 
 	for (int i = 0; i < listaRequest->Count; i++) {
 		request^ objReq = listaRequest[i];
-		array<String^>^ filaGrilla = gcnew array<String^>(8);
+		array<String^>^ filaGrilla = gcnew array<String^>(9);
 
 		filaGrilla[0] = Convert::ToString(objReq->getID());
 		filaGrilla[1] = Convert::ToString(objReq->getEmissionDate());
@@ -509,7 +540,8 @@ private: void mostrarGrilla(List<request^>^ listaRequest) {
 		filaGrilla[4] = objReq->getNewOccupation();
 		filaGrilla[5] = objReq->getComment();
 		filaGrilla[6] = Convert::ToString(objReq->getActive());
-		filaGrilla[7] = Convert::ToString(objReq->getUser()->getPerson()->getName());
+		filaGrilla[7] = Convert::ToString(objReq->getAccepted());
+		filaGrilla[8] = Convert::ToString(objReq->getUser()->getPerson()->getName());
 		this->Request_DGV->Rows->Add(filaGrilla);
 	}
 }
@@ -526,6 +558,7 @@ private: System::Void Request_DGV_CellClick(System::Object^ sender, System::Wind
 		this->combox_newoccupation->Text = objReq->getNewOccupation();
 		this->rtxt_comment->Text = objReq->getComment();
 		this->check_active->Checked = objReq->getActive();
+		this->check_accepted->Checked = objReq->getAccepted();
 		this->txt_user->Text = Convert::ToString(objReq->getUser()->getUserID());
 	}
 }

@@ -20,7 +20,7 @@ List<vehicle^>^ VehicleCtrl::buscarVehicleAll() {
 		String^ brand = datos[2];
 		String^ model = datos[3];
 		String^ fuelType = datos[4];
-		int registrationDate = Convert::ToInt32(datos[5]);
+		String^ registrationDate = datos[5];
 		bool insurance = Convert::ToBoolean(datos[6]);
 		
 
@@ -43,7 +43,7 @@ vehicle^ VehicleCtrl::buscarVehiclexPlate(String^ plateB) {
 		String^ brand = datos[2];
 		String^ model = datos[3];
 		String^ fuelType = datos[4];
-		int registrationDate = Convert::ToInt32(datos[5]);
+		String^ registrationDate = datos[5];
 		bool insurance = Convert::ToBoolean(datos[6]);
 		
 
@@ -60,12 +60,12 @@ void VehicleCtrl::escribirArchivo(List<vehicle^>^ listaVehicle) {
 	for (int i = 0; i < listaVehicle->Count; i++) {
 		vehicle^ objVehicle = listaVehicle[i];
 		lineasArchivo[i] = objVehicle->getPlate() + ";" + objVehicle->getVehicleType() + ";" + objVehicle->getBrand()
-			+ ";" + objVehicle->getModel() + ";" + objVehicle->getFuelType() + ";" + Convert::ToString(objVehicle->getRegistrationDate()) + ";" + Convert::ToString(objVehicle->getInsurance());
+			+ ";" + objVehicle->getModel() + ";" + objVehicle->getFuelType() + ";" + objVehicle->getRegistrationDate() + ";" + Convert::ToString(objVehicle->getInsurance());
 	}
 	File::WriteAllLines("Vehicle.txt", lineasArchivo);
 }
 
-void VehicleCtrl::agregarNewVehicle(String^ fuelType, String^ vehicleType, int registrationDate,
+void VehicleCtrl::agregarNewVehicle(String^ fuelType, String^ vehicleType, String^ registrationDate,
 	String^ plate, String^ brand, String^ model, bool insurance) {
 	List<vehicle^>^ listaVehicle = buscarVehicleAll();
 	vehicle^ objVehicle = gcnew vehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
@@ -84,7 +84,7 @@ void VehicleCtrl::eliminarVehicle(String^ plate) {
 	escribirArchivo(listaVehicle);
 }
 
-void VehicleCtrl::actualizarVehicle(String^ fuelType, String^ vehicleType, int registrationDate, String^ plate, String^ brand, String^ model, bool insurance){
+void VehicleCtrl::actualizarVehicle(String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance){
 	List<vehicle^>^ listaVehicle = buscarVehicleAll();
 	for (int i = 0; i < listaVehicle->Count; i++) {
 		if (listaVehicle[i]->getPlate() == plate) {

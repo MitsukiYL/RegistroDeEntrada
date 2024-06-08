@@ -19,8 +19,8 @@ admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
 		int adminID = Convert::ToInt32(datos[0]);
 		String^ area = datos[1];
 		String^ adminType = datos[2];
-		int registrationDate = Convert::ToInt32(datos[3]);
-		int expirationDate = Convert::ToInt32(datos[4]);
+		String^ registrationDate = datos[3];
+		String^ expirationDate = datos[4];
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
@@ -47,8 +47,8 @@ admin^ AdminCtrl::BuscarAdminxPersonDNI(int DNIbuscar) {
 		int adminID = Convert::ToInt32(datos[0]);
 		String^ area = datos[1];
 		String^ adminType = datos[2];
-		int registrationDate = Convert::ToInt32(datos[3]);
-		int expirationDate = Convert::ToInt32(datos[4]);
+		String^ registrationDate = datos[3];
+		String^ expirationDate = datos[4];
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
@@ -76,8 +76,8 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		int adminID = Convert::ToInt32(datos[0]);
 		String^ area = datos[1];
 		String^ adminType = datos[2];
-		int registrationDate = Convert::ToInt32(datos[3]);
-		int expirationDate = Convert::ToInt32(datos[4]);
+		String^ registrationDate = datos[3];
+		String^ expirationDate = datos[4];
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
@@ -93,7 +93,7 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 	}
 	
 
-void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson) {
+void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson) {
 
 	List<admin^>^ listaadmin = AllAdministradores();
 	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
@@ -107,13 +107,13 @@ void AdminCtrl::escribirArchivo(List <admin^>^ listaadmin) {
 	for (int i = 0; i < listaadmin->Count; i++) {
 		admin^ objAdmin = listaadmin[i];
 		lineasArchivo[i] = Convert::ToString(objAdmin->getAdminID()) + ";" + objAdmin->getArea() + ";" + objAdmin->getAdminType()
-			+ ";" + Convert::ToString(objAdmin->getRegistrationDate()) + ";" + Convert::ToString(objAdmin->getExpirationDate()) + ";" + Convert::ToString(objAdmin->getContractID())
+			+ ";" + objAdmin->getRegistrationDate() + ";" +objAdmin->getExpirationDate() + ";" + Convert::ToString(objAdmin->getContractID())
 			+ ";" + Convert::ToString(objAdmin->getPerson()->getDNI());
 	}
 	File::WriteAllLines("Administradores.txt", lineasArchivo);
 }
 
-void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson){
+void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson){
 	List<admin^>^ listaadmin = AllAdministradores();
 	for (int i = 0; i < listaadmin->Count; i++) {
 		if (listaadmin[i]->getAdminID() == adminID) {

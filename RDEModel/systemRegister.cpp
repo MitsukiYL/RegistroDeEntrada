@@ -9,18 +9,18 @@ using namespace RDEModel;
 
 systemRegister::systemRegister() {}
 
-systemRegister::systemRegister(int date, String^ operationType, String^ IP, admin^ objAdmin) {
+systemRegister::systemRegister(String^ date, String^ operationType, String^ IP, admin^ objAdmin) {
     this->date = date;
     this->operationType = operationType;
     this->IP = IP;
     this->objAdmin = objAdmin;
 }
 
-int systemRegister::getDate() {
+String^ systemRegister::getDate() {
     return this->date;
 }
 
-void systemRegister::setDate(int date) {
+void systemRegister::setDate(String^ date) {
     this->date = date;
 }
 

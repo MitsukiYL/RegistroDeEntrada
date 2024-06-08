@@ -14,36 +14,36 @@ namespace RDEModel {
 	public ref class card {
     		private:
         	int code;
-        	int expirationDate;
+            String^ expirationDate;
         	String^ permissionType;
         	int ID;
         	bool permission;
-        	int emissionDate;
-        	int registrationDate;
+            String^ emissionDate;
+            String^ registrationDate;
         	bool active;
             user^ objUser;
 
     	public:
 		card();
-		card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
+		card(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
 
         int getCode();
-        int getExpirationDate();
+        String^ getExpirationDate();
         String^ getPermissionType();
         int getID();
         bool getPermission();
-        int getEmissionDate();
-        int getRegistrationDate();
+        String^ getEmissionDate();
+        String^ getRegistrationDate();
         bool getActive();
         user^ getObjUser();
 
         void setCode(int code);
-        void setExpirationDate(int expirationDate);
+        void setExpirationDate(String^ expirationDate);
         void setPermissionType(String^ permissionType);
         void setID(int ID);
         void setPermission(bool permission);
-        void setEmissionDate(int emissionDate);
-        void setRegistrationDate(int registrationDate);
+        void setEmissionDate(String^ emissionDate);
+        void setRegistrationDate(String^ registrationDate);
         void setActive(bool active);
         void setObjUser(user^ objUser);
     };

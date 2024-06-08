@@ -384,7 +384,7 @@ private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Wind
 		this->txt_brand->Text = Vehicle->brand;
 		this->txt_model->Text = Vehicle->model;
 		this->check_insurance->Checked = Vehicle->insurance;
-		this->txt_regDate->Text = Convert::ToString(Vehicle->registrationDate);
+		this->txt_regDate->Text = Vehicle->registrationDate;
 	}
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
@@ -395,7 +395,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	String^ brand = this->txt_brand->Text;
 	String^ model = this->txt_model->Text;
 	bool insurance = this->check_insurance->Checked;
-	int registrationDate = Convert::ToInt32(this->txt_regDate->Text);
+	String^ registrationDate = this->txt_regDate->Text;
 
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
@@ -414,7 +414,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ brand = this->txt_brand->Text;
 	String^ model = this->txt_model->Text;
 	bool insurance = this->check_insurance->Checked;
-	int registrationDate = Convert::ToInt32(this->txt_regDate->Text);
+	String^ registrationDate = this->txt_regDate->Text;
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
 	objVehicleCtrl->actualizarVehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
@@ -449,7 +449,7 @@ private: void mostrarGrilla(List<vehicle^>^ listVehicle) {
 		filaGrilla[2] = objVehicle->getBrand();
 		filaGrilla[3] = objVehicle->getModel();
 		filaGrilla[4] = objVehicle->getFuelType();
-		filaGrilla[5] = Convert::ToString(objVehicle->getRegistrationDate());
+		filaGrilla[5] = objVehicle->getRegistrationDate();
 		filaGrilla[6] = Convert::ToString(objVehicle->getInsurance());
 		this->Vehicle_DGV->Rows->Add(filaGrilla);
 	}

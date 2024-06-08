@@ -8,7 +8,7 @@ request::request() {
 
 }
 
-request::request(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser) {
+request::request(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted,user^ objUser) {
     this->ID = ID;
     this->emissionDate = emissionDate;
     this->responseDate = responseDate;
@@ -16,33 +16,34 @@ request::request(int ID, int emissionDate, int responseDate, String^ type, Strin
     this->newOccupation = newOccupation;
     this->comment = comment;
     this->active = active;
+    this->accepted = accepted;
     this->objUser = objUser;
 }
 
 int request::getID() {
-    return ID;
+    return this->ID;
 }
 
 void request::setID(int ID) {
     this->ID = ID;
 }
 
-int request::getEmissionDate() {
-    return emissionDate;
+String^ request::getEmissionDate() {
+    return this->emissionDate;
 }
-void request::setEmissionDate(int emissionDate) {
+void request::setEmissionDate(String^ emissionDate) {
     this->emissionDate = emissionDate;
 }
 
-int request::getResponseDate() {
-    return responseDate;
+String^ request::getResponseDate() {
+    return this->responseDate;
 }
-void request::setResponseDate(int responseDate) {
+void request::setResponseDate(String^ responseDate) {
     this->responseDate = responseDate;
 }
 
 String^ request::getType() {
-    return type;
+    return this->type;
 }
 
 void request::setType(String^ type) {
@@ -50,7 +51,7 @@ void request::setType(String^ type) {
 }
 
 String^ request::getNewOccupation() {
-    return newOccupation;
+    return this->newOccupation;
 }
 
 void request::setNewOccupation(String^ newOccupation) {
@@ -58,7 +59,7 @@ void request::setNewOccupation(String^ newOccupation) {
 }
 
 String^ request::getComment() {
-    return comment;
+    return this->comment;
 }
 
 void request::setComment(String^ comment) {
@@ -66,14 +67,22 @@ void request::setComment(String^ comment) {
 }
 
 bool request::getActive() {
-    return active;
+    return this->active;
 }
 void request::setActive(bool active) {
     this->active = active;
 }
 
+bool request::getAccepted() {
+    return this->accepted;
+}
+
+void request::setAccepted(bool accepted) {
+    this->accepted = accepted;
+}
+
 user^ request::getUser() {
-    return objUser;
+    return this->objUser;
 }
 
 void request::setUser(user^ objUser) {

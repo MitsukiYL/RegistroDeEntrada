@@ -322,7 +322,7 @@ private: void mostrarGrilla(List<user^>^ listUser) {
 		array<String^>^ filaGrilla = gcnew array<String^>(16);
 		filaGrilla[0] = Convert::ToString(objUser->getUserID());
 		filaGrilla[1] = objUser->getUserType();
-		filaGrilla[2] = Convert::ToString(objUser->getRegistrationDate());
+		filaGrilla[2] = objUser->getRegistrationDate();
 		filaGrilla[3] = Convert::ToString(objUser->getParkingSite()->getID());
 		filaGrilla[4] = Convert::ToString(objUser->getActive());
 		filaGrilla[5] = Convert::ToString(objUser->getPerson()->getDNI());
@@ -332,7 +332,7 @@ private: void mostrarGrilla(List<user^>^ listUser) {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 		int userID = Convert::ToInt32(this->txt_userID->Text);
 		String^ userType = this->txt_userType->Text;
-		int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+		String^ registrationDate = this->txt_registrationDate->Text;
 		bool active = this->check_active->Checked;
 		String^ parklotID = this->txt_ParkLotID->Text;
 		int DNI = Convert::ToInt32(this->txt_DNI->Text);
@@ -353,7 +353,7 @@ private: void mostrarGrilla(List<user^>^ listUser) {
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ userType = this->txt_userType->Text;
-	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
+	String^ registrationDate = this->txt_registrationDate->Text;
 	bool active = this->check_active->Checked;
 	String^ parklotID = this->txt_ParkLotID->Text;
 	int DNI = Convert::ToInt32(this->txt_DNI->Text);
@@ -390,7 +390,7 @@ private: System::Void Person_DGV_CellClick(System::Object^ sender, System::Windo
 	if (User != nullptr) {
 		this->txt_userID->Text = Convert::ToString(User->getUserID());
 		this->txt_userType->Text = User->getUserType();
-		this->txt_registrationDate->Text = Convert::ToString(User->getRegistrationDate());
+		this->txt_registrationDate->Text = User->getRegistrationDate();
 		this->check_active->Checked = User->getActive();
 		this->txt_ParkLotID->Text = User->getParkingSite()->getID();
 		this->txt_DNI->Text = Convert::ToString(User->getPerson()->getDNI());

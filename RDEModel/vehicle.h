@@ -17,14 +17,14 @@ namespace RDEModel {
     public:
         String^ fuelType;
         String^ vehicleType;
-        int registrationDate;
+        String^ registrationDate;
         String^ plate;
         String^ brand;
         String^ model;
         bool insurance;
 
         vehicle();
-        vehicle(String^ fuelType, String^ vehicleType, int registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
+        vehicle(String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
 
         String^ getFuelType();
         void setFuelType(String^ fuelType);
@@ -32,8 +32,8 @@ namespace RDEModel {
         String^ getVehicleType();
         void setVehicleType(String^ vehicleType);
 
-        int getRegistrationDate();
-        void setRegistrationDate(int registrationDate);
+        String^ getRegistrationDate();
+        void setRegistrationDate(String^ registrationDate);
 
         String^ getPlate();
         void setPlate(String^ plate);

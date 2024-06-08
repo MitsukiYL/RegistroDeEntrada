@@ -6,7 +6,7 @@ using namespace RDEModel;
 
 card::card() {
 }
-card::card(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser) {
+card::card(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
 
     this->code= code;
     this->expirationDate = expirationDate;
@@ -22,7 +22,7 @@ card::card(int code, int expirationDate, String^ permissionType, int ID, bool pe
 int card::getCode() {
     return this->code;
 }
-int card::getExpirationDate() {
+String^ card::getExpirationDate() {
     return this->expirationDate;
 }
 String^ card::getPermissionType() {
@@ -34,10 +34,10 @@ int card::getID() {
 bool card::getPermission() {
     return this->permission;
 }
-int card::getEmissionDate() {
+String^ card::getEmissionDate() {
     return this->emissionDate;
 }
-int card::getRegistrationDate() {
+String^ card::getRegistrationDate() {
     return this->registrationDate;
 }
 bool card::getActive() {
@@ -50,7 +50,7 @@ user^ card::getObjUser() {
 void card::setCode(int code) {
     this->code = code;
 }
-void card::setExpirationDate(int expirationDate) {
+void card::setExpirationDate(String^ expirationDate) {
     this->expirationDate = expirationDate;
 }
 void card::setPermissionType(String^ permissionType) {
@@ -62,10 +62,10 @@ void card::setID(int ID) {
 void card::setPermission(bool permission) {
     this->permission =permission;
 }
-void card::setEmissionDate(int emissionDate) {
+void card::setEmissionDate(String^ emissionDate) {
     this->emissionDate =emissionDate;
 }
-void card::setRegistrationDate(int registrationDate) {
+void card::setRegistrationDate(String^ registrationDate) {
     this-> registrationDate=registrationDate;
 }
 void card::setActive(bool active) {

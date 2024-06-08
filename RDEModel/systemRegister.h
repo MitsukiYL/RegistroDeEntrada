@@ -11,17 +11,17 @@ using namespace System;
 namespace RDEModel {
 	public ref class systemRegister {
     private:
-        int date;
+        String^ date;
         String^ operationType;
         String^ IP;
         admin^ objAdmin;
 
     public:
         systemRegister();
-        systemRegister(int date, String^ operationType, String^ IP, admin^ objAdmin);
+        systemRegister(String^ date, String^ operationType, String^ IP, admin^ objAdmin);
 
-        int getDate();
-        void setDate(int date);
+        String^ getDate();
+        void setDate(String^ date);
 
         String^ getOperationType();
         void setOperationType(String^ operationType);

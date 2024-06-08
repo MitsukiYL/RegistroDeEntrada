@@ -205,12 +205,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
 
 		int DNI = Convert::ToInt32(this->txt_user->Text);
-		int emissionDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
-		int responseDate = 0; //Se modifica en otra interfaz
+		String^ emissionDate = objDateTimeHelper->fechaActual();
+		String^ responseDate = "0"; //Se modifica en otra interfaz
 		String^ type = this->combox_type->Text;
 		String^ newoccupation = this->combox_occupation->Text;
 		String^ comment = this->rtxt_comment->Text;
 		bool active = true;
+		bool accepted = false;
 		user^ objUser = objUserCtrl->buscarUserxPersonDNI(DNI);
 
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
@@ -229,7 +230,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			IDnew++;
 		}
 		
-		objRequestCtrl->agregarNewRequest(IDnew, emissionDate, responseDate, type, newoccupation, comment, active, objUser);
+		objRequestCtrl->agregarNewRequest(IDnew, emissionDate, responseDate, type, newoccupation, comment, active, accepted, objUser);
 		MessageBox::Show("La solicitud se creó con exito.");
 	}
 private: System::Void combox_type_TextChanged(System::Object^ sender, System::EventArgs^ e) {

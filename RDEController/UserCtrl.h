@@ -13,8 +13,8 @@ namespace RDEController {
 		user^ buscarUserxUserID(int userIDb);
 		user^ buscarUserxPersonDNI(int DNIbuscar);
 		void escribirArchivo(List<user^>^ listaUser);
-		void agregarNewUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson);
+		void agregarNewUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson);
 		void eliminarUser(int userID);
-		void actualizarUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson);
+		void actualizarUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson);
 	};
 }

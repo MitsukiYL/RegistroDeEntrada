@@ -372,8 +372,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 		int adminID = Convert::ToInt32(this->txt_ID->Text);
 		String^ area = this->txt_area->Text;
 		String^ adminType = this->txt_type->Text;
-		int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
-		int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+		String^ registrationDate = this->txt_registrationDate->Text;
+		String^ expirationDate = this->txt_expirationDate->Text;
 		int contractID = Convert::ToInt32(this->txt_contractID->Text);
 		int personDNI = Convert::ToInt32(this->txt_DNI->Text);
 
@@ -393,8 +393,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int adminID = Convert::ToInt32(this->txt_ID->Text);
 	String^ area = this->txt_area->Text;
 	String^ adminType = this->txt_type->Text;
-	int registrationDate = Convert::ToInt32(this->txt_registrationDate->Text);
-	int expirationDate = Convert::ToInt32(this->txt_expirationDate->Text);
+	String^ registrationDate = this->txt_registrationDate->Text;
+	String^ expirationDate = this->txt_expirationDate->Text;
 	int contractID = Convert::ToInt32(this->txt_contractID->Text);
 	int personDNI = Convert::ToInt32(this->txt_DNI->Text);
 
@@ -435,8 +435,8 @@ private: void mostrarGrilla(List<admin^>^ listAdm) {
 		filaGrilla[0] = Convert::ToString(objAdm->getAdminID());
 		filaGrilla[1] = objAdm->getArea();
 		filaGrilla[2] = objAdm->getAdminType();
-		filaGrilla[3] = Convert::ToString(objAdm->getRegistrationDate());
-		filaGrilla[4] = Convert::ToString(objAdm->getExpirationDate());
+		filaGrilla[3] = objAdm->getRegistrationDate();
+		filaGrilla[4] = objAdm->getExpirationDate();
 		filaGrilla[5] = Convert::ToString(objAdm->getContractID());
 		filaGrilla[6] = Convert::ToString(objAdm->getPerson()->getDNI());
 		this->Admin_DGV->Rows->Add(filaGrilla);
@@ -450,8 +450,8 @@ private: System::Void Admin_DGV_CellClick(System::Object^ sender, System::Window
 		this->txt_ID->Text = Convert::ToString(Admin->getAdminID());
 		this->txt_area->Text = Admin->getArea();
 		this->txt_type->Text = Admin->getAdminType();
-		this->txt_registrationDate->Text = Convert::ToString(Admin->getRegistrationDate());
-		this->txt_expirationDate->Text = Convert::ToString(Admin->getExpirationDate());
+		this->txt_registrationDate->Text = Admin->getRegistrationDate();
+		this->txt_expirationDate->Text = Admin->getExpirationDate();
 		this->txt_contractID->Text = Convert::ToString(Admin->getContractID());
 		this->txt_DNI->Text = Convert::ToString(Admin->getPerson()->getDNI());
 	}

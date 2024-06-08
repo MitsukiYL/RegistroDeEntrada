@@ -13,8 +13,8 @@ namespace RDEController {
 		card^ buscarCardxCode(int codigoB);
 		List<card^>^ buscarCardxUserID(int userIDsearch);
 		void escribirArchivo(List<card^>^ listaCard);
-		void agregarNewCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
+		void agregarNewCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
 		void eliminarCard(int codigo);
-		void actualizarCard(int code, int expirationDate, String^ permissionType, int ID, bool permission, int emissionDate, int registrationDate, bool active, user^ objUser);
+		void actualizarCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
 	};
 }

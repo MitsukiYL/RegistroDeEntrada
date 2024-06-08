@@ -337,11 +337,11 @@ namespace RDEView {
 
 					String^ userType = occupation;
 					bool active = true;
-					int intregDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
+					String^ regDate = objDateTimeHelper->fechaActual();
 					String^ parkSiteID = "PLACEHOLDER";
 					parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkSiteID);
 
-					objUserCtrl->agregarNewUser(userID, userType, active, intregDate, objParkingSite, objPerson);
+					objUserCtrl->agregarNewUser(userID, userType, active, regDate, objParkingSite, objPerson);
 
 					MessageBox::Show("El usuario ha sido agregado con éxito");
 					this->Close();

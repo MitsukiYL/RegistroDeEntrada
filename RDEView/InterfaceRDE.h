@@ -250,24 +250,31 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	this->txt_reservedparksite->Text = objCard->getObjUser()->getParkingSite()->getID();
 
+	DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
+
 	if (isInside) {
 		//AVANZAR
-		/*objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
-		//Llamamos todas las tarjetas del usuario
+		objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
+		//Llamamos todas los doorRegister de la tarjeta
 		List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterxCard(cardCode);
 
-		//Se desactiva la anterior tarjeta del usuario.
+		//Declaro el último doorRegister de la tarjeta,
+		//Si el usuario está saliendo del campus -> isInside pasa a ser false + userIn pasa a ser false
 		int i = (listaDoorRegister->Count);
+		doorRegister^ lastDoorRegister = listaDoorRegister[i - 1];
+
+
 		if (i > 0) {
-			objDoorRegisterCtrl->actu(listaDoorRegister[i - 1]->getCode(), listaDoorRegister[i - 1]->getExpirationDate(), listaDoorRegister[i - 1]->getPermissionType(), listaDoorRegister[i - 1]->getID(),
-				false, listaDoorRegister[i - 1]->listaDoorRegister(), listaCard[i - 1]->listaDoorRegister(), false, objUser);
-		}*/
+			String^ exitTime = (objDateTimeHelper->horaActual()) + ":" + (objDateTimeHelper->fechaActual());
+			objDoorRegisterCtrl->actualizarDoorRegister(lastDoorRegister->getEntryTime(), exitTime, false, lastDoorRegister->getCode(),
+				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor());
+		}
 
 
 		MessageBox::Show("Saliendo al campus");
 	}
 	else {
-		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
+		
 		String^ entryTime = (objDateTimeHelper->horaActual()) + ":" + (objDateTimeHelper->fechaActual());
 
 		List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterAll();
@@ -285,7 +292,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			drID++;
 		}
 
-		objDoorRegisterCtrl->agregarNewDoorRegister(entryTime, "0", 1, drID, objCard, objSensor);
+		objDoorRegisterCtrl->agregarNewDoorRegister(entryTime, "0", true, drID, objCard, objSensor);
 		objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
 
 		MessageBox::Show(objCard->getObjUser()->getPerson()->getName() + ", bienvenido al campus");

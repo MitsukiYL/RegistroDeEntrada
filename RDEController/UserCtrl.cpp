@@ -20,7 +20,7 @@ List<user^>^ UserCtrl::buscarUserAll() {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		int registrationDate = Convert::ToInt32(datos[3]);
+		String^ registrationDate = datos[3];
 		String^ parkingSiteID = datos[4];
 		int personDNI = Convert::ToInt32(datos[5]);
 
@@ -47,7 +47,7 @@ user^ UserCtrl::buscarUserxUserID(int userIDb) {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		int registrationDate = Convert::ToInt32(datos[3]);
+		String^ registrationDate = datos[3];;
 		String^ parkingSiteID = datos[4];
 		int personDNI = Convert::ToInt32(datos[5]);
 
@@ -76,7 +76,7 @@ user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		int registrationDate = Convert::ToInt32(datos[3]);
+		String^ registrationDate = datos[3];
 		String^ parkingSiteID = datos[4];
 		int personDNI = Convert::ToInt32(datos[5]);
 
@@ -99,13 +99,13 @@ void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
 	for (int i = 0; i < listaUser->Count; i++) {
 		user^ objUser = listaUser[i];
 		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getUserType() + ";" + Convert::ToString(objUser->getActive())
-			+ ";" + Convert::ToString(objUser->getRegistrationDate()) + ";" + Convert::ToString(objUser->getParkingSite()->getID())
+			+ ";" + objUser->getRegistrationDate() + ";" + Convert::ToString(objUser->getParkingSite()->getID())
 			+ ";" + Convert::ToString(objUser->getPerson()->getDNI());
 	}
 	File::WriteAllLines("User.txt", lineasArchivo);
 }
 
-void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
 
 	List<user^>^ listaUser = buscarUserAll();
 	user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, objPerson);
@@ -124,7 +124,7 @@ void UserCtrl::eliminarUser(int userID) {
 	escribirArchivo(listaUser);
 }
 
-void UserCtrl::actualizarUser(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+void UserCtrl::actualizarUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
 	List<user^>^ listaUser = buscarUserAll();
 	for (int i = 0; i < listaUser->Count; i++) {
 		if (listaUser[i]->getUserID() == userID) {

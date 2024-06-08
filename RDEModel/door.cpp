@@ -8,7 +8,7 @@
 using namespace RDEModel;
 
 door::door() {};
-door::door(String^ doorName, bool active, String^ location, String^ doorType, int openingTime, int closingTime, List<sensor^>^ listSensor, List<interface^>^ listInterface, List<motor^>^ listMotor){
+door::door(String^ doorName, bool active, String^ location, String^ doorType, String^ openingTime, String^ closingTime, List<sensor^>^ listSensor, List<interface^>^ listInterface, List<motor^>^ listMotor){
 
     this->doorName = doorName;
     this->active = active;
@@ -35,10 +35,10 @@ String^ door::getDoorType(){
     return this->doorType;
 }
     
-int  door::getOpeningTime() {
+String^ door::getOpeningTime() {
     return this->openingTime;
 }
-int  door::getClosingTime() {
+String^ door::getClosingTime() {
     return this->closingTime;
 }
 List<sensor^>^ door::getListSensor() {
@@ -63,10 +63,10 @@ void door::setLocation(String^ location) {
 void door::setDoorType(String^ doorType) {
     this-> doorType=doorType ;
 }
-void door::setOpeningTime(int openingTime) {
+void door::setOpeningTime(String^ openingTime) {
     this-> openingTime=openingTime ;
 }
-void door::setClosingTime(int closingTime) {
+void door::setClosingTime(String^ closingTime) {
     this-> closingTime=closingTime ;
 }
 void door::setListSensor(List<sensor^>^ listSensor) {

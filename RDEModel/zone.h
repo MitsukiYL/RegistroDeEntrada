@@ -16,15 +16,15 @@ namespace RDEModel {
         int ID;
         String^ location;
         String^ name;
-        int openingTime;
-        int closingTime;
+        String^ openingTime;
+        String^ closingTime;
         bool active;
         admin^ objAdmin;
 
     public:
 
         zone();
-        zone(int ID, String^ name, String^ location, int openingTime, int closingTime, bool active, admin^ objAdmin);
+        zone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin);
 
         int getID();
         void setID(int ID);
@@ -35,11 +35,11 @@ namespace RDEModel {
         String^ getName();
         void setName(String^ name);
 
-        int getOpeningTime();
-        void setOpeningTime(int openingTime);
+        String^ getOpeningTime();
+        void setOpeningTime(String^ openingTime);
 
-        int getClosingTime();
-        void setClosingTime(int closingTime);
+        String^ getClosingTime();
+        void setClosingTime(String^ closingTime);
 
         bool getActive();
         void setActive(bool active);

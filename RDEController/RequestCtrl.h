@@ -13,8 +13,8 @@ namespace RDEController {
 		List<request^>^ buscarRequestxActive();
 		request^ buscarRequestxID(int IDsearch);
 		void escribirArchivo(List<request^>^ listaRequest);
-		void agregarNewRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
+		void agregarNewRequest(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted, user^ objUser);
 		void eliminarRequest(int ID);
-		void actualizarRequest(int ID, int emissionDate, int responseDate, String^ type, String^ newOccupation, String^ comment, bool active, user^ objUser);
+		void actualizarRequest(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted, user^ objUser);
 	};
 }

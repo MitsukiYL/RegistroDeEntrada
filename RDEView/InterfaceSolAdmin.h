@@ -69,6 +69,7 @@ namespace RDEView {
 
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button_otro;
+	private: System::Windows::Forms::CheckBox^ check_accepted;
 
 
 	private:
@@ -111,6 +112,7 @@ namespace RDEView {
 			this->button_nuevatarjeta = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button_otro = (gcnew System::Windows::Forms::Button());
+			this->check_accepted = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Request_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -350,11 +352,24 @@ namespace RDEView {
 			this->button_otro->UseVisualStyleBackColor = true;
 			this->button_otro->Click += gcnew System::EventHandler(this, &InterfaceSolAdmin::button3_Click);
 			// 
+			// check_accepted
+			// 
+			this->check_accepted->AutoSize = true;
+			this->check_accepted->Enabled = false;
+			this->check_accepted->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->check_accepted->Location = System::Drawing::Point(481, 68);
+			this->check_accepted->Name = L"check_accepted";
+			this->check_accepted->Size = System::Drawing::Size(72, 17);
+			this->check_accepted->TabIndex = 147;
+			this->check_accepted->Text = L"Aceptado";
+			this->check_accepted->UseVisualStyleBackColor = true;
+			// 
 			// InterfaceSolAdmin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(821, 382);
+			this->Controls->Add(this->check_accepted);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button_otro);
 			this->Controls->Add(this->button_nuevatarjeta);
@@ -395,6 +410,7 @@ private: System::Void Request_DGV_CellClick(System::Object^ sender, System::Wind
 			this->txt_newoccupation->Text = objReq->getNewOccupation();
 			this->rtxt_comment->Text = objReq->getComment();
 			this->check_active->Checked = objReq->getActive();
+			this->check_accepted->Checked = objReq->getAccepted();
 			this->txt_user->Text = Convert::ToString(objReq->getUser()->getUserID());
 		}
 		if (objReq->getType() == "Nuevo Cargo") {
@@ -418,7 +434,7 @@ private: void mostrarGrilla(List<request^>^ listaRequest) {
 
 	for (int i = 0; i < listaRequest->Count; i++) {
 		request^ objReq = listaRequest[i];
-		array<String^>^ filaGrilla = gcnew array<String^>(8);
+		array<String^>^ filaGrilla = gcnew array<String^>(9);
 
 		filaGrilla[0] = Convert::ToString(objReq->getID());
 		filaGrilla[1] = Convert::ToString(objReq->getEmissionDate());
@@ -427,7 +443,8 @@ private: void mostrarGrilla(List<request^>^ listaRequest) {
 		filaGrilla[4] = objReq->getNewOccupation();
 		filaGrilla[5] = objReq->getComment();
 		filaGrilla[6] = Convert::ToString(objReq->getActive());
-		filaGrilla[7] = Convert::ToString(objReq->getUser()->getPerson()->getName());
+		filaGrilla[7] = Convert::ToString(objReq->getAccepted());
+		filaGrilla[8] = Convert::ToString(objReq->getUser()->getPerson()->getName());
 		this->Request_DGV->Rows->Add(filaGrilla);
 	}
 
@@ -510,18 +527,19 @@ private: void ActualizarFormRequest() {
 	DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
 
 	int ID = Convert::ToInt32(this->txt_ID->Text);
-	int emissionDate = Convert::ToInt32(this->txt_emisionDate->Text);
-	int responseDate = Convert::ToInt32(objDateTimeHelper->fechaActual());
+	String^ emissionDate = this->txt_emisionDate->Text;
+	String^ responseDate = objDateTimeHelper->fechaActual();
 	String^ type = this->combtext_type->Text;
 	String^ newOccupation = this->txt_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = false;
+	bool accepted = false;
 	int userID = Convert::ToInt32(this->txt_user->Text);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, objUser);
+	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
 }
 };
 }

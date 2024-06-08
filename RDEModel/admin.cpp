@@ -4,7 +4,7 @@
 using namespace RDEModel;
 
 admin::admin() {};
-admin::admin(int adminID, String^ area, String^ adminType, int registrationDate, int expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson){
+admin::admin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson){
 	this->adminID= adminID;
 	this->area = area;
 	this->adminType = adminType;
@@ -25,10 +25,10 @@ String^ admin::getAdminType() {
 	return this->adminType;
 }
 
-int admin::getRegistrationDate() {
+String^ admin::getRegistrationDate() {
 	return this->registrationDate;
 }
-int admin::getExpirationDate() {
+String^ admin::getExpirationDate() {
 	return this->expirationDate;
 }
 int admin::getContractID() {
@@ -52,10 +52,10 @@ void admin::setAdminType(String^ adminType) {
 	this->adminType =adminType;
 }
 
-void admin::setRegistrationDate(int registrationDate) {
+void admin::setRegistrationDate(String^ registrationDate) {
 	this->registrationDate =registrationDate;
 }
-void admin::setExpirationDate(int expirationDate) {
+void admin::setExpirationDate(String^ expirationDate) {
 	this->expirationDate =expirationDate;
 }
 void admin::setContractID(int contractID) {

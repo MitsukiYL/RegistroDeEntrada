@@ -156,3 +156,18 @@ void DoorRegisterCtrl::agregarNewDoorRegister(String^ entryTime, String^ exitTim
 	listaDoorRegister->Add(objDoorRegister);
 	escribirArchivo(listaDoorRegister);
 }
+
+void  DoorRegisterCtrl::actualizarDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor) {
+	List<doorRegister^>^ lista = buscarDoorRegisterAll();
+	for (int i = 0; i < lista->Count; i++) {
+		if (lista[i]->getCode() == code) {
+			lista[i]->setEntryTime(entryTime);
+			lista[i]->setExitTime(exitTime);
+			lista[i]->setUserIn(userIn);
+			lista[i]->setObjCard(objCard);
+			lista[i]->setObjSensor(objSensor);
+			break;
+		}
+	}
+	escribirArchivo(lista);
+}

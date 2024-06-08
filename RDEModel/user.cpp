@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 user::user() {}
 
-user::user(int userID, String^ userType, bool active, int registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+user::user(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
     this->userType = userType;
     this->active = active;
     this->userID = userID;
@@ -44,11 +44,11 @@ void user::setUserID(int userID) {
     this->userID = userID;
 }
 
-int user::getRegistrationDate() {
+String^ user::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void user::setRegistrationDate(int registrationDate) {
+void user::setRegistrationDate(String^ registrationDate) {
     this->registrationDate = registrationDate;
 }
 

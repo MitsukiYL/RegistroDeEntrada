@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 vehicle::vehicle() {}
 
-vehicle::vehicle(String^ fuelType, String^ vehicleType, int registrationDate,
+vehicle::vehicle(String^ fuelType, String^ vehicleType, String^ registrationDate,
                  String^ plate, String^ brand, String^ model, bool insurance) {
     this->fuelType = fuelType;
     this->vehicleType = vehicleType;
@@ -36,11 +36,11 @@ void vehicle::setVehicleType(String^ vehicleType) {
     this->vehicleType = vehicleType;
 }
 
-int vehicle::getRegistrationDate() {
+String^ vehicle::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void vehicle::setRegistrationDate(int registrationDate) {
+void vehicle::setRegistrationDate(String^ registrationDate) {
     this->registrationDate = registrationDate;
 }
 

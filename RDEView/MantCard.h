@@ -503,12 +503,12 @@ namespace RDEView {
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 		int code = Convert::ToInt32(this->txt_code->Text);
-		int expirationDate = Convert::ToInt32(this->txt_expDate->Text);
+		String^ expirationDate =this->txt_expDate->Text;
 		String^ permissionType = this->combox_permType->Text;
 		int ID = Convert::ToInt32(this->txt_cardID->Text);
 		bool permission = this->check_perm->Checked;
-		int emissionDate = Convert::ToInt32(this->txt_emmDate->Text);
-		int registrationDate = Convert::ToInt32(this->txt_regDate->Text);
+		String^ emissionDate =this->txt_emmDate->Text;
+		String^ registrationDate =this->txt_regDate->Text;
 		bool active = this->check_active->Checked;
 		int userID = Convert::ToInt32(this->txt_user->Text);
 
@@ -525,12 +525,12 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 
 	int code = Convert::ToInt32(this->txt_code->Text);
-	int expirationDate = Convert::ToInt32(this->txt_expDate->Text);
+	String^ expirationDate = this->txt_expDate->Text;
 	String^ permissionType = this->combox_permType->Text;
 	int ID = Convert::ToInt32(this->txt_cardID->Text);
 	bool permission = this->check_perm->Checked;
-	int emissionDate = Convert::ToInt32(this->txt_emmDate->Text);
-	int registrationDate = Convert::ToInt32(this->txt_regDate->Text);
+	String^ emissionDate = this->txt_emmDate->Text;
+	String^ registrationDate = this->txt_regDate->Text;
 	bool active = this->check_active->Checked;
 	int userID = Convert::ToInt32(this->txt_user->Text);
 
@@ -547,6 +547,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 	mostrarGrilla(listaCard);
 }
 private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
+
 	int filaSeleccionada = this->Card_DGV->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
 	int codigoEliminar = Convert::ToInt32(this->Card_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
 	CardCtrl^ objCardCtrl = gcnew CardCtrl();
@@ -567,9 +568,9 @@ private: System::Void Card_DGV_CellClick(System::Object^ sender, System::Windows
 		this->combox_permType->Text = objCard->getPermissionType();
 		this->txt_cardID->Text = Convert::ToString(objCard->getID());
 		this->check_perm->Checked = objCard->getPermission();
-		this->txt_emmDate->Text = Convert::ToString(objCard->getEmissionDate());
-		this->txt_regDate->Text = Convert::ToString(objCard->getRegistrationDate());
-		this->txt_expDate->Text = Convert::ToString(objCard->getExpirationDate());
+		this->txt_emmDate->Text = objCard->getEmissionDate();
+		this->txt_regDate->Text = objCard->getRegistrationDate();
+		this->txt_expDate->Text = objCard->getExpirationDate();
 		this->check_active->Checked = objCard->getActive();
 		this->txt_user->Text = Convert::ToString(objCard->getObjUser()->getUserID());
 	}
@@ -589,9 +590,9 @@ private: void mostrarGrilla(List<card^>^ listCard) {
 		filaGrilla[1] = Convert::ToString(objCard->getID());
 		filaGrilla[2] = Convert::ToString(objCard->getPermission());
 		filaGrilla[3] = objCard->getPermissionType();
-		filaGrilla[4] = Convert::ToString(objCard->getEmissionDate());
-		filaGrilla[5] = Convert::ToString(objCard->getRegistrationDate());
-		filaGrilla[6] = Convert::ToString(objCard->getExpirationDate());
+		filaGrilla[4] = objCard->getEmissionDate();
+		filaGrilla[5] = objCard->getRegistrationDate();
+		filaGrilla[6] = objCard->getExpirationDate();
 		filaGrilla[7] = Convert::ToString(objCard->getActive());
 		filaGrilla[8] = Convert::ToString(objCard->getObjUser()->getPerson()->getName());
 		this->Card_DGV->Rows->Add(filaGrilla);
