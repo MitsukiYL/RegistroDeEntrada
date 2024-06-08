@@ -15,11 +15,11 @@ namespace RDEModel {
         String^ protocol;
         String^ producer;
         bool active;
-        int registrationDate;
+        String^ registrationDate;
 
     public:
         interface();
-        interface(int pin, String^ protocol, String^ producer, bool active, int registrationDate);  
+        interface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate);
     
         int getPin();
         void setPin(int pin);
@@ -33,8 +33,8 @@ namespace RDEModel {
         bool getActive();
         void setActive(bool active);
 
-        int getRegistrationDate();
-        void setRegistrationDate(int registrationDate);
+        String^ getRegistrationDate();
+        void setRegistrationDate(String^ registrationDate);
     };
 }
 

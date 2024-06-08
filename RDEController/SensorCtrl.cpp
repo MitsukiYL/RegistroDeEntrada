@@ -20,7 +20,7 @@ List<sensor^>^ SensorCtrl::buscarSensorAll() {
 		String^ protocole = datos[1];
 		String^ producer = datos[2];
 		bool active = Convert::ToBoolean(datos[3]);
-		int registrationDate = Convert::ToInt32(datos[4]);
+		String^ registrationDate = datos[4];
 		int ID = Convert::ToInt32(datos[5]);
 		String^ model = datos[6];
 
@@ -45,7 +45,7 @@ sensor^ SensorCtrl::buscarSensorxID(int IDb) {
 		String^ protocole = datos[1];
 		String^ producer = datos[2];
 		bool active = Convert::ToBoolean(datos[3]);
-		int registrationDate = Convert::ToInt32(datos[4]);
+		String^ registrationDate = datos[4];
 		int ID = Convert::ToInt32(datos[5]);
 		String^ model = datos[6];
 
@@ -67,13 +67,12 @@ void SensorCtrl::escribirArchivo(List<sensor^>^ listaSensor) {
 	for (int i = 0; i < listaSensor->Count; i++) {
 		sensor^ objSensor = listaSensor[i];
 		lineasArchivo[i] = Convert::ToString(objSensor->getPin()) + ";" + objSensor->getProtocole() + ";" + objSensor->getProducer() + ";" + Convert::ToString(objSensor->getActive())
-			+ ";" + Convert::ToString(objSensor->getRegistrationDate()) + ";" + Convert::ToString(objSensor->getID())
-			+ ";" + Convert::ToString(objSensor->getModel());
+			+ ";" + objSensor->getRegistrationDate() + ";" + Convert::ToString(objSensor->getID()) + ";" + Convert::ToString(objSensor->getModel());
 	}
 	File::WriteAllLines("Sensor.txt", lineasArchivo);
 }
 
-void SensorCtrl::agregarNewSensor(int pin, String^ protocole, String^ producer, bool active, int registrationDate, int ID, String^ model, List<card^>^ listCard) {
+void SensorCtrl::agregarNewSensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard) {
 	List<sensor^>^ listaSensor = buscarSensorAll();
 	sensor^ objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
 	listaSensor->Add(objSensor);

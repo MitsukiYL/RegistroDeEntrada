@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 sensor::sensor() {}
 
-sensor::sensor(int pin, String^ protocol, String^ producer, bool active, int registrationDate, int ID, String^ model, List<card^>^ listCard) {
+sensor::sensor(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard) {
     this->pin = pin;
     this->protocole = protocol;
     this->producer = producer;
@@ -52,11 +52,11 @@ void sensor::setActive(bool active) {
     this->active = active;
 }
 
-int sensor::getRegistrationDate() {
+String^ sensor::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void sensor::setRegistrationDate(int registrationDate) {
+void sensor::setRegistrationDate(String^ registrationDate) {
     this->registrationDate = registrationDate;
 }
 

@@ -16,14 +16,14 @@ namespace RDEModel {
         String^ protocole;
         String^ producer;
         bool active;
-        int registrationDate;
+        String^ registrationDate;
         int ID;
         String^ model;
         List<card^>^ listCard;
 
     public:
         sensor();
-        sensor(int pin, String^ protocole, String^ producer, bool active, int registrationDate, int ID, String^ model, List<card^>^ listCard);
+        sensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard);
 
         int getPin();
         void setPin(int pin);
@@ -37,8 +37,8 @@ namespace RDEModel {
         bool getActive();
         void setActive(bool active);
 
-        int getRegistrationDate();
-        void setRegistrationDate(int registrationDate);
+        String^ getRegistrationDate();
+        void setRegistrationDate(String^ registrationDate);
 
         int getID();
         void setID(int ID);

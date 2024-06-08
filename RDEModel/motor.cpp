@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 motor::motor() {}
 
-motor::motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power) {
+motor::motor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power) {
     this->pin = pin;
     this->RPM = RPM;
     this->producer = producer;
@@ -50,11 +50,11 @@ void motor::setActive(bool active) {
     this->active = active;
 }
 
-int motor::getRegistrationDate() {
+String^ motor::getRegistrationDate() {
     return this->registrationDate;
 }
 
-void motor::setRegistrationDate(int registrationDate) {
+void motor::setRegistrationDate(String^ registrationDate) {
     this->registrationDate = registrationDate;
 }
 

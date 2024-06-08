@@ -15,12 +15,12 @@ namespace RDEModel {
         int RPM;
         String^ producer;
         bool active;
-        int registrationDate;
+        String^ registrationDate;
         int power;
 
         public:
         motor();
-        motor(int pin, int RPM, String^ producer, bool active, int registrationDate, int power);
+        motor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power);
     
         int getPin();
         void setPin(int pin);
@@ -34,8 +34,8 @@ namespace RDEModel {
         bool getActive();
         void setActive(bool active);
 
-        int getRegistrationDate();
-        void setRegistrationDate(int registrationDate);
+        String^ getRegistrationDate();
+        void setRegistrationDate(String^ registrationDate);
 
         int getPower();
         void setPower(int power);
