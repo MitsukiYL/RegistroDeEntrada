@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BuscarPerson.cpp" />
+    <ClCompile Include="BuscarUser.cpp" />
     <ClCompile Include="EnrolamientoTarjeta.cpp" />
     <ClCompile Include="InterfaceInscription.cpp" />
     <ClCompile Include="InterfaceProfile.cpp" />
@@ -148,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuscarPerson.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="BuscarUser.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EnrolamientoTarjeta.h">
@@ -223,6 +227,9 @@
   <ItemGroup>
     <EmbeddedResource Include="BuscarPerson.resx">
       <DependentUpon>BuscarPerson.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarUser.resx">
+      <DependentUpon>BuscarUser.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EnrolamientoTarjeta.resx">
       <DependentUpon>EnrolamientoTarjeta.h</DependentUpon>
