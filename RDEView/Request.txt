@@ -1,3 +1,4 @@
-1;1200;1300;Nuevo Cargo;Docente;sin comentarios;False;False;5
-2;1200;1300;Observacion;12345;12345;False;False;666
-3;862024;862024;Nueva Tarjeta;;prueba1;False;False;4
+4;8/6/2024;8/6/2024;Nueva Tarjeta;;nueva tarjeta;False;False;4
+1;8/6/2024;8/6/2024;Nueva Tarjeta;;new card;False;False;8
+2;8/6/2024;8/6/2024;Otro;;other;False;True;5
+3;8/6/2024;8/6/2024;Nuevo Cargo;Personal Académico;new occupation;False;True;4

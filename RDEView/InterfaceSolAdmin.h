@@ -465,7 +465,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		EnrolamientoTarjeta^ mantBuscarPerson = gcnew EnrolamientoTarjeta(objRequest);
 		mantBuscarPerson->ShowDialog();
 
-		ActualizarFormRequest();
+		ActualizarFormRequest(true);
 
 		MessageBox::Show("La solicitud de Nuevo Cargo se aceptó con éxito.");
 		
@@ -477,7 +477,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ACEPTAR OTRO
 	if (this->check_confirm->Checked) {
-		ActualizarFormRequest();
+		ActualizarFormRequest(true);
 
 		MessageBox::Show("La solicitud se aceptó con éxito.");
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -498,7 +498,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		EnrolamientoTarjeta^ mantBuscarPerson = gcnew EnrolamientoTarjeta(objRequest);
 		mantBuscarPerson->ShowDialog();
 
-		ActualizarFormRequest();
+		ActualizarFormRequest(true);
 
 		MessageBox::Show("La solicitud de Nueva Tarjeta se aceptó con éxito.");
 		List<request^>^ listaRequest = objRequestCtrl->buscarRequestxActive();
@@ -510,7 +510,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {//RECHAZAR SOLICITUD
 	if (this->check_confirm->Checked) {
 
-		ActualizarFormRequest();
+		ActualizarFormRequest(false);
 
 		MessageBox::Show("La solicitud se rechazó con éxito.");
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -520,7 +520,7 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		this->check_confirm->Checked = false;
 	}
 }
-private: void ActualizarFormRequest() {
+private: void ActualizarFormRequest(bool acceptedForm) {
 	int filaSeleccionada = this->Request_DGV->SelectedRows[0]->Index;
 
 	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -533,7 +533,7 @@ private: void ActualizarFormRequest() {
 	String^ newOccupation = this->txt_newoccupation->Text;
 	String^ comment = this->rtxt_comment->Text;
 	bool active = false;
-	bool accepted = false;
+	bool accepted = acceptedForm;
 	int userID = Convert::ToInt32(this->txt_user->Text);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
