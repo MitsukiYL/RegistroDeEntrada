@@ -1,0 +1,1 @@
+Principal;true;Entrada;Vehicular;010101;101010;123456;1234;1234
