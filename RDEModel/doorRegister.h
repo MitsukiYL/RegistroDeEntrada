@@ -4,6 +4,7 @@
 
 #include "card.h"
 #include "sensor.h"
+#include "door.h"
 //hola
 #ifndef _DOORREGISTER_H
 #define _DOORREGISTER_H
@@ -19,10 +20,11 @@ namespace RDEModel {
         int code;
         card^ objCard;
         sensor^ objSensor;
+        door^ objDoor;
 
     public:
         doorRegister();
-        doorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor);
+        doorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor, door^ objDoor);
 
         String^ getEntryTime();
         void setEntryTime(String^ entryTime);
@@ -41,6 +43,9 @@ namespace RDEModel {
 
         sensor^ getObjSensor();
         void setObjSensor(sensor^ objSensor);
+
+        door^ getObjDoor();
+        void setObjDoor(door^ objDoor);
     };
 
 }

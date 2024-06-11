@@ -1,6 +1,7 @@
 #include "DoorRegisterCtrl.h"
 #include "CardCtrl.h"
 #include "SensorCtrl.h"
+#include "DoorCtrl.h"
 
 using namespace RDEController;
 using namespace System::IO;
@@ -23,6 +24,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
 		bool userIn = Convert::ToBoolean(datos[3]);
 		int cardCode = Convert::ToInt32(datos[4]);
 		int sensorID = Convert::ToInt32(datos[5]);
+		String^ Npuerta = datos[6];
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
@@ -30,7 +32,10 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
 		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
-		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
+		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
+
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
 		listaDoorRegister->Add(objDoorRegister);
 	}
 	return listaDoorRegister;
@@ -51,6 +56,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
 		bool userIn = Convert::ToBoolean(datos[3]);
 		int cardCode = Convert::ToInt32(datos[4]);
 		int sensorID = Convert::ToInt32(datos[5]);
+		String^ Npuerta = datos[6];
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
@@ -58,7 +64,10 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
 		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
-		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
+		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
+
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
 
 		if (cardCode == codeCard) {
 			listaDoorRegister->Add(objDoorRegister);
@@ -66,6 +75,46 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
 	}
 	return listaDoorRegister;
 }
+
+
+
+List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxN(String^ name) {
+
+	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
+	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
+	String^ separadores = ";";
+	for each (String ^ lineaDoorRegister in lineas) {
+
+		array<String^>^ datos = lineaDoorRegister->Split(separadores->ToCharArray());
+
+		int code = Convert::ToInt32(datos[0]);
+		String^ entryTime = datos[1];
+		String^ exitTime = datos[2];
+		bool userIn = Convert::ToBoolean(datos[3]);
+		int cardCode = Convert::ToInt32(datos[4]);
+		int sensorID = Convert::ToInt32(datos[5]);
+		String^ Npuerta = datos[6];
+
+		CardCtrl^ objCardCtrl = gcnew CardCtrl();
+		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
+
+		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
+
+		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
+		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
+
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
+
+		if (Npuerta == name) {
+			listaDoorRegister->Add(objDoorRegister);
+		}
+	}
+	return listaDoorRegister;
+}
+
+
+
 
 List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch) {
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
@@ -82,12 +131,16 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch)
 		bool userIn = Convert::ToBoolean(datos[3]);
 		int cardCode = Convert::ToInt32(datos[4]);
 		int sensorID = Convert::ToInt32(datos[5]);
+		String^ Npuerta = datos[6];
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
 
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
 		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
+
+		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
+		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
 
 		String^ separador_dates = "-";
 		array<String^>^ dates = entryTime->Split(separador_dates->ToCharArray());
@@ -137,7 +190,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch)
 			break;
 		}
 
-		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
 
 		if (daystring == daysearch) {
 			listaDoorRegister->Add(objDoorRegister);
@@ -152,19 +205,19 @@ void DoorRegisterCtrl::escribirArchivo(List<doorRegister^>^ listaDoorRegister) {
 	for (int i = 0; i < listaDoorRegister->Count; i++) {
 		doorRegister^ objDoorRegister = listaDoorRegister[i];
 		lineasArchivo[i] = Convert::ToString(objDoorRegister->getCode()) + ";" + objDoorRegister->getEntryTime() + ";" + objDoorRegister->getExitTime() + ";" + Convert::ToString(objDoorRegister->getUserIn())
-			+ ";" + Convert::ToString(objDoorRegister->getObjCard()->getCode()) + ";" + Convert::ToString(objDoorRegister->getObjSensor()->getID());
+			+ ";" + Convert::ToString(objDoorRegister->getObjCard()->getCode()) + ";" + Convert::ToString(objDoorRegister->getObjSensor()->getID()) + ";" + objDoorRegister->getObjDoor()->getDoorName();
 	}
 	File::WriteAllLines("DoorRegister.txt", lineasArchivo);
 }
 
-void DoorRegisterCtrl::agregarNewDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor) {
+void DoorRegisterCtrl::agregarNewDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor, door^ objDoor) {
 	List<doorRegister^>^ listaDoorRegister = buscarDoorRegisterAll();
-	doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor);
+	doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
 	listaDoorRegister->Add(objDoorRegister);
 	escribirArchivo(listaDoorRegister);
 }
 
-void  DoorRegisterCtrl::actualizarDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor) {
+void  DoorRegisterCtrl::actualizarDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor, door^ objDoor) {
 	List<doorRegister^>^ lista = buscarDoorRegisterAll();
 	for (int i = 0; i < lista->Count; i++) {
 		if (lista[i]->getCode() == code) {
@@ -173,6 +226,7 @@ void  DoorRegisterCtrl::actualizarDoorRegister(String^ entryTime, String^ exitTi
 			lista[i]->setUserIn(userIn);
 			lista[i]->setObjCard(objCard);
 			lista[i]->setObjSensor(objSensor);
+			lista[i]->setObjDoor(objDoor);
 			break;
 		}
 	}

@@ -9,12 +9,13 @@ using namespace RDEModel;
 
 interface::interface() {}
 
-interface::interface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate) {
+interface::interface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID) {
     this->pin = pin;
     this->protocol = protocol;
     this->producer = producer;
     this->active = active;
     this->registrationDate = registrationDate;
+    this->ID = ID;
 }
 
 int interface::getPin() {
@@ -55,4 +56,12 @@ String^ interface::getRegistrationDate() {
 
 void interface::setRegistrationDate(String^ registrationDate) {
     this->registrationDate = registrationDate;
+}
+
+int interface::getID() {
+    return this->ID;
+}
+
+void interface::setID(int ID) {
+    this->ID = ID;
 }
