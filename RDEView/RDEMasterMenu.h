@@ -18,6 +18,7 @@
 #include "ReporteDoorRegisterxCard.h"
 #include "ReportePlayaxEstacionamiento.h"
 #include "ReporteDoorRegisterxDay.h"
+#include "ReporteDoorRegisterxDoor.h"
 
 namespace RDEView {
 
@@ -85,6 +86,7 @@ namespace RDEView {
 	private: System::Windows::Forms::ToolStripMenuItem^ reportesToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ estacionamientosXPlayaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ registroDePuertaXDiaToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ registroDePuertaXPuertaToolStripMenuItem;
 
 
 	private:
@@ -123,6 +125,7 @@ namespace RDEView {
 			this->estacionamientosXPlayaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registroDePuertaXDiaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->registroDePuertaXPuertaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -271,9 +274,9 @@ namespace RDEView {
 			// 
 			// reportesToolStripMenuItem
 			// 
-			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->reportesToolStripMenuItem1,
-					this->estacionamientosXPlayaToolStripMenuItem, this->registroDePuertaXDiaToolStripMenuItem
+					this->estacionamientosXPlayaToolStripMenuItem, this->registroDePuertaXDiaToolStripMenuItem, this->registroDePuertaXPuertaToolStripMenuItem
 			});
 			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
 			this->reportesToolStripMenuItem->Size = System::Drawing::Size(65, 20);
@@ -306,6 +309,13 @@ namespace RDEView {
 			this->salirToolStripMenuItem->Size = System::Drawing::Size(41, 20);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
+			// 
+			// registroDePuertaXPuertaToolStripMenuItem
+			// 
+			this->registroDePuertaXPuertaToolStripMenuItem->Name = L"registroDePuertaXPuertaToolStripMenuItem";
+			this->registroDePuertaXPuertaToolStripMenuItem->Size = System::Drawing::Size(216, 22);
+			this->registroDePuertaXPuertaToolStripMenuItem->Text = L"Registro de puerta x Puerta";
+			this->registroDePuertaXPuertaToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::registroDePuertaXPuertaToolStripMenuItem_Click);
 			// 
 			// RDEMasterMenu
 			// 
@@ -407,6 +417,11 @@ private: System::Void registroDePuertaXDiaToolStripMenuItem_Click(System::Object
 	ReporteDoorRegisterxDay^ graficoDoorRegxDay = gcnew ReporteDoorRegisterxDay();
 	graficoDoorRegxDay->MdiParent = this;
 	graficoDoorRegxDay->Show();
+}
+private: System::Void registroDePuertaXPuertaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	ReporteDoorRegisterxDoor^ reporteRegistroPuertaxPuerta = gcnew ReporteDoorRegisterxDoor();
+	reporteRegistroPuertaxPuerta->Show();
 }
 };
 }

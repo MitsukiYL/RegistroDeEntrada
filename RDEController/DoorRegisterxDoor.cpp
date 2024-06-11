@@ -22,16 +22,9 @@ List<doorRegisterxDoor^>^ DoorRegisterxDoorCtrl::generarReporte() {
 		String^ name = listaDoor[i]->getDoorName();
 
 		List<doorRegister^>^ listDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterxN(name);
-		//int cantDoorRegister = listDoorRegister->Count;
+		int cantDoorRegister = listDoorRegister->Count;
 
-		int cantEntradas = 0;
-		int cantSalidas = 0;
-		for (int h = 0; h < listDoorRegister->Count; h++) {
-			if ((listDoorRegister[h]->getEntryTime()) != "00000000") { cantEntradas++; }//string vacio
-			if ((listDoorRegister[h]->getExitTime()) != "00000000") { cantSalidas++; }//string vacio
-		}
-
-		doorRegisterxDoor^ objDoorRegisterxDoor = gcnew doorRegisterxDoor(name, cantEntradas, cantSalidas);
+		doorRegisterxDoor^ objDoorRegisterxDoor = gcnew doorRegisterxDoor(name, cantDoorRegister);
 		listaDoorRegisterxDoor->Add(objDoorRegisterxDoor);
 	}
 

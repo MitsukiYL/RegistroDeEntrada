@@ -185,9 +185,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	CardCtrl^ objCardtrl = gcnew CardCtrl();
 	SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
+	DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
 	DoorRegisterCtrl^ objDoorRegisterCtrl = gcnew DoorRegisterCtrl();
 
 	sensor^ objSensor = objSensorCtrl->buscarSensorxID(123456);
+	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");//agregar en el txt
 
 	int cardCode = Convert::ToInt32(this->txt_code->Text);
 	
@@ -229,7 +231,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		if (i > 0) {
 			String^ exitTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
 			objDoorRegisterCtrl->actualizarDoorRegister(lastDoorRegister->getEntryTime(), exitTime, false, lastDoorRegister->getCode(),
-				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor());
+				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor(), lastDoorRegister->getObjDoor());
 		}
 
 
@@ -254,7 +256,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			drID++;
 		}
 
-		objDoorRegisterCtrl->agregarNewDoorRegister(entryTime, "0", true, drID, objCard, objSensor);
+		objDoorRegisterCtrl->agregarNewDoorRegister(entryTime, "0", true, drID, objCard, objSensor, objDoor);
 		objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
 
 		MessageBox::Show(objCard->getObjUser()->getPerson()->getName() + ", bienvenido al campus");

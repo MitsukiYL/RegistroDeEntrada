@@ -8,20 +8,16 @@ namespace RDEModel {
 	public ref class doorRegisterxDoor {
 	private:
 		String^ doorName;//nombre de la puerta
-		int cantEntradas;//cantidad de veces que entro y salio la persona
-		int cantSalidas;
+		int cantVisitas;//cantidad de veces que entro y salio la persona
 
 	public:
 		doorRegisterxDoor();
-		doorRegisterxDoor(String^ doorName, int cantEntradas, int cantSalidas);
+		doorRegisterxDoor(String^ doorName, int cantVisitas);
 
 		String^ getDoorName();
 		void setDoorName(String^ doorName);
 
-		int getCantEntradas();
-		void setCantEntradas(int cantEntradas);
-
-		int getCantSalidas();
-		void setCantSalidas(int cantSalidas);
+		int getCantVisitas();
+		void setCantVisitas(int cantVisitas);
 	};
 }

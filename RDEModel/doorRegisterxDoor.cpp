@@ -7,11 +7,10 @@ using namespace RDEModel;
 
 doorRegisterxDoor::doorRegisterxDoor() {}
 
-doorRegisterxDoor::doorRegisterxDoor(String^ doorName, int cantEntradas, int cantSalidas) {
+doorRegisterxDoor::doorRegisterxDoor(String^ doorName, int cantVisitas) {
 
 	this->doorName = doorName;
-	this->cantEntradas = cantEntradas;
-	this->cantSalidas = cantSalidas;
+	this->cantVisitas = cantVisitas;
 }
 
 String^ doorRegisterxDoor::getDoorName() {
@@ -22,20 +21,11 @@ void doorRegisterxDoor::setDoorName(String^ doorName) {
 	this->doorName = doorName;
 }
 
-int doorRegisterxDoor::getCantEntradas() {
-	return this->cantEntradas;
+int doorRegisterxDoor::getCantVisitas() {
+	return this->cantVisitas;
 }
 
-void doorRegisterxDoor::setCantEntradas(int cantEntradas) {
-	this->cantEntradas = cantEntradas;
+void doorRegisterxDoor::setCantVisitas(int cantVisitas) {
+	this->cantVisitas = cantVisitas;
 }
-
-int doorRegisterxDoor::getCantSalidas() {
-	return this->cantSalidas;
-}
-
-void doorRegisterxDoor::setCantSalidas(int cantSalidas) {
-	this->cantSalidas = cantSalidas;
-}
-
 
