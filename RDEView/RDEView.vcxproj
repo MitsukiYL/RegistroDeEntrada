@@ -139,6 +139,7 @@
     <ClCompile Include="MantUser.cpp" />
     <ClCompile Include="MantVehicles.cpp" />
     <ClCompile Include="MantZone.cpp" />
+    <ClCompile Include="PruebaComSerial.cpp" />
     <ClCompile Include="RDELog.cpp" />
     <ClCompile Include="RDEMasterMenu.cpp" />
     <ClCompile Include="RDEReg.cpp" />
@@ -201,6 +202,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MantZone.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PruebaComSerial.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RDELog.h">
@@ -282,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantZone.resx">
       <DependentUpon>MantZone.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PruebaComSerial.resx">
+      <DependentUpon>PruebaComSerial.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RDELog.resx">
       <DependentUpon>RDELog.h</DependentUpon>
