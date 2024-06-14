@@ -181,6 +181,22 @@ namespace RDEView {
 
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*            
+		TARJETAS DE PRUEBA ----------- NO BORRAR ESTAS TARJETAS NI CREAR NUEVAS PARA ESTOS USUARIOS
+		---------------------------------
+		CardID: 43143143
+		Usuario: usuario prueba
+		Permiso: General
+		---------------------------------
+		CardID: 88887777
+		Usuario: admin
+		Permiso: Excepcional
+		---------------------------------
+	*/
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	CardCtrl^ objCardtrl = gcnew CardCtrl();
@@ -217,18 +233,17 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
 
 	if (isInside) {
-		//AVANZAR
 		objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
 		//Llamamos todas los doorRegister de la tarjeta
 		List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterxCard(cardCode);
 
 		//Declaro el último doorRegister de la tarjeta,
 		//Si el usuario está saliendo del campus -> isInside pasa a ser false + userIn pasa a ser false
-		int i = (listaDoorRegister->Count);
-		doorRegister^ lastDoorRegister = listaDoorRegister[i - 1];
 
+		int i = (listaDoorRegister->Count);
 
 		if (i > 0) {
+			doorRegister^ lastDoorRegister = listaDoorRegister[i - 1];
 			String^ exitTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
 			objDoorRegisterCtrl->actualizarDoorRegister(lastDoorRegister->getEntryTime(), exitTime, false, lastDoorRegister->getCode(),
 				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor(), lastDoorRegister->getObjDoor());

@@ -1,16 +1,16 @@
 78901234;Juan José;20211234;jj@pucp.edu.pe;999123456;juanjuan;False;Jefe de Práctica;Masculino;23;False
 78901235;Liliana Chavez;20212345;lchavez@pucp.edu.pe;999654321;lilichavez;False;Estudiante;Femenino;19;False
 78903456;Raul Ramirez;20213456;ramirez@pucp.pe;998998998;ramirez123;False;Docente;Masculino;32;True
-65123456;David Allasi;20091234;david.allasi@pucp.pe;998999999;allasidavid;False;Docente;Masculino;33;True
+65123456;David Allasi;20091234;david.allasi@pucp.pe;998999999;allasidavid;False;Docente;Masculino;33;False
 76543210;Alexa Diaz;20121234;alexa.diaz123@hotmail.com;999987654;adiaz12345;False;Personal de Seguridad;Femenino;27;False
 76540987;Sebastian Calderon;12345678;calderon@pucp.edu.pe;987987987;contraseña;True;Personal Administrativo;Masculino;42;False
-10000000;admin;10000000;@admin;100000000;admin;True;Administrador;gender;123;True
+10000000;admin;10000000;@admin;100000000;admin;True;Administrador;gender;123;False
 9357677;Pedro Yasuda;98765432;pedro@gmail.com;999123580;contraseña;False;occupation;gender;999;False
 63287788;Laura Galvez;20161987;lgalvez@pucp.edu.pe;909090909;galvez;False;occupation;gender;999;False
 20302030;Kendrick Lamar;20156160;euphoria;meetthegrahams;notlikeus;False;occupation;gender;999;True
 99999999;user;12345678;@user;100000000;user;True;Administrador;gender;123;False
 88888888;admintest;88888888;@admintest;88888888;admintest;True;Administrador;gender;123;True
-54322090;usuario prueba;20905432;@usertest;987321456;test;True;occupation;gender;999;True
+54322090;usuario prueba;20905432;@usertest;987321456;test;True;occupation;gender;999;False
 6947619;Anibal;20203456;a20203456@pucp.edu.pe;968020541;password;True;Docente;gender;50;False
 77889966;Juan;11111111;juan.11@gmail.com;989898989;qwerty;False;Personal Académico;H;34;False
 129878;Pedro Yasuda;27382374;@mail.com;9988877;mitsuki;False;occupation;gender;999;False
