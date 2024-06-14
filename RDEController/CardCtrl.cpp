@@ -15,7 +15,7 @@ List<card^>^ CardCtrl::buscarCardAll() {
 	for each (String ^ lineaCard in lineas) {
 
 		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
-		int code = Convert::ToInt32(datos[0]);
+		String^ code = datos[0];
 		int ID = Convert::ToInt32(datos[1]);
 		bool permission = Convert::ToBoolean(datos[2]);
 		String^ permissionType = datos[3];
@@ -34,14 +34,14 @@ List<card^>^ CardCtrl::buscarCardAll() {
 	return listaCard;
 }
 
-card^ CardCtrl::buscarCardxCode(int codigoB) {
+card^ CardCtrl::buscarCardxCode(String^ codeSearch) {
 	card^ objCard;
 	array<String^>^ lineas = File::ReadAllLines("Card.txt");
 	String^ separadores = ";";
 	for each (String ^ lineaCard in lineas) {
 
 		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
-		int code = Convert::ToInt32(datos[0]);
+		String^ code = datos[0];
 		int ID = Convert::ToInt32(datos[1]);
 		bool permission = Convert::ToBoolean(datos[2]);
 		String^ permissionType = datos[3];
@@ -54,7 +54,7 @@ card^ CardCtrl::buscarCardxCode(int codigoB) {
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-		if (code == codigoB) {
+		if (code == codeSearch) {
 			objCard = gcnew card(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
 			break;
 		}
@@ -69,7 +69,7 @@ List<card^>^ CardCtrl::buscarCardxUserID(int userIDsearch) {
 	for each (String ^ lineaCard in lineas) {
 
 		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
-		int code = Convert::ToInt32(datos[0]);
+		String^ code = datos[0];
 		int ID = Convert::ToInt32(datos[1]);
 		bool permission = Convert::ToBoolean(datos[2]);
 		String^ permissionType = datos[3];
@@ -94,24 +94,24 @@ void CardCtrl::escribirArchivo(List<card^>^ listaCard) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaCard->Count);
 	for (int i = 0; i < listaCard->Count; i++) {
 		card^ objCard = listaCard[i];
-		lineasArchivo[i] = Convert::ToString(objCard->getCode()) + ";" + Convert::ToString(objCard->getID()) + ";" + Convert::ToString(objCard->getPermission()) + ";" + objCard->getPermissionType()
+		lineasArchivo[i] = objCard->getCode() + ";" + Convert::ToString(objCard->getID()) + ";" + Convert::ToString(objCard->getPermission()) + ";" + objCard->getPermissionType()
 			+ ";" + objCard->getEmissionDate() + ";" + objCard->getRegistrationDate()+ ";" + objCard->getExpirationDate() + ";" + Convert::ToString(objCard->getActive()) 
 			+ ";" + Convert::ToString(objCard->getObjUser()->getUserID());
 	}
 	File::WriteAllLines("Card.txt", lineasArchivo);
 }
 
-void CardCtrl::agregarNewCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
+void CardCtrl::agregarNewCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
 	List<card^>^ listaCard = buscarCardAll();
 	card^ objCard = gcnew card(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
 	listaCard->Add(objCard);
 	escribirArchivo(listaCard);
 }
 
-void CardCtrl::eliminarCard(int codigo) {
+void CardCtrl::eliminarCard(String^ codeDelete) {
 	List<card^>^ listaCard = buscarCardAll();
 	for (int i = 0; i < listaCard->Count; i++) {
-		if (listaCard[i]->getCode() == codigo) {
+		if (listaCard[i]->getCode() == codeDelete) {
 			listaCard->RemoveAt(i);
 			break;
 		}
@@ -119,7 +119,7 @@ void CardCtrl::eliminarCard(int codigo) {
 	escribirArchivo(listaCard);
 }
 
-void CardCtrl::actualizarCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
+void CardCtrl::actualizarCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
 	List<card^>^ listaCard = buscarCardAll();
 	for (int i = 0; i < listaCard->Count; i++) {
 		if (listaCard[i]->getCode() == code) {

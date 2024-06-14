@@ -22,7 +22,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
 		String^ entryTime = datos[1];
 		String^ exitTime = datos[2];
 		bool userIn = Convert::ToBoolean(datos[3]);
-		int cardCode = Convert::ToInt32(datos[4]);
+		String^ cardCode = datos[4];
 		int sensorID = Convert::ToInt32(datos[5]);
 		String^ Npuerta = datos[6];
 
@@ -41,7 +41,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
 	return listaDoorRegister;
 }
 
-List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
+List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(String^ codeCard) {
 
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
 	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
@@ -54,7 +54,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(int codeCard) {
 		String^ entryTime = datos[1];
 		String^ exitTime = datos[2];
 		bool userIn = Convert::ToBoolean(datos[3]);
-		int cardCode = Convert::ToInt32(datos[4]);
+		String^ cardCode = datos[4];
 		int sensorID = Convert::ToInt32(datos[5]);
 		String^ Npuerta = datos[6];
 
@@ -91,7 +91,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxN(String^ name) {
 		String^ entryTime = datos[1];
 		String^ exitTime = datos[2];
 		bool userIn = Convert::ToBoolean(datos[3]);
-		int cardCode = Convert::ToInt32(datos[4]);
+		String^ cardCode = datos[4];
 		int sensorID = Convert::ToInt32(datos[5]);
 		String^ Npuerta = datos[6];
 
@@ -129,7 +129,7 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch)
 		String^ entryTime = datos[1];
 		String^ exitTime = datos[2];
 		bool userIn = Convert::ToBoolean(datos[3]);
-		int cardCode = Convert::ToInt32(datos[4]);
+		String^ cardCode = datos[4];
 		int sensorID = Convert::ToInt32(datos[5]);
 		String^ Npuerta = datos[6];
 
@@ -205,7 +205,7 @@ void DoorRegisterCtrl::escribirArchivo(List<doorRegister^>^ listaDoorRegister) {
 	for (int i = 0; i < listaDoorRegister->Count; i++) {
 		doorRegister^ objDoorRegister = listaDoorRegister[i];
 		lineasArchivo[i] = Convert::ToString(objDoorRegister->getCode()) + ";" + objDoorRegister->getEntryTime() + ";" + objDoorRegister->getExitTime() + ";" + Convert::ToString(objDoorRegister->getUserIn())
-			+ ";" + Convert::ToString(objDoorRegister->getObjCard()->getCode()) + ";" + Convert::ToString(objDoorRegister->getObjSensor()->getID()) + ";" + objDoorRegister->getObjDoor()->getDoorName();
+			+ ";" + objDoorRegister->getObjCard()->getCode() + ";" + Convert::ToString(objDoorRegister->getObjSensor()->getID()) + ";" + objDoorRegister->getObjDoor()->getDoorName();
 	}
 	File::WriteAllLines("DoorRegister.txt", lineasArchivo);
 }

@@ -10,7 +10,7 @@ namespace RDEController {
 	public:
 		DoorRegisterCtrl();
 		List<doorRegister^>^ buscarDoorRegisterAll();
-		List<doorRegister^>^ buscarDoorRegisterxCard(int codeCard);
+		List<doorRegister^>^ buscarDoorRegisterxCard(String^ codeCard);
 		List<doorRegister^>^ buscarDoorRegisterxDay(String^ daysearch);
 		List<doorRegister^>^ buscarDoorRegisterxN(String^ name);
 		void escribirArchivo(List<doorRegister^>^ listaDoorRegister);

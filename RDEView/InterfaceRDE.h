@@ -207,7 +207,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	sensor^ objSensor = objSensorCtrl->buscarSensorxID(123456);
 	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");//agregar en el txt
 
-	int cardCode = Convert::ToInt32(this->txt_code->Text);
+	String^ cardCode = this->txt_code->Text;
 	
 	card^ objCard = objCardtrl->buscarCardxCode(cardCode);
 	person^ objPerson = objCard->getObjUser()->getPerson();

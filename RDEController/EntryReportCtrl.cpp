@@ -18,7 +18,7 @@ List<doorRegisterxCard^>^ EntryReportCtrl::generarReporte() {
 
 	for (int i = 0; i < listaCard->Count; i++) {
 
-		int code = listaCard[i]->getCode();
+		String^ code = listaCard[i]->getCode();
 		int ID = listaCard[i]->getID();
 
 		

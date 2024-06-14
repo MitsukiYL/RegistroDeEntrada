@@ -10,11 +10,11 @@ namespace RDEController {
 	public:
 		CardCtrl();
 		List<card^>^ buscarCardAll();
-		card^ buscarCardxCode(int codigoB);
+		card^ buscarCardxCode(String^ codeSearch);
 		List<card^>^ buscarCardxUserID(int userIDsearch);
 		void escribirArchivo(List<card^>^ listaCard);
-		void agregarNewCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
-		void eliminarCard(int codigo);
-		void actualizarCard(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
+		void agregarNewCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
+		void eliminarCard(String^ codeDelete);
+		void actualizarCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
 	};
 }

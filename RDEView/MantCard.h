@@ -502,7 +502,7 @@ namespace RDEView {
 #pragma endregion
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
-		int code = Convert::ToInt32(this->txt_code->Text);
+		String^ code = this->txt_code->Text;
 		String^ expirationDate =this->txt_expDate->Text;
 		String^ permissionType = this->combox_permType->Text;
 		int ID = Convert::ToInt32(this->txt_cardID->Text);
@@ -524,7 +524,7 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 	}
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 
-	int code = Convert::ToInt32(this->txt_code->Text);
+	String^ code = this->txt_code->Text;
 	String^ expirationDate = this->txt_expDate->Text;
 	String^ permissionType = this->combox_permType->Text;
 	int ID = Convert::ToInt32(this->txt_cardID->Text);
@@ -549,7 +549,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
 
 	int filaSeleccionada = this->Card_DGV->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
-	int codigoEliminar = Convert::ToInt32(this->Card_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+	String^ codigoEliminar = this->Card_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString();
 	CardCtrl^ objCardCtrl = gcnew CardCtrl();
 	objCardCtrl->eliminarCard(codigoEliminar);
 	MessageBox::Show("La tarjeta seleccionada ha sido eliminado correctamente");
@@ -559,12 +559,12 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	mostrarGrilla(listaCard);
 }
 private: System::Void Card_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int cardCode = Int32::Parse(Card_DGV->Rows[Card_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+	String^ cardCode = Card_DGV->Rows[Card_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString();
 	CardCtrl^ objCardCtrl = gcnew CardCtrl();
 	card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
 
 	if (objCard != nullptr) {
-		this->txt_code->Text = Convert::ToString(objCard->getCode());
+		this->txt_code->Text = objCard->getCode();
 		this->combox_permType->Text = objCard->getPermissionType();
 		this->txt_cardID->Text = Convert::ToString(objCard->getID());
 		this->check_perm->Checked = objCard->getPermission();
@@ -586,7 +586,7 @@ private: void mostrarGrilla(List<card^>^ listCard) {
 	for (int i = 0; i < listCard->Count; i++) {
 		card^ objCard = listCard[i];
 		array<String^>^ filaGrilla = gcnew array<String^>(9);
-		filaGrilla[0] = Convert::ToString(objCard->getCode());
+		filaGrilla[0] = objCard->getCode();
 		filaGrilla[1] = Convert::ToString(objCard->getID());
 		filaGrilla[2] = Convert::ToString(objCard->getPermission());
 		filaGrilla[3] = objCard->getPermissionType();

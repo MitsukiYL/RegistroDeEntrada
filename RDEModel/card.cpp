@@ -6,7 +6,7 @@ using namespace RDEModel;
 
 card::card() {
 }
-card::card(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
+card::card(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
 
     this->code= code;
     this->expirationDate = expirationDate;
@@ -19,7 +19,7 @@ card::card(int code, String^ expirationDate, String^ permissionType, int ID, boo
     this->objUser = objUser;
 }
 
-int card::getCode() {
+String^ card::getCode() {
     return this->code;
 }
 String^ card::getExpirationDate() {
@@ -47,7 +47,7 @@ user^ card::getObjUser() {
     return this->objUser;
 }
 
-void card::setCode(int code) {
+void card::setCode(String^ code) {
     this->code = code;
 }
 void card::setExpirationDate(String^ expirationDate) {

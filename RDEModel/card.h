@@ -13,7 +13,7 @@ using namespace System;
 namespace RDEModel {
 	public ref class card {
     		private:
-        	int code;
+        	String^ code;
             String^ expirationDate;
         	String^ permissionType;
         	int ID;
@@ -25,9 +25,9 @@ namespace RDEModel {
 
     	public:
 		card();
-		card(int code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
+		card(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser);
 
-        int getCode();
+        String^ getCode();
         String^ getExpirationDate();
         String^ getPermissionType();
         int getID();
@@ -37,7 +37,7 @@ namespace RDEModel {
         bool getActive();
         user^ getObjUser();
 
-        void setCode(int code);
+        void setCode(String^ code);
         void setExpirationDate(String^ expirationDate);
         void setPermissionType(String^ permissionType);
         void setID(int ID);
