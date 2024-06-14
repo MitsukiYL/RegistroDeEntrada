@@ -21,6 +21,7 @@ namespace RDEView {
 		InterfaceRDE(void)
 		{
 			InitializeComponent();
+			String^ cardCode;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -40,16 +41,8 @@ namespace RDEView {
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 
+	private: String^ cardCode;
 
-
-
-
-
-
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ txt_code;
-
-	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TextBox^ txt_reservedparksite;
 	private: System::Windows::Forms::Label^ label_reservedparksite;
 	private: System::Windows::Forms::Label^ label_availableparksites;
@@ -57,13 +50,15 @@ namespace RDEView {
 
 
 	private: System::Windows::Forms::TextBox^ txt_availableparksites;
+	private: System::IO::Ports::SerialPort^ port;
+	private: System::ComponentModel::IContainer^ components;
 
 
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -72,67 +67,41 @@ namespace RDEView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->txt_code = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->txt_reservedparksite = (gcnew System::Windows::Forms::TextBox());
 			this->label_reservedparksite = (gcnew System::Windows::Forms::Label());
 			this->label_availableparksites = (gcnew System::Windows::Forms::Label());
 			this->txt_availableparksites = (gcnew System::Windows::Forms::TextBox());
+			this->port = (gcnew System::IO::Ports::SerialPort(this->components));
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 9);
+			this->label1->Location = System::Drawing::Point(16, 11);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(154, 13);
+			this->label1->Size = System::Drawing::Size(193, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"¡Realice su registro de entrada!";
 			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(10, 37);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(90, 13);
-			this->label5->TabIndex = 7;
-			this->label5->Text = L"Codigo de tarjeta:";
-			// 
-			// txt_code
-			// 
-			this->txt_code->Location = System::Drawing::Point(183, 34);
-			this->txt_code->Name = L"txt_code";
-			this->txt_code->Size = System::Drawing::Size(144, 20);
-			this->txt_code->TabIndex = 8;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(160, 66);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(86, 19);
-			this->button1->TabIndex = 9;
-			this->button1->Text = L"Pasar tarjeta";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &InterfaceRDE::button1_Click);
-			// 
 			// txt_reservedparksite
 			// 
-			this->txt_reservedparksite->Location = System::Drawing::Point(183, 98);
-			this->txt_reservedparksite->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_reservedparksite->Location = System::Drawing::Point(241, 44);
+			this->txt_reservedparksite->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_reservedparksite->Name = L"txt_reservedparksite";
-			this->txt_reservedparksite->Size = System::Drawing::Size(144, 20);
+			this->txt_reservedparksite->Size = System::Drawing::Size(191, 22);
 			this->txt_reservedparksite->TabIndex = 10;
 			this->txt_reservedparksite->Visible = false;
 			// 
 			// label_reservedparksite
 			// 
 			this->label_reservedparksite->AutoSize = true;
-			this->label_reservedparksite->Location = System::Drawing::Point(10, 103);
+			this->label_reservedparksite->Location = System::Drawing::Point(13, 47);
+			this->label_reservedparksite->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_reservedparksite->Name = L"label_reservedparksite";
-			this->label_reservedparksite->Size = System::Drawing::Size(153, 13);
+			this->label_reservedparksite->Size = System::Drawing::Size(193, 16);
 			this->label_reservedparksite->TabIndex = 11;
 			this->label_reservedparksite->Text = L"Su estacionamiento reservado:\r\n";
 			this->label_reservedparksite->Visible = false;
@@ -140,35 +109,39 @@ namespace RDEView {
 			// label_availableparksites
 			// 
 			this->label_availableparksites->AutoSize = true;
-			this->label_availableparksites->Location = System::Drawing::Point(12, 103);
+			this->label_availableparksites->Location = System::Drawing::Point(16, 47);
+			this->label_availableparksites->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_availableparksites->Name = L"label_availableparksites";
-			this->label_availableparksites->Size = System::Drawing::Size(120, 13);
+			this->label_availableparksites->Size = System::Drawing::Size(153, 16);
 			this->label_availableparksites->TabIndex = 13;
 			this->label_availableparksites->Text = L"Estacionamientos libres:";
 			this->label_availableparksites->Visible = false;
 			// 
 			// txt_availableparksites
 			// 
-			this->txt_availableparksites->Location = System::Drawing::Point(183, 98);
-			this->txt_availableparksites->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_availableparksites->Location = System::Drawing::Point(242, 44);
+			this->txt_availableparksites->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_availableparksites->Name = L"txt_availableparksites";
-			this->txt_availableparksites->Size = System::Drawing::Size(144, 20);
+			this->txt_availableparksites->Size = System::Drawing::Size(191, 22);
 			this->txt_availableparksites->TabIndex = 12;
 			this->txt_availableparksites->Visible = false;
 			// 
+			// port
+			// 
+			this->port->PortName = L"COM3";
+			this->port->DataReceived += gcnew System::IO::Ports::SerialDataReceivedEventHandler(this, &InterfaceRDE::port_DataReceived);
+			// 
 			// InterfaceRDE
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(334, 140);
+			this->ClientSize = System::Drawing::Size(445, 85);
 			this->Controls->Add(this->label_availableparksites);
 			this->Controls->Add(this->txt_availableparksites);
 			this->Controls->Add(this->label_reservedparksite);
 			this->Controls->Add(this->txt_reservedparksite);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->txt_code);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"InterfaceRDE";
 			this->Text = L"Registro de entrada al Campus";
 			this->Load += gcnew System::EventHandler(this, &InterfaceRDE::InterfaceRDE_Load);
@@ -178,24 +151,26 @@ namespace RDEView {
 		}
 #pragma endregion
 	private: System::Void InterfaceRDE_Load(System::Object^ sender, System::EventArgs^ e) {
-
+		port->Open();
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: void GenerarDoorRegister(card^ objCard) {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*            
-		TARJETAS DE PRUEBA ----------- NO BORRAR ESTAS TARJETAS NI CREAR NUEVAS PARA ESTOS USUARIOS
-		---------------------------------
-		CardID: 43143143
-		Usuario: usuario prueba
-		Permiso: General
-		---------------------------------
-		CardID: 88887777
-		Usuario: admin
-		Permiso: Excepcional
-		---------------------------------
-	*/
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+	TARJETAS DE PRUEBA ----------- NO BORRAR ESTAS TARJETAS NI CREAR NUEVAS PARA ESTOS USUARIOS
+	---------------------------------
+	CardID: 43143143
+	Usuario: usuario prueba
+	Permiso: General
+	---------------------------------
+	CardID: 88887777
+	Usuario: admin
+	Permiso: Excepcional
+	---------------------------------
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
@@ -207,9 +182,6 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	sensor^ objSensor = objSensorCtrl->buscarSensorxID(123456);
 	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");//agregar en el txt
 
-	String^ cardCode = this->txt_code->Text;
-	
-	card^ objCard = objCardtrl->buscarCardxCode(cardCode);
 	person^ objPerson = objCard->getObjUser()->getPerson();
 	bool isInside = objPerson->getIsInside();
 	int DNI = objPerson->getDNI();
@@ -249,11 +221,10 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor(), lastDoorRegister->getObjDoor());
 		}
 
-
 		MessageBox::Show("Saliendo al campus");
 	}
 	else {
-		
+
 		String^ entryTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
 
 		List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterAll();
@@ -276,6 +247,42 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 		MessageBox::Show(objCard->getObjUser()->getPerson()->getName() + ", bienvenido al campus");
 	}
+}
+#pragma region Delegates
+private: delegate void UPDATE_SERIAL_DATA(String^ data);
+private: void UpdateRxData(String^ data) {
+
+	/*
+	PROTOCOLO DE CARD READER:    name    +    cardID    +    stopper
+	Ejemplo:  "ID:12312371823;\r"
+	array_dataA = {ID,12312371823;\r}
+	array_dataB = {12312371823,\r};
+	*/
+	CardCtrl^ objCardCtrl = gcnew CardCtrl();
+
+	String^ separadorA = ":";
+	String^ separadorB = ";";
+
+	array<String^>^ array_dataA = data->Split(separadorA->ToCharArray());
+
+	if (array_dataA->Length > 1) {
+		array<String^>^ array_dataB = array_dataA[1]->Split(separadorB->ToCharArray());
+		if (array_dataA[0] == "ID") {
+			cardCode = array_dataB[0];
+		}
+	}
+
+	card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
+	if (objCard != nullptr) {
+		GenerarDoorRegister(objCard);
+	}
+}
+#pragma endregion
+private: System::Void port_DataReceived(System::Object^ sender, System::IO::Ports::SerialDataReceivedEventArgs^ e) {
+	String^ data = port->ReadLine();
+
+	UPDATE_SERIAL_DATA^ cb = gcnew  UPDATE_SERIAL_DATA(this, &InterfaceRDE::UpdateRxData);
+	Control::Invoke(cb, data);
 }
 };
 }
