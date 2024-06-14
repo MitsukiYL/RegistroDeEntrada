@@ -14,3 +14,4 @@
 6947619;Anibal;20203456;a20203456@pucp.edu.pe;968020541;password;True;Docente;gender;50;False
 77889966;Juan;11111111;juan.11@gmail.com;989898989;qwerty;False;Personal Académico;H;34;False
 129878;Pedro Yasuda;27382374;@mail.com;9988877;mitsuki;False;occupation;gender;999;False
+72890017;Pedro Mitsuki Yasuda Larrea;20216553;mitsuki.yasuda@pucp.edu.pe;940665943;mitsukiyasuda;False;occupation;gender;999;False
