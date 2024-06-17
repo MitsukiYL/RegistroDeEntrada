@@ -128,66 +128,59 @@ namespace RDEView {
 				L"General", L"Excepcional", L"Mantenimiento",
 					L"Administrador"
 			});
-			this->combox_permType->Location = System::Drawing::Point(181, 374);
-			this->combox_permType->Margin = System::Windows::Forms::Padding(4);
+			this->combox_permType->Location = System::Drawing::Point(136, 304);
 			this->combox_permType->Name = L"combox_permType";
-			this->combox_permType->Size = System::Drawing::Size(231, 24);
+			this->combox_permType->Size = System::Drawing::Size(174, 21);
 			this->combox_permType->TabIndex = 0;
 			// 
 			// txt_DNI
 			// 
-			this->txt_DNI->Location = System::Drawing::Point(180, 62);
-			this->txt_DNI->Margin = System::Windows::Forms::Padding(4);
+			this->txt_DNI->Location = System::Drawing::Point(135, 50);
 			this->txt_DNI->Name = L"txt_DNI";
-			this->txt_DNI->Size = System::Drawing::Size(231, 22);
+			this->txt_DNI->Size = System::Drawing::Size(174, 20);
 			this->txt_DNI->TabIndex = 4;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(23, 65);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(17, 53);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(30, 16);
+			this->label2->Size = System::Drawing::Size(26, 13);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"DNI";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(21, 97);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Location = System::Drawing::Point(16, 79);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(44, 16);
+			this->label4->Size = System::Drawing::Size(35, 13);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"Cargo";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(22, 380);
-			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Location = System::Drawing::Point(16, 309);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(107, 16);
+			this->label5->Size = System::Drawing::Size(83, 13);
 			this->label5->TabIndex = 9;
 			this->label5->Text = L"Tipo de Permiso";
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(13, 201);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(4);
+			this->progressBar1->Location = System::Drawing::Point(10, 163);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(407, 28);
+			this->progressBar1->Size = System::Drawing::Size(305, 23);
 			this->progressBar1->TabIndex = 10;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->label6->Location = System::Drawing::Point(16, 23);
-			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Location = System::Drawing::Point(12, 19);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(100, 29);
+			this->label6->Size = System::Drawing::Size(79, 25);
 			this->label6->TabIndex = 11;
 			this->label6->Text = L"Usuario";
 			// 
@@ -195,29 +188,26 @@ namespace RDEView {
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->label7->Location = System::Drawing::Point(16, 233);
-			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label7->Location = System::Drawing::Point(12, 189);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(91, 29);
+			this->label7->Size = System::Drawing::Size(73, 25);
 			this->label7->TabIndex = 12;
 			this->label7->Text = L"Tarjeta";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(21, 276);
-			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label9->Location = System::Drawing::Point(16, 224);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(51, 16);
+			this->label9->Size = System::Drawing::Size(40, 13);
 			this->label9->TabIndex = 13;
 			this->label9->Text = L"Código";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(127, 439);
-			this->button1->Margin = System::Windows::Forms::Padding(4);
+			this->button1->Location = System::Drawing::Point(95, 357);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(187, 39);
+			this->button1->Size = System::Drawing::Size(140, 32);
 			this->button1->TabIndex = 17;
 			this->button1->Text = L"Enlazar Tarjeta";
 			this->button1->UseVisualStyleBackColor = true;
@@ -226,20 +216,18 @@ namespace RDEView {
 			// checkBox_confirm
 			// 
 			this->checkBox_confirm->AutoSize = true;
-			this->checkBox_confirm->Location = System::Drawing::Point(26, 412);
-			this->checkBox_confirm->Margin = System::Windows::Forms::Padding(4);
+			this->checkBox_confirm->Location = System::Drawing::Point(20, 335);
 			this->checkBox_confirm->Name = L"checkBox_confirm";
-			this->checkBox_confirm->Size = System::Drawing::Size(86, 20);
+			this->checkBox_confirm->Size = System::Drawing::Size(70, 17);
 			this->checkBox_confirm->TabIndex = 18;
 			this->checkBox_confirm->Text = L"Confirmar";
 			this->checkBox_confirm->UseVisualStyleBackColor = true;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(127, 142);
-			this->button2->Margin = System::Windows::Forms::Padding(4);
+			this->button2->Location = System::Drawing::Point(95, 115);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(187, 39);
+			this->button2->Size = System::Drawing::Size(140, 32);
 			this->button2->TabIndex = 20;
 			this->button2->Text = L"Buscar Usuario";
 			this->button2->UseVisualStyleBackColor = true;
@@ -252,60 +240,58 @@ namespace RDEView {
 				L"Estudiante", L"Jefe de Práctica", L"Docente",
 					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L"Administrador"
 			});
-			this->combox_occupation->Location = System::Drawing::Point(180, 94);
-			this->combox_occupation->Margin = System::Windows::Forms::Padding(4);
+			this->combox_occupation->Location = System::Drawing::Point(135, 76);
 			this->combox_occupation->Name = L"combox_occupation";
-			this->combox_occupation->Size = System::Drawing::Size(231, 24);
+			this->combox_occupation->Size = System::Drawing::Size(174, 21);
 			this->combox_occupation->TabIndex = 21;
 			// 
 			// port1
 			// 
-			this->port1->PortName = L"COM3";
+			this->port1->PortName = L"COM4";
 			this->port1->DataReceived += gcnew System::IO::Ports::SerialDataReceivedEventHandler(this, &EnrolamientoTarjeta::port1_DataReceived);
 			// 
 			// richtxt_code
 			// 
-			this->richtxt_code->Location = System::Drawing::Point(180, 267);
+			this->richtxt_code->Location = System::Drawing::Point(135, 217);
+			this->richtxt_code->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->richtxt_code->Name = L"richtxt_code";
-			this->richtxt_code->Size = System::Drawing::Size(231, 25);
+			this->richtxt_code->Size = System::Drawing::Size(174, 21);
 			this->richtxt_code->TabIndex = 22;
 			this->richtxt_code->Text = L"";
 			// 
 			// checkBox_codeconfirm
 			// 
 			this->checkBox_codeconfirm->AutoSize = true;
-			this->checkBox_codeconfirm->Location = System::Drawing::Point(25, 345);
-			this->checkBox_codeconfirm->Margin = System::Windows::Forms::Padding(4);
+			this->checkBox_codeconfirm->Location = System::Drawing::Point(19, 280);
 			this->checkBox_codeconfirm->Name = L"checkBox_codeconfirm";
-			this->checkBox_codeconfirm->Size = System::Drawing::Size(202, 20);
+			this->checkBox_codeconfirm->Size = System::Drawing::Size(161, 17);
 			this->checkBox_codeconfirm->TabIndex = 23;
 			this->checkBox_codeconfirm->Text = L"Código de tarjeta confirmado";
 			this->checkBox_codeconfirm->UseVisualStyleBackColor = true;
 			// 
 			// richtxt_confirmcode
 			// 
-			this->richtxt_confirmcode->Location = System::Drawing::Point(180, 302);
+			this->richtxt_confirmcode->Location = System::Drawing::Point(135, 245);
+			this->richtxt_confirmcode->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->richtxt_confirmcode->Name = L"richtxt_confirmcode";
-			this->richtxt_confirmcode->Size = System::Drawing::Size(231, 25);
+			this->richtxt_confirmcode->Size = System::Drawing::Size(174, 21);
 			this->richtxt_confirmcode->TabIndex = 25;
 			this->richtxt_confirmcode->Text = L"";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(21, 311);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(16, 253);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(109, 16);
+			this->label1->Size = System::Drawing::Size(86, 13);
 			this->label1->TabIndex = 24;
 			this->label1->Text = L"Confirmar código";
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(290, 335);
-			this->button3->Margin = System::Windows::Forms::Padding(4);
+			this->button3->Location = System::Drawing::Point(218, 272);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(121, 31);
+			this->button3->Size = System::Drawing::Size(91, 25);
 			this->button3->TabIndex = 26;
 			this->button3->Text = L"Reiniciar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -313,9 +299,9 @@ namespace RDEView {
 			// 
 			// EnrolamientoTarjeta
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(457, 485);
+			this->ClientSize = System::Drawing::Size(343, 394);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->richtxt_confirmcode);
 			this->Controls->Add(this->label1);
@@ -334,7 +320,6 @@ namespace RDEView {
 			this->Controls->Add(this->txt_DNI);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->combox_permType);
-			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"EnrolamientoTarjeta";
 			this->Text = L"EnrolamientoTarjeta";
 			this->Load += gcnew System::EventHandler(this, &EnrolamientoTarjeta::EnrolamientoTarjeta_Load);
@@ -494,9 +479,9 @@ private: void UpdateRxData(String^ data) {
 
 	/*
 	PROTOCOLO DE CARD READER:    name    +    cardID    +    stopper
-    Ejemplo:  "ID:12312371823;\r"
-	array_dataA = {ID,12312371823;\r}
-	array_dataB = {12312371823,\r};
+	Ejemplo:  "ID:123456:12312371823;\r"
+	array_dataA = {"ID","123456","12312371823;\r"}
+	array_dataB = {"12312371823","\r"};
 	*/
 	if (user_ready) {
 
@@ -504,8 +489,8 @@ private: void UpdateRxData(String^ data) {
 		String^ separadorB = ";";
 
 		array<String^>^ array_dataA = data->Split(separadorA->ToCharArray());
-		if (array_dataA->Length > 1) {
-			array<String^>^ array_dataB = array_dataA[1]->Split(separadorB->ToCharArray());
+		if (array_dataA->Length > 2) {
+			array<String^>^ array_dataB = array_dataA[2]->Split(separadorB->ToCharArray());
 
 			if (array_dataA[0] == "ID") {
 				if (!flag_code) {
