@@ -146,6 +146,7 @@
     <ClCompile Include="ReporteDoorRegisterxCard.cpp" />
     <ClCompile Include="ReporteDoorRegisterxDay.cpp" />
     <ClCompile Include="ReporteDoorRegisterxDoor.cpp" />
+    <ClCompile Include="ReporteParkingSitexZone.cpp" />
     <ClCompile Include="ReportePlayaxEstacionamiento.cpp" />
     <ClCompile Include="UsuarioAdmin.cpp" />
   </ItemGroup>
@@ -223,6 +224,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReporteDoorRegisterxDoor.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReporteParkingSitexZone.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReportePlayaxEstacionamiento.h">
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteDoorRegisterxDoor.resx">
       <DependentUpon>ReporteDoorRegisterxDoor.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteParkingSitexZone.resx">
+      <DependentUpon>ReporteParkingSitexZone.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportePlayaxEstacionamiento.resx">
       <DependentUpon>ReportePlayaxEstacionamiento.h</DependentUpon>

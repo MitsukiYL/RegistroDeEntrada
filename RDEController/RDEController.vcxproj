@@ -136,6 +136,7 @@
     <ClInclude Include="UserCtrl.h" />
     <ClInclude Include="VehicleCtrl.h" />
     <ClInclude Include="ZoneCtrl.h" />
+    <ClInclude Include="ZonexParkingSiteCtrl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdminCtrl.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="UserCtrl.cpp" />
     <ClCompile Include="VehicleCtrl.cpp" />
     <ClCompile Include="ZoneCtrl.cpp" />
+    <ClCompile Include="ZonexParkingSiteCtrl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
