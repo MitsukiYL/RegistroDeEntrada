@@ -1,15 +1,15 @@
-#include "EntryReportCtrl.h"
+#include "DoorRegisterxCardCtrl.h"
 #include "CardCtrl.h"
 #include "DoorRegisterCtrl.h"
 
 using namespace RDEController;
 using namespace System::IO;
 
-EntryReportCtrl::EntryReportCtrl() {
+DoorRegisterxCardCtrl::DoorRegisterxCardCtrl() {
 
 }
 
-List<doorRegisterxCard^>^ EntryReportCtrl::generarReporte() {
+List<doorRegisterxCard^>^ DoorRegisterxCardCtrl::generarReporte() {
 
 	List<doorRegisterxCard^>^ listaDoorRegisterxCard = gcnew List<doorRegisterxCard^>();
 	CardCtrl^ objCardCtrl = gcnew CardCtrl();

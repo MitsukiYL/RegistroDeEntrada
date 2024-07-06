@@ -97,7 +97,7 @@ namespace RDEView {
 #pragma endregion
 	private: System::Void ReporteDoorRegisterxCard_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		EntryReportCtrl^ objReporte = gcnew EntryReportCtrl();
+		DoorRegisterxCardCtrl^ objReporte = gcnew DoorRegisterxCardCtrl();
 		List<doorRegisterxCard^>^ listaDoorRegisterxCard = objReporte->generarReporte();
 		this->chart1->Series["N_entradas"]->Points->Clear();
 		this->chart1->Series["N_salidas"]->Points->Clear();

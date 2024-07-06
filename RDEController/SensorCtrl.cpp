@@ -89,3 +89,20 @@ void SensorCtrl::eliminarSensor(int IDb) {
 	}
 	escribirArchivo(listaSensor);
 }
+
+void SensorCtrl::actualizarSensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard){
+	List<sensor^>^ listaSensor = buscarSensorAll();
+	for (int i = 0; i < listaSensor->Count; i++) {
+		if (listaSensor[i]->getID() == ID) {
+			listaSensor[i]->setPin(pin);
+			listaSensor[i]->setProtocole(protocole);
+			listaSensor[i]->setProducer(producer);
+			listaSensor[i]->setActive(active);
+			listaSensor[i]->setRegistrationDate(registrationDate);
+			listaSensor[i]->setModel(model);
+			listaSensor[i]->setListCard(listCard);
+			break;
+		}
+	}
+	escribirArchivo(listaSensor);
+}

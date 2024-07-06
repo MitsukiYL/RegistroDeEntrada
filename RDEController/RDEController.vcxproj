@@ -124,7 +124,7 @@
     <ClInclude Include="DoorRegisterCtrl.h" />
     <ClInclude Include="doorRegisterxDayCtrl.h" />
     <ClInclude Include="DoorRegisterxDoorCtrl.h" />
-    <ClInclude Include="EntryReportCtrl.h" />
+    <ClInclude Include="DoorRegisterxCardCtrl.h" />
     <ClInclude Include="InterfaceCtrl.h" />
     <ClInclude Include="MotorCtrl.h" />
     <ClInclude Include="ParkingLotCtrl.h" />
@@ -146,7 +146,7 @@
     <ClCompile Include="DoorRegisterCtrl.cpp" />
     <ClCompile Include="doorRegisterxDayCtrl.cpp" />
     <ClCompile Include="DoorRegisterxDoor.cpp" />
-    <ClCompile Include="EntryReportCtrl.cpp" />
+    <ClCompile Include="DoorRegisterxCardCtrl.cpp" />
     <ClCompile Include="InterfaceCtrl.cpp" />
     <ClCompile Include="MotorCtrl.cpp" />
     <ClCompile Include="ParkingLotCtrl.cpp" />

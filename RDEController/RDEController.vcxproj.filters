@@ -48,7 +48,7 @@
     <ClInclude Include="DoorRegisterCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="EntryReportCtrl.h">
+    <ClInclude Include="DoorRegisterxCardCtrl.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SensorCtrl.h">
@@ -110,7 +110,7 @@
     <ClCompile Include="SensorCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="EntryReportCtrl.cpp">
+    <ClCompile Include="DoorRegisterxCardCtrl.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="DoorRegisterCtrl.cpp">

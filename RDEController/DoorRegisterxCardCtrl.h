@@ -7,9 +7,9 @@ namespace RDEController {
 	using namespace RDEModel;
 
 
-	public ref class EntryReportCtrl {
+	public ref class DoorRegisterxCardCtrl {
 	public:
-		EntryReportCtrl();
+		DoorRegisterxCardCtrl();
 		List<doorRegisterxCard^>^ generarReporte();
 
 	};
