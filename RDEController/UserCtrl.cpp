@@ -1,4 +1,5 @@
 #include "UserCtrl.h"
+#include "VehicleCtrl.h"
 #include "ParkingSiteCtrl.h"
 #include "PersonCtrl.h"
 
@@ -47,7 +48,7 @@ user^ UserCtrl::buscarUserxUserID(int userIDb) {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		String^ registrationDate = datos[3];;
+		String^ registrationDate = datos[3];
 		String^ parkingSiteID = datos[4];
 		int personDNI = Convert::ToInt32(datos[5]);
 
@@ -96,6 +97,7 @@ user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 
 void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
 	array<String^>^ lineasArchivo = gcnew array<String^>(listaUser->Count);
+	int cantVehiculos = 0;
 	for (int i = 0; i < listaUser->Count; i++) {
 		user^ objUser = listaUser[i];
 		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getUserType() + ";" + Convert::ToString(objUser->getActive())

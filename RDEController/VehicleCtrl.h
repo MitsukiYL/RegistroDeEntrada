@@ -10,10 +10,12 @@ namespace RDEController {
 	public:
 		VehicleCtrl();
 		List<vehicle^>^ buscarVehicleAll();
+		List<vehicle^>^ buscarVehiclexUser(int userIDsearch);
 		vehicle^ buscarVehiclexPlate(String^ plateB);
+		vehicle^ buscarVehiclexID(int IDsearch);
 		void escribirArchivo(List<vehicle^>^ listaVehicle);
-		void agregarNewVehicle(String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
-		void eliminarVehicle(String^ plate);
-		void actualizarVehicle(String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
+		void agregarNewVehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
+		void eliminarVehicle(int IDsearch);
+		void actualizarVehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
 	};
 }

@@ -6,6 +6,8 @@
 #ifndef _VEHICLE_H
 #define _VEHICLE_H
 
+#include "user.h"
+
 using namespace System;
 
 namespace RDEModel {
@@ -15,6 +17,7 @@ namespace RDEModel {
      * Sino el controller no los podrá registrar.
      */
     public:
+        int ID;
         String^ fuelType;
         String^ vehicleType;
         String^ registrationDate;
@@ -22,9 +25,13 @@ namespace RDEModel {
         String^ brand;
         String^ model;
         bool insurance;
+        user^ objUser;
 
         vehicle();
-        vehicle(String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance);
+        vehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
+
+        int  getID();
+        void setID(int ID);
 
         String^ getFuelType();
         void setFuelType(String^ fuelType);
@@ -46,7 +53,11 @@ namespace RDEModel {
 
         bool getInsurance();
         void setInsurance(bool insurance);
+
+        user^ getUser();
+        void setUser(user^ objUser);
     };
+
 }
 
 #endif //_VEHICLE_H

@@ -1,2 +1,2 @@
-ABC123;v;m;m;c;123;True
-XXXXXX;v;marca;m;c;123;False
+1;ABC123;v;m;m;c;123;True;3
+2;XXXXXX;v;marca;m;c;123;False;5

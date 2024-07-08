@@ -9,8 +9,8 @@ using namespace RDEModel;
 
 vehicle::vehicle() {}
 
-vehicle::vehicle(String^ fuelType, String^ vehicleType, String^ registrationDate,
-                 String^ plate, String^ brand, String^ model, bool insurance) {
+vehicle::vehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser) {
+    this->ID = ID;
     this->fuelType = fuelType;
     this->vehicleType = vehicleType;
     this->registrationDate = registrationDate;
@@ -18,6 +18,13 @@ vehicle::vehicle(String^ fuelType, String^ vehicleType, String^ registrationDate
     this->brand = brand;
     this->model = model;
     this->insurance = insurance;
+    this->objUser = objUser;
+}
+int  vehicle::getID() {
+    return this->ID;
+}
+void vehicle::setID(int ID) {
+    this->ID = ID;
 }
 
 String^ vehicle::getFuelType() {
@@ -74,4 +81,11 @@ bool vehicle::getInsurance() {
 
 void vehicle::setInsurance(bool insurance) {
     this->insurance = insurance;
+}
+
+user^ vehicle::getUser() {
+    return this->objUser;
+}
+void vehicle::setUser(user^ objUser) {
+    this->objUser = objUser;
 }

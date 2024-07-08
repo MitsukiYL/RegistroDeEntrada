@@ -391,6 +391,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 				objCardCtrl->agregarNewCard(codeNew, expirationDateNew, permissionTypeNew, IDnew, permissionNew, emissionDateNew, registrationDateNew, activeNew, objUser);
 				MessageBox::Show("Tarjeta enlazada correctamente");
+
+				//Si la ventana EnrolamientoTarjeta fue creada mediante la Interfaz de Administración de Solicitudes,
+				//se actualiza la solicitud a aceptada
+				if (this->objRequest != nullptr) {
+					this->objRequest->setAccepted(true);
+				}
+
 				this->Close();
 			}
 			else {
@@ -411,7 +418,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	
 }
 private: System::Void EnrolamientoTarjeta_Load(System::Object^ sender, System::EventArgs^ e) {
-	this->port1->Open();
+	//this->port1->Open();
 	if (this->objRequest != nullptr) {
 		if (this->objRequest->getType() == "Nuevo Cargo") {
 

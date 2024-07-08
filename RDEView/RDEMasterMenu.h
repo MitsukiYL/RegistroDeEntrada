@@ -127,6 +127,7 @@ namespace RDEView {
 			this->playasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tarjetasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->solicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->sensoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->estacionamientosXPlayaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -134,7 +135,6 @@ namespace RDEView {
 			this->registroDePuertaXPuertaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->estacionamientoXZonaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->sensoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -218,8 +218,8 @@ namespace RDEView {
 			// 
 			this->xdToolStripMenuItem3->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(10) {
 				this->usuariosToolStripMenuItem,
-					this->vehiculosToolStripMenuItem, this->personasToolStripMenuItem, this->administradoresToolStripMenuItem, this->zonasToolStripMenuItem,
-					this->estacionamientosToolStripMenuItem, this->playasToolStripMenuItem, this->tarjetasToolStripMenuItem, this->solicitudesToolStripMenuItem,
+					this->personasToolStripMenuItem, this->administradoresToolStripMenuItem, this->solicitudesToolStripMenuItem, this->tarjetasToolStripMenuItem,
+					this->vehiculosToolStripMenuItem, this->estacionamientosToolStripMenuItem, this->playasToolStripMenuItem, this->zonasToolStripMenuItem,
 					this->sensoresToolStripMenuItem
 			});
 			this->xdToolStripMenuItem3->Name = L"xdToolStripMenuItem3";
@@ -289,6 +289,13 @@ namespace RDEView {
 			this->solicitudesToolStripMenuItem->Text = L"Solicitudes";
 			this->solicitudesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::solicitudesToolStripMenuItem_Click);
 			// 
+			// sensoresToolStripMenuItem
+			// 
+			this->sensoresToolStripMenuItem->Name = L"sensoresToolStripMenuItem";
+			this->sensoresToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->sensoresToolStripMenuItem->Text = L"Sensores";
+			this->sensoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::sensoresToolStripMenuItem_Click);
+			// 
 			// reportesToolStripMenuItem
 			// 
 			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
@@ -341,13 +348,6 @@ namespace RDEView {
 			this->salirToolStripMenuItem->Size = System::Drawing::Size(41, 22);
 			this->salirToolStripMenuItem->Text = L"Salir";
 			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
-			// 
-			// sensoresToolStripMenuItem
-			// 
-			this->sensoresToolStripMenuItem->Name = L"sensoresToolStripMenuItem";
-			this->sensoresToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->sensoresToolStripMenuItem->Text = L"Sensores";
-			this->sensoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::sensoresToolStripMenuItem_Click);
 			// 
 			// RDEMasterMenu
 			// 

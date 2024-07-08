@@ -25,6 +25,13 @@ namespace RDEView {
 			//TODO: agregar código de constructor aquí
 			//
 		}
+		MantVehicles(user^ objUser)
+		{
+			InitializeComponent();
+			//
+			//TODO: agregar código de constructor aquí
+			//
+		}
 
 	protected:
 		/// <summary>
@@ -79,6 +86,7 @@ namespace RDEView {
 
 
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_plate;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_vehicleType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_brand;
@@ -86,6 +94,19 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_fuelType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_insurance;
+	private: System::Windows::Forms::TextBox^ txt_ID;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ txt_userID;
+
+
+	private: System::Windows::Forms::Label^ label8;
+
+
+
+
+
+
+
 
 	protected:
 
@@ -113,6 +134,7 @@ namespace RDEView {
 			this->txt_model = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->Vehicle_DGV = (gcnew System::Windows::Forms::DataGridView());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column_plate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column_vehicleType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column_brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -128,13 +150,17 @@ namespace RDEView {
 			this->txt_registrationDate = (gcnew System::Windows::Forms::TextBox());
 			this->txt_regDate = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->txt_ID = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->txt_userID = (gcnew System::Windows::Forms::TextBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Vehicle_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 16);
+			this->label1->Location = System::Drawing::Point(211, 15);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(34, 13);
 			this->label1->TabIndex = 0;
@@ -142,14 +168,14 @@ namespace RDEView {
 			// 
 			// txt_plate
 			// 
-			this->txt_plate->Location = System::Drawing::Point(55, 13);
+			this->txt_plate->Location = System::Drawing::Point(254, 12);
 			this->txt_plate->Name = L"txt_plate";
 			this->txt_plate->Size = System::Drawing::Size(212, 20);
 			this->txt_plate->TabIndex = 1;
 			// 
 			// txt_vehicleType
 			// 
-			this->txt_vehicleType->Location = System::Drawing::Point(55, 49);
+			this->txt_vehicleType->Location = System::Drawing::Point(254, 48);
 			this->txt_vehicleType->Name = L"txt_vehicleType";
 			this->txt_vehicleType->Size = System::Drawing::Size(212, 20);
 			this->txt_vehicleType->TabIndex = 3;
@@ -157,7 +183,7 @@ namespace RDEView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(1, 52);
+			this->label2->Location = System::Drawing::Point(200, 51);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(48, 13);
 			this->label2->TabIndex = 2;
@@ -165,7 +191,7 @@ namespace RDEView {
 			// 
 			// txt_brand
 			// 
-			this->txt_brand->Location = System::Drawing::Point(55, 87);
+			this->txt_brand->Location = System::Drawing::Point(254, 86);
 			this->txt_brand->Name = L"txt_brand";
 			this->txt_brand->Size = System::Drawing::Size(212, 20);
 			this->txt_brand->TabIndex = 5;
@@ -173,7 +199,7 @@ namespace RDEView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(12, 89);
+			this->label3->Location = System::Drawing::Point(211, 88);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(37, 13);
 			this->label3->TabIndex = 4;
@@ -181,7 +207,7 @@ namespace RDEView {
 			// 
 			// txt_fuelType
 			// 
-			this->txt_fuelType->Location = System::Drawing::Point(381, 49);
+			this->txt_fuelType->Location = System::Drawing::Point(580, 48);
 			this->txt_fuelType->Name = L"txt_fuelType";
 			this->txt_fuelType->Size = System::Drawing::Size(212, 20);
 			this->txt_fuelType->TabIndex = 9;
@@ -189,7 +215,7 @@ namespace RDEView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(311, 52);
+			this->label5->Location = System::Drawing::Point(510, 51);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(64, 13);
 			this->label5->TabIndex = 8;
@@ -197,7 +223,7 @@ namespace RDEView {
 			// 
 			// txt_model
 			// 
-			this->txt_model->Location = System::Drawing::Point(381, 13);
+			this->txt_model->Location = System::Drawing::Point(580, 12);
 			this->txt_model->Name = L"txt_model";
 			this->txt_model->Size = System::Drawing::Size(212, 20);
 			this->txt_model->TabIndex = 7;
@@ -205,7 +231,7 @@ namespace RDEView {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(332, 16);
+			this->label6->Location = System::Drawing::Point(531, 15);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(42, 13);
 			this->label6->TabIndex = 6;
@@ -214,15 +240,20 @@ namespace RDEView {
 			// Vehicle_DGV
 			// 
 			this->Vehicle_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->Vehicle_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Column_plate,
-					this->Column_vehicleType, this->Column_brand, this->Column_model, this->Column_fuelType, this->Column1, this->Column_insurance
+			this->Vehicle_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->Column2,
+					this->Column_plate, this->Column_vehicleType, this->Column_brand, this->Column_model, this->Column_fuelType, this->Column1, this->Column_insurance
 			});
 			this->Vehicle_DGV->Location = System::Drawing::Point(12, 158);
 			this->Vehicle_DGV->Name = L"Vehicle_DGV";
-			this->Vehicle_DGV->Size = System::Drawing::Size(740, 273);
+			this->Vehicle_DGV->Size = System::Drawing::Size(837, 273);
 			this->Vehicle_DGV->TabIndex = 12;
 			this->Vehicle_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantVehicles::Vehicle_DGV_CellClick);
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->Name = L"Column2";
 			// 
 			// Column_plate
 			// 
@@ -278,7 +309,6 @@ namespace RDEView {
 			this->check_insurance->TabIndex = 14;
 			this->check_insurance->Text = L"Cuenta con seguro";
 			this->check_insurance->UseVisualStyleBackColor = true;
-			this->check_insurance->CheckedChanged += gcnew System::EventHandler(this, &MantVehicles::checkBox1_CheckedChanged);
 			// 
 			// button2
 			// 
@@ -316,7 +346,7 @@ namespace RDEView {
 			// 
 			// txt_regDate
 			// 
-			this->txt_regDate->Location = System::Drawing::Point(381, 89);
+			this->txt_regDate->Location = System::Drawing::Point(580, 88);
 			this->txt_regDate->Name = L"txt_regDate";
 			this->txt_regDate->Size = System::Drawing::Size(212, 20);
 			this->txt_regDate->TabIndex = 18;
@@ -324,17 +354,53 @@ namespace RDEView {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(281, 92);
+			this->label4->Location = System::Drawing::Point(480, 91);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(94, 13);
 			this->label4->TabIndex = 17;
 			this->label4->Text = L"Fecha de Registro";
 			// 
+			// txt_ID
+			// 
+			this->txt_ID->Location = System::Drawing::Point(71, 12);
+			this->txt_ID->Name = L"txt_ID";
+			this->txt_ID->Size = System::Drawing::Size(99, 20);
+			this->txt_ID->TabIndex = 20;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(6, 15);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(18, 13);
+			this->label7->TabIndex = 19;
+			this->label7->Text = L"ID";
+			// 
+			// txt_userID
+			// 
+			this->txt_userID->Location = System::Drawing::Point(71, 51);
+			this->txt_userID->Name = L"txt_userID";
+			this->txt_userID->Size = System::Drawing::Size(99, 20);
+			this->txt_userID->TabIndex = 22;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(6, 54);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(57, 13);
+			this->label8->TabIndex = 21;
+			this->label8->Text = L"ID Usuario";
+			// 
 			// MantVehicles
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(767, 442);
+			this->ClientSize = System::Drawing::Size(866, 442);
+			this->Controls->Add(this->txt_userID);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->txt_ID);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->txt_regDate);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button3);
@@ -361,34 +427,38 @@ namespace RDEView {
 
 		}
 
-void ShowVehicle() {
-
-		}
-
 #pragma endregion
-	private: System::Void MantVehicles_Load(System::Object^ sender, System::EventArgs^ e) {
-		VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-		List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();
-		mostrarGrilla(listVehicle);
-	}
-	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	String^ plate = Vehicle_DGV->Rows[Vehicle_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString();
+
+private: System::Void MantVehicles_Load(System::Object^ sender, System::EventArgs^ e) {
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-	vehicle^ Vehicle = objVehicleCtrl->buscarVehiclexPlate(plate);;
+	List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();
+	mostrarGrilla(listVehicle);
+}
+
+private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+	int filaSeleccionada = this->Vehicle_DGV->SelectedRows[0]->Index;
+	int codigoselec = Convert::ToInt32(this->Vehicle_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+	
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+	vehicle^ Vehicle = objVehicleCtrl->buscarVehiclexID(codigoselec);
+
 	if (Vehicle != nullptr) {
-		this->txt_fuelType->Text = Vehicle->fuelType;
-		this->txt_vehicleType->Text = Vehicle->vehicleType;
-		this->txt_plate->Text = Vehicle->plate;
-		this->txt_brand->Text = Vehicle->brand;
-		this->txt_model->Text = Vehicle->model;
-		this->check_insurance->Checked = Vehicle->insurance;
-		this->txt_regDate->Text = Vehicle->registrationDate;
+		this->txt_ID->Text = Convert::ToString(Vehicle->getID());
+		this->txt_userID->Text = Convert::ToString(Vehicle->getUser()->getUserID());
+		this->txt_fuelType->Text = Vehicle->getFuelType();
+		this->txt_vehicleType->Text = Vehicle->getVehicleType();
+		this->txt_plate->Text = Vehicle->getPlate();
+		this->txt_brand->Text = Vehicle->getBrand();
+		this->txt_model->Text = Vehicle->getModel();
+		this->check_insurance->Checked = Vehicle->getInsurance();
+		this->txt_regDate->Text = Vehicle->getRegistrationDate();
 	}
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 
+	int ID = Convert::ToInt32(this->txt_ID->Text);
+	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ fuelType = this->txt_fuelType->Text;
 	String^ vehicleType = this->txt_vehicleType->Text;
 	String^ plate = this->txt_plate->Text;
@@ -397,17 +467,21 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	bool insurance = this->check_insurance->Checked;
 	String^ registrationDate = this->txt_regDate->Text;
 
+	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-	objVehicleCtrl->agregarNewVehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
+	objVehicleCtrl->agregarNewVehicle(ID, fuelType, vehicleType, registrationDate, plate, brand, model, insurance, objUser);
 	txt_plate->Clear();
 
 	List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();
 	mostrarGrilla(listVehicle);
+
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 
-
+	int ID = Convert::ToInt32(this->txt_ID->Text);
+	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ fuelType = this->txt_fuelType->Text;
 	String^ vehicleType = this->txt_vehicleType->Text;
 	String^ plate = this->txt_plate->Text;
@@ -416,8 +490,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	bool insurance = this->check_insurance->Checked;
 	String^ registrationDate = this->txt_regDate->Text;
 
+	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-	objVehicleCtrl->actualizarVehicle(fuelType, vehicleType, registrationDate, plate, brand, model, insurance);
+	objVehicleCtrl->actualizarVehicle(ID, fuelType, vehicleType, registrationDate, plate, brand, model, insurance, objUser);
 	MessageBox::Show("El vehiculo seleccionado a ha sido actualizado correctamente");
 	txt_plate->Clear();
 
@@ -427,12 +504,12 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
 
-	int filaSeleccionada = this->Vehicle_DGV->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
-	String^ placaEliminar = this->Vehicle_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString();
+	int filaSeleccionada = this->Vehicle_DGV->SelectedRows[0]->Index;
+	int codigoEliminar = Convert::ToInt32(this->Vehicle_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-	objVehicleCtrl->eliminarVehicle(placaEliminar);
-	MessageBox::Show("El vehiculo seleccionado a ha sido eliminado correctamente");
+	objVehicleCtrl->eliminarVehicle(codigoEliminar);
+	MessageBox::Show("El vehiculo seleccionado ha sido eliminado correctamente");
 	this->Vehicle_DGV->Rows->Clear();
 
 	List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();
@@ -443,14 +520,16 @@ private: void mostrarGrilla(List<vehicle^>^ listVehicle) {
 	this->Vehicle_DGV->Rows->Clear();
 	for (int i = 0; i < listVehicle->Count; i++) {
 		vehicle^ objVehicle = listVehicle[i];
-		array<String^>^ filaGrilla = gcnew array<String^>(7);
-		filaGrilla[0] = objVehicle->getPlate();
-		filaGrilla[1] = objVehicle->getVehicleType();
-		filaGrilla[2] = objVehicle->getBrand();
-		filaGrilla[3] = objVehicle->getModel();
-		filaGrilla[4] = objVehicle->getFuelType();
-		filaGrilla[5] = objVehicle->getRegistrationDate();
-		filaGrilla[6] = Convert::ToString(objVehicle->getInsurance());
+		array<String^>^ filaGrilla = gcnew array<String^>(9);
+		filaGrilla[0] = Convert::ToString(objVehicle->getID());
+		filaGrilla[1] = objVehicle->getPlate();
+		filaGrilla[2] = objVehicle->getVehicleType();
+		filaGrilla[3] = objVehicle->getBrand();
+		filaGrilla[4] = objVehicle->getModel();
+		filaGrilla[5] = objVehicle->getFuelType();
+		filaGrilla[6] = objVehicle->getRegistrationDate();
+		filaGrilla[7] = Convert::ToString(objVehicle->getInsurance());
+		filaGrilla[8] = Convert::ToString(objVehicle->getUser()->getUserID());
 		this->Vehicle_DGV->Rows->Add(filaGrilla);
 	}
 }

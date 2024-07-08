@@ -23,6 +23,7 @@ namespace RDEView {
 		{
 			InitializeComponent();
 			this->objPerson = gcnew person();
+			this->objVehicle = gcnew vehicle();
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -63,6 +64,17 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
 	private: person^ objPerson;
+	private: vehicle^ objVehicle;
+	private: System::Windows::Forms::DataGridView^ VehiclexUser_DGV;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::Button^ button5;
+
+
+
+
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -98,7 +110,13 @@ namespace RDEView {
 			this->txt_DNI = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->VehiclexUser_DGV = (gcnew System::Windows::Forms::DataGridView());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->User_DGV))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VehiclexUser_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button3
@@ -141,7 +159,7 @@ namespace RDEView {
 			this->User_DGV->Location = System::Drawing::Point(12, 157);
 			this->User_DGV->Name = L"User_DGV";
 			this->User_DGV->RowHeadersWidth = 62;
-			this->User_DGV->Size = System::Drawing::Size(866, 289);
+			this->User_DGV->Size = System::Drawing::Size(867, 289);
 			this->User_DGV->TabIndex = 44;
 			this->User_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantUser::Person_DGV_CellClick);
 			// 
@@ -186,7 +204,7 @@ namespace RDEView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 9);
+			this->label3->Location = System::Drawing::Point(6, 16);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(72, 13);
 			this->label3->TabIndex = 36;
@@ -194,14 +212,14 @@ namespace RDEView {
 			// 
 			// txt_userID
 			// 
-			this->txt_userID->Location = System::Drawing::Point(146, 1);
+			this->txt_userID->Location = System::Drawing::Point(146, 8);
 			this->txt_userID->Name = L"txt_userID";
 			this->txt_userID->Size = System::Drawing::Size(168, 20);
 			this->txt_userID->TabIndex = 33;
 			// 
 			// txt_registrationDate
 			// 
-			this->txt_registrationDate->Location = System::Drawing::Point(146, 62);
+			this->txt_registrationDate->Location = System::Drawing::Point(146, 69);
 			this->txt_registrationDate->Name = L"txt_registrationDate";
 			this->txt_registrationDate->Size = System::Drawing::Size(168, 20);
 			this->txt_registrationDate->TabIndex = 35;
@@ -209,7 +227,7 @@ namespace RDEView {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(6, 38);
+			this->label6->Location = System::Drawing::Point(6, 45);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(82, 13);
 			this->label6->TabIndex = 38;
@@ -217,7 +235,7 @@ namespace RDEView {
 			// 
 			// txt_userType
 			// 
-			this->txt_userType->Location = System::Drawing::Point(146, 30);
+			this->txt_userType->Location = System::Drawing::Point(146, 37);
 			this->txt_userType->Name = L"txt_userType";
 			this->txt_userType->Size = System::Drawing::Size(168, 20);
 			this->txt_userType->TabIndex = 39;
@@ -225,7 +243,7 @@ namespace RDEView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(6, 69);
+			this->label5->Location = System::Drawing::Point(6, 76);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(94, 13);
 			this->label5->TabIndex = 40;
@@ -234,7 +252,7 @@ namespace RDEView {
 			// check_active
 			// 
 			this->check_active->AutoSize = true;
-			this->check_active->Location = System::Drawing::Point(464, 65);
+			this->check_active->Location = System::Drawing::Point(258, 105);
 			this->check_active->Name = L"check_active";
 			this->check_active->Size = System::Drawing::Size(56, 17);
 			this->check_active->TabIndex = 108;
@@ -244,7 +262,7 @@ namespace RDEView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(324, 9);
+			this->label2->Location = System::Drawing::Point(324, 16);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(130, 13);
 			this->label2->TabIndex = 110;
@@ -252,7 +270,7 @@ namespace RDEView {
 			// 
 			// txt_ParkLotID
 			// 
-			this->txt_ParkLotID->Location = System::Drawing::Point(464, 2);
+			this->txt_ParkLotID->Location = System::Drawing::Point(464, 9);
 			this->txt_ParkLotID->Name = L"txt_ParkLotID";
 			this->txt_ParkLotID->Size = System::Drawing::Size(168, 20);
 			this->txt_ParkLotID->TabIndex = 109;
@@ -260,7 +278,7 @@ namespace RDEView {
 			// txt_DNI
 			// 
 			this->txt_DNI->Enabled = false;
-			this->txt_DNI->Location = System::Drawing::Point(464, 31);
+			this->txt_DNI->Location = System::Drawing::Point(464, 38);
 			this->txt_DNI->Name = L"txt_DNI";
 			this->txt_DNI->Size = System::Drawing::Size(168, 20);
 			this->txt_DNI->TabIndex = 130;
@@ -268,7 +286,7 @@ namespace RDEView {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(324, 35);
+			this->label9->Location = System::Drawing::Point(324, 42);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(26, 13);
 			this->label9->TabIndex = 129;
@@ -276,7 +294,7 @@ namespace RDEView {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(663, 30);
+			this->button4->Location = System::Drawing::Point(511, 67);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 131;
@@ -284,11 +302,50 @@ namespace RDEView {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &MantUser::button4_Click);
 			// 
+			// VehiclexUser_DGV
+			// 
+			this->VehiclexUser_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->VehiclexUser_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->Column2,
+					this->Column6, this->Column7
+			});
+			this->VehiclexUser_DGV->Location = System::Drawing::Point(638, 9);
+			this->VehiclexUser_DGV->Name = L"VehiclexUser_DGV";
+			this->VehiclexUser_DGV->Size = System::Drawing::Size(241, 117);
+			this->VehiclexUser_DGV->TabIndex = 132;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->Name = L"Column2";
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Placa";
+			this->Column6->Name = L"Column6";
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Vehículo";
+			this->Column7->Name = L"Column7";
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(706, 128);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(116, 23);
+			this->button5->TabIndex = 133;
+			this->button5->Text = L"Agregar Vehículo";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MantUser::button5_Click);
+			// 
 			// MantUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(890, 458);
+			this->ClientSize = System::Drawing::Size(897, 458);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->VehiclexUser_DGV);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->txt_DNI);
 			this->Controls->Add(this->label9);
@@ -310,16 +367,17 @@ namespace RDEView {
 			this->Text = L"MantUser";
 			this->Load += gcnew System::EventHandler(this, &MantUser::MantUser_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->User_DGV))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VehiclexUser_DGV))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-private: void mostrarGrilla(List<user^>^ listUser) {
+private: void mostrarGrillaUser(List<user^>^ listUser) {
 	this->User_DGV->Rows->Clear();
 	for (int i = 0; i < listUser->Count; i++) {
 		user^ objUser = listUser[i];
-		array<String^>^ filaGrilla = gcnew array<String^>(16);
+		array<String^>^ filaGrilla = gcnew array<String^>(7);
 		filaGrilla[0] = Convert::ToString(objUser->getUserID());
 		filaGrilla[1] = objUser->getUserType();
 		filaGrilla[2] = objUser->getRegistrationDate();
@@ -329,27 +387,42 @@ private: void mostrarGrilla(List<user^>^ listUser) {
 		this->User_DGV->Rows->Add(filaGrilla);
 	}
 }
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
-		int userID = Convert::ToInt32(this->txt_userID->Text);
-		String^ userType = this->txt_userType->Text;
-		String^ registrationDate = this->txt_registrationDate->Text;
-		bool active = this->check_active->Checked;
-		String^ parklotID = this->txt_ParkLotID->Text;
-		int DNI = Convert::ToInt32(this->txt_DNI->Text);
-
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parklotID);
-
-		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-		person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
-
-		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		objUserCtrl->agregarNewUser(userID, userType, active, registrationDate, objParkingSite, objPerson);
-		txt_userID->Clear();
-
-		List<user^>^ listaAdmin = objUserCtrl->buscarUserAll();
-		mostrarGrilla(listaAdmin);
+private: void mostrarGrillaVehicle(List<vehicle^>^ listVehicle) {
+	this->VehiclexUser_DGV->Rows->Clear();
+	for (int i = 0; i < listVehicle->Count; i++) {
+		vehicle^ objVehicle = listVehicle[i];
+		array<String^>^ filaGrilla = gcnew array<String^>(3);
+		if (objVehicle != nullptr) {
+			filaGrilla[0] = Convert::ToString(objVehicle->getID());
+			filaGrilla[1] = objVehicle->getPlate();
+			filaGrilla[2] = objVehicle->getVehicleType();
+		}
+		this->VehiclexUser_DGV->Rows->Add(filaGrilla);
 	}
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
+	int userID = Convert::ToInt32(this->txt_userID->Text);
+	String^ userType = this->txt_userType->Text;
+	String^ registrationDate = this->txt_registrationDate->Text;
+	bool active = this->check_active->Checked;
+	String^ parklotID = this->txt_ParkLotID->Text;
+	int DNI = Convert::ToInt32(this->txt_DNI->Text);
+
+	ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
+	parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parklotID);
+
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
+
+	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	objUserCtrl->agregarNewUser(userID, userType, active, registrationDate, objParkingSite, objPerson);
+	txt_userID->Clear();
+
+	List<user^>^ listaAdmin = objUserCtrl->buscarUserAll();
+	mostrarGrillaUser(listaAdmin);
+
+}
+
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
 	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ userType = this->txt_userType->Text;
@@ -370,22 +443,29 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	MessageBox::Show("El usuario seleccionada ha sido actualizado correctamente");
 
 	List<user^>^ listaAdmin = objUserCtrl->buscarUserAll();
-	mostrarGrilla(listaAdmin);
+	mostrarGrillaUser(listaAdmin);
 }
+
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {//ELIMINAR
 	int filaSeleccionada = this->User_DGV->SelectedRows[0]->Index;
 	int codigoEliminar = Convert::ToInt32(this->User_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	objUserCtrl->eliminarUser(codigoEliminar);
+
 	MessageBox::Show("El usuario seleccionada ha sido eliminado correctamente");
 	this->User_DGV->Rows->Clear();
 
-	List<user^>^ listaAdmin = objUserCtrl->buscarUserAll();
-	mostrarGrilla(listaAdmin);
+	List<user^>^ listaUser = objUserCtrl->buscarUserAll();
+	mostrarGrillaUser(listaUser);
 }
+
 private: System::Void Person_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int userID = Int32::Parse(User_DGV->Rows[User_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+
 	user^ User = objUserCtrl->buscarUserxUserID(userID);
 	if (User != nullptr) {
 		this->txt_userID->Text = Convert::ToString(User->getUserID());
@@ -394,18 +474,27 @@ private: System::Void Person_DGV_CellClick(System::Object^ sender, System::Windo
 		this->check_active->Checked = User->getActive();
 		this->txt_ParkLotID->Text = User->getParkingSite()->getID();
 		this->txt_DNI->Text = Convert::ToString(User->getPerson()->getDNI());
+		
+		List<vehicle^>^ listaVehicles = objVehicleCtrl->buscarVehiclexUser(User->getUserID());
+		mostrarGrillaVehicle(listaVehicles);
 	}
 }
 private: System::Void MantUser_Load(System::Object^ sender, System::EventArgs^ e) {
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	List<user^>^ listaUser = objUserCtrl->buscarUserAll();
-	mostrarGrilla(listaUser);
+	mostrarGrillaUser(listaUser);
 }
+
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {//BUSCAR PERSON
 	BuscarPerson^ mantBuscarPerson = gcnew BuscarPerson(this->objPerson);
 	mantBuscarPerson->ShowDialog();
 
 	this->txt_DNI->Text = Convert::ToString(this->objPerson->getDNI());
 }
+
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {//AGREGAR VEHÍCULO A USUARIO SELECCIONADO
+	
+}
+
 };
 }

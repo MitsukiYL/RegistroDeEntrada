@@ -228,8 +228,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	mostrarGrilla(listaUser);
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//SELECCIONAR
-	int filaSeleccionada = this->User_DGV->SelectedRows[0]->Index; /*Le pongo [0] porque deseo el índice de la única fila que he seleccionado*/
+	int filaSeleccionada = this->User_DGV->SelectedRows[0]->Index;
 	int IDSelected = Convert::ToInt32(this->User_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
+
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(IDSelected);
 
@@ -252,7 +253,7 @@ private: void mostrarGrilla(List<user^>^ listUser) {
 	for (int i = 0; i < listUser->Count; i++) {
 		user^ objUser = listUser[i];
 		if (objUser != nullptr) {
-			array<String^>^ filaGrilla = gcnew array<String^>(16);
+			array<String^>^ filaGrilla = gcnew array<String^>(7);
 			filaGrilla[0] = Convert::ToString(objUser->getUserID());
 			filaGrilla[1] = objUser->getUserType();
 			filaGrilla[2] = objUser->getRegistrationDate();
