@@ -473,7 +473,7 @@ private: System::Void sensoresToolStripMenuItem_Click(System::Object^ sender, Sy
 }
 private: System::Void RDEMasterMenu_Load(System::Object^ sender, System::EventArgs^ e) {//EVENTO LOAD
 	if (this->objUser != nullptr) {
-		InterfaceProfile^ perfilUsuario = gcnew InterfaceProfile();
+		InterfaceProfile^ perfilUsuario = gcnew InterfaceProfile(this->objUser);
 		perfilUsuario->MdiParent = this;
 		perfilUsuario->Show();
 	}

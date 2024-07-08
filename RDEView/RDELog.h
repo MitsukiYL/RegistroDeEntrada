@@ -11,6 +11,9 @@ namespace RDEView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RDEController;
+	using namespace RDEModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de RDELog
