@@ -9,6 +9,9 @@ namespace RDEView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RDEController;
+	using namespace RDEModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Summary for UsuarioAdmin
@@ -16,9 +19,10 @@ namespace RDEView {
 	public ref class UsuarioAdmin : public System::Windows::Forms::Form
 	{
 	public:
-		UsuarioAdmin(void)
+		UsuarioAdmin(user^ objUser)
 		{
 			InitializeComponent();
+			this->objUser = objUser;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -39,7 +43,7 @@ namespace RDEView {
 	protected:
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
-
+	private: user^ objUser;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -104,11 +108,15 @@ namespace RDEView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		MessageBox::Show("Bienvenido");
-		this->Close();
+		MessageBox::Show("Modo usuario");
+		
+		RDEMasterMenu^ logform = gcnew RDEMasterMenu(this->objUser);
+		logform->Show();
+
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		MessageBox::Show("Modo administrador");
+
 		RDEMasterMenu^ logform = gcnew RDEMasterMenu();
 		logform->Show();
 	}

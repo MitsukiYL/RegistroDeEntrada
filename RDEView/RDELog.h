@@ -152,7 +152,9 @@ namespace RDEView {
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	//CODIGO DE EVALUCION DE USUARIO/ADMINISTRADOR, EN COMENTARIOS POR EL MOMENTO
-	/*	bool found = false;
+	/**/	
+	
+	bool found = false;
 
 	String^ txt = this->txt_codemail->Text;
 	String^ password = this->txt_password->Text;
@@ -167,9 +169,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		MessageBox::Show("No se han ingresado todos los datos");
 	}
 	else {
+
 		for (int i = 0; i < listaPerson->Count; i++) {
-
-
 			bool DNIMatch = Convert::ToString(listaPerson[i]->getDNI()) == txt;
 			bool mailMatch = listaPerson[i]->getMail() == txt;
 			bool codeMatch = Convert::ToString(listaPerson[i]->getCode()) == txt;
@@ -180,27 +181,31 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				break;
 			}
 		}
+
 		if (found) {
+
 			person^ objPerson = objPersonCtrl->buscarPersonxPassword(password);
 			user^ UserLog = objUserCtrl->buscarUserxPersonDNI(objPerson->getDNI());
 			admin^ AdminLog = objAdminCtrl->BuscarAdminxPersonDNI(objPerson->getDNI());
-			if ((UserLog != nullptr)&&(AdminLog == nullptr)) {
+
+			if ((UserLog != nullptr)&&(AdminLog == nullptr)) {//Caso 1: Ingresa alguien registrado de usuario
 				MessageBox::Show("Bienvenido "+objPerson->getName());
+				RDEMasterMenu^ logform = gcnew RDEMasterMenu(UserLog);
+				logform->Show();
 			}
-			else if ((UserLog == nullptr)&&(AdminLog != nullptr)) {
+			else if ((UserLog == nullptr)&&(AdminLog != nullptr)) {//Caso 2: Ingresa alguien registrado de administrador
 				MessageBox::Show("Modo administrador");
 				RDEMasterMenu^ logform = gcnew RDEMasterMenu();
 				logform->Show();
 			}
-			else if ((UserLog != nullptr)&&(AdminLog != nullptr)) {
-				UsuarioAdmin^ formUserAdmin = gcnew UsuarioAdmin();
+			else if ((UserLog != nullptr)&&(AdminLog != nullptr)) {//Caso 3: Ingresa alguien registrado de usuario y administrador.
+				UsuarioAdmin^ formUserAdmin = gcnew UsuarioAdmin(UserLog);
 				formUserAdmin->ShowDialog();
 				this->Close();
 			}
-			else{
+			else{//Caso excepcional
 				MessageBox::Show("Persona no relacionada a ningún User/Admin");
 			}
-
 
 		}
 		else {
@@ -208,15 +213,18 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			txt_password->Clear();
 			MessageBox::Show("Datos incorrectos");
 		}
-	}*/
+	}
+	/**/
 
+	/*
 	RDEMasterMenu^ logform = gcnew RDEMasterMenu();
 	logform->Show();
-
+	*/
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	RDEReg^ regform = gcnew RDEReg();
 	regform->ShowDialog();
 }
+
 };
 }

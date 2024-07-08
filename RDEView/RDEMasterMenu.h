@@ -31,6 +31,9 @@ namespace RDEView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RDEController;
+	using namespace RDEModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de RDEMasterMenu
@@ -41,6 +44,15 @@ namespace RDEView {
 		RDEMasterMenu(void)
 		{
 			InitializeComponent();
+			//
+			//TODO: agregar código de constructor aquí
+			//
+		}
+		RDEMasterMenu(user^ objUser)
+		{
+			InitializeComponent();
+			this->objUser;
+			this->estacionamientosToolStripMenuItem->Visible = false;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -60,25 +72,18 @@ namespace RDEView {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ xdToolStripMenuItem;
-
-
+	private: user^ objUser;
 	private: System::Windows::Forms::ToolStripMenuItem^ xdToolStripMenuItem3;
 	private: System::Windows::Forms::ToolStripMenuItem^ perfilDeUsuarioToolStripMenuItem;
-
 	private: System::Windows::Forms::ToolStripMenuItem^ usuariosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ vehiculosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ zonasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ estacionamientosToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ playasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ tarjetasToolStripMenuItem;
-
-
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^ administradoresToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ personasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ menúDeInscripciónToolStripMenuItem;
-
 	private: System::Windows::Forms::ToolStripMenuItem^ registroDeEntradaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ salirToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ enrolamientoDeToolStripMenuItem;
@@ -390,8 +395,7 @@ private: System::Void vehiculosToolStripMenuItem_Click(System::Object^ sender, S
 private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 }
-private: System::Void RDEMasterMenu_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+
 private: System::Void xdToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void personasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -468,6 +472,8 @@ private: System::Void sensoresToolStripMenuItem_Click(System::Object^ sender, Sy
 
 	MantSensor^ mantsensorform = gcnew MantSensor();
 	mantsensorform->Show();
+}
+private: System::Void RDEMasterMenu_Load(System::Object^ sender, System::EventArgs^ e) {//EVENTO LOAD
 }
 };
 }
