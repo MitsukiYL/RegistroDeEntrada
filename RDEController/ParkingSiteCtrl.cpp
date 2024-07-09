@@ -1,37 +1,83 @@
 #include "ParkingSiteCtrl.h"
+#include "ZoneCtrl.h"
+#include "ParkingLotCtrl.h"
 
 using namespace RDEController;
 using namespace System::IO;
 
 ParkingSiteCtrl::ParkingSiteCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
 
+void ParkingSiteCtrl::abrirConexion() {
+	/*Paso 1, establecer la cadena de conexion*/
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	/*Paso 2, abrir la conexion*/
+	this->objConexion->Open();
+}
+
+void ParkingSiteCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
+
+int boolToInt(bool valorBooleano) {
+	// Devuelve 1 si valorBooleano es true, 0 si es false
+	return valorBooleano ? 1 : 0;
+}
+
+bool intToBool(int valorEntero) {
+	return valorEntero != 0; // Devuelve true si valorEntero es diferente de cero, false si es cero
 }
 
 List <parkingSite^>^ ParkingSiteCtrl::BuscarSitexLot(String^ lotIDsearch) {
 
+	//List<parkingSite^>^ listaesta = gcnew List<parkingSite^>();
+	//array<String^>^ lineas = File::ReadAllLines("Estacionamientos.txt");
+	//String^ separadores = ";"; 
+
+	//for each (String ^ lineaPeluche in lineas) {
+	//	
+	//	array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+
+	//	
+	//	//	FORMATO DEL ARCHIVO TXT
+	//	//	STRING ; BOOL ; BOOL ;BOOL ;STRING
+	//	
+
+	//	String^ ID =  datos[0];
+	//	bool reserved = Convert::ToBoolean(datos[1]);
+	//	bool active = Convert::ToBoolean(datos[2]);
+	//	bool busy = Convert::ToBoolean(datos[3]);
+	//	String^ lotID = Convert::ToString(datos[4]);
+	//	
+	//	if (lotID->CompareTo(lotIDsearch) == 0) {
+	//		parkingSite^ objestac = gcnew parkingSite(ID,reserved,active,busy, lotID);
+	//		listaesta->Add(objestac);
+	//	}
+	//}
+	//return listaesta;
+
 	List<parkingSite^>^ listaesta = gcnew List<parkingSite^>();
-	array<String^>^ lineas = File::ReadAllLines("Estacionamientos.txt");
-	String^ separadores = ";"; 
+	
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	objSentencia->CommandText = "select * from ParkingSite where lotID='" + lotIDsearch + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-	for each (String ^ lineaPeluche in lineas) {
-		
-		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
+	while (objData->Read()) {
 
-		
-		//	FORMATO DEL ARCHIVO TXT
-		//	STRING ; BOOL ; BOOL ;BOOL ;STRING
-		
+		String^ ID = safe_cast<String^>(objData[0]);
+		bool reserved = safe_cast<int>(objData[1]) != 0;
+		bool active = safe_cast<int>(objData[2]) != 0;
+		bool busy = safe_cast<int>(objData[3]) != 0;
+		String^ lotID = safe_cast<String^>(objData[4]);
 
-		String^ ID =  datos[0];
-		bool reserved = Convert::ToBoolean(datos[1]);
-		bool active = Convert::ToBoolean(datos[2]);
-		bool busy = Convert::ToBoolean(datos[3]);
-		String^ lotID = Convert::ToString(datos[4]);
-		
-		if (lotID->CompareTo(lotIDsearch) == 0) {
-			parkingSite^ objestac = gcnew parkingSite(ID,reserved,active,busy, lotID);
-			listaesta->Add(objestac);
-		}
+		parkingSite^ estacinamiento = gcnew parkingSite(ID, reserved, active, busy, lotID);
+		listaesta->Add(estacinamiento);
 	}
 	return listaesta;
 }
@@ -89,10 +135,27 @@ parkingSite^ ParkingSiteCtrl::BuscarSiteXID(String^ IDsearch) {
 }
 
 void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool active, String^ lotID) {
-	List<parkingSite^>^ listaesta = AllEstacionamientos();
-	parkingSite^ estacNuevo = gcnew parkingSite(ID, reserved, active,false, lotID);
-	listaesta->Add(estacNuevo);
-	escribirArchivo(listaesta);
+	//List<parkingSite^>^ listaesta = AllEstacionamientos();
+	//parkingSite^ estacNuevo = gcnew parkingSite(ID, reserved, active,false, lotID);
+	//listaesta->Add(estacNuevo);
+	//escribirArchivo(listaesta);
+
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+
+	int reservedint = boolToInt(reserved);
+	int activeint = boolToInt(active);
+
+	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
+	int codeUser = ctrlLot->BuscarplayaxID(lotID)->getZone()->getID();
+	objSentencia->CommandText = "insert into ParkingSite(ID,reserved,active,busy,lotID,codeUser) values ('" + ID + "'," + Convert::ToString( reservedint)+ "," + Convert::ToString(activeint) + "," + Convert::ToString(0) + ",'" + lotID + "'," + Convert::ToString(codeUser) + ")";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 
