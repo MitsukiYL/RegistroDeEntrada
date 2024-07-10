@@ -1,4 +1,5 @@
-1;Pabellon V;ubi;12;2;False;12
-2;Pabellon K;ubi;12;2;False;12
-3;Pabellon H;ubi;12;2;False;12
-4;Pabellon W;ubi;12;2;False;12
+1;Pabellon V;ubi;4;2;True;12
+2;Pabellon K;ubi;12;2;True;12
+3;Pabellon H;ubi;12;2;True;12
+4;Pabellon W;ubi;12;2;True;12
+0;Pabellon M;ubi;6;2;False;1

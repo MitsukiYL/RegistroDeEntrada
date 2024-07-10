@@ -5,57 +5,81 @@ using namespace RDEController;
 using namespace System::IO;
 
 ZoneCtrl::ZoneCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
+
+void ZoneCtrl::abrirConexion() {
+	/*Paso 1, establecer la cadena de conexion*/
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	/*Paso 2, abrir la conexion*/
+	this->objConexion->Open();
+}
+
+void ZoneCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 List<zone^>^ ZoneCtrl::buscarZoneAll() {
+	
 	List<zone^>^ listaZone = gcnew List<zone^>();
-	array<String^>^ lineas = File::ReadAllLines("Zone.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaZone in lineas) {
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	objSentencia->CommandText = "select * from Zone ";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		array<String^>^ datos = lineaZone->Split(separadores->ToCharArray());
+	while (objData->Read()) {
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ name = datos[1];
-		String^ location = datos[2];
-		String^ openingTime = datos[3];
-		String^ closingTime = datos[4];
-		bool active = Convert::ToBoolean(datos[5]);
-		int adminID = Convert::ToInt32(datos[6]);
-
-		AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
-		admin^ objAdmin = objAdminCtrl->BuscarAdminxID(adminID);
-
-		zone^ objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objAdmin);
+		int ID = safe_cast<int>(objData[0]);
+		String^ name = safe_cast<String^>(objData[1]);
+		String^ location = safe_cast<String^>(objData[2]);
+		String^ openingTime = safe_cast<String^>(objData[3]);
+		String^ closingTime = safe_cast<String^>(objData[4]);
+		int active = safe_cast<int>(objData[5]);
+		int IDAdmin = safe_cast<int>(objData[6]);
+		
+		AdminCtrl^ adminCtrl = gcnew AdminCtrl();
+		admin^ objadmin = adminCtrl->BuscarAdminxID(IDAdmin);
+		zone^ objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objadmin);
 		listaZone->Add(objZone);
+
 	}
+	cerrarConexion();
+	
 	return listaZone;
 }
 
 zone^ ZoneCtrl::buscarZonaxID(int searchID) {
-	zone^ objZone;
-	array<String^>^ lineas = File::ReadAllLines("Zone.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaZone in lineas) {
 
-		array<String^>^ datos = lineaZone->Split(separadores->ToCharArray());
+	zone^ objzona;
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	objSentencia->CommandText = "select * from Zone where ID= "+Convert::ToString(searchID);
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ name = datos[1];
-		String^ location = datos[2];
-		String^ openingTime = datos[3];
-		String^ closingTime = datos[4];
-		bool active = Convert::ToBoolean(datos[5]);
-		int adminID = Convert::ToInt32(datos[6]);
+	while (objData->Read()) {
 
-		AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
-		admin^ objAdmin = objAdminCtrl->BuscarAdminxID(adminID);
+		int ID = safe_cast<int>(objData[0]);
+		String^ name = safe_cast<String^>(objData[1]);
+		String^ location = safe_cast<String^>(objData[2]);
+		String^ openingTime = safe_cast<String^>(objData[3]);
+		String^ closingTime = safe_cast<String^>(objData[4]);
+		int active = safe_cast<int>(objData[5]);
+		int IDAdmin = safe_cast<int>(objData[6]);
 
-		if (ID == searchID) {
-			objZone = gcnew zone(ID, name, location, openingTime, closingTime, active, objAdmin);
-		}
-		
+		AdminCtrl^ adminCtrl = gcnew AdminCtrl();
+		admin^ objadmin = adminCtrl->BuscarAdminxID(IDAdmin);
+		objzona = gcnew zone(ID, name, location, openingTime, closingTime, active, objadmin);
 	}
-	return objZone;
+	cerrarConexion();
+
+	return objzona;
 }
 
 void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
@@ -68,50 +92,51 @@ void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
 }
 
 void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
-	List<zone^>^ listaZone = buscarZoneAll();
-
-	int newID = 1,val=1;
-	while (val) {
-		val = 0;
-		for (int i = 0; i < listaZone->Count; i++) {
-			if (listaZone[i]->getID() == newID) {
-				val = 1;
-				break;
-			}
-		}
-		if (!val) { break; }
-		newID++;
-	}
 	
-
-	zone^ objZone = gcnew zone(newID, name, location, openingTime, closingTime, active, objAdmin);
-	listaZone->Add(objZone);
-	escribirArchivo(listaZone);
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	int activeint = active ? 1 : 0;
+	int IDAdmin = objAdmin->getAdminID();
+	objSentencia->CommandText = "insert into Zone(ID,name,location,openingTime,closingTime,active,IDAdmin) values ('" + ID + "','" + name + "','" + location + "','" + openingTime + "','" + closingTime + "'," + Convert::ToString(activeint) + "," + Convert::ToString(IDAdmin) + ")";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void ZoneCtrl::eliminarZone(int ID) {
-	List<zone^>^ listaZone = buscarZoneAll();
-	for (int i = 0; i < listaZone->Count; i++) {
-		if (listaZone[i]->getID() == ID) {
-			listaZone->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaZone);
+
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+
+	objSentencia->CommandText = "delete from Zone where ID ='" + ID + "'";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
+
 }
 
 void ZoneCtrl::actualizarZone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
-	List<zone^>^ lista = buscarZoneAll();
-	for (int i = 0; i < lista->Count; i++) {
-		if (lista[i]->getID() == ID) {
-			lista[i]->setName(name);
-			lista[i]->setLocation(location);
-			lista[i]->setOpeningTime(openingTime);
-			lista[i]->setClosingTime(closingTime);
-			lista[i]->setActive(active);
-			lista[i]->setAdmin(objAdmin);
-			break;
-		}
-	}
-	escribirArchivo(lista);
+
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	int activeint = active ? 1 : 0;
+	int IDAdmin = objAdmin->getAdminID();
+	objSentencia->CommandText = "UPDATE Zone SET name = '"+ name + "', location ='"+ location + "',openingTime ='" + openingTime + "',closingTime ='" + closingTime +"',active ="+ Convert::ToString(activeint) + ",IDAdmin =" + Convert::ToString(IDAdmin) + "where ID =" + ID;
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
+
 }
+
