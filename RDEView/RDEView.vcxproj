@@ -149,6 +149,7 @@
     <ClCompile Include="ReporteDoorRegisterxDoor.cpp" />
     <ClCompile Include="ReporteParkingSitexZone.cpp" />
     <ClCompile Include="ReportePlayaxEstacionamiento.cpp" />
+    <ClCompile Include="UserListSolicitud.cpp" />
     <ClCompile Include="UsuarioAdmin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,9 +160,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EnrolamientoTarjeta.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="InterfaceInscription.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="InterfaceProfile.h">
@@ -236,6 +234,9 @@
     <ClInclude Include="ReportePlayaxEstacionamiento.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="UserListSolicitud.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UsuarioAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -249,9 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EnrolamientoTarjeta.resx">
       <DependentUpon>EnrolamientoTarjeta.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InterfaceInscription.resx">
-      <DependentUpon>InterfaceInscription.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfaceProfile.resx">
       <DependentUpon>InterfaceProfile.h</DependentUpon>
@@ -324,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportePlayaxEstacionamiento.resx">
       <DependentUpon>ReportePlayaxEstacionamiento.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserListSolicitud.resx">
+      <DependentUpon>UserListSolicitud.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioAdmin.resx">
       <DependentUpon>UsuarioAdmin.h</DependentUpon>
