@@ -1,2 +1,2 @@
-1A;Carro;FCI;20;2;1;1
-1B;Carro;FCI;20;2;1;1
+;Autos;Zotano 1;12;1;1;1
+1B;Autos;Zotano 1;12;1;1;1

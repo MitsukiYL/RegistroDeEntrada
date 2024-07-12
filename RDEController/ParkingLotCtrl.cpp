@@ -6,109 +6,154 @@ using namespace RDEController;
 using namespace System::IO;
 
 ParkingLotCtrl::ParkingLotCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
 
+void ParkingLotCtrl::abrirConexion() {
+	/*Paso 1, establecer la cadena de conexion*/
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	/*Paso 2, abrir la conexion*/
+	this->objConexion->Open();
+}
+
+void ParkingLotCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 
  parkingLot^ ParkingLotCtrl::BuscarplayaxID(String^ IDbuscar) {
 
-	parkingLot^ objParkingLot;
-	array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
-	String^ separadores = ";";
+	 parkingLot^ objplaya;
+	 abrirConexion();
+	 /*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	 SqlCommand^ objSentencia = gcnew SqlCommand();
+	 /*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	 objSentencia->Connection = this->objConexion;
+	 /*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	 objSentencia->CommandText = "select * from ParkingLot where ID='" + IDbuscar + "'";
+	 SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-	for each (String ^ lineapeluche in lineas) {
-		
-		array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
+	 while (objData->Read()) {
 
-		String^ ID = datos[0];
-		String^ vehicleType = datos[1];
-		String^ name = datos[2];
-		int capacity = Convert::ToInt32(datos[3]);
-		int N_reserved = Convert::ToInt32(datos[4]);
-		int N_inactive = Convert::ToInt32(datos[5]);
-		int zoneID = Convert::ToInt32(datos[6]);
+		 String^ name = safe_cast<String^>(objData[0]);
+		 String^ vehicleType = safe_cast<String^>(objData[1]);
+		 String^ ID = safe_cast<String^>(objData[2]);
+		 int capacity = safe_cast<int>(objData[3]);
+		 int N_reserved = safe_cast<int>(objData[4]);
+		 int N_inactive = safe_cast<int>(objData[5]);
+		 int codeZone = safe_cast<int>(objData[6]);
+		 
 
+		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
+		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
-		ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-		zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
+		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(IDbuscar);
 
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
-		
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+	 }
+	 cerrarConexion();
+	 return objplaya;
 
-		if (ID->CompareTo(IDbuscar)==0) {
-			objParkingLot = gcnew parkingLot(name,vehicleType,ID,capacity,N_reserved,N_inactive,objZone,listaParkingSite);
-		}
-	}
-	return objParkingLot;
 }
 
  List <parkingLot^>^ ParkingLotCtrl::PlayasxZona(int IDzone) {
-	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
-	 array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
-	 String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	 for each (String ^ lineapeluche in lineas) {
-		 /*voy a separar los datos de una linea en sub strings*/
-		 array<String^>^ datos = lineapeluche->Split(separadores->ToCharArray());
 
-		 String^ ID = datos[0];
-		 String^ vehicleType = datos[1];
-		 String^ name = datos[2];
-		 int capacity = Convert::ToInt32(datos[3]);
-		 int N_reserved = Convert::ToInt32(datos[4]);
-		 int N_inactive = Convert::ToInt32(datos[5]);
-		 int zoneID = Convert::ToInt32(datos[6]);
+
+	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
+	 abrirConexion();
+	 /*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	 SqlCommand^ objSentencia = gcnew SqlCommand();
+	 /*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	 objSentencia->Connection = this->objConexion;
+	 /*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	 objSentencia->CommandText = "select * from ParkingLot where codeZone=" + Convert::ToString(IDzone);
+	 SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	 while (objData->Read()) {
+
+		 String^ name = safe_cast<String^>(objData[0]);
+		 String^ vehicleType = safe_cast<String^>(objData[1]);
+		 String^ ID = safe_cast<String^>(objData[2]);
+		 int capacity = safe_cast<int>(objData[3]);
+		 int N_reserved = safe_cast<int>(objData[4]);
+		 int N_inactive = safe_cast<int>(objData[5]);
+		 int codeZone = safe_cast<int>(objData[6]);
+
 
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-		 zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
 		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
+		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(ID);
 
-		 if (objZone->getID() == IDzone) {
-			 parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
-			 listaplaya->Add(objplaya);
-		 }
-		 
+		 parkingLot^ objplaya;
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 listaplaya->Add(objplaya);
+
 	 }
+	 cerrarConexion();
 	 return listaplaya;
+
  }
 
 
  List <parkingLot^>^ ParkingLotCtrl::AllPlayas() {
-	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
-	 array<String^>^ lineas = File::ReadAllLines("ParkingLot.txt");
-	 String^ separadores = ";"; /*aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	 for each (String ^ lineaplaya in lineas) {
-		 /*voy a separar los datos de una linea en sub strings*/
-		 array<String^>^ datos = lineaplaya->Split(separadores->ToCharArray());
 
-		 String^ ID = datos[0];
-		 String^ vehicleType = datos[1];
-		 String^ name = datos[2];
-		 int capacity = Convert::ToInt32(datos[3]);
-		 int N_reserved = Convert::ToInt32(datos[4]);
-		 int N_inactive = Convert::ToInt32(datos[5]);
-		 int zoneID = Convert::ToInt32(datos[6]);
+	 List<parkingLot^>^ listaplaya = gcnew List<parkingLot^>();
+	 abrirConexion();
+	 /*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	 SqlCommand^ objSentencia = gcnew SqlCommand();
+	 /*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	 objSentencia->Connection = this->objConexion;
+	 /*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+	 objSentencia->CommandText = "select * from ParkingLot";
+	 SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	 while (objData->Read()) {
+
+		 String^ name = safe_cast<String^>(objData[0]);
+		 String^ vehicleType = safe_cast<String^>(objData[1]);
+		 String^ ID = safe_cast<String^>(objData[2]);
+		 int capacity = safe_cast<int>(objData[3]);
+		 int N_reserved = safe_cast<int>(objData[4]);
+		 int N_inactive = safe_cast<int>(objData[5]);
+		 int codeZone = safe_cast<int>(objData[6]);
+
 
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
-		 zone^ objZone = objZoneCtrl->buscarZonaxID(zoneID);
+		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
 		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->AllEstacionamientos();
+		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(ID);
 
-		 parkingLot^ objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 parkingLot^ objplaya;
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
 		 listaplaya->Add(objplaya);
+
 	 }
+	 cerrarConexion();
 	 return listaplaya;
+
  }
 
 
 void ParkingLotCtrl::agregarPlaya(String ^ name, String^ vehicleType, String ^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
-	List<parkingLot^>^ listaplaya = AllPlayas();	
-	String^ newcode = Convert::ToString(objZone->getID()) + Convert::ToString(Convert::ToChar('A' + PlayasxZona(objZone->getID())->Count));///problemaaaaaa
-	parkingLot^ PlayaNueva = gcnew parkingLot(name, vehicleType, newcode, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
-	listaplaya->Add(PlayaNueva);	
-	escribirArchivo(listaplaya);
+
+	List<parkingLot^>^ listaplaya = AllPlayas();
+	String^ newcode = Convert::ToString(objZone->getID()) + Convert::ToString(Convert::ToChar('A' + PlayasxZona(objZone->getID())->Count));
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+
+	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
+	int codeZone = objZone->getID();
+	objSentencia->CommandText = "insert into ParkingLot(name,vehicleType,ID,capacity,N_reserved,N_inactive,codeZone) values ('" + name + "','" + vehicleType + "','" + newcode + "',"  + Convert::ToString(capacity) + "," + Convert::ToString(N_reserved) + "," + Convert::ToString(N_inactive) + "," + Convert::ToString(codeZone) + ")";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 
@@ -122,30 +167,38 @@ void ParkingLotCtrl::escribirArchivo(List <parkingLot^>^ listaplaya) {
 }
 
 void ParkingLotCtrl::actualizarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
-	List<parkingLot^>^ listaplaya = AllPlayas();
-	for (int i = 0; i < listaplaya->Count; i++) {
-		if (listaplaya[i]->getID() == ID) {
-			listaplaya[i]->setName(name);
-			listaplaya[i]->setVehicleType(vehicleType);
-			listaplaya[i]->setCapacity(capacity);
-			listaplaya[i]->setNReserved(N_reserved);
-			listaplaya[i]->setNInactive(N_inactive);
-			listaplaya[i]->setZone(objZone);
-			listaplaya[i]->setListParkingSite(listaParkingSite);
-			break;
-		}
-	}
-	escribirArchivo(listaplaya);
+	
+
+	
+
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+
+	int codeZone = objZone->getID();
+
+	objSentencia->CommandText = "UPDATE ParkingLot SET name ='" + name + "', vehicleType ='"+ vehicleType +"', capacity =" +Convert::ToString(capacity) + ", N_reserved =" +Convert::ToString(N_inactive) + ",codeZone =" + Convert::ToString (codeZone) + " WHERE ID = '" + ID + "'";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 
 }
 
 void ParkingLotCtrl::eliminarPlaya(String^ ID) {
-	List<parkingLot^>^ listaplaya = AllPlayas();
-	for (int i = 0; i < listaplaya->Count; i++) {
-		if (listaplaya[i]->getID()) {
-			listaplaya->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaplaya);
+
+	abrirConexion();
+	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
+	objSentencia->Connection = this->objConexion;
+	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
+
+	objSentencia->CommandText = "delete from ParkingLot where ID ='" + ID + "'";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
+
 }
