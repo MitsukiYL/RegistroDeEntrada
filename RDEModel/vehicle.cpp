@@ -9,9 +9,8 @@ using namespace RDEModel;
 
 vehicle::vehicle() {}
 
-vehicle::vehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser) {
+vehicle::vehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest) {
     this->ID = ID;
-    this->fuelType = fuelType;
     this->vehicleType = vehicleType;
     this->registrationDate = registrationDate;
     this->plate = plate;
@@ -19,20 +18,15 @@ vehicle::vehicle(int ID, String^ fuelType, String^ vehicleType, String^ registra
     this->model = model;
     this->insurance = insurance;
     this->objUser = objUser;
+    this->active = active;
+    this->objRequest = objRequest;
+
 }
 int  vehicle::getID() {
     return this->ID;
 }
 void vehicle::setID(int ID) {
     this->ID = ID;
-}
-
-String^ vehicle::getFuelType() {
-    return this->fuelType;
-}
-
-void vehicle::setFuelType(String^ fuelType) {
-    this->fuelType = fuelType;
 }
 
 String^ vehicle::getVehicleType() {
@@ -88,4 +82,20 @@ user^ vehicle::getUser() {
 }
 void vehicle::setUser(user^ objUser) {
     this->objUser = objUser;
+}
+
+bool vehicle::getActive() {
+    return this->active;
+}
+
+void vehicle::setActive(bool active) {
+    this->active = active;
+}
+
+request^ vehicle::getRequest() {
+    return this->objRequest;
+}
+
+void vehicle::setRequest(request^ objRequest) {
+    this->objRequest = objRequest;
 }

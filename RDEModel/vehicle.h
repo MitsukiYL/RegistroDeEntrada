@@ -6,6 +6,7 @@
 #ifndef _VEHICLE_H
 #define _VEHICLE_H
 
+#include "request.h"
 #include "user.h"
 
 using namespace System;
@@ -18,7 +19,6 @@ namespace RDEModel {
      */
     public:
         int ID;
-        String^ fuelType;
         String^ vehicleType;
         String^ registrationDate;
         String^ plate;
@@ -26,15 +26,14 @@ namespace RDEModel {
         String^ model;
         bool insurance;
         user^ objUser;
+        bool active;
+        request^ objRequest;
 
         vehicle();
-        vehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
+        vehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest);
 
         int  getID();
         void setID(int ID);
-
-        String^ getFuelType();
-        void setFuelType(String^ fuelType);
 
         String^ getVehicleType();
         void setVehicleType(String^ vehicleType);
@@ -56,6 +55,12 @@ namespace RDEModel {
 
         user^ getUser();
         void setUser(user^ objUser);
+
+        bool getActive();
+        void setActive(bool active);
+
+        request^ getRequest();
+        void setRequest(request^ objRequest);
     };
 
 }

@@ -14,8 +14,8 @@ namespace RDEController {
 		vehicle^ buscarVehiclexPlate(String^ plateB);
 		vehicle^ buscarVehiclexID(int IDsearch);
 		void escribirArchivo(List<vehicle^>^ listaVehicle);
-		void agregarNewVehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
+		void agregarNewVehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest);
 		void eliminarVehicle(int IDsearch);
-		void actualizarVehicle(int ID, String^ fuelType, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser);
+		void actualizarVehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest);
 	};
 }
