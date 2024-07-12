@@ -21,9 +21,10 @@ List<user^>^ UserCtrl::buscarUserAll() {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		String^ registrationDate = datos[3];
-		String^ parkingSiteID = datos[4];
-		int personDNI = Convert::ToInt32(datos[5]);
+		bool inside = Convert::ToBoolean(datos[3]);
+		String^ registrationDate = datos[4];
+		String^ parkingSiteID = datos[5];
+		int personDNI = Convert::ToInt32(datos[6]);
 
 		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
 		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
@@ -31,7 +32,7 @@ List<user^>^ UserCtrl::buscarUserAll() {
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, objPerson);
+		user^ objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 		listaUser->Add(objUser);
 	}
 	return listaUser;
@@ -48,9 +49,10 @@ user^ UserCtrl::buscarUserxUserID(int userIDb) {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		String^ registrationDate = datos[3];
-		String^ parkingSiteID = datos[4];
-		int personDNI = Convert::ToInt32(datos[5]);
+		bool inside = Convert::ToBoolean(datos[3]);
+		String^ registrationDate = datos[4];
+		String^ parkingSiteID = datos[5];
+		int personDNI = Convert::ToInt32(datos[6]);
 
 		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
 		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
@@ -59,7 +61,7 @@ user^ UserCtrl::buscarUserxUserID(int userIDb) {
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 		if (userID == userIDb) {
-			objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, objPerson);
+			objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 			break;
 		}
 	}
@@ -77,9 +79,10 @@ user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 		int userID = Convert::ToInt32(datos[0]);
 		String^ userType = datos[1];
 		bool active = Convert::ToBoolean(datos[2]);
-		String^ registrationDate = datos[3];
-		String^ parkingSiteID = datos[4];
-		int personDNI = Convert::ToInt32(datos[5]);
+		bool inside = Convert::ToBoolean(datos[3]);
+		String^ registrationDate = datos[4];
+		String^ parkingSiteID = datos[5];
+		int personDNI = Convert::ToInt32(datos[6]);
 
 		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
 		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
@@ -88,7 +91,7 @@ user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 		if (personDNI == DNIbuscar) {
-			objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, objPerson);
+			objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 			break;
 		}
 	}
@@ -101,16 +104,16 @@ void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
 	for (int i = 0; i < listaUser->Count; i++) {
 		user^ objUser = listaUser[i];
 		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getUserType() + ";" + Convert::ToString(objUser->getActive())
-			+ ";" + objUser->getRegistrationDate() + ";" + Convert::ToString(objUser->getParkingSite()->getID())
+			+ ";" + Convert::ToString(objUser->getInside()) + ";" + objUser->getRegistrationDate() + ";" + Convert::ToString(objUser->getParkingSite()->getID())
 			+ ";" + Convert::ToString(objUser->getPerson()->getDNI());
 	}
 	File::WriteAllLines("User.txt", lineasArchivo);
 }
 
-void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, bool inside, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
 
 	List<user^>^ listaUser = buscarUserAll();
-	user^ objUser = gcnew user(userID, userType, active, registrationDate, objParkingSite, objPerson);
+	user^ objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 	listaUser->Add(objUser);
 	escribirArchivo(listaUser);
 }
@@ -126,15 +129,28 @@ void UserCtrl::eliminarUser(int userID) {
 	escribirArchivo(listaUser);
 }
 
-void UserCtrl::actualizarUser(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+void UserCtrl::actualizarUser(int userID, String^ userType, bool active, bool inside, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
 	List<user^>^ listaUser = buscarUserAll();
 	for (int i = 0; i < listaUser->Count; i++) {
 		if (listaUser[i]->getUserID() == userID) {
 			listaUser[i]->setActive(active);
+			listaUser[i]->setInside(inside);
 			listaUser[i]->setUserType(userType);
 			listaUser[i]->setRegistrationDate(registrationDate);
 			listaUser[i]->setParkingSite(objParkingSite);
 			listaUser[i]->setPerson(objPerson);
+			break;
+		}
+	}
+	escribirArchivo(listaUser);
+}
+
+void UserCtrl::actualizarUserInside(int userID, bool inside) {
+	List<user^>^ listaUser = buscarUserAll();
+	for (int i = 0; i < listaUser->Count; i++) {
+
+		if (listaUser[i]->getUserID() == userID) {
+			listaUser[i]->setInside(inside);
 			break;
 		}
 	}

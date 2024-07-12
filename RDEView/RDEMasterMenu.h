@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InterfaceInscription.h"
+
 #include "InterfaceProfile.h"
 #include "InterfaceRDE.h"
 #include "MantPerson.h"
@@ -366,10 +366,6 @@ namespace RDEView {
 private: System::Void perfilDeUsuarioToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	InterfaceProfile^ profileform = gcnew InterfaceProfile();
 	profileform->Show();
-}
-private: System::Void menúDeInscripciónToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	InterfaceInscription^ inscriptionform = gcnew InterfaceInscription();
-	inscriptionform->Show();
 }
 private: System::Void registroDeEntradaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	InterfaceRDE^ rdeform = gcnew InterfaceRDE();

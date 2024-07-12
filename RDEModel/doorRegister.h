@@ -14,10 +14,10 @@ using namespace System;
 namespace RDEModel {
     public ref class doorRegister {
     private:
+        int code;
         String^ entryTime;
         String^ exitTime;
-        bool userIn;
-        int code;
+        bool userIn;  
         card^ objCard;
         sensor^ objSensor;
         door^ objDoor;

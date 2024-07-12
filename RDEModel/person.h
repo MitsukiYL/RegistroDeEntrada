@@ -22,10 +22,9 @@ namespace RDEModel {
         String^ gender;
         String^ phone;
         int age;
-        bool isInside;
     
         person();
-        person(int DNI, String^ name, int code,  String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside);
+        person(int DNI, String^ name, int code,  String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age);
 
         String^ getName();
         void setName(String^ name);
@@ -57,8 +56,6 @@ namespace RDEModel {
         int getAge();
         void setAge(int age);
 
-        bool getIsInside();
-        void setIsInside(bool isInside);
     };
 }
 

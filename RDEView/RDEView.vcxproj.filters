@@ -27,9 +27,6 @@
     <ClCompile Include="RDEReg.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="InterfaceInscription.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="InterfaceRDE.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>

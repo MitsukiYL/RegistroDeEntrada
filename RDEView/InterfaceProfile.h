@@ -476,7 +476,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		objPerson->setMail(this->txt_mail->Text);
 		objPerson->setPhone(this->txt_phone->Text);
 
-		objPersonCtrl->actualizarPerson(objPerson->getDNI(), objPerson->getName(), objPerson->getCode(), objPerson->getMail(), objPerson->getPhone(), objPerson->getPassword(), objPerson->getPermission(), objPerson->getOccupation(), objPerson->getGender(), objPerson->getAge(), objPerson->getIsInside());
+		objPersonCtrl->actualizarPerson(objPerson->getDNI(), objPerson->getName(), objPerson->getCode(), objPerson->getMail(), objPerson->getPhone(), objPerson->getPassword(), objPerson->getPermission(), objPerson->getOccupation(), objPerson->getGender(), objPerson->getAge());
 
 		this->txt_mail->Enabled = false;
 		this->txt_phone->Enabled = false;

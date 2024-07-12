@@ -124,7 +124,6 @@
     <ClCompile Include="BuscarPerson.cpp" />
     <ClCompile Include="BuscarUser.cpp" />
     <ClCompile Include="EnrolamientoTarjeta.cpp" />
-    <ClCompile Include="InterfaceInscription.cpp" />
     <ClCompile Include="InterfaceProfile.cpp" />
     <ClCompile Include="InterfaceRDE.cpp" />
     <ClCompile Include="InterfaceSolAdmin.cpp" />

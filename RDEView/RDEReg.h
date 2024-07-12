@@ -277,7 +277,6 @@ namespace RDEView {
 		String^ gender = "gender";
 		int age = 999;
 		bool permission = false;
-		bool isInside = false;
 
 		if ((this->txt_DNI->Text=="") || (this->txt_code->Text =="") || (name=="") 
 			|| (mail=="") || (phone=="") || (password=="") || (confirm_password=="")) {
@@ -312,7 +311,7 @@ namespace RDEView {
 					txt_password->Clear();
 				}
 				else {
-					objPersonCtrl->agregarNewPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+					objPersonCtrl->agregarNewPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
 					person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
 
 					DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
@@ -337,11 +336,12 @@ namespace RDEView {
 
 					String^ userType = occupation;
 					bool active = true;
+					bool inside = false;
 					String^ regDate = objDateTimeHelper->fechaActual();
 					String^ parkSiteID = "PLACEHOLDER";
 					parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkSiteID);
 
-					objUserCtrl->agregarNewUser(userID, userType, active, regDate, objParkingSite, objPerson);
+					objUserCtrl->agregarNewUser(userID, userType, active, inside, regDate, objParkingSite, objPerson);
 
 					MessageBox::Show("El usuario ha sido agregado con éxito");
 					this->Close();

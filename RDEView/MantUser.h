@@ -57,12 +57,12 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_DNI;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
+
+
+
+
+
+
 	private: person^ objPerson;
 	private: vehicle^ objVehicle;
 	private: System::Windows::Forms::DataGridView^ VehiclexUser_DGV;
@@ -70,6 +70,14 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
+	private: System::Windows::Forms::CheckBox^ check_inside;
 
 
 
@@ -92,12 +100,6 @@ namespace RDEView {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->User_DGV = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txt_userID = (gcnew System::Windows::Forms::TextBox());
 			this->txt_registrationDate = (gcnew System::Windows::Forms::TextBox());
@@ -115,15 +117,24 @@ namespace RDEView {
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->check_inside = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->User_DGV))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VehiclexUser_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(217, 128);
+			this->button3->Location = System::Drawing::Point(289, 158);
+			this->button3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->Size = System::Drawing::Size(100, 28);
 			this->button3->TabIndex = 47;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -131,9 +142,10 @@ namespace RDEView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(110, 128);
+			this->button2->Location = System::Drawing::Point(147, 158);
+			this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(100, 28);
 			this->button2->TabIndex = 46;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
@@ -141,9 +153,10 @@ namespace RDEView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(9, 128);
+			this->button1->Location = System::Drawing::Point(12, 158);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(100, 28);
 			this->button1->TabIndex = 45;
 			this->button1->Text = L"Añadir";
 			this->button1->UseVisualStyleBackColor = true;
@@ -152,16 +165,176 @@ namespace RDEView {
 			// User_DGV
 			// 
 			this->User_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->User_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->User_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->Column1, this->Column4,
-					this->Column5, this->Column10, this->Column3, this->Column11
+					this->Column5, this->Column10, this->Column3, this->Column8, this->Column11
 			});
-			this->User_DGV->Location = System::Drawing::Point(12, 157);
+			this->User_DGV->Location = System::Drawing::Point(16, 193);
+			this->User_DGV->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->User_DGV->Name = L"User_DGV";
 			this->User_DGV->RowHeadersWidth = 62;
-			this->User_DGV->Size = System::Drawing::Size(867, 289);
+			this->User_DGV->Size = System::Drawing::Size(1156, 356);
 			this->User_DGV->TabIndex = 44;
 			this->User_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantUser::Person_DGV_CellClick);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(8, 20);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(89, 16);
+			this->label3->TabIndex = 36;
+			this->label3->Text = L"ID de Usuario";
+			// 
+			// txt_userID
+			// 
+			this->txt_userID->Location = System::Drawing::Point(195, 10);
+			this->txt_userID->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_userID->Name = L"txt_userID";
+			this->txt_userID->Size = System::Drawing::Size(223, 22);
+			this->txt_userID->TabIndex = 33;
+			// 
+			// txt_registrationDate
+			// 
+			this->txt_registrationDate->Location = System::Drawing::Point(195, 85);
+			this->txt_registrationDate->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_registrationDate->Name = L"txt_registrationDate";
+			this->txt_registrationDate->Size = System::Drawing::Size(223, 22);
+			this->txt_registrationDate->TabIndex = 35;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(8, 55);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(104, 16);
+			this->label6->TabIndex = 38;
+			this->label6->Text = L"Tipo de Usuario";
+			// 
+			// txt_userType
+			// 
+			this->txt_userType->Location = System::Drawing::Point(195, 46);
+			this->txt_userType->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_userType->Name = L"txt_userType";
+			this->txt_userType->Size = System::Drawing::Size(223, 22);
+			this->txt_userType->TabIndex = 39;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(8, 94);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(118, 16);
+			this->label5->TabIndex = 40;
+			this->label5->Text = L"Fecha de Registro";
+			// 
+			// check_active
+			// 
+			this->check_active->AutoSize = true;
+			this->check_active->Location = System::Drawing::Point(195, 130);
+			this->check_active->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->check_active->Name = L"check_active";
+			this->check_active->Size = System::Drawing::Size(66, 20);
+			this->check_active->TabIndex = 108;
+			this->check_active->Text = L"Activo";
+			this->check_active->UseVisualStyleBackColor = true;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(432, 20);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(163, 16);
+			this->label2->TabIndex = 110;
+			this->label2->Text = L"Lugar de Estacionamiento";
+			// 
+			// txt_ParkLotID
+			// 
+			this->txt_ParkLotID->Location = System::Drawing::Point(619, 11);
+			this->txt_ParkLotID->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_ParkLotID->Name = L"txt_ParkLotID";
+			this->txt_ParkLotID->Size = System::Drawing::Size(223, 22);
+			this->txt_ParkLotID->TabIndex = 109;
+			// 
+			// txt_DNI
+			// 
+			this->txt_DNI->Enabled = false;
+			this->txt_DNI->Location = System::Drawing::Point(619, 47);
+			this->txt_DNI->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_DNI->Name = L"txt_DNI";
+			this->txt_DNI->Size = System::Drawing::Size(223, 22);
+			this->txt_DNI->TabIndex = 130;
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(432, 52);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(30, 16);
+			this->label9->TabIndex = 129;
+			this->label9->Text = L"DNI";
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(681, 82);
+			this->button4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(100, 28);
+			this->button4->TabIndex = 131;
+			this->button4->Text = L"Buscar";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MantUser::button4_Click);
+			// 
+			// VehiclexUser_DGV
+			// 
+			this->VehiclexUser_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->VehiclexUser_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->Column2,
+					this->Column6, this->Column7
+			});
+			this->VehiclexUser_DGV->Location = System::Drawing::Point(851, 11);
+			this->VehiclexUser_DGV->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->VehiclexUser_DGV->Name = L"VehiclexUser_DGV";
+			this->VehiclexUser_DGV->RowHeadersWidth = 51;
+			this->VehiclexUser_DGV->Size = System::Drawing::Size(321, 144);
+			this->VehiclexUser_DGV->TabIndex = 132;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"ID";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Placa";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Vehículo";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(941, 158);
+			this->button5->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(155, 28);
+			this->button5->TabIndex = 133;
+			this->button5->Text = L"Agregar Vehículo";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MantUser::button5_Click);
 			// 
 			// Column1
 			// 
@@ -187,7 +360,9 @@ namespace RDEView {
 			// Column10
 			// 
 			this->Column10->HeaderText = L"Lugar de Estacionamiento";
+			this->Column10->MinimumWidth = 6;
 			this->Column10->Name = L"Column10";
+			this->Column10->Width = 125;
 			// 
 			// Column3
 			// 
@@ -196,154 +371,37 @@ namespace RDEView {
 			this->Column3->Name = L"Column3";
 			this->Column3->Width = 150;
 			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Está adentro";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
 			// Column11
 			// 
 			this->Column11->HeaderText = L"DNI";
+			this->Column11->MinimumWidth = 6;
 			this->Column11->Name = L"Column11";
+			this->Column11->Width = 125;
 			// 
-			// label3
+			// check_inside
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 16);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(72, 13);
-			this->label3->TabIndex = 36;
-			this->label3->Text = L"ID de Usuario";
-			// 
-			// txt_userID
-			// 
-			this->txt_userID->Location = System::Drawing::Point(146, 8);
-			this->txt_userID->Name = L"txt_userID";
-			this->txt_userID->Size = System::Drawing::Size(168, 20);
-			this->txt_userID->TabIndex = 33;
-			// 
-			// txt_registrationDate
-			// 
-			this->txt_registrationDate->Location = System::Drawing::Point(146, 69);
-			this->txt_registrationDate->Name = L"txt_registrationDate";
-			this->txt_registrationDate->Size = System::Drawing::Size(168, 20);
-			this->txt_registrationDate->TabIndex = 35;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(6, 45);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(82, 13);
-			this->label6->TabIndex = 38;
-			this->label6->Text = L"Tipo de Usuario";
-			// 
-			// txt_userType
-			// 
-			this->txt_userType->Location = System::Drawing::Point(146, 37);
-			this->txt_userType->Name = L"txt_userType";
-			this->txt_userType->Size = System::Drawing::Size(168, 20);
-			this->txt_userType->TabIndex = 39;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(6, 76);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(94, 13);
-			this->label5->TabIndex = 40;
-			this->label5->Text = L"Fecha de Registro";
-			// 
-			// check_active
-			// 
-			this->check_active->AutoSize = true;
-			this->check_active->Location = System::Drawing::Point(258, 105);
-			this->check_active->Name = L"check_active";
-			this->check_active->Size = System::Drawing::Size(56, 17);
-			this->check_active->TabIndex = 108;
-			this->check_active->Text = L"Activo";
-			this->check_active->UseVisualStyleBackColor = true;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(324, 16);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(130, 13);
-			this->label2->TabIndex = 110;
-			this->label2->Text = L"Lugar de Estacionamiento";
-			// 
-			// txt_ParkLotID
-			// 
-			this->txt_ParkLotID->Location = System::Drawing::Point(464, 9);
-			this->txt_ParkLotID->Name = L"txt_ParkLotID";
-			this->txt_ParkLotID->Size = System::Drawing::Size(168, 20);
-			this->txt_ParkLotID->TabIndex = 109;
-			// 
-			// txt_DNI
-			// 
-			this->txt_DNI->Enabled = false;
-			this->txt_DNI->Location = System::Drawing::Point(464, 38);
-			this->txt_DNI->Name = L"txt_DNI";
-			this->txt_DNI->Size = System::Drawing::Size(168, 20);
-			this->txt_DNI->TabIndex = 130;
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(324, 42);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(26, 13);
-			this->label9->TabIndex = 129;
-			this->label9->Text = L"DNI";
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(511, 67);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(75, 23);
-			this->button4->TabIndex = 131;
-			this->button4->Text = L"Buscar";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MantUser::button4_Click);
-			// 
-			// VehiclexUser_DGV
-			// 
-			this->VehiclexUser_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->VehiclexUser_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->Column2,
-					this->Column6, this->Column7
-			});
-			this->VehiclexUser_DGV->Location = System::Drawing::Point(638, 9);
-			this->VehiclexUser_DGV->Name = L"VehiclexUser_DGV";
-			this->VehiclexUser_DGV->Size = System::Drawing::Size(241, 117);
-			this->VehiclexUser_DGV->TabIndex = 132;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"ID";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Placa";
-			this->Column6->Name = L"Column6";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Vehículo";
-			this->Column7->Name = L"Column7";
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(706, 128);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(116, 23);
-			this->button5->TabIndex = 133;
-			this->button5->Text = L"Agregar Vehículo";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MantUser::button5_Click);
+			this->check_inside->AutoSize = true;
+			this->check_inside->Location = System::Drawing::Point(352, 130);
+			this->check_inside->Margin = System::Windows::Forms::Padding(4);
+			this->check_inside->Name = L"check_inside";
+			this->check_inside->Size = System::Drawing::Size(105, 20);
+			this->check_inside->TabIndex = 134;
+			this->check_inside->Text = L"Está adentro";
+			this->check_inside->UseVisualStyleBackColor = true;
 			// 
 			// MantUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(897, 458);
+			this->ClientSize = System::Drawing::Size(1196, 564);
+			this->Controls->Add(this->check_inside);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->VehiclexUser_DGV);
 			this->Controls->Add(this->button4);
@@ -362,7 +420,7 @@ namespace RDEView {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->txt_registrationDate);
 			this->Controls->Add(this->txt_userID);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MantUser";
 			this->Text = L"MantUser";
 			this->Load += gcnew System::EventHandler(this, &MantUser::MantUser_Load);
@@ -383,7 +441,8 @@ private: void mostrarGrillaUser(List<user^>^ listUser) {
 		filaGrilla[2] = objUser->getRegistrationDate();
 		filaGrilla[3] = Convert::ToString(objUser->getParkingSite()->getID());
 		filaGrilla[4] = Convert::ToString(objUser->getActive());
-		filaGrilla[5] = Convert::ToString(objUser->getPerson()->getDNI());
+		filaGrilla[5] = Convert::ToString(objUser->getInside());
+		filaGrilla[6] = Convert::ToString(objUser->getPerson()->getDNI());
 		this->User_DGV->Rows->Add(filaGrilla);
 	}
 }
@@ -405,6 +464,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	String^ userType = this->txt_userType->Text;
 	String^ registrationDate = this->txt_registrationDate->Text;
 	bool active = this->check_active->Checked;
+	bool inside = this->check_inside->Checked;
 	String^ parklotID = this->txt_ParkLotID->Text;
 	int DNI = Convert::ToInt32(this->txt_DNI->Text);
 
@@ -415,7 +475,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
-	objUserCtrl->agregarNewUser(userID, userType, active, registrationDate, objParkingSite, objPerson);
+	objUserCtrl->agregarNewUser(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 	txt_userID->Clear();
 
 	List<user^>^ listaAdmin = objUserCtrl->buscarUserAll();
@@ -428,6 +488,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ userType = this->txt_userType->Text;
 	String^ registrationDate = this->txt_registrationDate->Text;
 	bool active = this->check_active->Checked;
+	bool inside = this->check_inside->Checked;
 	String^ parklotID = this->txt_ParkLotID->Text;
 	int DNI = Convert::ToInt32(this->txt_DNI->Text);
 
@@ -438,7 +499,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	person^ objPerson = objPersonCtrl->buscarPersonxDNI(DNI);
 
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
-	objUserCtrl->actualizarUser(userID, userType, active, registrationDate, objParkingSite, objPerson);
+	objUserCtrl->actualizarUser(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 	txt_userID->Clear();
 	MessageBox::Show("El usuario seleccionada ha sido actualizado correctamente");
 

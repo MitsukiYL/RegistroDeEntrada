@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 person::person() {}
 
-person::person(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age, bool isInside) {
+person::person(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age) {
     this->name = name;
     this->password = password;
     this->code = code;
@@ -20,7 +20,6 @@ person::person(int DNI, String^ name, int code, String^ mail, String^ phone, Str
     this->gender = gender;
     this->phone = phone;
     this->age = age;
-    this->isInside = isInside;
 }
 
 String^ person::getName() {
@@ -103,10 +102,3 @@ void person::setAge(int age) {
     this->age = age;
 }
 
-bool person::getIsInside() {
-    return this->isInside;
-}
-
-void person::setIsInside(bool isInside) {
-    this->isInside = isInside;
-}

@@ -42,7 +42,6 @@ namespace RDEView {
 	protected:
 
 	private: String^ cardCode;
-
 	private: System::Windows::Forms::TextBox^ txt_reservedparksite;
 	private: System::Windows::Forms::Label^ label_reservedparksite;
 	private: System::Windows::Forms::Label^ label_availableparksites;
@@ -178,11 +177,11 @@ private: void GenerarDoorRegister(card^ objCard, int sensorID) {
 	sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");//agregar en el txt
 
-	person^ objPerson = objCard->getObjUser()->getPerson();
+	user^ objUser = objCard->getObjUser();
 	
-	if (objPerson != nullptr) {
-		bool isInside = objPerson->getIsInside();
-		int DNI = objPerson->getDNI();
+	if (objUser != nullptr) {
+		bool isInside = objUser->getInside();
+		int userID = objUser->getUserID();
 		String^ cardPerm = objCard->getPermissionType();
 		if (cardPerm == "General") {
 			this->label_reservedparksite->Visible = false;
@@ -204,7 +203,7 @@ private: void GenerarDoorRegister(card^ objCard, int sensorID) {
 		
 
 		if (isInside) {
-			objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
+			objUserCtrl->actualizarUserInside(userID, !isInside);
 			//Llamamos todas los doorRegister de la tarjeta
 			List<doorRegister^>^ listaDoorRegister = objDoorRegisterCtrl->buscarDoorRegisterxCard(cardCode);
 
@@ -243,7 +242,7 @@ private: void GenerarDoorRegister(card^ objCard, int sensorID) {
 			}
 
 			objDoorRegisterCtrl->agregarNewDoorRegister(entryTime, "0", true, drID, objCard, objSensor, objDoor);
-			objPersonCtrl->actualizarPersonIsInside(DNI, !isInside);
+			objUserCtrl->actualizarUserInside(userID, !isInside);
 
 			port->WriteLine("ON");
 			MessageBox::Show(objCard->getObjUser()->getPerson()->getName() + ", bienvenido al campus");

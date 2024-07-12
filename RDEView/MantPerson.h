@@ -41,27 +41,26 @@ namespace RDEView {
 	private: System::Windows::Forms::TextBox^ txt_name;
 	private: System::Windows::Forms::TextBox^ txt_code;
 	protected:
-
-
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txt_dni;
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ txt_password;
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txt_phone;
-
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ txt_mail;
-
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::DataGridView^ Person_DGV;
-
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::TextBox^ txt_age;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ txt_gender;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::CheckBox^ check_permission;
+	private: System::Windows::Forms::ComboBox^ combox_occupation;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -72,17 +71,6 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
-	private: System::Windows::Forms::TextBox^ txt_age;
-	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::TextBox^ txt_gender;
-	private: System::Windows::Forms::Label^ label8;
-
-	private: System::Windows::Forms::Label^ label9;
-
-	private: System::Windows::Forms::CheckBox^ check_permission;
-	private: System::Windows::Forms::CheckBox^ check_isInside;
-	private: System::Windows::Forms::ComboBox^ combox_occupation;
 
 	private:
 		/// <summary>
@@ -110,6 +98,16 @@ namespace RDEView {
 			this->txt_mail = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->Person_DGV = (gcnew System::Windows::Forms::DataGridView());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->txt_age = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->check_permission = (gcnew System::Windows::Forms::CheckBox());
+			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -120,190 +118,138 @@ namespace RDEView {
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->txt_age = (gcnew System::Windows::Forms::TextBox());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->txt_gender = (gcnew System::Windows::Forms::TextBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->check_permission = (gcnew System::Windows::Forms::CheckBox());
-			this->check_isInside = (gcnew System::Windows::Forms::CheckBox());
-			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Person_DGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(10, 42);
+			this->label1->Location = System::Drawing::Point(13, 52);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(44, 13);
+			this->label1->Size = System::Drawing::Size(56, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nombre";
 			// 
 			// txt_name
 			// 
-			this->txt_name->Location = System::Drawing::Point(51, 39);
+			this->txt_name->Location = System::Drawing::Point(68, 48);
+			this->txt_name->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_name->Name = L"txt_name";
-			this->txt_name->Size = System::Drawing::Size(168, 20);
+			this->txt_name->Size = System::Drawing::Size(223, 22);
 			this->txt_name->TabIndex = 1;
 			// 
 			// txt_code
 			// 
-			this->txt_code->Location = System::Drawing::Point(51, 65);
+			this->txt_code->Location = System::Drawing::Point(68, 80);
+			this->txt_code->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_code->Name = L"txt_code";
-			this->txt_code->Size = System::Drawing::Size(168, 20);
+			this->txt_code->Size = System::Drawing::Size(223, 22);
 			this->txt_code->TabIndex = 3;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(10, 68);
+			this->label2->Location = System::Drawing::Point(13, 84);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(40, 13);
+			this->label2->Size = System::Drawing::Size(51, 16);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Código";
 			// 
 			// txt_dni
 			// 
-			this->txt_dni->Location = System::Drawing::Point(51, 10);
+			this->txt_dni->Location = System::Drawing::Point(68, 12);
+			this->txt_dni->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_dni->Name = L"txt_dni";
-			this->txt_dni->Size = System::Drawing::Size(168, 20);
+			this->txt_dni->Size = System::Drawing::Size(223, 22);
 			this->txt_dni->TabIndex = 5;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(10, 13);
+			this->label3->Location = System::Drawing::Point(13, 16);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(26, 13);
+			this->label3->Size = System::Drawing::Size(30, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"DNI";
 			// 
 			// txt_password
 			// 
-			this->txt_password->Location = System::Drawing::Point(293, 62);
+			this->txt_password->Location = System::Drawing::Point(391, 76);
+			this->txt_password->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_password->Name = L"txt_password";
-			this->txt_password->Size = System::Drawing::Size(168, 20);
+			this->txt_password->Size = System::Drawing::Size(223, 22);
 			this->txt_password->TabIndex = 11;
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(235, 65);
+			this->label4->Location = System::Drawing::Point(313, 80);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(61, 13);
+			this->label4->Size = System::Drawing::Size(76, 16);
 			this->label4->TabIndex = 10;
 			this->label4->Text = L"Contraseña";
 			// 
 			// txt_phone
 			// 
-			this->txt_phone->Location = System::Drawing::Point(293, 36);
+			this->txt_phone->Location = System::Drawing::Point(391, 44);
+			this->txt_phone->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_phone->Name = L"txt_phone";
-			this->txt_phone->Size = System::Drawing::Size(168, 20);
+			this->txt_phone->Size = System::Drawing::Size(223, 22);
 			this->txt_phone->TabIndex = 9;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(240, 39);
+			this->label5->Location = System::Drawing::Point(320, 48);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(50, 13);
+			this->label5->Size = System::Drawing::Size(60, 16);
 			this->label5->TabIndex = 8;
 			this->label5->Text = L"Contacto";
 			// 
 			// txt_mail
 			// 
-			this->txt_mail->Location = System::Drawing::Point(293, 10);
+			this->txt_mail->Location = System::Drawing::Point(391, 12);
+			this->txt_mail->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_mail->Name = L"txt_mail";
-			this->txt_mail->Size = System::Drawing::Size(168, 20);
+			this->txt_mail->Size = System::Drawing::Size(223, 22);
 			this->txt_mail->TabIndex = 7;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(252, 13);
+			this->label6->Location = System::Drawing::Point(336, 16);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(38, 13);
+			this->label6->Size = System::Drawing::Size(48, 16);
 			this->label6->TabIndex = 6;
 			this->label6->Text = L"Correo";
 			// 
 			// Person_DGV
 			// 
 			this->Person_DGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->Person_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(11) {
+			this->Person_DGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->Column1, this->Column2,
-					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9, this->Column10, this->Column11
+					this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9, this->Column10
 			});
-			this->Person_DGV->Location = System::Drawing::Point(15, 136);
+			this->Person_DGV->Location = System::Drawing::Point(20, 167);
+			this->Person_DGV->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Person_DGV->Name = L"Person_DGV";
-			this->Person_DGV->Size = System::Drawing::Size(798, 289);
+			this->Person_DGV->RowHeadersWidth = 51;
+			this->Person_DGV->Size = System::Drawing::Size(1064, 356);
 			this->Person_DGV->TabIndex = 12;
 			this->Person_DGV->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MantPerson::dataGridView1_CellClick);
 			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"DNI";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Nombre";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Código";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Correo";
-			this->Column4->Name = L"Column4";
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Contacto";
-			this->Column5->Name = L"Column5";
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Contraseña";
-			this->Column6->Name = L"Column6";
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Permiso";
-			this->Column7->Name = L"Column7";
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"Cargo";
-			this->Column8->Name = L"Column8";
-			// 
-			// Column9
-			// 
-			this->Column9->HeaderText = L"Género";
-			this->Column9->Name = L"Column9";
-			// 
-			// Column10
-			// 
-			this->Column10->HeaderText = L"Edad";
-			this->Column10->Name = L"Column10";
-			// 
-			// Column11
-			// 
-			this->Column11->HeaderText = L"Está adentro";
-			this->Column11->Name = L"Column11";
-			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(13, 94);
+			this->button1->Location = System::Drawing::Point(17, 116);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(100, 28);
 			this->button1->TabIndex = 13;
 			this->button1->Text = L"Añadir";
 			this->button1->UseVisualStyleBackColor = true;
@@ -311,9 +257,10 @@ namespace RDEView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(115, 94);
+			this->button2->Location = System::Drawing::Point(153, 116);
+			this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(100, 28);
 			this->button2->TabIndex = 14;
 			this->button2->Text = L"Actualizar";
 			this->button2->UseVisualStyleBackColor = true;
@@ -321,9 +268,10 @@ namespace RDEView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(222, 94);
+			this->button3->Location = System::Drawing::Point(296, 116);
+			this->button3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->Size = System::Drawing::Size(100, 28);
 			this->button3->TabIndex = 15;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -331,64 +279,60 @@ namespace RDEView {
 			// 
 			// txt_age
 			// 
-			this->txt_age->Location = System::Drawing::Point(564, 62);
+			this->txt_age->Location = System::Drawing::Point(752, 76);
+			this->txt_age->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_age->Name = L"txt_age";
-			this->txt_age->Size = System::Drawing::Size(168, 20);
+			this->txt_age->Size = System::Drawing::Size(223, 22);
 			this->txt_age->TabIndex = 21;
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(523, 65);
+			this->label7->Location = System::Drawing::Point(697, 80);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(32, 13);
+			this->label7->Size = System::Drawing::Size(40, 16);
 			this->label7->TabIndex = 20;
 			this->label7->Text = L"Edad";
 			// 
 			// txt_gender
 			// 
-			this->txt_gender->Location = System::Drawing::Point(564, 36);
+			this->txt_gender->Location = System::Drawing::Point(752, 44);
+			this->txt_gender->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_gender->Name = L"txt_gender";
-			this->txt_gender->Size = System::Drawing::Size(168, 20);
+			this->txt_gender->Size = System::Drawing::Size(223, 22);
 			this->txt_gender->TabIndex = 19;
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(516, 39);
+			this->label8->Location = System::Drawing::Point(688, 48);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(42, 13);
+			this->label8->Size = System::Drawing::Size(52, 16);
 			this->label8->TabIndex = 18;
 			this->label8->Text = L"Género";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(523, 13);
+			this->label9->Location = System::Drawing::Point(697, 16);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(35, 13);
+			this->label9->Size = System::Drawing::Size(44, 16);
 			this->label9->TabIndex = 16;
 			this->label9->Text = L"Cargo";
 			// 
 			// check_permission
 			// 
 			this->check_permission->AutoSize = true;
-			this->check_permission->Location = System::Drawing::Point(564, 100);
+			this->check_permission->Location = System::Drawing::Point(752, 123);
+			this->check_permission->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->check_permission->Name = L"check_permission";
-			this->check_permission->Size = System::Drawing::Size(63, 17);
+			this->check_permission->Size = System::Drawing::Size(79, 20);
 			this->check_permission->TabIndex = 23;
 			this->check_permission->Text = L"Permiso";
 			this->check_permission->UseVisualStyleBackColor = true;
-			// 
-			// check_isInside
-			// 
-			this->check_isInside->AutoSize = true;
-			this->check_isInside->Location = System::Drawing::Point(676, 100);
-			this->check_isInside->Name = L"check_isInside";
-			this->check_isInside->Size = System::Drawing::Size(86, 17);
-			this->check_isInside->TabIndex = 24;
-			this->check_isInside->Text = L"Está adentro";
-			this->check_isInside->UseVisualStyleBackColor = true;
 			// 
 			// combox_occupation
 			// 
@@ -397,18 +341,88 @@ namespace RDEView {
 				L"Estudiante", L"Jefe de Práctica", L"Docente",
 					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L"Administrador"
 			});
-			this->combox_occupation->Location = System::Drawing::Point(564, 10);
+			this->combox_occupation->Location = System::Drawing::Point(752, 12);
+			this->combox_occupation->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->combox_occupation->Name = L"combox_occupation";
-			this->combox_occupation->Size = System::Drawing::Size(168, 21);
+			this->combox_occupation->Size = System::Drawing::Size(223, 24);
 			this->combox_occupation->TabIndex = 25;
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"DNI";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 125;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Nombre";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Código";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 125;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Correo";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Contacto";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Contraseña";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Permiso";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Cargo";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Género";
+			this->Column9->MinimumWidth = 6;
+			this->Column9->Name = L"Column9";
+			this->Column9->Width = 125;
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"Edad";
+			this->Column10->MinimumWidth = 6;
+			this->Column10->Name = L"Column10";
+			this->Column10->Width = 125;
 			// 
 			// MantPerson
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(825, 437);
+			this->ClientSize = System::Drawing::Size(1100, 538);
 			this->Controls->Add(this->combox_occupation);
-			this->Controls->Add(this->check_isInside);
 			this->Controls->Add(this->check_permission);
 			this->Controls->Add(this->txt_age);
 			this->Controls->Add(this->label7);
@@ -431,6 +445,7 @@ namespace RDEView {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txt_name);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MantPerson";
 			this->Text = L"MantPerson";
 			this->Load += gcnew System::EventHandler(this, &MantPerson::MantPerson_Load);
@@ -457,12 +472,10 @@ void ShowPerson() {
 		String^ gender = this->txt_gender->Text;
 		int age = Convert::ToInt32(this->txt_age->Text);
 		bool permission = this->check_permission->Checked;
-		bool isInside = this->check_isInside->Checked;
-
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 
-		objPersonCtrl->agregarNewPerson(DNIx, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+		objPersonCtrl->agregarNewPerson(DNIx, name, code, mail, phone, password, permission, occupation, gender, age);
 		MessageBox::Show("La persona ha sido agregada con éxito");
 
 		List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
@@ -488,9 +501,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int age = Convert::ToInt32(this->txt_age->Text);
 
 	bool permission = this->check_permission->Checked;
-	bool isInside = this->check_isInside->Checked;
 
-	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age, isInside);
+	objPersonCtrl->actualizarPerson(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
 	MessageBox::Show("La persona ha sido actualizada con éxito");
 
 	List<person^>^ listPerson = objPersonCtrl->buscarPersonAll();
@@ -531,13 +543,6 @@ private: void mostrarGrilla(List<person^>^ listPerson) {
 				filaGrilla[7] = objPerson->getOccupation();
 				filaGrilla[8] = objPerson->getGender();
 				filaGrilla[9] = Convert::ToString(objPerson->getAge());
-				if (objPerson->getIsInside()) {
-					txt_isInside = "Si";
-				}
-				else {
-					txt_isInside = "No";
-				}
-				filaGrilla[10] = txt_isInside;
 				this->Person_DGV->Rows->Add(filaGrilla);
 		   }
 	   }
@@ -557,7 +562,6 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 		this->txt_gender->Text = Person->getGender();
 		this->txt_age->Text = Convert::ToString(Person->getAge());
 		this->check_permission->Checked = Convert::ToBoolean(Person->getPermission());
-		this->check_isInside->Checked = Convert::ToBoolean(Person->getIsInside());
 	}
 }
 private: System::Void MantPerson_Load(System::Object^ sender, System::EventArgs^ e) {

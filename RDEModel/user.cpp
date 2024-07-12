@@ -10,9 +10,10 @@ using namespace System::Collections::Generic;
 
 user::user() {}
 
-user::user(int userID, String^ userType, bool active, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
+user::user(int userID, String^ userType, bool active, bool inside, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
     this->userType = userType;
     this->active = active;
+    this->inside = inside;
     this->userID = userID;
     this->registrationDate = registrationDate;
     this->objParkingSite = objParkingSite;
@@ -35,6 +36,14 @@ bool user::getActive() {
 
 void user::setActive(bool active) {
     this->active = active;
+}
+
+bool user::getInside() {
+    return this->inside;
+}
+
+void user::setInside(bool inside) {
+    this->inside = inside;
 }
 
 int user::getUserID() {
