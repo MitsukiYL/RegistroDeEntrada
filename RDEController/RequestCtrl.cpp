@@ -49,6 +49,38 @@ List<request^>^ RequestCtrl::buscarRequestAll() {
 	return lista;
 }
 
+List<request^>^ RequestCtrl::buscarRequestxUser(int codeUserb) {
+	List<request^>^ lista = gcnew List<request^>();
+
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Request where codeUser =" + codeUserb;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int ID = safe_cast<int>(objData[0]);
+		String^ emissionDate = safe_cast<String^>(objData[1]);
+		String^ responseDate = safe_cast<String^>(objData[2]);
+		String^ type = safe_cast<String^>(objData[3]);
+		String^ newOccupation = safe_cast<String^>(objData[4]);
+		String^ comment = safe_cast<String^>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[6]));
+		bool accepted = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int codeUser = safe_cast<int>(objData[8]);
+
+		UserCtrl^ objUserCtrl = gcnew UserCtrl();
+		user^ objUser = objUserCtrl->buscarUserxUserID(codeUser);
+
+		request^ objrequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
+		lista->Add(objrequest);
+	}
+
+	cerrarConexion();
+	return lista;
+}
+
 List<request^>^ RequestCtrl::buscarRequestxActive() {
 	List<request^>^ lista = gcnew List<request^>();
 

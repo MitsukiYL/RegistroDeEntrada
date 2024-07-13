@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "UserListSolicitud.h"
 #include "InterfaceProfile.h"
 #include "InterfaceRDE.h"
 #include "MantPerson.h"
@@ -506,9 +506,8 @@ private: System::Void nuevaSolicitudToolStripMenuItem_Click(System::Object^ send
 }
 private: System::Void verTusSolicitudesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {//LISTA DE SOLICITUDES - MODO USUARIO
 	if (this->objUser != nullptr) {
-		InterfaceProfile^ perfilUsuario = gcnew InterfaceProfile(this->objUser);
-		perfilUsuario->MdiParent = this;
-		perfilUsuario->Show();
+		UserListSolicitud^ formList = gcnew UserListSolicitud(this->objUser);
+		formList->Show();
 	}
 }
 };

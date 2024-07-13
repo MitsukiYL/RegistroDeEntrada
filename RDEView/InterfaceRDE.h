@@ -217,7 +217,9 @@ private: void GenerarDoorRegister(card^ objCard, int sensorID) {
 
 			if (i > 0) {
 				doorRegister^ lastDoorRegister = listaDoorRegister[i - 1];
+
 				String^ exitTime = (objDateTimeHelper->horaActual()) + "-" + (objDateTimeHelper->fechaActual());
+
 				objDoorRegisterCtrl->actualizarDoorRegister(lastDoorRegister->getEntryTime(), exitTime, false, lastDoorRegister->getCode(),
 					lastDoorRegister->getObjCard(), lastDoorRegister->getObjSensor(), lastDoorRegister->getObjDoor());
 			}

@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace RDEView {
 
 	using namespace System;
@@ -22,6 +23,7 @@ namespace RDEView {
 		InterfaceSolUser(void)
 		{
 			InitializeComponent();
+			this->objVehicle = objVehicle;
 			this->text_plate->Enabled = true;
 			//
 			//TODO: Add the constructor code here
@@ -30,7 +32,10 @@ namespace RDEView {
 		InterfaceSolUser(user^ objUser)
 		{
 			InitializeComponent();
+			this->objVehicle = objVehicle;
 			this->objUser = objUser;
+
+			//Visibilidad de elementos para User
 			this->label4->Visible = false;
 			this->combox_occupation->Visible = false;
 			this->label3->Visible = false; 
@@ -58,6 +63,7 @@ namespace RDEView {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: user^ objUser;
+	private: vehicle^ objVehicle;
 	private: System::Windows::Forms::RichTextBox^ rtxt_comment;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ combox_type;
@@ -269,6 +275,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 		DateTimeHelper^ objDateTimeHelper = gcnew DateTimeHelper();
+		VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
 
 		int DNI = Convert::ToInt32(this->txt_user->Text);
 		String^ emissionDate = objDateTimeHelper->fechaActual();
@@ -279,25 +286,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		bool active = true;
 		bool accepted = false;
 		user^ objUser = objUserCtrl->buscarUserxPersonDNI(DNI);
-
-		List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
-
-		int IDnew = 1, val = 1;
-
-		while (val) {
-			val = 0;
-			for (int i = 0; i < listaRequest->Count; i++) {
-				if (listaRequest[i]->getID() == IDnew) {
-					val = 1;
-					break;
-				}
-			}
-			if (!val) { break; }
-			IDnew++;
-		}
 		
-		objRequestCtrl->agregarNewRequest(IDnew, emissionDate, responseDate, type, newoccupation, comment, active, accepted, objUser);
-		MessageBox::Show("La solicitud se creó con exito.");
+		objRequestCtrl->agregarNewRequest(0, emissionDate, responseDate, type, newoccupation, comment, active, accepted, objUser);
+
+		if (type == "Nuevo Vehículo") {
+			if (this->objVehicle != nullptr) {
+				
+				List<request^>^ listaRequest = objRequestCtrl->buscarRequestxUser(objUser->getUserID());
+				request^ lastRequest;
+				int i = listaRequest->Count;
+
+				if ( i > 0) {
+					lastRequest = listaRequest[i - 1];
+					objVehicleCtrl->agregarNewVehicle(0, this->objVehicle->getVehicleType(), emissionDate, this->objVehicle->getPlate(),
+						this->objVehicle->getBrand(), this->objVehicle->getModel(), this->objVehicle->getInsurance(), objUser, false, lastRequest);
+					MessageBox::Show("La solicitud de Nuevo Vehículo se creó con éxito.");
+				}
+
+			}
+		}
+		else {
+			MessageBox::Show("La solicitud se creó con éxito.");
+		}	
 	}
 
 private: System::Void InterfaceSolUser_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -316,14 +326,6 @@ private: System::Void combox_type_SelectedIndexChanged(System::Object^ sender, S
 		this->text_plate->Visible = false;
 		this->checkBox1->Visible = false;
 
-	}
-	else if (txt == "Nuevo Vehículo") {
-		this->label3->Visible = true;
-		this->text_plate->Visible = true;
-		this->checkBox1->Visible = true;
-		this->label4->Visible = false;
-		this->combox_occupation->Visible = false;
-		this->combox_occupation->Enabled = false;
 	}
 	else{
 		this->label4->Visible = false;

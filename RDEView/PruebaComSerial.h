@@ -1,7 +1,9 @@
 #pragma once
 
 namespace RDEView {
-
+	/*
+	* 	
+	*/
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -42,6 +44,38 @@ namespace RDEView {
 	private: System::IO::Ports::SerialPort^ port;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: String^ data;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	protected:
 
 	protected:
@@ -72,20 +106,20 @@ namespace RDEView {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(9, 10);
-			this->richTextBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->richTextBox1->Location = System::Drawing::Point(12, 12);
+			this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(292, 96);
+			this->richTextBox1->Size = System::Drawing::Size(388, 117);
 			this->richTextBox1->TabIndex = 0;
 			this->richTextBox1->Text = L"";
 			// 
 			// PruebaComSerial
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(309, 115);
+			this->ClientSize = System::Drawing::Size(414, 145);
 			this->Controls->Add(this->richTextBox1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"PruebaComSerial";
 			this->Text = L"PruebaComSerial";
 			this->Load += gcnew System::EventHandler(this, &PruebaComSerial::PruebaComSerial_Load);

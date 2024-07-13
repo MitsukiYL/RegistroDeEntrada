@@ -2,12 +2,16 @@
 
 namespace RDEView {
 
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RDEController;
+	using namespace RDEModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de UserListSolicitud
@@ -15,9 +19,10 @@ namespace RDEView {
 	public ref class UserListSolicitud : public System::Windows::Forms::Form
 	{
 	public:
-		UserListSolicitud(void)
+		UserListSolicitud(user^ objUser)
 		{
 			InitializeComponent();
+			this->objUser = objUser;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -43,10 +48,10 @@ namespace RDEView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::RichTextBox^ rtxt_comment;
-
+	private: user^ objUser;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
-	private: System::Windows::Forms::Label^ label3;
+
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txt_type;
 	private: System::Windows::Forms::TextBox^ txt_emissionDate;
@@ -90,8 +95,6 @@ namespace RDEView {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->rtxt_comment = (gcnew System::Windows::Forms::RichTextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->txt_type = (gcnew System::Windows::Forms::TextBox());
 			this->txt_emissionDate = (gcnew System::Windows::Forms::TextBox());
@@ -188,25 +191,6 @@ namespace RDEView {
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Comentario :";
 			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(637, 46);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(163, 24);
-			this->comboBox1->TabIndex = 4;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &UserListSolicitud::comboBox1_SelectedIndexChanged);
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->label3->Location = System::Drawing::Point(544, 46);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(87, 20);
-			this->label3->TabIndex = 5;
-			this->label3->Text = L"Filtrar por:";
-			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
@@ -288,8 +272,6 @@ namespace RDEView {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->txt_type);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->rtxt_comment);
 			this->Controls->Add(this->label1);
@@ -303,11 +285,42 @@ namespace RDEView {
 
 		}
 #pragma endregion
-	private: System::Void UserListSolicitud_Load(System::Object^ sender, System::EventArgs^ e) {//EVENTO LOAD
+private: System::Void UserListSolicitud_Load(System::Object^ sender, System::EventArgs^ e) {//EVENTO LOAD
+	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+	List<request^>^ listaRequest = objRequestCtrl->buscarRequestxUser(this->objUser->getUserID());
+	mostrarGrilla(listaRequest);
+}
+private: void mostrarGrilla(List<request^>^ listaRequest) {
+	this->userRequest_DGV->Rows->Clear();
+
+	for (int i = 0; i < listaRequest->Count; i++) {
+		request^ objReq = listaRequest[i];
+		array<String^>^ filaGrilla = gcnew array<String^>(9);
+
+		filaGrilla[0] = Convert::ToString(objReq->getID());
+		filaGrilla[1] = objReq->getType();
+		filaGrilla[2] = Convert::ToString(objReq->getEmissionDate());
+		filaGrilla[3] = Convert::ToString(objReq->getResponseDate());
+		filaGrilla[4] = Convert::ToString(objReq->getActive());
+		filaGrilla[5] = Convert::ToString(objReq->getAccepted());
+		this->userRequest_DGV->Rows->Add(filaGrilla);
 	}
+}
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {//ELECCIÓN DE COMBOBOX
 }
 private: System::Void userRequest_DGV_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {//SELECCIONAR CELDA DE LA GRILLA
+	int ID = Int32::Parse(userRequest_DGV->Rows[userRequest_DGV->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
+	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+	request^ objReq = objRequestCtrl->buscarRequestxID(ID);
+
+	if (objReq != nullptr) {
+		this->txt_emissionDate->Text = Convert::ToString(objReq->getEmissionDate());
+		this->txt_responseDate->Text = Convert::ToString(objReq->getResponseDate());
+		this->txt_type->Text = objReq->getType();
+		this->rtxt_comment->Text = objReq->getComment();
+		this->check_active->Checked = objReq->getActive();
+		this->check_accepted->Checked = objReq->getAccepted();
+	}
 }
 };
 }

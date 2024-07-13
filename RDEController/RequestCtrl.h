@@ -16,6 +16,7 @@ namespace RDEController {
 		void cerrarConexion();
 
 		List<request^>^ buscarRequestAll();
+		List<request^>^ buscarRequestxUser(int codeUserb);
 		List<request^>^ buscarRequestxActive();
 		request^ buscarRequestxID(int IDsearch);
 		
