@@ -90,49 +90,15 @@ List<card^>^ CardCtrl::buscarCardxUserID(int userIDsearch) {
 	return listaCard;
 }
 
-void CardCtrl::escribirArchivo(List<card^>^ listaCard) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaCard->Count);
-	for (int i = 0; i < listaCard->Count; i++) {
-		card^ objCard = listaCard[i];
-		lineasArchivo[i] = objCard->getCode() + ";" + Convert::ToString(objCard->getID()) + ";" + Convert::ToString(objCard->getPermission()) + ";" + objCard->getPermissionType()
-			+ ";" + objCard->getEmissionDate() + ";" + objCard->getRegistrationDate()+ ";" + objCard->getExpirationDate() + ";" + Convert::ToString(objCard->getActive()) 
-			+ ";" + Convert::ToString(objCard->getObjUser()->getUserID());
-	}
-	File::WriteAllLines("Card.txt", lineasArchivo);
-}
-
 void CardCtrl::agregarNewCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
-	List<card^>^ listaCard = buscarCardAll();
-	card^ objCard = gcnew card(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, objUser);
-	listaCard->Add(objCard);
-	escribirArchivo(listaCard);
+
 }
 
 void CardCtrl::eliminarCard(String^ codeDelete) {
-	List<card^>^ listaCard = buscarCardAll();
-	for (int i = 0; i < listaCard->Count; i++) {
-		if (listaCard[i]->getCode() == codeDelete) {
-			listaCard->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaCard);
+
 }
 
 void CardCtrl::actualizarCard(String^ code, String^ expirationDate, String^ permissionType, int ID, bool permission, String^ emissionDate, String^ registrationDate, bool active, user^ objUser) {
-	List<card^>^ listaCard = buscarCardAll();
-	for (int i = 0; i < listaCard->Count; i++) {
-		if (listaCard[i]->getCode() == code) {
-			listaCard[i]->setExpirationDate(expirationDate);
-			listaCard[i]->setPermissionType(permissionType);
-			listaCard[i]->setID(ID);
-			listaCard[i]->setPermission(permission);
-			listaCard[i]->setEmissionDate(emissionDate);
-			listaCard[i]->setRegistrationDate(registrationDate);
-			listaCard[i]->setActive(active);
-			break;
-		}
-	}
-	escribirArchivo(listaCard);
+
 }
 

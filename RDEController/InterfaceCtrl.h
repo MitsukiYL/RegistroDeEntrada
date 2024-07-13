@@ -14,6 +14,9 @@ namespace RDEController {
 		InterfaceCtrl();
 		void abrirConexion();
 		void cerrarConexion();
+
+		interface^ buscarInterfacexID(int IDb);
+
 		void agregarNewInterface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID);
 		void actualizarMotorActive(int ID, bool active);
 		void eliminarInterface(int IDb);

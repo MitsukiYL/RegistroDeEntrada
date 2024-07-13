@@ -7,152 +7,169 @@ using namespace RDEController;
 using namespace System::IO;
 
 UserCtrl::UserCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
 
+void UserCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void UserCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 
 List<user^>^ UserCtrl::buscarUserAll() {
-	List<user^>^ listaUser = gcnew List<user^>();
-	array<String^>^ lineas = File::ReadAllLines("User.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaUser in lineas) {
+	List<user^>^ lista = gcnew List<user^>();
 
-		array<String^>^ datos = lineaUser->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from User";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int userID = Convert::ToInt32(datos[0]);
-		String^ userType = datos[1];
-		bool active = Convert::ToBoolean(datos[2]);
-		bool inside = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		String^ parkingSiteID = datos[5];
-		int personDNI = Convert::ToInt32(datos[6]);
+	while (objData->Read()) {
 
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
+		int userID = safe_cast<int>(objData[0]);
+		String^ userType = safe_cast<String^>(objData[1]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		bool inside = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		String^ registrationDate = safe_cast<String^>(objData[4]);
 
+		String^ parkingSiteID = safe_cast<String^>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
+
+		ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
-		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		user^ objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
-		listaUser->Add(objUser);
+		parkingSite^ objParkingSite = objParkSiteCtrl->BuscarSiteXID(parkingSiteID);
+		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
+		
+
+		user^ objuser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
+		lista->Add(objuser);
 	}
-	return listaUser;
+
+	cerrarConexion();
+	return lista;
 }
 
 user^ UserCtrl::buscarUserxUserID(int userIDb) {
 	user^ objUser;
-	array<String^>^ lineas = File::ReadAllLines("User.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaUser in lineas) {
 
-		array<String^>^ datos = lineaUser->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from User where userID=" + userIDb;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int userID = Convert::ToInt32(datos[0]);
-		String^ userType = datos[1];
-		bool active = Convert::ToBoolean(datos[2]);
-		bool inside = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		String^ parkingSiteID = datos[5];
-		int personDNI = Convert::ToInt32(datos[6]);
+	while (objData->Read()) {
 
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
+		int userID = safe_cast<int>(objData[0]);
+		String^ userType = safe_cast<String^>(objData[1]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		bool inside = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		String^ registrationDate = safe_cast<String^>(objData[4]);
 
+		String^ parkingSiteID = safe_cast<String^>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
+
+		ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+
+		parkingSite^ objParkingSite = objParkSiteCtrl->BuscarSiteXID(parkingSiteID);
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		if (userID == userIDb) {
-			objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
-			break;
-		}
+		objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
+	
 	}
+
+	cerrarConexion();
 	return objUser;
 }
 
 user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 	user^ objUser;
-	array<String^>^ lineas = File::ReadAllLines("User.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaUser in lineas) {
 
-		array<String^>^ datos = lineaUser->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from User where personDNI=" + DNIbuscar;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int userID = Convert::ToInt32(datos[0]);
-		String^ userType = datos[1];
-		bool active = Convert::ToBoolean(datos[2]);
-		bool inside = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		String^ parkingSiteID = datos[5];
-		int personDNI = Convert::ToInt32(datos[6]);
+	while (objData->Read()) {
 
-		ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		parkingSite^ objParkingSite = objParkingSiteCtrl->BuscarSiteXID(parkingSiteID);
+		int userID = safe_cast<int>(objData[0]);
+		String^ userType = safe_cast<String^>(objData[1]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		bool inside = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		String^ registrationDate = safe_cast<String^>(objData[4]);
 
+		String^ parkingSiteID = safe_cast<String^>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
+
+		ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+
+		parkingSite^ objParkingSite = objParkSiteCtrl->BuscarSiteXID(parkingSiteID);
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		if (personDNI == DNIbuscar) {
-			objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
-			break;
-		}
-	}
-	return objUser;
-}
+		objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
 
-void UserCtrl::escribirArchivo(List<user^>^ listaUser) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaUser->Count);
-	int cantVehiculos = 0;
-	for (int i = 0; i < listaUser->Count; i++) {
-		user^ objUser = listaUser[i];
-		lineasArchivo[i] = Convert::ToString(objUser->getUserID()) + ";" + objUser->getUserType() + ";" + Convert::ToString(objUser->getActive())
-			+ ";" + Convert::ToString(objUser->getInside()) + ";" + objUser->getRegistrationDate() + ";" + Convert::ToString(objUser->getParkingSite()->getID())
-			+ ";" + Convert::ToString(objUser->getPerson()->getDNI());
 	}
-	File::WriteAllLines("User.txt", lineasArchivo);
+
+	cerrarConexion();
+	return objUser;
 }
 
 void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, bool inside, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
 
-	List<user^>^ listaUser = buscarUserAll();
-	user^ objUser = gcnew user(userID, userType, active, inside, registrationDate, objParkingSite, objPerson);
-	listaUser->Add(objUser);
-	escribirArchivo(listaUser);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	String^ parkingSiteID = objParkingSite->getID();
+	int personDNI = objPerson->getDNI();
+
+	objSentencia->CommandText = "insert into User(userType, active, inside, registrationDate, parkingSiteID, personDNI) values ('" + userType + "'," + 
+		Convert::ToInt32(active) + "," + Convert::ToInt32(inside) + ",'" + registrationDate + "','" + parkingSiteID + "'," + personDNI + ")";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void UserCtrl::eliminarUser(int userID) {
-	List<user^>^ listaUser = buscarUserAll();
-	for (int i = 0; i < listaUser->Count; i++) {
-		if (listaUser[i]->getUserID() == userID) {
-			listaUser->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaUser);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from User where userID =" + userID;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void UserCtrl::actualizarUser(int userID, String^ userType, bool active, bool inside, String^ registrationDate, parkingSite^ objParkingSite, person^ objPerson){
-	List<user^>^ listaUser = buscarUserAll();
-	for (int i = 0; i < listaUser->Count; i++) {
-		if (listaUser[i]->getUserID() == userID) {
-			listaUser[i]->setActive(active);
-			listaUser[i]->setInside(inside);
-			listaUser[i]->setUserType(userType);
-			listaUser[i]->setRegistrationDate(registrationDate);
-			listaUser[i]->setParkingSite(objParkingSite);
-			listaUser[i]->setPerson(objPerson);
-			break;
-		}
-	}
-	escribirArchivo(listaUser);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	String^ parkingSiteID = objParkingSite->getID();
+	int personDNI = objPerson->getDNI();
+
+	objSentencia->CommandText = "UPDATE User SET userType ='" + userType + "', active =" + Convert::ToInt32(active) + ", inside =" + Convert::ToInt32(inside) +
+		", registrationDate ='" + registrationDate + "', parkingSiteID ='" + parkingSiteID + "', personDNI =" + personDNI + " WHERE ID = " + userID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void UserCtrl::actualizarUserInside(int userID, bool inside) {
-	List<user^>^ listaUser = buscarUserAll();
-	for (int i = 0; i < listaUser->Count; i++) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
 
-		if (listaUser[i]->getUserID() == userID) {
-			listaUser[i]->setInside(inside);
-			break;
-		}
-	}
-	escribirArchivo(listaUser);
+	objSentencia->CommandText = "UPDATE User SET inside ='" + Convert::ToBoolean(inside) + " WHERE ID = " + userID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

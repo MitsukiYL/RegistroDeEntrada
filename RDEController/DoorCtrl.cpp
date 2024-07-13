@@ -8,77 +8,90 @@ using namespace RDEController;
 using namespace System::IO;
 
 DoorCtrl::DoorCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
 
+void DoorCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void DoorCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 
 List<door^>^ DoorCtrl::buscarDoorAll() {
-	List<door^>^ listaDoor = gcnew List<door^>();
-	array<String^>^ lineas = File::ReadAllLines("Door.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoor in lineas) {
+	List<door^>^ lista = gcnew List<door^>();
 
-		array<String^>^ datos = lineaDoor->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from door";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		String^ doorName = datos[0];
-		bool active = Convert::ToBoolean(datos[1]);
-		String^ location = datos[2];
-		String^ doorType = datos[3];
-		String^ openingTime = datos[4];
-		String^ closingTime = datos[5];
-		int sensorID = Convert::ToInt32(datos[6]);
-		int interfaceID = Convert::ToInt32(datos[7]);
-		int motorID = Convert::ToInt32(datos[8]);
+	while (objData->Read()) {
 
-		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
+		String^ doorName = safe_cast<String^>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[1]));
+		String^ location = safe_cast<String^>(objData[2]);
+		String^ doorType = safe_cast<String^>(objData[3]);
+		String^ openingTime = safe_cast<String^>(objData[4]);
+		String^ closingTime = safe_cast<String^>(objData[5]);
 
-		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
-		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
+		int motorID = safe_cast<int>(objData[6]);
+		int interfaceID = safe_cast<int>(objData[7]);
+		int sensorID = safe_cast<int>(objData[8]);
 
 		MotorCtrl^ objMotorCtrl = gcnew MotorCtrl();
+		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
+		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
+
 		motor^ objMotor = objMotorCtrl->buscarMotorxID(motorID);
+		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
 		door^ objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, objSensor, objInterface, objMotor);
-		listaDoor->Add(objDoor);
+		lista->Add(objDoor);
 	}
-	return listaDoor;
+
+	cerrarConexion();
+	return lista;
 }
 
 door^ DoorCtrl::buscarDoorxN(String^ Nb) {
 
 	door^ objDoor;
-	List<door^>^ listaDoor = gcnew List<door^>();
-	array<String^>^ lineas = File::ReadAllLines("Door.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoor in lineas) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from door where NB = '" + Nb + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		array<String^>^ datos = lineaDoor->Split(separadores->ToCharArray());
+	while (objData->Read()) {
 
-		String^ doorName = datos[0];
-		bool active = Convert::ToBoolean(datos[1]);
-		String^ location = datos[2];
-		String^ doorType = datos[3];
-		String^ openingTime = datos[4];
-		String^ closingTime = datos[5];
-		int sensorID = Convert::ToInt32(datos[6]);
-		int interfaceID = Convert::ToInt32(datos[7]);
-		int motorID = Convert::ToInt32(datos[8]);
+		String^ doorName = safe_cast<String^>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[1]));
+		String^ location = safe_cast<String^>(objData[2]);
+		String^ doorType = safe_cast<String^>(objData[3]);
+		String^ openingTime = safe_cast<String^>(objData[4]);
+		String^ closingTime = safe_cast<String^>(objData[5]);
 
-		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
-
-		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
-		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
+		int motorID = safe_cast<int>(objData[6]);
+		int interfaceID = safe_cast<int>(objData[7]);
+		int sensorID = safe_cast<int>(objData[8]);
 
 		MotorCtrl^ objMotorCtrl = gcnew MotorCtrl();
+		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
+		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
+
 		motor^ objMotor = objMotorCtrl->buscarMotorxID(motorID);
+		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
-		if (doorName== Nb) {
-
-			objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, objSensor, objInterface, objMotor);
-			break;
-		}
+		objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, objSensor, objInterface, objMotor);
 	}
+
+	cerrarConexion();
 	return objDoor;
 }
 

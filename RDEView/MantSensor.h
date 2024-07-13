@@ -338,7 +338,7 @@ namespace RDEView {
 				filaGrilla[2] = objSensor->getModel();
 				filaGrilla[3] = objSensor->getRegistrationDate();
 				filaGrilla[4] = Convert::ToString(objSensor->getPin());
-				filaGrilla[5] = objSensor->getProtocole();
+				filaGrilla[5] = objSensor->getProtocol();
 				filaGrilla[6] = Convert::ToString(objSensor->getActive());
 				this->dataGridView1->Rows->Add(filaGrilla);
 			}
@@ -368,7 +368,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	List<card^>^ listCard = gcnew List<card^>();
 
 	SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-	objSensorCtrl->agregarNewSensor(pin, protocolo, fabricante, activo, fechaDeRegistro, ID, modelo, listCard);
+	objSensorCtrl->agregarNewSensor(pin, protocolo, fabricante, activo, fechaDeRegistro, ID, modelo);
 	textBox1->Clear();
 
 	List<sensor^>^ listSensor = objSensorCtrl->buscarSensorAll();
@@ -386,7 +386,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	List<card^>^ listCard = gcnew List<card^>();
 
 	SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-	objSensorCtrl->actualizarSensor(pin, protocolo, fabricante, activo, fechaDeRegistro, ID, modelo, listCard);
+	objSensorCtrl->actualizarSensor(pin, protocolo, fabricante, activo, fechaDeRegistro, ID, modelo);
 	textBox1->Clear();
 
 	List<sensor^>^ listSensor = objSensorCtrl->buscarSensorAll();

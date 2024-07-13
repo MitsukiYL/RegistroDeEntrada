@@ -16,6 +16,31 @@ void InterfaceCtrl::cerrarConexion() {
 	this->objConexion->Close();
 }
 
+interface^ InterfaceCtrl::buscarInterfacexID(int IDb) {
+	interface^ objInterface;
+
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Interface where ID = " + IDb;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int ID = safe_cast<int>(objData[0]);
+		int pin = safe_cast<int>(objData[1]);
+		String^ protocol = safe_cast<String^>(objData[2]);
+		String^ producer = safe_cast<String^>(objData[3]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		String^ registrationDate = safe_cast<String^>(objData[5]);
+
+		objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
+	}
+
+	cerrarConexion();
+	return objInterface;
+}
+
 void InterfaceCtrl::agregarNewInterface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID){
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
