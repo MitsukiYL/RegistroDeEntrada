@@ -30,7 +30,7 @@ List <parkingSite^>^ ParkingSiteCtrl::BuscarSitexLot(String^ lotIDsearch) {
 	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
-	objSentencia->CommandText = "select * from ParkingSite where lotID='" + lotIDsearch + "'";
+	objSentencia->CommandText = "select * from ParkingSite where IDParkingLot='" + lotIDsearch + "'";
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -93,7 +93,7 @@ parkingSite^ ParkingSiteCtrl::BuscarSiteXID(String^ IDsearch) {
 	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
-	objSentencia->CommandText = "select * from ParkingSite where ID='" + IDsearch + "'";
+	objSentencia->CommandText = "select * from ParkingSite where IDParkingLot='" + IDsearch + "'";
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {

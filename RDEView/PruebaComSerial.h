@@ -44,38 +44,6 @@ namespace RDEView {
 	private: System::IO::Ports::SerialPort^ port;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: String^ data;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	protected:
 
 	protected:
@@ -101,7 +69,7 @@ namespace RDEView {
 			// 
 			// port
 			// 
-			this->port->PortName = L"COM4";
+			this->port->PortName = L"COM3";
 			this->port->DataReceived += gcnew System::IO::Ports::SerialDataReceivedEventHandler(this, &PruebaComSerial::port_DataReceived);
 			// 
 			// richTextBox1

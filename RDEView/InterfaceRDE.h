@@ -78,27 +78,29 @@ namespace RDEView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 9);
+			this->label1->Location = System::Drawing::Point(16, 11);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(154, 13);
+			this->label1->Size = System::Drawing::Size(193, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"¡Realice su registro de entrada!";
 			// 
 			// txt_reservedparksite
 			// 
-			this->txt_reservedparksite->Location = System::Drawing::Point(181, 36);
-			this->txt_reservedparksite->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_reservedparksite->Location = System::Drawing::Point(241, 44);
+			this->txt_reservedparksite->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_reservedparksite->Name = L"txt_reservedparksite";
-			this->txt_reservedparksite->Size = System::Drawing::Size(144, 20);
+			this->txt_reservedparksite->Size = System::Drawing::Size(191, 22);
 			this->txt_reservedparksite->TabIndex = 10;
 			this->txt_reservedparksite->Visible = false;
 			// 
 			// label_reservedparksite
 			// 
 			this->label_reservedparksite->AutoSize = true;
-			this->label_reservedparksite->Location = System::Drawing::Point(10, 38);
+			this->label_reservedparksite->Location = System::Drawing::Point(13, 47);
+			this->label_reservedparksite->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_reservedparksite->Name = L"label_reservedparksite";
-			this->label_reservedparksite->Size = System::Drawing::Size(153, 13);
+			this->label_reservedparksite->Size = System::Drawing::Size(193, 16);
 			this->label_reservedparksite->TabIndex = 11;
 			this->label_reservedparksite->Text = L"Su estacionamiento reservado:\r\n";
 			this->label_reservedparksite->Visible = false;
@@ -106,37 +108,39 @@ namespace RDEView {
 			// label_availableparksites
 			// 
 			this->label_availableparksites->AutoSize = true;
-			this->label_availableparksites->Location = System::Drawing::Point(12, 38);
+			this->label_availableparksites->Location = System::Drawing::Point(16, 47);
+			this->label_availableparksites->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_availableparksites->Name = L"label_availableparksites";
-			this->label_availableparksites->Size = System::Drawing::Size(120, 13);
+			this->label_availableparksites->Size = System::Drawing::Size(153, 16);
 			this->label_availableparksites->TabIndex = 13;
 			this->label_availableparksites->Text = L"Estacionamientos libres:";
 			this->label_availableparksites->Visible = false;
 			// 
 			// txt_availableparksites
 			// 
-			this->txt_availableparksites->Location = System::Drawing::Point(182, 36);
-			this->txt_availableparksites->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txt_availableparksites->Location = System::Drawing::Point(243, 44);
+			this->txt_availableparksites->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txt_availableparksites->Name = L"txt_availableparksites";
-			this->txt_availableparksites->Size = System::Drawing::Size(144, 20);
+			this->txt_availableparksites->Size = System::Drawing::Size(191, 22);
 			this->txt_availableparksites->TabIndex = 12;
 			this->txt_availableparksites->Visible = false;
 			// 
 			// port
 			// 
-			this->port->PortName = L"COM4";
+			this->port->PortName = L"COM3";
 			this->port->DataReceived += gcnew System::IO::Ports::SerialDataReceivedEventHandler(this, &InterfaceRDE::port_DataReceived);
 			// 
 			// InterfaceRDE
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(334, 69);
+			this->ClientSize = System::Drawing::Size(445, 85);
 			this->Controls->Add(this->label_availableparksites);
 			this->Controls->Add(this->txt_availableparksites);
 			this->Controls->Add(this->label_reservedparksite);
 			this->Controls->Add(this->txt_reservedparksite);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"InterfaceRDE";
 			this->Text = L"Registro de entrada al Campus";
 			this->Load += gcnew System::EventHandler(this, &InterfaceRDE::InterfaceRDE_Load);

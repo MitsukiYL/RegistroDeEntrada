@@ -86,7 +86,7 @@ List<card^>^ CardCtrl::buscarCardxUserID(int userIDsearch) {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from Card where userID = " + userIDsearch;
+	objSentencia->CommandText = "select * from Card where IDUser = " + userIDsearch;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -119,8 +119,8 @@ void CardCtrl::agregarNewCard(String^ code, String^ expirationDate, String^ perm
 
 	int userID = objUser->getUserID();
 
-	objSentencia->CommandText = "insert into Card(code, expirationDate, permissionType, permission, emissionDate, registrationDate, active, userID) values ('" + 
-		code + "','" + expirationDate + "','" + permissionType + "'," + Convert::ToInt32(permission) + ",'" + emissionDate + "','" + 
+	objSentencia->CommandText = "insert into Card(code, expirationDate, permissionType, ID, permission, emissionDate, registrationDate, active, IDUser) values ('" + 
+		code + "','" + expirationDate + "','" + permissionType + "'," + ID + "," + Convert::ToInt32(permission) + ",'" + emissionDate + "','" +
 		registrationDate + "'," + Convert::ToInt32(active) + "," + userID + ")";
 
 	objSentencia->ExecuteNonQuery();
@@ -146,7 +146,7 @@ void CardCtrl::actualizarCard(String^ code, String^ expirationDate, String^ perm
 
 	objSentencia->CommandText = "UPDATE Card SET code ='" + code + "', expirationDate ='" + expirationDate + "', permissionType ='" + permissionType +
 		"', permission =" + Convert::ToInt32(permission) + ", emissionDate ='" + emissionDate + "', registrationDate ='" + registrationDate + "', active =" +
-		Convert::ToInt32(active) + ", userID ="+ userID + " WHERE ID = " + ID;
+		Convert::ToInt32(active) + ", IDUser ="+ userID + " WHERE ID = " + ID;
 
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
