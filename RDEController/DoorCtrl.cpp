@@ -30,15 +30,15 @@ List<door^>^ DoorCtrl::buscarDoorAll() {
 		int motorID = Convert::ToInt32(datos[8]);
 
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-		List<sensor^>^ listSensor = objSensorCtrl->buscarSensorAll();
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
 		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
-		List<interface^>^ listInterface = objInterfaceCtrl->buscarInterfaceAll();
+		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
 
 		MotorCtrl^ objMotorCtrl = gcnew MotorCtrl();
-		List<motor^>^ listMotor = objMotorCtrl->buscarMotorAll();
+		motor^ objMotor = objMotorCtrl->buscarMotorxID(motorID);
 
-		door^ objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, listSensor, listInterface, listMotor);
+		door^ objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, objSensor, objInterface, objMotor);
 		listaDoor->Add(objDoor);
 	}
 	return listaDoor;
@@ -65,17 +65,17 @@ door^ DoorCtrl::buscarDoorxN(String^ Nb) {
 		int motorID = Convert::ToInt32(datos[8]);
 
 		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-		List<sensor^>^ listSensor = objSensorCtrl->buscarSensorAll();
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
 
 		InterfaceCtrl^ objInterfaceCtrl = gcnew InterfaceCtrl();
-		List<interface^>^ listInterface = objInterfaceCtrl->buscarInterfaceAll();
+		interface^ objInterface = objInterfaceCtrl->buscarInterfacexID(interfaceID);
 
 		MotorCtrl^ objMotorCtrl = gcnew MotorCtrl();
-		List<motor^>^ listMotor = objMotorCtrl->buscarMotorAll();
+		motor^ objMotor = objMotorCtrl->buscarMotorxID(motorID);
 
 		if (doorName== Nb) {
 
-			objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, listSensor, listInterface, listMotor);
+			objDoor = gcnew door(doorName, active, location, doorType, openingTime, closingTime, objSensor, objInterface, objMotor);
 			break;
 		}
 	}

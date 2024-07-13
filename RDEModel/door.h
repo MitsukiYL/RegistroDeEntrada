@@ -20,13 +20,13 @@ namespace RDEModel {
         	String^ doorType;
             String^ openingTime;
             String^ closingTime;
-            List<sensor^>^ listSensor;
-            List<interface^>^ listInterface;
-            List<motor^>^ listMotor;
+            sensor^ objSensor;
+            interface^ objInterface;
+            motor^ objMotor;
 
 		public:
 		door();
-		door(String^ doorName, bool active, String^ location, String^ doorType, String^ openingTime, String^ closingTime, List<sensor^>^ listSensor, List<interface^>^ listInterface, List<motor^>^ listMotor);
+		door(String^ doorName, bool active, String^ location, String^ doorType, String^ openingTime, String^ closingTime, sensor^ objSensor, interface^ objInterface, motor^ objMotor);
 
         String^ getDoorName();
         bool  getActive();
@@ -34,9 +34,9 @@ namespace RDEModel {
 	    String^ getDoorType();
         String^ getOpeningTime();
         String^ getClosingTime();
-        List<sensor^>^ getListSensor();
-        List<interface^>^ getListInterface();
-        List<motor^>^ getListMotor();
+        sensor^ getSensor();
+        interface^ getInterface();
+        motor^ getMotor();
 
         void setDoorName(String^ doorName);
         void setActive(bool active);
@@ -44,9 +44,9 @@ namespace RDEModel {
         void setDoorType(String^ doorType);
         void setOpeningTime(String^ openingTime);
         void setClosingTime(String^ closingTime);
-        void setListSensor(List<sensor^>^ listSensor);
-        void setListInterface(List<interface^>^ listInterface);
-        void setListMotor(List<motor^>^ listMotor);
+        void setSensor(sensor^ objSensor);
+        void setInterface(interface^ objInterface);
+        void setMotor(motor^ objMotor);
     };
 }
 

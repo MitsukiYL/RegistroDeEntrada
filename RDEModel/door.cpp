@@ -8,7 +8,7 @@
 using namespace RDEModel;
 
 door::door() {};
-door::door(String^ doorName, bool active, String^ location, String^ doorType, String^ openingTime, String^ closingTime, List<sensor^>^ listSensor, List<interface^>^ listInterface, List<motor^>^ listMotor){
+door::door(String^ doorName, bool active, String^ location, String^ doorType, String^ openingTime, String^ closingTime, sensor^ objSensor, interface^ objInterface, motor^ objMotor){
 
     this->doorName = doorName;
     this->active = active;
@@ -16,9 +16,9 @@ door::door(String^ doorName, bool active, String^ location, String^ doorType, St
     this->doorType = doorType;
     this->openingTime = openingTime;
     this->closingTime = closingTime;
-    this->listSensor = listSensor;
-    this->listInterface = listInterface;
-    this->listMotor = listMotor;
+    this->objSensor = objSensor;
+    this->objInterface = objInterface;
+    this->objMotor = objMotor;
 }
 
 String^ door::getDoorName() {
@@ -41,14 +41,14 @@ String^ door::getOpeningTime() {
 String^ door::getClosingTime() {
     return this->closingTime;
 }
-List<sensor^>^ door::getListSensor() {
-    return this->listSensor;
+sensor^ door::getSensor() {
+    return this->objSensor;
 }
-List<interface^>^ door::getListInterface() {
-    return this->listInterface;
+interface^ door::getInterface() {
+    return this->objInterface;
 }
-List<motor^>^ door::getListMotor() {
-    return this->listMotor;
+motor^ door::getMotor(){
+    return this->objMotor;
 }
 
 void door::setDoorName(String^ doorName) {
@@ -69,12 +69,12 @@ void door::setOpeningTime(String^ openingTime) {
 void door::setClosingTime(String^ closingTime) {
     this-> closingTime=closingTime ;
 }
-void door::setListSensor(List<sensor^>^ listSensor) {
-    this->listSensor = listSensor;
+void door::setSensor(sensor^ objSensor) {
+    this->objSensor = objSensor;
 }
-void door::setListInterface(List<interface^>^ listInterface) {
-    this->listInterface = listInterface;
+void door::setInterface(interface^ objInterface) {
+    this->objInterface = objInterface;
 }
-void door::setListMotor(List<motor^>^ listMotor) {
-    this->listMotor = listMotor;
+void door::setMotor(motor^ objMotor) {
+    this->objMotor = objMotor;
 }
