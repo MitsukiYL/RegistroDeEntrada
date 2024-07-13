@@ -5,14 +5,17 @@ namespace RDEController {
 	using namespace System::Collections::Generic;
 	using namespace RDEModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
 
 	public ref class InterfaceCtrl {
+	private:
+		SqlConnection^ objConexion;
 	public:
 		InterfaceCtrl();
-		List<interface^>^ buscarInterfaceAll();
-		interface^ buscarInterfacexID(int IDb);
-		void escribirArchivo(List<interface^>^ listaInterface);
+		void abrirConexion();
+		void cerrarConexion();
 		void agregarNewInterface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID);
+		void actualizarMotorActive(int ID, bool active);
 		void eliminarInterface(int IDb);
 	};
 }

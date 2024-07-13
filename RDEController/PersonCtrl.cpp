@@ -7,6 +7,15 @@ PersonCtrl::PersonCtrl() {
 	this->objConexion = gcnew SqlConnection();
 }
 
+void PersonCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void PersonCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
+
 List<person^>^ PersonCtrl::buscarPersonAll() {
 	List<person^>^ listaPerson = gcnew List<person^>();
 
@@ -41,7 +50,7 @@ person^ PersonCtrl::buscarPersonxDNI(int DNIb) {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from Person where DNI='" + DNIb + "'";
+	objSentencia->CommandText = "select * from Person where DNI=" + DNIb;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -97,9 +106,9 @@ void PersonCtrl::agregarNewPerson(int DNI, String^ name, int code, String^ mail,
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "insert into Person(DNI, name, password, code, mail, permission, age, occupation, gender, phone) values ('" + 
-		Convert::ToString(DNI) + "','" + name + "','" + password + "'," + Convert::ToString(code) + "," + mail + "," + Convert::ToString(permission) + 
-		"," + Convert::ToString(age) + "," + occupation + "," + gender + "," + phone + ")";
+	objSentencia->CommandText = "insert into Person(DNI, name, password, code, mail, permission, age, occupation, gender, phone) values (" + 
+		DNI + ",'" + name + "','" + password + "'," + code + ",'" + mail + "'," + permission + "," + age + ",'" + 
+		occupation + "','" + gender + "','" + phone + "')";
 
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
@@ -110,7 +119,7 @@ void PersonCtrl::eliminarPerson(int DNI) {
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "delete from Person where ID ='" + DNI + "'";
+	objSentencia->CommandText = "delete from Person where ID =" + DNI;
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }
@@ -120,10 +129,10 @@ void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail,
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "UPDATE Person SET name ='" + name + "', password ='" + password + "', code =" + Convert::ToString(code) + ", mail =" + mail + 
-		", permission =" + Convert::ToString(permission) + ", age =" + Convert::ToString(age) + ", occupation =" +  occupation + ", gender =" + gender +
-		", phone =" + phone + " WHERE DNI = '" + DNI + "'";
-	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->CommandText = "UPDATE Person SET name ='" + name + "', password ='" + password + "', code =" + code + ", mail ='" + mail + 
+		"', permission =" + Convert::ToInt32(permission) + ", age =" + age + ", occupation ='" +  occupation + "', gender ='" + gender +
+		"', phone ='" + phone + "' WHERE DNI =" + DNI;
+	
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }

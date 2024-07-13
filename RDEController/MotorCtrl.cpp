@@ -4,83 +4,96 @@ using namespace RDEController;
 using namespace System::IO;
 
 MotorCtrl::MotorCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
+void MotorCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void MotorCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
 List<motor^>^ MotorCtrl::buscarMotorAll() {
-	List<motor^>^ listaMotor = gcnew List<motor^>();
-	array<String^>^ lineas = File::ReadAllLines("Motor.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaMotor in lineas) {
+	List<motor^>^ lista = gcnew List<motor^>();
 
-		array<String^>^ datos = lineaMotor->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Motor";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int pin = Convert::ToInt32(datos[0]);
-		int RPM = Convert::ToInt32(datos[1]);
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int power = Convert::ToInt32(datos[5]);
-		int ID = Convert::ToInt32(datos[6]);
+	while (objData->Read()) {
 
+		int ID = safe_cast<int>(objData[0]);
+		int pin = safe_cast<int>(objData[1]);
+		int RPM = safe_cast<int>(objData[2]);
+		String^ producer = safe_cast<String^>(objData[3]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		double power = safe_cast<double>(objData[4]);
 
 		motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
-		listaMotor->Add(objMotor);
+		lista->Add(objMotor);
 	}
-	return listaMotor;
+	cerrarConexion();
+	return lista;
 }
 
 motor^ MotorCtrl::buscarMotorxID(int IDb) {
 	motor^ objMotor;
-	List<motor^>^ listaMotor = gcnew List<motor^>();
-	array<String^>^ lineas = File::ReadAllLines("Motor.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaMotor in lineas) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Motor where ID=" + IDb;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		array<String^>^ datos = lineaMotor->Split(separadores->ToCharArray());
+	while (objData->Read()) {
+		int ID = safe_cast<int>(objData[0]);
+		int pin = safe_cast<int>(objData[1]);
+		int RPM = safe_cast<int>(objData[2]);
+		String^ producer = safe_cast<String^>(objData[3]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		double power = safe_cast<double>(objData[4]);
 
-		int pin = Convert::ToInt32(datos[0]);
-		int RPM = Convert::ToInt32(datos[1]);
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int power = Convert::ToInt32(datos[5]);
-		int ID = Convert::ToInt32(datos[6]);
-
-		if (ID == IDb) {
-
-			motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
-			break;
-		}
-
+		objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
 	}
+
+	cerrarConexion();
 	return objMotor;
 }
 
-void MotorCtrl::escribirArchivo(List<motor^>^ listaMotor) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaMotor->Count);
-	for (int i = 0; i < listaMotor->Count; i++) {
-		motor^ objMotor = listaMotor[i];
-		lineasArchivo[i] = Convert::ToString(objMotor->getPin()) + ";" + Convert::ToString(objMotor->getRPM()) + ";" + objMotor->getProducer() + ";" + Convert::ToString(objMotor->getActive())
-			+ ";" + objMotor->getRegistrationDate() + ";" + Convert::ToString(objMotor->getPower()) + ";" + Convert::ToString(objMotor->getID());
-	}
-	File::WriteAllLines("Motor.txt", lineasArchivo);
+void MotorCtrl::agregarNewMotor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power, int ID){
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "insert into Motor(pin, RPM, producer, active, registrationDate, power) values (" +
+		pin + "," + RPM + ",'" + producer + "'," + Convert::ToInt32(active) + ",'" + registrationDate + "'," + power + ")";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
-void MotorCtrl::agregarNewMotor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power, int ID){
-	List<motor^>^ listaMotor = buscarMotorAll();
-	motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
-	listaMotor->Add(objMotor);
-	escribirArchivo(listaMotor);
+void MotorCtrl::actualizarMotorActive(int ID, bool active) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "UPDATE Motor SET active =" + Convert::ToInt32(active) + " WHERE ID = " + ID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void MotorCtrl::eliminarMotor(int IDb) {
-	List<motor^>^ listaMotor = buscarMotorAll();
-	for (int i = 0; i < listaMotor->Count; i++) {
-		if (listaMotor[i]->getID() == IDb) {
-			listaMotor->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaMotor);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Motor where ID =" + IDb;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

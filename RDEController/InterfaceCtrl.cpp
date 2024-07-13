@@ -4,80 +4,47 @@ using namespace RDEController;
 using namespace System::IO;
 
 InterfaceCtrl::InterfaceCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
-List<interface^>^ InterfaceCtrl::buscarInterfaceAll() {
-	List<interface^>^ listaInterface = gcnew List<interface^>();
-	array<String^>^ lineas = File::ReadAllLines("Interface.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaInterface in lineas) {
-
-		array<String^>^ datos = lineaInterface->Split(separadores->ToCharArray());
-
-		int pin = Convert::ToInt32(datos[0]);
-		String^ protocol = datos[1];
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int ID = Convert::ToInt32(datos[5]);
-
-		interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
-		listaInterface->Add(objInterface);
-	}
-	return listaInterface;
+void InterfaceCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
 }
 
-interface^ InterfaceCtrl::buscarInterfacexID(int IDb) {
-	interface^ objInterface;
-	List<interface^>^ listaInterface = gcnew List<interface^>();
-	array<String^>^ lineas = File::ReadAllLines("Interface.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaCard in lineas) {
-
-		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
-
-		int pin = Convert::ToInt32(datos[0]);
-		String^ protocol = datos[1];
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int ID = Convert::ToInt32(datos[5]);
-
-		if (ID == IDb) {
-
-			interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
-			break;
-		}
-
-	}
-	return objInterface;
-}
-
-void InterfaceCtrl::escribirArchivo(List<interface^>^ listaInterface) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaInterface->Count);
-	for (int i = 0; i < listaInterface->Count; i++) {
-		interface^ objInterface = listaInterface[i];
-		lineasArchivo[i] = Convert::ToString(objInterface->getPin()) + ";" + objInterface->getProtocol() + ";" + objInterface->getProducer() + ";" + Convert::ToString(objInterface->getActive())
-			+ ";" + objInterface->getRegistrationDate() + ";" + Convert::ToString(objInterface->getID());
-	}
-	File::WriteAllLines("Interface.txt", lineasArchivo);
+void InterfaceCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 
 void InterfaceCtrl::agregarNewInterface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID){
-	List<interface^>^ listaInterface = buscarInterfaceAll();
-	interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
-	listaInterface->Add(objInterface);
-	escribirArchivo(listaInterface);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "insert into Interface(pin, protocol, producer, active, registrationDate) values (" +
+		pin + ",'" + protocol + "','" + producer + "'," + Convert::ToInt32(active) + ",'" + registrationDate + "')";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
+}
+
+void InterfaceCtrl::actualizarMotorActive(int ID, bool active) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "UPDATE Interface SET active =" + Convert::ToInt32(active) + " WHERE ID = " + ID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void InterfaceCtrl::eliminarInterface(int IDb) {
-	List<interface^>^ listaInterface = buscarInterfaceAll();
-	for (int i = 0; i < listaInterface->Count; i++) {
-		if (listaInterface[i]->getID() == IDb) {
-			listaInterface->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaInterface);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Interface where ID =" + IDb;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
