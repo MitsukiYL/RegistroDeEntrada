@@ -531,6 +531,8 @@ private: System::Void Vehicle_DGV_CellClick(System::Object^ sender, System::Wind
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
 
+	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
+
 	int ID = Convert::ToInt32(this->txt_ID->Text);
 	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ vehicleType = this->txt_vehicleType->Text;
@@ -548,9 +550,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
 	request^ objRequest = objRequestCtrl->buscarRequestxID(requestID);
 
-	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
-	objVehicleCtrl->agregarNewVehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-	txt_plate->Clear();
+	if ((objUser != nullptr) && (objRequest != nullptr)) {
+		objVehicleCtrl->agregarNewVehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
+		MessageBox::Show("El vehiculo se añadió correctamente");
+	}
+	else {
+		MessageBox::Show("Datos ingresados son incorrectos");
+	}
 
 	List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();
 	mostrarGrilla(listVehicle);
@@ -577,7 +583,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
 	objVehicleCtrl->actualizarVehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-	MessageBox::Show("El vehiculo seleccionado a ha sido actualizado correctamente");
+	MessageBox::Show("El vehiculo seleccionado ha sido actualizado correctamente");
 	txt_plate->Clear();
 
 	List<vehicle^>^ listVehicle = objVehicleCtrl->buscarVehicleAll();

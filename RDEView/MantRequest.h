@@ -471,7 +471,10 @@ namespace RDEView {
 		}
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {//AÑADIR
-	int ID = Convert::ToInt32(this->txt_ID->Text);
+
+	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+
+	int ID = 0;
 	String^ emissionDate = this->txt_emisionDate->Text;
 	String^ responseDate = this->txt_responseDate->Text;
 	String^ type = this->combtext_type->Text;
@@ -484,14 +487,23 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-	objRequestCtrl->agregarNewRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-	txt_ID->Clear();
+	if (objUser != nullptr) {
+		objRequestCtrl->agregarNewRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
+		MessageBox::Show("La solicitud se agregó con éxito.");
+		txt_ID->Clear();
+	}
+	else {
+		MessageBox::Show("Datos ingresados son incorrectos.");
+	}
+
 
 	List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
 	mostrarGrilla(listaRequest);
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {//ACTUALIZAR
+
+	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
+
 	int ID = Convert::ToInt32(this->txt_ID->Text);
 	String^ emissionDate = this->txt_emisionDate->Text;
 	String^ responseDate = this->txt_responseDate->Text;
@@ -505,11 +517,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	UserCtrl^ objUserCtrl = gcnew UserCtrl();
 	user^ objUser = objUserCtrl->buscarUserxUserID(userID);
 
-	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-	objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-	txt_ID->Clear();
-
-	MessageBox::Show("La solicitud se actualizo con exito.");
+	if (objUser != nullptr) {
+		objRequestCtrl->actualizarRequest(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
+		txt_ID->Clear();
+		MessageBox::Show("La solicitud se actualizó con éxito.");
+	}
+	else {
+		MessageBox::Show("Datos ingresados son incorrectos.");
+	}
 
 	List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
 	mostrarGrilla(listaRequest);
@@ -519,9 +534,14 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	int IDeliminar = Convert::ToInt32(this->Request_DGV->Rows[filaSeleccionada]->Cells[0]->Value->ToString());
 
 	RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-	objRequestCtrl->eliminarRequest(IDeliminar);
-	MessageBox::Show("La solicitud seleccionada ha sido eliminado correctamente");
-	this->Request_DGV->Rows->Clear();
+
+	request^ objRequest = objRequestCtrl->buscarRequestxID(IDeliminar);
+	
+	if (objRequest != nullptr) {
+		objRequestCtrl->eliminarRequest(IDeliminar);
+		MessageBox::Show("La solicitud seleccionada ha sido eliminado correctamente");
+		this->Request_DGV->Rows->Clear();
+	}
 
 	List<request^>^ listaRequest = objRequestCtrl->buscarRequestAll();
 	mostrarGrilla(listaRequest);

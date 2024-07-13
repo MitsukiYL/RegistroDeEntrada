@@ -107,7 +107,7 @@ void PersonCtrl::agregarNewPerson(int DNI, String^ name, int code, String^ mail,
 	objSentencia->Connection = this->objConexion;
 
 	objSentencia->CommandText = "insert into Person(DNI, name, password, code, mail, permission, age, occupation, gender, phone) values (" + 
-		DNI + ",'" + name + "','" + password + "'," + code + ",'" + mail + "'," + permission + "," + age + ",'" + 
+		DNI + ",'" + name + "','" + password + "'," + code + ",'" + mail + "'," + Convert::ToInt32(permission) + "," + age + ",'" + 
 		occupation + "','" + gender + "','" + phone + "')";
 
 	objSentencia->ExecuteNonQuery();
@@ -119,7 +119,7 @@ void PersonCtrl::eliminarPerson(int DNI) {
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "delete from Person where ID =" + DNI;
+	objSentencia->CommandText = "delete from Person where DNI =" + DNI;
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }

@@ -119,7 +119,7 @@ void RequestCtrl::agregarNewRequest(int ID, String^ emissionDate, String^ respon
 
 	int codeUser = objUser->getUserID();
 
-	objSentencia->CommandText = "insert into Request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, codeUser) values ('" + emissionDate + 
+	objSentencia->CommandText = "insert into Request(emissionDate, responseDate, type, newOccupation, comment, active, accepted, codeUser) values ('" + emissionDate + 
 		"','" + responseDate + "','" + type + "','" + newOccupation + "','" + comment + "'," + Convert::ToInt32(active) + "," + Convert::ToInt32(active) + "," + codeUser + ")";
 
 	objSentencia->ExecuteNonQuery();

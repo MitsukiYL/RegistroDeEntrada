@@ -19,8 +19,8 @@ namespace RDEController {
 		List <parkingLot^>^ AllPlayas();
 		List <parkingLot^>^ PlayasxZona(int IDzone);
 
-		void agregarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite);
-		void actualizarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite);
+		void agregarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone);
+		void actualizarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone);
 		void eliminarPlaya(String^ ID);
 	};
 }

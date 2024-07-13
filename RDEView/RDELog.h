@@ -155,7 +155,7 @@ namespace RDEView {
 #pragma endregion
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	//CODIGO DE EVALUCION DE USUARIO/ADMINISTRADOR, EN COMENTARIOS POR EL MOMENTO
-	/**/	
+	/*
 	
 	bool found = false;
 
@@ -217,12 +217,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			MessageBox::Show("Datos incorrectos");
 		}
 	}
-	/**/
+	*/
 
-	/*
+	/**/
 	RDEMasterMenu^ logform = gcnew RDEMasterMenu();
 	logform->Show();
-	*/
+	/**/
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	RDEReg^ regform = gcnew RDEReg();

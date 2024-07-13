@@ -63,7 +63,7 @@ void ParkingLotCtrl::cerrarConexion() {
 	 /*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
 	 objSentencia->Connection = this->objConexion;
 	 /*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
-	 objSentencia->CommandText = "select * from ParkingLot where codeZone=" + IDzone;
+	 objSentencia->CommandText = "select * from ParkingLot where IDzone=" + IDzone;
 	 SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	 while (objData->Read()) {
@@ -128,7 +128,7 @@ void ParkingLotCtrl::cerrarConexion() {
  }
 
 
-void ParkingLotCtrl::agregarPlaya(String ^ name, String^ vehicleType, String ^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
+void ParkingLotCtrl::agregarPlaya(String ^ name, String^ vehicleType, String ^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone) {
 
 	String^ newID = Convert::ToString(objZone->getID()) + Convert::ToString(Convert::ToChar('A' + PlayasxZona(objZone->getID())->Count));
 	abrirConexion();
@@ -139,14 +139,14 @@ void ParkingLotCtrl::agregarPlaya(String ^ name, String^ vehicleType, String ^ I
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 
 	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
-	int codeZone = objZone->getID();
-	objSentencia->CommandText = "insert into ParkingLot(name,vehicleType,ID,capacity,N_reserved,N_inactive,codeZone) values ('" + name + "','" + vehicleType + "','" + newID + "',"  + Convert::ToString(capacity) + "," + Convert::ToString(N_reserved) + "," + Convert::ToString(N_inactive) + "," + Convert::ToString(codeZone) + ")";
+	int IDzone = objZone->getID();
+	objSentencia->CommandText = "insert into ParkingLot(name,vehicleType,ID,capacity,N_reserved,N_inactive,IDzone) values ('" + name + "','" + vehicleType + "','" + ID + "',"  + capacity + "," + N_reserved + "," + N_inactive+ "," + IDzone + ")";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }
 
-void ParkingLotCtrl::actualizarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listaParkingSite) {
+void ParkingLotCtrl::actualizarPlaya(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone) {
 
 	abrirConexion();
 	/*SqlCommand nos permite crear un objeto a traves del cual vamos a realizar la sentencia en base de datos*/
@@ -155,9 +155,9 @@ void ParkingLotCtrl::actualizarPlaya(String^ name, String^ vehicleType, String^ 
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 
-	int codeZone = objZone->getID();
+	int IDzone = objZone->getID();
 
-	objSentencia->CommandText = "UPDATE ParkingLot SET name ='" + name + "', vehicleType ='"+ vehicleType +"', capacity =" +Convert::ToString(capacity) + ", N_reserved =" +Convert::ToString(N_reserved) + ", N_inactive =" + Convert::ToString(N_inactive) + ",codeZone =" + Convert::ToString (codeZone) + " WHERE ID = '" + ID + "'";
+	objSentencia->CommandText = "UPDATE ParkingLot SET name ='" + name + "', vehicleType ='"+ vehicleType +"', capacity =" + capacity + ", N_reserved =" + N_reserved + ", N_inactive =" + N_inactive + ",IDzone =" + IDzone + " WHERE ID = '" + ID + "'";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
