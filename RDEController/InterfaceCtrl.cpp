@@ -22,7 +22,7 @@ List<interface^>^ InterfaceCtrl::buscarInterfaceAll() {
 		String^ registrationDate = datos[4];
 		int ID = Convert::ToInt32(datos[5]);
 
-		interface^ objInterface = gcnew interface(pin, protocol, producer, active, registrationDate, ID);
+		interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
 		listaInterface->Add(objInterface);
 	}
 	return listaInterface;
@@ -46,7 +46,7 @@ interface^ InterfaceCtrl::buscarInterfacexID(int IDb) {
 
 		if (ID == IDb) {
 
-			interface^ objInterface = gcnew interface(pin, protocol, producer, active, registrationDate, ID);
+			interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
 			break;
 		}
 
@@ -66,7 +66,7 @@ void InterfaceCtrl::escribirArchivo(List<interface^>^ listaInterface) {
 
 void InterfaceCtrl::agregarNewInterface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID){
 	List<interface^>^ listaInterface = buscarInterfaceAll();
-	interface^ objInterface = gcnew interface(pin, protocol, producer, active, registrationDate, ID);
+	interface^ objInterface = gcnew interface(ID, pin, protocol, producer, active, registrationDate);
 	listaInterface->Add(objInterface);
 	escribirArchivo(listaInterface);
 }

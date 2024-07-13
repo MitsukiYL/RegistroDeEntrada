@@ -9,7 +9,7 @@ using namespace RDEModel;
 
 interface::interface() {}
 
-interface::interface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID) {
+interface::interface(int ID, int pin, String^ protocol, String^ producer, bool active, String^ registrationDate) {
     this->pin = pin;
     this->protocol = protocol;
     this->producer = producer;

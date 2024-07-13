@@ -24,7 +24,7 @@ List<motor^>^ MotorCtrl::buscarMotorAll() {
 		int ID = Convert::ToInt32(datos[6]);
 
 
-		motor^ objMotor = gcnew motor(pin, RPM, producer, active, registrationDate, power, ID);
+		motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
 		listaMotor->Add(objMotor);
 	}
 	return listaMotor;
@@ -49,7 +49,7 @@ motor^ MotorCtrl::buscarMotorxID(int IDb) {
 
 		if (ID == IDb) {
 
-			motor^ objMotor = gcnew motor(pin, RPM, producer, active, registrationDate, power, ID);
+			motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
 			break;
 		}
 
@@ -69,7 +69,7 @@ void MotorCtrl::escribirArchivo(List<motor^>^ listaMotor) {
 
 void MotorCtrl::agregarNewMotor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power, int ID){
 	List<motor^>^ listaMotor = buscarMotorAll();
-	motor^ objMotor = gcnew motor(pin, RPM, producer, active, registrationDate, power, ID);
+	motor^ objMotor = gcnew motor(ID, pin, RPM, producer, active, registrationDate, power);
 	listaMotor->Add(objMotor);
 	escribirArchivo(listaMotor);
 }

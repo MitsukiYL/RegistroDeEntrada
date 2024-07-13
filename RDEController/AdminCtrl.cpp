@@ -24,13 +24,11 @@ admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
-		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 		if (adminID==IDbuscar) {
-			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 		}
 	}
 	return objAdmin;
@@ -52,13 +50,11 @@ admin^ AdminCtrl::BuscarAdminxPersonDNI(int DNIbuscar) {
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
-		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 		if (personDNI == DNIbuscar) {
-			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 			break;
 		}
 	}
@@ -81,22 +77,20 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		int contractID = Convert::ToInt32(datos[5]);
 		int personDNI = Convert::ToInt32(datos[6]);
 
-		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		admin^ objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+		admin^ objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 		listaadmin->Add(objAdmin);
 	}
 	return listaadmin;
 	}
 	
 
-void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson) {
+void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson) {
 
 	List<admin^>^ listaadmin = AllAdministradores();
-	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 	listaadmin->Add(adminNuevo);
 	escribirArchivo(listaadmin);
 }
@@ -113,7 +107,7 @@ void AdminCtrl::escribirArchivo(List <admin^>^ listaadmin) {
 	File::WriteAllLines("Administradores.txt", lineasArchivo);
 }
 
-void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson){
+void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson){
 	List<admin^>^ listaadmin = AllAdministradores();
 	for (int i = 0; i < listaadmin->Count; i++) {
 		if (listaadmin[i]->getAdminID() == adminID) {
@@ -122,7 +116,6 @@ void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, St
 			listaadmin[i]->setRegistrationDate(registrationDate);
 			listaadmin[i]->setExpirationDate(expirationDate);
 			listaadmin[i]->setContractID(contractID);
-			listaadmin[i]->setListWorkHours(listWorkHours);
 			listaadmin[i]->setPerson(objPerson);
 			break;
 		}

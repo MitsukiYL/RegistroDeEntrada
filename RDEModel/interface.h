@@ -20,7 +20,7 @@ namespace RDEModel {
 
     public:
         interface();
-        interface(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID);
+        interface(int ID, int pin, String^ protocol, String^ producer, bool active, String^ registrationDate);
     
         int getPin();
         void setPin(int pin);

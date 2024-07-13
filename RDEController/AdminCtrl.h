@@ -12,9 +12,9 @@ public:
 	admin^ BuscarAdminxID(int IDbuscar);
 	admin^ BuscarAdminxPersonDNI(int DNIbuscar);
 	List <admin^>^ AllAdministradores();
-	void agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
+	void agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson);
 	void escribirArchivo(List <admin^>^ listaEstac);
-	void actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
+	void actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson);
 	void eliminarAdmin(int ID);
 };
 }

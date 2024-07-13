@@ -22,12 +22,11 @@ namespace RDEModel {
             String^ registrationDate;
             String^ expirationDate;
             int contractID;
-            List<workHours^>^ listWorkHours;
             person^ objPerson;
 
         public:
             admin();
-            admin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, List<workHours^>^ listWorkHours, person^ objPerson);
+            admin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson);
 
             int getAdminID();
             String^ getArea();
@@ -35,7 +34,6 @@ namespace RDEModel {
             String^ getRegistrationDate();
             String^ getExpirationDate();
             int getContractID();
-            List<workHours^>^ getListWorkHours();
             person^ getPerson();
 
             void setAdminID( int adminID);
@@ -44,7 +42,6 @@ namespace RDEModel {
             void setRegistrationDate(String^ registrationDate);
             void setExpirationDate(String^ expirationDate);
             void setContractID(int contractID);
-            void setListWorkHours(List<workHours^>^ listWorkHours);
             void setPerson(person^ objPerson);
     };
 }

@@ -377,13 +377,11 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
 		int contractID = Convert::ToInt32(this->txt_contractID->Text);
 		int personDNI = Convert::ToInt32(this->txt_DNI->Text);
 
-		List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 		AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
-		objAdminCtrl->agregarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+		objAdminCtrl->agregarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 		txt_ID->Clear();
 
 		List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();
@@ -398,13 +396,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	int contractID = Convert::ToInt32(this->txt_contractID->Text);
 	int personDNI = Convert::ToInt32(this->txt_DNI->Text);
 
-	List<workHours^>^ listWorkHours = gcnew List<workHours^>();
-
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
 	AdminCtrl^ objAdminCtrl = gcnew AdminCtrl();
-	objAdminCtrl->actualizarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, listWorkHours, objPerson);
+	objAdminCtrl->actualizarAdmin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 	txt_ID->Clear();
 
 	List<admin^>^ listaAdmin = objAdminCtrl->AllAdministradores();

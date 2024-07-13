@@ -11,17 +11,17 @@ using namespace System;
 namespace RDEModel {
     public ref class motor {
     private:
+        int ID;
         int pin;
         int RPM;
         String^ producer;
         bool active;
         String^ registrationDate;
-        int power;
-        int ID;
+        double power;
 
         public:
         motor();
-        motor(int pin, int RPM, String^ producer, bool active, String^ registrationDate, int power, int ID);
+        motor(int ID, int pin, int RPM, String^ producer, bool active, String^ registrationDate, double power);
     
         int getPin();
         void setPin(int pin);
@@ -38,8 +38,8 @@ namespace RDEModel {
         String^ getRegistrationDate();
         void setRegistrationDate(String^ registrationDate);
 
-        int getPower();
-        void setPower(int power);
+        double getPower();
+        void setPower(double power);
 
         int getID();
         void setID(int ID);
