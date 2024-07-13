@@ -25,10 +25,6 @@ int boolToInt(bool valorBooleano) {
 	return valorBooleano ? 1 : 0;
 }
 
-bool intToBool(int valorEntero) {
-	return valorEntero != 0; // Devuelve true si valorEntero es diferente de cero, false si es cero
-}
-
 List <parkingSite^>^ ParkingSiteCtrl::BuscarSitexLot(String^ lotIDsearch) {
 
 	List<parkingSite^>^ listaesta = gcnew List<parkingSite^>();
@@ -123,8 +119,15 @@ void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool act
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 	//FDFF
+
 	int reservedint = boolToInt(reserved);
 	int activeint = boolToInt(active);
+
+	/*
+	PROBAR CON ESTO:
+	int reservedint = Convert::ToInt32(reserved);
+	int activeint = Convert::ToInt32(active);
+	*/
 
 	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
 	int codeUser = ctrlLot->BuscarplayaxID(lotID)->getZone()->getID();

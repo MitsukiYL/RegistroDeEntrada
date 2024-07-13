@@ -8,74 +8,90 @@ AdminCtrl::AdminCtrl() {
 
 }
 
-admin^ AdminCtrl::BuscarAdminxID(int IDbuscar){
-	admin^ objAdmin;
-	array<String^>^ lineas = File::ReadAllLines("Administradores.txt");
-	String^ separadores = ";"; 
-	for each (String ^ lineaAdmin in lineas) {
-		
-		array<String^>^ datos = lineaAdmin->Split(separadores->ToCharArray());
+void AdminCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
 
-		int adminID = Convert::ToInt32(datos[0]);
-		String^ area = datos[1];
-		String^ adminType = datos[2];
-		String^ registrationDate = datos[3];
-		String^ expirationDate = datos[4];
-		int contractID = Convert::ToInt32(datos[5]);
-		int personDNI = Convert::ToInt32(datos[6]);
+void AdminCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
+
+admin^ AdminCtrl::BuscarAdminxID(int adminIDbuscar){
+
+	admin^ objAdmin;
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Admin where adminID='" + adminIDbuscar + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int adminID = safe_cast<int>(objData[0]);
+		String^ area = safe_cast<String^>(objData[1]);
+		String^ adminType = safe_cast<String^>(objData[2]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ expirationDate = safe_cast<String^>(objData[4]);
+		int contractID = safe_cast<int>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		if (adminID==IDbuscar) {
-			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
-		}
+		objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 	}
+
+	cerrarConexion();
 	return objAdmin;
 }
 
 admin^ AdminCtrl::BuscarAdminxPersonDNI(int DNIbuscar) {
 	admin^ objAdmin;
-	array<String^>^ lineas = File::ReadAllLines("Administradores.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaAdmin in lineas) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Admin where personDNI='" + DNIbuscar + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		array<String^>^ datos = lineaAdmin->Split(separadores->ToCharArray());
+	while (objData->Read()) {
 
-		int adminID = Convert::ToInt32(datos[0]);
-		String^ area = datos[1];
-		String^ adminType = datos[2];
-		String^ registrationDate = datos[3];
-		String^ expirationDate = datos[4];
-		int contractID = Convert::ToInt32(datos[5]);
-		int personDNI = Convert::ToInt32(datos[6]);
+		int adminID = safe_cast<int>(objData[0]);
+		String^ area = safe_cast<String^>(objData[1]);
+		String^ adminType = safe_cast<String^>(objData[2]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ expirationDate = safe_cast<String^>(objData[4]);
+		int contractID = safe_cast<int>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
 
-		if (personDNI == DNIbuscar) {
-			objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
-			break;
-		}
+		objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 	}
+
+	cerrarConexion();
 	return objAdmin;
 }
 
 List <admin^>^ AdminCtrl::AllAdministradores() {
 	List<admin^>^ listaadmin = gcnew List<admin^>();
-	array<String^>^ lineas = File::ReadAllLines("Administradores.txt");
-	String^ separadores = ";"; /*Aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	for each (String ^ lineaPeluche in lineas) {
-		/*Voy a separar los datos de una linea en sub strings*/
-		array<String^>^ datos = lineaPeluche->Split(separadores->ToCharArray());
 
-		int adminID = Convert::ToInt32(datos[0]);
-		String^ area = datos[1];
-		String^ adminType = datos[2];
-		String^ registrationDate = datos[3];
-		String^ expirationDate = datos[4];
-		int contractID = Convert::ToInt32(datos[5]);
-		int personDNI = Convert::ToInt32(datos[6]);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Admin";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int adminID = safe_cast<int>(objData[0]);
+		String^ area = safe_cast<String^>(objData[1]);
+		String^ adminType = safe_cast<String^>(objData[2]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ expirationDate = safe_cast<String^>(objData[4]);
+		int contractID = safe_cast<int>(objData[5]);
+		int personDNI = safe_cast<int>(objData[6]);
 
 		PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 		person^ objPerson = objPersonCtrl->buscarPersonxDNI(personDNI);
@@ -83,56 +99,48 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 		admin^ objAdmin = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
 		listaadmin->Add(objAdmin);
 	}
+	cerrarConexion();
 	return listaadmin;
-	}
+}
 	
 
 void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson) {
 
-	List<admin^>^ listaadmin = AllAdministradores();
-	admin^ adminNuevo = gcnew admin(adminID, area, adminType, registrationDate, expirationDate, contractID, objPerson);
-	listaadmin->Add(adminNuevo);
-	escribirArchivo(listaadmin);
-}
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
 
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	int personDNI = objPerson->getDNI();
 
-void AdminCtrl::escribirArchivo(List <admin^>^ listaadmin) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaadmin->Count);
-	for (int i = 0; i < listaadmin->Count; i++) {
-		admin^ objAdmin = listaadmin[i];
-		lineasArchivo[i] = Convert::ToString(objAdmin->getAdminID()) + ";" + objAdmin->getArea() + ";" + objAdmin->getAdminType()
-			+ ";" + objAdmin->getRegistrationDate() + ";" +objAdmin->getExpirationDate() + ";" + Convert::ToString(objAdmin->getContractID())
-			+ ";" + Convert::ToString(objAdmin->getPerson()->getDNI());
-	}
-	File::WriteAllLines("Administradores.txt", lineasArchivo);
+	objSentencia->CommandText = "insert into Admin(adminID, area, adminType, registrationDate, expirationDate, contractID, personDNI) values ('" + Convert::ToString(adminID) + "','" + area + "','" + adminType + "'," + registrationDate + "," + expirationDate + "," + Convert::ToString(contractID) + "," + Convert::ToString(personDNI) + ")";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson){
-	List<admin^>^ listaadmin = AllAdministradores();
-	for (int i = 0; i < listaadmin->Count; i++) {
-		if (listaadmin[i]->getAdminID() == adminID) {
-			listaadmin[i]->setArea(area);
-			listaadmin[i]->setAdminType(adminType);
-			listaadmin[i]->setRegistrationDate(registrationDate);
-			listaadmin[i]->setExpirationDate(expirationDate);
-			listaadmin[i]->setContractID(contractID);
-			listaadmin[i]->setPerson(objPerson);
-			break;
-		}
-	}
-	escribirArchivo(listaadmin);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
 
+	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
+	int personDNI = objPerson->getDNI();
+
+	objSentencia->CommandText = "UPDATE Admin SET area ='" + area + "', adminType ='" + adminType + "', registrationDate =" + registrationDate + ", expirationDate =" + expirationDate + ", contractID =" + Convert::ToString(contractID) + ", personDNI =" + Convert::ToString(personDNI) + " WHERE ID = '" + adminID + "'";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
-void AdminCtrl::eliminarAdmin(int ID) {
-	List<admin^>^ listaadmin = AllAdministradores();
-	for (int i = 0; i < listaadmin->Count; i++) {
-		if (listaadmin[i]->getAdminID()==ID) {
-			listaadmin->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaadmin);
+void AdminCtrl::eliminarAdmin(int adminID) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Admin where ID ='" + adminID + "'";
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 
