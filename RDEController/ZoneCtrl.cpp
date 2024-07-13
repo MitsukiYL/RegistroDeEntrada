@@ -82,14 +82,6 @@ zone^ ZoneCtrl::buscarZonaxID(int searchID) {
 	return objzona;
 }
 
-void ZoneCtrl::escribirArchivo(List<zone^>^ listaZone){
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaZone->Count);
-	for (int i = 0; i < listaZone->Count; i++) {
-		zone^ objZone = listaZone[i];
-		lineasArchivo[i] = Convert::ToString(objZone->getID()) + ";" + objZone->getName() + ";" + objZone->getLocation() + ";" + objZone->getOpeningTime() + ";" + objZone->getClosingTime() + ";" + Convert::ToString(objZone->getActive()) + ";" + Convert::ToString(objZone->getAdmin()->getAdminID());
-	}
-	File::WriteAllLines("Zone.txt", lineasArchivo);
-}
 
 void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, String^ openingTime, String^ closingTime, bool active, admin^ objAdmin) {
 	
@@ -101,7 +93,7 @@ void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, String^ op
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 	int activeint = active ? 1 : 0;
 	int IDAdmin = objAdmin->getAdminID();
-	objSentencia->CommandText = "insert into Zone(location,name,openingTime,closingTime,active,IDAdmin) values ('" + location + "','" + name + "','" + openingTime + "','" + closingTime + "'," + Convert::ToString(activeint) + "," + Convert::ToString(IDAdmin) + ")";
+	objSentencia->CommandText = "insert into Zone(location,name,openingTime,closingTime,active,IDAdmin) values ('" + location + "','" + name + "','" + openingTime + "','" + closingTime + "'," + activeint + "," + IDAdmin + ")";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();

@@ -126,12 +126,13 @@ void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool act
 
 	int reservedint = Convert::ToInt32(reserved);
 	int activeint = Convert::ToInt32(active);
+	int busyint = Convert::ToInt32(busy);
 	
 
 	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
 	int zoneID = ctrlLot->BuscarplayaxID(lotID)->getZone()->getID();
 
-	objSentencia->CommandText = "insert into ParkingSite(ID,reserved,active,busy,lotID,codeUser) values ('" + ID + "'," + reservedint + "," + activeint + "," + 0 + ",'" + lotID + "'," + zoneID + ")";
+	objSentencia->CommandText = "insert into ParkingSite(ID,reserved,active,busy,IDParkingLot) values ('" + ID + "'," + reservedint + "," + activeint + "," + busyint + ",'" + zoneID + "')";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
@@ -151,7 +152,7 @@ void ParkingSiteCtrl::actualizarEstac(String^ ID, bool reserved, bool active, bo
 	int busyint = Convert::ToInt32(busy);
 
 
-	objSentencia->CommandText = "UPDATE ParkingSite SET reserved = " + Convert::ToString(reservedint) +",active = " + Convert::ToString(activeint) + ",busy = " + Convert::ToString(busyint)+ ",lotID ='" + lotID+"' WHERE ID = '" + ID + "'";
+	objSentencia->CommandText = "UPDATE ParkingSite SET reserved = " + reservedint + ",active = " + activeint + ",busy = " + busyint + ",IDParkingLot ='" + lotID + "' WHERE ID = '" + ID + "'";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
