@@ -138,16 +138,6 @@ void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool act
 	cerrarConexion();
 }
 
-
-void ParkingSiteCtrl::escribirArchivo(List <parkingSite^>^ listaEstac) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaEstac->Count);
-	for (int i = 0; i < listaEstac->Count; i++) {
-		parkingSite^ objEstac = listaEstac[i];
-		lineasArchivo[i] = objEstac->getID() + ";" + Convert::ToString(objEstac->getReserved()) + ";" + Convert::ToString(objEstac->getActive()) + ";" + Convert::ToString(objEstac->getbusy()) + ";" + objEstac->getLotID();
-	}
-	File::WriteAllLines("Estacionamientos.txt", lineasArchivo);
-}
-
 void ParkingSiteCtrl::actualizarEstac(String^ ID, bool reserved, bool active, String^ lotID) {
 
 

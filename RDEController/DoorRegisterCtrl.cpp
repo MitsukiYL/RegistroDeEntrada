@@ -7,24 +7,74 @@ using namespace RDEController;
 using namespace System::IO;
 
 DoorRegisterCtrl::DoorRegisterCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
+void DoorRegisterCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void DoorRegisterCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
 List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
+	List<doorRegister^>^ lista = gcnew List<doorRegister^>();
+
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from DoorRegister";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		String^ entryTime = safe_cast<String^>(objData[0]);
+		String^ exitTime = safe_cast<String^>(objData[1]);
+		bool userIn = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		int code = safe_cast<int>(objData[3]);
+
+		String^ cardCode = safe_cast<String^>(objData[4]);
+		int sensorID = safe_cast<int>(objData[5]);
+		String^ Npuerta = safe_cast<String^>(objData[6]);
+
+		CardCtrl^ objCardCtrl = gcnew CardCtrl();
+		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
+
+		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
+		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
+
+		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
+		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
+
+		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
+		lista->Add(objDoorRegister);
+	}
+
+	cerrarConexion();
+	return lista;
+}
+
+List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(String^ codeCard) {
+
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
-	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoorRegister in lineas) {
 
-		array<String^>^ datos = lineaDoorRegister->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from DoorRegister where codeCard= '" + codeCard + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int code = Convert::ToInt32(datos[0]);
-		String^ entryTime = datos[1];
-		String^ exitTime = datos[2];
-		bool userIn = Convert::ToBoolean(datos[3]);
-		String^ cardCode = datos[4];
-		int sensorID = Convert::ToInt32(datos[5]);
-		String^ Npuerta = datos[6];
+	while (objData->Read()) {
+
+		String^ entryTime = safe_cast<String^>(objData[0]);
+		String^ exitTime = safe_cast<String^>(objData[1]);
+		bool userIn = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		int code = safe_cast<int>(objData[3]);
+
+		String^ cardCode = safe_cast<String^>(objData[4]);
+		int sensorID = safe_cast<int>(objData[5]);
+		String^ Npuerta = safe_cast<String^>(objData[6]);
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
@@ -38,41 +88,8 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterAll() {
 		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
 		listaDoorRegister->Add(objDoorRegister);
 	}
-	return listaDoorRegister;
-}
 
-List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(String^ codeCard) {
-
-	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
-	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoorRegister in lineas) {
-
-		array<String^>^ datos = lineaDoorRegister->Split(separadores->ToCharArray());
-
-		int code = Convert::ToInt32(datos[0]);
-		String^ entryTime = datos[1];
-		String^ exitTime = datos[2];
-		bool userIn = Convert::ToBoolean(datos[3]);
-		String^ cardCode = datos[4];
-		int sensorID = Convert::ToInt32(datos[5]);
-		String^ Npuerta = datos[6];
-
-		CardCtrl^ objCardCtrl = gcnew CardCtrl();
-		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
-
-		SensorCtrl^ objSensorCtrl = gcnew SensorCtrl();
-		sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
-
-		DoorCtrl^ objDoorCtrl = gcnew DoorCtrl();
-		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
-
-		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
-
-		if (cardCode == codeCard) {
-			listaDoorRegister->Add(objDoorRegister);
-		}
-	}
+	cerrarConexion();
 	return listaDoorRegister;
 }
 
@@ -81,19 +98,23 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxCard(String^ codeCard)
 List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxN(String^ name) {
 
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
-	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoorRegister in lineas) {
 
-		array<String^>^ datos = lineaDoorRegister->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from DoorRegister where nameDoor= '" + name + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int code = Convert::ToInt32(datos[0]);
-		String^ entryTime = datos[1];
-		String^ exitTime = datos[2];
-		bool userIn = Convert::ToBoolean(datos[3]);
-		String^ cardCode = datos[4];
-		int sensorID = Convert::ToInt32(datos[5]);
-		String^ Npuerta = datos[6];
+	while (objData->Read()) {
+
+		String^ entryTime = safe_cast<String^>(objData[0]);
+		String^ exitTime = safe_cast<String^>(objData[1]);
+		bool userIn = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		int code = safe_cast<int>(objData[3]);
+
+		String^ cardCode = safe_cast<String^>(objData[4]);
+		int sensorID = safe_cast<int>(objData[5]);
+		String^ Npuerta = safe_cast<String^>(objData[6]);
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
@@ -105,11 +126,10 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxN(String^ name) {
 		door^ objDoor = objDoorCtrl->buscarDoorxN(Npuerta);
 
 		doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
-
-		if (Npuerta == name) {
-			listaDoorRegister->Add(objDoorRegister);
-		}
+		listaDoorRegister->Add(objDoorRegister);
 	}
+
+	cerrarConexion();
 	return listaDoorRegister;
 }
 
@@ -119,19 +139,24 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxN(String^ name) {
 List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch) {
 	List<doorRegister^>^ listaDoorRegister = gcnew List<doorRegister^>();
 	String^ daystring = "";
-	array<String^>^ lineas = File::ReadAllLines("DoorRegister.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaDoorRegister in lineas) {
+	String^ separadores = "";
 
-		array<String^>^ datos = lineaDoorRegister->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from DoorRegister";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int code = Convert::ToInt32(datos[0]);
-		String^ entryTime = datos[1];
-		String^ exitTime = datos[2];
-		bool userIn = Convert::ToBoolean(datos[3]);
-		String^ cardCode = datos[4];
-		int sensorID = Convert::ToInt32(datos[5]);
-		String^ Npuerta = datos[6];
+	while (objData->Read()) {
+
+		String^ entryTime = safe_cast<String^>(objData[0]);
+		String^ exitTime = safe_cast<String^>(objData[1]);
+		bool userIn = Convert::ToBoolean(safe_cast<int>(objData[2]));
+		int code = safe_cast<int>(objData[3]);
+
+		String^ cardCode = safe_cast<String^>(objData[4]);
+		int sensorID = safe_cast<int>(objData[5]);
+		String^ Npuerta = safe_cast<String^>(objData[6]);
 
 		CardCtrl^ objCardCtrl = gcnew CardCtrl();
 		card^ objCard = objCardCtrl->buscarCardxCode(cardCode);
@@ -196,39 +221,38 @@ List<doorRegister^>^ DoorRegisterCtrl::buscarDoorRegisterxDay(String^ daysearch)
 			listaDoorRegister->Add(objDoorRegister);
 		}
 	}
+	cerrarConexion();
 	return listaDoorRegister;
-;
-}
-
-void DoorRegisterCtrl::escribirArchivo(List<doorRegister^>^ listaDoorRegister) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaDoorRegister->Count);
-	for (int i = 0; i < listaDoorRegister->Count; i++) {
-		doorRegister^ objDoorRegister = listaDoorRegister[i];
-		lineasArchivo[i] = Convert::ToString(objDoorRegister->getCode()) + ";" + objDoorRegister->getEntryTime() + ";" + objDoorRegister->getExitTime() + ";" + Convert::ToString(objDoorRegister->getUserIn())
-			+ ";" + objDoorRegister->getObjCard()->getCode() + ";" + Convert::ToString(objDoorRegister->getObjSensor()->getID()) + ";" + objDoorRegister->getObjDoor()->getDoorName();
-	}
-	File::WriteAllLines("DoorRegister.txt", lineasArchivo);
 }
 
 void DoorRegisterCtrl::agregarNewDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor, door^ objDoor) {
-	List<doorRegister^>^ listaDoorRegister = buscarDoorRegisterAll();
-	doorRegister^ objDoorRegister = gcnew doorRegister(entryTime, exitTime, userIn, code, objCard, objSensor, objDoor);
-	listaDoorRegister->Add(objDoorRegister);
-	escribirArchivo(listaDoorRegister);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	String^ codeCard = objCard->getCode();
+	int IDSensor = objSensor->getID();
+	String^ nameDoor = objDoor->getDoorName();
+
+	objSentencia->CommandText = "insert into DoorRegister(entryTime, exitTime, userIn, codeCard, IDSensor, nameDoor); values ('" + entryTime +
+		"','" + exitTime + "'," + Convert::ToInt32(userIn) + ",'" + codeCard + "'," + IDSensor + ",'" + nameDoor + "')";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void  DoorRegisterCtrl::actualizarDoorRegister(String^ entryTime, String^ exitTime, bool userIn, int code, card^ objCard, sensor^ objSensor, door^ objDoor) {
-	List<doorRegister^>^ lista = buscarDoorRegisterAll();
-	for (int i = 0; i < lista->Count; i++) {
-		if (lista[i]->getCode() == code) {
-			lista[i]->setEntryTime(entryTime);
-			lista[i]->setExitTime(exitTime);
-			lista[i]->setUserIn(userIn);
-			lista[i]->setObjCard(objCard);
-			lista[i]->setObjSensor(objSensor);
-			lista[i]->setObjDoor(objDoor);
-			break;
-		}
-	}
-	escribirArchivo(lista);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	String^ codeCard = objCard->getCode();
+	int IDSensor = objSensor->getID();
+	String^ nameDoor = objDoor->getDoorName();
+
+	objSentencia->CommandText = "UPDATE DoorRegister SET entryTime ='" + entryTime + "', exitTime ='" + exitTime + "', userIn =" + Convert::ToInt32(userIn) +
+		", codeCard ='" + codeCard + "', IDSensor =" + IDSensor + ", nameDoor ='" + nameDoor + "' WHERE code = " + code;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
