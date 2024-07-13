@@ -29,14 +29,14 @@ List<person^>^ PersonCtrl::buscarPersonAll() {
 
 		int DNI = safe_cast<int>(objData[0]);
 		String^ name = safe_cast<String^>(objData[1]);
-		int code = safe_cast<int>(objData[2]);
-		String^ mail = safe_cast<String^>(objData[3]);
-		String^ phone = safe_cast<String^>(objData[4]);
-		String^ password = safe_cast<String^>(objData[5]);
+		String^ password = safe_cast<String^>(objData[2]);
+		int code = safe_cast<int>(objData[3]);
+		String^ mail = safe_cast<String^>(objData[4]);
+		bool permission = Convert::ToBoolean(safe_cast<int>(objData[5]));
 		int age = safe_cast<int>(objData[6]);
-		bool permission = Convert::ToBoolean(safe_cast<int>(objData[7]));
-		String^ occupation = safe_cast<String^>(objData[8]);
-		String^ gender = safe_cast<String^>(objData[9]);
+		String^ occupation = safe_cast<String^>(objData[7]);
+		String^ gender = safe_cast<String^>(objData[8]);
+		String^ phone = safe_cast<String^>(objData[9]);
 
 		person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
 		listaPerson->Add(objPerson);

@@ -7,7 +7,6 @@
 #define _PARKINGLOT_H
 
 #include "zone.h"
-#include "parkingSite.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -22,11 +21,10 @@ namespace RDEModel {
         int N_reserved;
         int N_inactive;
         zone^ objZone;
-        List<parkingSite^>^ listParkingSite;
 
 	public:
 		parkingLot();
-		parkingLot(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone, List<parkingSite^>^ listParkingSite);
+		parkingLot(String^ name, String^ vehicleType, String^ ID, int capacity, int N_reserved, int N_inactive, zone^ objZone);
     
         String^ getName();
         void setName(String^ name);
@@ -48,9 +46,6 @@ namespace RDEModel {
 
         zone^ getZone();
         void setZone(zone^ objZone);
-
-        List<parkingSite^>^ getListParkingSite();
-        void setListParkingSite(List<parkingSite^>^ listaParkingSite);
        
     };
 }

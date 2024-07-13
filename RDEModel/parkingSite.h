@@ -6,6 +6,8 @@
 #ifndef _PARKINGSITE_H
 #define _PARKINGSITE_H
 
+#include "parkingLot.h"
+
 using namespace System;
 
 namespace RDEModel {
@@ -16,12 +18,12 @@ namespace RDEModel {
         bool reserved;
         bool active;
         bool busy;
-        String^ lotID;
+        parkingLot^ objParkingLot;
 
     public:
 
         parkingSite();
-        parkingSite(String^ ID, bool reserved, bool active,bool busy, String^ lotID);
+        parkingSite(String^ ID, bool reserved, bool active,bool busy, parkingLot^ objParkingLot);
 
         String^ getID();
         void setID(String^ ID);
@@ -35,8 +37,8 @@ namespace RDEModel {
         bool getActive();
         void setActive(bool active);
 
-        String^ getLotID();
-        void setLotID(String^ lotID);
+        parkingLot^ getParkingLot();
+        void setParkingLot(parkingLot^ objParkingLot);
     };
 }
 
