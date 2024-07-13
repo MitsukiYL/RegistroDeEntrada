@@ -45,10 +45,8 @@ void ParkingLotCtrl::cerrarConexion() {
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
 		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
-		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(IDbuscar);
 
-		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone);
 	 }
 	 cerrarConexion();
 	 return objplaya;
@@ -82,11 +80,8 @@ void ParkingLotCtrl::cerrarConexion() {
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
 		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
-		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(ID);
-
 		 parkingLot^ objplaya;
-		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone);
 		 listaplaya->Add(objplaya);
 
 	 }
@@ -122,11 +117,8 @@ void ParkingLotCtrl::cerrarConexion() {
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
 		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
 
-		 ParkingSiteCtrl^ objParkingSiteCtrl = gcnew ParkingSiteCtrl();
-		 List<parkingSite^>^ listaParkingSite = objParkingSiteCtrl->BuscarSitexLot(ID);
-
 		 parkingLot^ objplaya;
-		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone, listaParkingSite);
+		 objplaya = gcnew parkingLot(name, vehicleType, ID, capacity, N_reserved, N_inactive, objZone);
 		 listaplaya->Add(objplaya);
 
 	 }

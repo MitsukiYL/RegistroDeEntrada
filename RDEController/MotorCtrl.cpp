@@ -15,6 +15,7 @@ void MotorCtrl::abrirConexion() {
 void MotorCtrl::cerrarConexion() {
 	this->objConexion->Close();
 }
+
 List<motor^>^ MotorCtrl::buscarMotorAll() {
 	List<motor^>^ lista = gcnew List<motor^>();
 

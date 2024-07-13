@@ -33,11 +33,11 @@ List<zone^>^ ZoneCtrl::buscarZoneAll() {
 	while (objData->Read()) {
 
 		int ID = safe_cast<int>(objData[0]);
-		String^ name = safe_cast<String^>(objData[1]);
-		String^ location = safe_cast<String^>(objData[2]);
+		String^ location = safe_cast<String^>(objData[1]);
+		String^ name = safe_cast<String^>(objData[2]);
 		String^ openingTime = safe_cast<String^>(objData[3]);
 		String^ closingTime = safe_cast<String^>(objData[4]);
-		int active = safe_cast<int>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[5]));
 		int IDAdmin = safe_cast<int>(objData[6]);
 		
 		AdminCtrl^ adminCtrl = gcnew AdminCtrl();
@@ -66,11 +66,11 @@ zone^ ZoneCtrl::buscarZonaxID(int searchID) {
 	while (objData->Read()) {
 
 		int ID = safe_cast<int>(objData[0]);
-		String^ name = safe_cast<String^>(objData[1]);
-		String^ location = safe_cast<String^>(objData[2]);
+		String^ location = safe_cast<String^>(objData[1]);
+		String^ name = safe_cast<String^>(objData[2]);
 		String^ openingTime = safe_cast<String^>(objData[3]);
 		String^ closingTime = safe_cast<String^>(objData[4]);
-		int active = safe_cast<int>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[5]));
 		int IDAdmin = safe_cast<int>(objData[6]);
 
 		AdminCtrl^ adminCtrl = gcnew AdminCtrl();
@@ -101,7 +101,7 @@ void ZoneCtrl::agregarNewZone(int ID, String^ name, String^ location, String^ op
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 	int activeint = active ? 1 : 0;
 	int IDAdmin = objAdmin->getAdminID();
-	objSentencia->CommandText = "insert into Zone(ID,name,location,openingTime,closingTime,active,IDAdmin) values ('" + ID + "','" + name + "','" + location + "','" + openingTime + "','" + closingTime + "'," + Convert::ToString(activeint) + "," + Convert::ToString(IDAdmin) + ")";
+	objSentencia->CommandText = "insert into Zone(location,name,openingTime,closingTime,active,IDAdmin) values ('" + location + "','" + name + "','" + openingTime + "','" + closingTime + "'," + Convert::ToString(activeint) + "," + Convert::ToString(IDAdmin) + ")";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
@@ -116,7 +116,7 @@ void ZoneCtrl::eliminarZone(int ID) {
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
 
-	objSentencia->CommandText = "delete from Zone where ID ='" + ID + "'";
+	objSentencia->CommandText = "delete from Zone where ID =" + ID;
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
@@ -131,9 +131,11 @@ void ZoneCtrl::actualizarZone(int ID, String^ name, String^ location, String^ op
 	/*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
 	objSentencia->Connection = this->objConexion;
 	/*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
-	int activeint = active ? 1 : 0;
+
+	int activeint = Convert::ToBoolean(active);
 	int IDAdmin = objAdmin->getAdminID();
-	objSentencia->CommandText = "UPDATE Zone SET name = '"+ name + "', location ='"+ location + "',openingTime ='" + openingTime + "',closingTime ='" + closingTime +"',active ="+ Convert::ToString(activeint) + ",IDAdmin =" + Convert::ToString(IDAdmin) + "where ID =" + ID;
+
+	objSentencia->CommandText = "UPDATE Zone SET location = '"+ location + "', name ='"+ name + "',openingTime ='" + openingTime + "',closingTime ='" + closingTime +"',active ="+ activeint + ",IDAdmin =" + IDAdmin + "where ID =" + ID;
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();

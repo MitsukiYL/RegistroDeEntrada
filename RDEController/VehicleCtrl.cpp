@@ -6,181 +6,192 @@ using namespace RDEController;
 using namespace System::IO;
 
 VehicleCtrl::VehicleCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
+void VehicleCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void VehicleCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
 List<vehicle^>^ VehicleCtrl::buscarVehicleAll() {
-	List<vehicle^>^ listaVehicle = gcnew List<vehicle^>();
-	array<String^>^ lineas = File::ReadAllLines("Vehicle.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaVehicle in lineas) {
+	List<vehicle^>^ lista = gcnew List<vehicle^>();
 
-		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Vehicle";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ plate = datos[1];
-		String^ vehicleType = datos[2];
-		String^ brand = datos[3];
-		String^ model = datos[4];
-		String^ registrationDate = datos[5];
-		bool insurance = Convert::ToBoolean(datos[6]);
-		bool active = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
-		int requestID = Convert::ToInt32(datos[9]);
+	while (objData->Read()) {
+		String^ vehicleType = safe_cast<String^>(objData[3]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ plate = safe_cast<String^>(objData[3]);
+		String^ brand = safe_cast<String^>(objData[3]);
+		String^ model = safe_cast<String^>(objData[3]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		int userID = safe_cast<int>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		int ID = safe_cast<int>(objData[1]);
+		int IDRequest = safe_cast<int>(objData[2]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		request^ objRequest = objRequestCtrl->buscarRequestxID(requestID);
+
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		request^ objRequest = objRequestCtrl->buscarRequestxID(IDRequest);
 
 		vehicle^ objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-		listaVehicle->Add(objVehicle);
+		lista->Add(objVehicle);
 	}
-	return listaVehicle;
+
+	cerrarConexion();
+	return lista;
 }
 List<vehicle^>^ VehicleCtrl::buscarVehiclexUser(int userIDsearch) {
-	List<vehicle^>^ listaVehiculos = gcnew List<vehicle^>();
-	array<String^>^ lineas = File::ReadAllLines("Vehicle.txt");
-	String^ separadores = ";"; /*Aqui defino el caracter por el cual voy a separar los elementos de una linea*/
-	for each (String ^ lineaVehicle in lineas) {
+	List<vehicle^>^ lista = gcnew List<vehicle^>();
 
-		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Vehicle where userID =" + userIDsearch;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ plate = datos[1];
-		String^ vehicleType = datos[2];
-		String^ brand = datos[3];
-		String^ model = datos[4];
-		String^ registrationDate = datos[5];
-		bool insurance = Convert::ToBoolean(datos[6]);
-		bool active = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
-		int requestID = Convert::ToInt32(datos[9]);
+	while (objData->Read()) {
+		String^ vehicleType = safe_cast<String^>(objData[3]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ plate = safe_cast<String^>(objData[3]);
+		String^ brand = safe_cast<String^>(objData[3]);
+		String^ model = safe_cast<String^>(objData[3]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		int userID = safe_cast<int>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		int ID = safe_cast<int>(objData[1]);
+		int IDRequest = safe_cast<int>(objData[2]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		request^ objRequest = objRequestCtrl->buscarRequestxID(requestID);
 
-		if (userID == userIDsearch) {
-			vehicle^ objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-			listaVehiculos->Add(objVehicle);
-		}
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		request^ objRequest = objRequestCtrl->buscarRequestxID(IDRequest);
+
+		vehicle^ objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
+		lista->Add(objVehicle);
 	}
-	return listaVehiculos;
+
+	cerrarConexion();
+	return lista;
 }
 
 vehicle^ VehicleCtrl::buscarVehiclexPlate(String^ plateB) {
 	vehicle^ objVehicle;
-	array<String^>^ lineas = File::ReadAllLines("Vehicle.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaVehicle in lineas) {
 
-		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Vehicle where plate ='" + plateB + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ plate = datos[1];
-		String^ vehicleType = datos[2];
-		String^ brand = datos[3];
-		String^ model = datos[4];
-		String^ registrationDate = datos[5];
-		bool insurance = Convert::ToBoolean(datos[6]);
-		bool active = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
-		int requestID = Convert::ToInt32(datos[9]);
+	while (objData->Read()) {
+		String^ vehicleType = safe_cast<String^>(objData[3]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ plate = safe_cast<String^>(objData[3]);
+		String^ brand = safe_cast<String^>(objData[3]);
+		String^ model = safe_cast<String^>(objData[3]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		int userID = safe_cast<int>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		int ID = safe_cast<int>(objData[1]);
+		int IDRequest = safe_cast<int>(objData[2]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		request^ objRequest = objRequestCtrl->buscarRequestxID(requestID);
 
-		if (plate == plateB) {
-			objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-			break;
-		}
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		request^ objRequest = objRequestCtrl->buscarRequestxID(IDRequest);
+
+		objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
 	}
+
+	cerrarConexion();
 	return objVehicle;
 }
+
 vehicle^ VehicleCtrl::buscarVehiclexID(int IDsearch) {
 	vehicle^ objVehicle;
-	array<String^>^ lineas = File::ReadAllLines("Vehicle.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaVehicle in lineas) {
 
-		array<String^>^ datos = lineaVehicle->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Vehicle where ID =" + IDsearch;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int ID = Convert::ToInt32(datos[0]);
-		String^ plate = datos[1];
-		String^ vehicleType = datos[2];
-		String^ brand = datos[3];
-		String^ model = datos[4];
-		String^ registrationDate = datos[5];
-		bool insurance = Convert::ToBoolean(datos[6]);
-		bool active = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
-		int requestID = Convert::ToInt32(datos[9]);
+	while (objData->Read()) {
+		String^ vehicleType = safe_cast<String^>(objData[3]);
+		String^ registrationDate = safe_cast<String^>(objData[3]);
+		String^ plate = safe_cast<String^>(objData[3]);
+		String^ brand = safe_cast<String^>(objData[3]);
+		String^ model = safe_cast<String^>(objData[3]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		int userID = safe_cast<int>(objData[0]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
+		int ID = safe_cast<int>(objData[1]);
+		int IDRequest = safe_cast<int>(objData[2]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
-
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
-		request^ objRequest = objRequestCtrl->buscarRequestxID(requestID);
 
-		if (ID == IDsearch) {
-			objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-			break;
-		}
+		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		request^ objRequest = objRequestCtrl->buscarRequestxID(IDRequest);
+
+		objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
 	}
+
+	cerrarConexion();
 	return objVehicle;
-}
-
-void VehicleCtrl::escribirArchivo(List<vehicle^>^ listaVehicle) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaVehicle->Count);
-	for (int i = 0; i < listaVehicle->Count; i++) {
-		vehicle^ objVehicle = listaVehicle[i];
-		lineasArchivo[i] = Convert::ToString(objVehicle->getID()) + ";" + objVehicle->getPlate() + ";" + objVehicle->getVehicleType() + ";" + objVehicle->getBrand()
-			+ ";" + objVehicle->getModel() + ";" + objVehicle->getRegistrationDate() + ";" + Convert::ToString(objVehicle->getInsurance())
-			+ ";" + Convert::ToString(objVehicle->getUser()->getUserID());
-	}
-	File::WriteAllLines("Vehicle.txt", lineasArchivo);
 }
 
 void VehicleCtrl::agregarNewVehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest) {
-	List<vehicle^>^ listaVehicle = buscarVehicleAll();
-	vehicle^ objVehicle = gcnew vehicle(ID, vehicleType, registrationDate, plate, brand, model, insurance, objUser, active, objRequest);
-	listaVehicle->Add(objVehicle);
-	escribirArchivo(listaVehicle);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	int userID = objUser->getUserID();
+	int IDRequest = objRequest->getID();
+
+	objSentencia->CommandText = "insert into Vehicle(vehicleType, registrationDate, plate, brand, model, insurance, userID, active, ID, IDRequest) values ('" + 
+		vehicleType + "','" + registrationDate + "','" + plate + "','" + brand + "','" + model + "'," + Convert::ToInt32(insurance) + "," + userID + "," + 
+		Convert::ToInt32(active) + "," + ID + "," + IDRequest + ")";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void VehicleCtrl::eliminarVehicle(int IDsearch) {
-	List<vehicle^>^ listaVehicle = buscarVehicleAll();
-	for (int i = 0; i < listaVehicle->Count; i++) {
-		if (listaVehicle[i]->getID() == IDsearch) {
-			listaVehicle->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaVehicle);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Vehicle where ID =" + IDsearch;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void VehicleCtrl::actualizarVehicle(int ID, String^ vehicleType, String^ registrationDate, String^ plate, String^ brand, String^ model, bool insurance, user^ objUser, bool active, request^ objRequest){
-	List<vehicle^>^ listaVehicle = buscarVehicleAll();
-	for (int i = 0; i < listaVehicle->Count; i++) {
-		if (listaVehicle[i]->getID() == ID) {
-			listaVehicle[i]->setPlate(plate);
-			listaVehicle[i]->setVehicleType(vehicleType);
-			listaVehicle[i]->setRegistrationDate(registrationDate);
-			listaVehicle[i]->setBrand(brand);
-			listaVehicle[i]->setModel(model);
-			listaVehicle[i]->setInsurance(insurance);
-			listaVehicle[i]->setUser(objUser);
-			listaVehicle[i]->setActive(active);
-			listaVehicle[i]->setRequest(objRequest);
-			break;
-		}
-	}
-	escribirArchivo(listaVehicle);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	int userID = objUser->getUserID();
+	int IDRequest = objRequest->getID();
+
+	objSentencia->CommandText = "UPDATE Motor SET vehicleType ='" + vehicleType + "', registrationDate ='" + registrationDate + "', plate ='" +
+		plate + "', brand ='" + brand + "', model ='" + model + "', insurance = " + Convert::ToBoolean(insurance) + ", userID =" + userID +
+		", active= " + Convert::ToInt32(active) + ", ID =" + ID + ", IDRequest =" + IDRequest + "WHERE ID = " + ID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

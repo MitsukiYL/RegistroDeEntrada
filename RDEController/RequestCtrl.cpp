@@ -5,129 +5,147 @@ using namespace RDEController;
 using namespace System::IO;
 
 RequestCtrl::RequestCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
-List<request^>^ RequestCtrl::buscarRequestAll() {
-	List<request^>^ listaRequest = gcnew List<request^>();
-	array<String^>^ lineas = File::ReadAllLines("Request.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaReq in lineas) {
 
-		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
-		int ID = Convert::ToInt32(datos[0]);
-		String^ emissionDate = datos[1];
-		String^ responseDate =datos[2];
-		String^ type = datos[3];
-		String^ newOccupation = datos[4];
-		String^ comment = datos[5];
-		bool active = Convert::ToBoolean(datos[6]);
-		bool accepted = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
+void RequestCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void RequestCtrl::cerrarConexion() {
+	this->objConexion->Close();
+}
+
+List<request^>^ RequestCtrl::buscarRequestAll() {
+	List<request^>^ lista = gcnew List<request^>();
+
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Request";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int ID = safe_cast<int>(objData[0]);
+		String^ emissionDate = safe_cast<String^>(objData[1]);
+		String^ responseDate = safe_cast<String^>(objData[2]);
+		String^ type = safe_cast<String^>(objData[3]);
+		String^ newOccupation = safe_cast<String^>(objData[4]);
+		String^ comment = safe_cast<String^>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[6]));
+		bool accepted = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int codeUser = safe_cast<int>(objData[8]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		user^ objUser = objUserCtrl->buscarUserxUserID(codeUser);
 
-		request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-		listaRequest->Add(ObjRequest);
+		request^ objrequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
+		lista->Add(objrequest);
 	}
-	return listaRequest;
+
+	cerrarConexion();
+	return lista;
 }
 
 List<request^>^ RequestCtrl::buscarRequestxActive() {
-	List<request^>^ listaRequest = gcnew List<request^>();
-	array<String^>^ lineas = File::ReadAllLines("Request.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaReq in lineas) {
+	List<request^>^ lista = gcnew List<request^>();
 
-		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
-		int ID = Convert::ToInt32(datos[0]);
-		String^ emissionDate = datos[1];
-		String^ responseDate = datos[2];
-		String^ type = datos[3];
-		String^ newOccupation = datos[4];
-		String^ comment = datos[5];
-		bool active = Convert::ToBoolean(datos[6]);
-		bool accepted = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Request where active =" + 1;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int ID = safe_cast<int>(objData[0]);
+		String^ emissionDate = safe_cast<String^>(objData[1]);
+		String^ responseDate = safe_cast<String^>(objData[2]);
+		String^ type = safe_cast<String^>(objData[3]);
+		String^ newOccupation = safe_cast<String^>(objData[4]);
+		String^ comment = safe_cast<String^>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[6]));
+		bool accepted = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int codeUser = safe_cast<int>(objData[8]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		user^ objUser = objUserCtrl->buscarUserxUserID(codeUser);
 
-		if (active) {
-			request^ ObjRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-			listaRequest->Add(ObjRequest);
-		}
-
+		request^ objrequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
+		lista->Add(objrequest);
 	}
-	return listaRequest;
+
+	cerrarConexion();
+	return lista;
 }
 
 request^ RequestCtrl::buscarRequestxID(int IDsearch) {
 	request^ objRequest;
-	array<String^>^ lineas = File::ReadAllLines("Request.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaReq in lineas) {
-		array<String^>^ datos = lineaReq->Split(separadores->ToCharArray());
-		int ID = Convert::ToInt32(datos[0]);
-		String^ emissionDate = datos[1];
-		String^ responseDate = datos[2];
-		String^ type = datos[3];
-		String^ newOccupation = datos[4];
-		String^ comment = datos[5];
-		bool active = Convert::ToBoolean(datos[6]);
-		bool accepted = Convert::ToBoolean(datos[7]);
-		int userID = Convert::ToInt32(datos[8]);
+
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Request where ID =" + IDsearch;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
+
+	while (objData->Read()) {
+
+		int ID = safe_cast<int>(objData[0]);
+		String^ emissionDate = safe_cast<String^>(objData[1]);
+		String^ responseDate = safe_cast<String^>(objData[2]);
+		String^ type = safe_cast<String^>(objData[3]);
+		String^ newOccupation = safe_cast<String^>(objData[4]);
+		String^ comment = safe_cast<String^>(objData[5]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[6]));
+		bool accepted = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int codeUser = safe_cast<int>(objData[8]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
-		user^ objUser = objUserCtrl->buscarUserxUserID(userID);
+		user^ objUser = objUserCtrl->buscarUserxUserID(codeUser);
 
-		if (ID == IDsearch) {
-			objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-			break;
-		}
+		objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
 	}
+
+	cerrarConexion();
 	return objRequest;
 }
-void RequestCtrl::escribirArchivo(List<request^>^ listaRequest) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaRequest->Count);
-	for (int i = 0; i < listaRequest->Count; i++) {
-		request^ objRequest = listaRequest[i];
-		lineasArchivo[i] = Convert::ToString(objRequest->getID()) + ";" + objRequest->getEmissionDate() + ";" + objRequest->getResponseDate()
-			+ ";" + objRequest->getType() + ";" + objRequest->getNewOccupation() + ";" + objRequest->getComment() + ";" + Convert::ToString(objRequest->getActive())
-			+ ";" + Convert::ToString(objRequest->getAccepted()) + ";" + Convert::ToString(objRequest->getUser()->getUserID());
-	}
-	File::WriteAllLines("Request.txt", lineasArchivo);
-}
+
 void RequestCtrl::agregarNewRequest(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted, user^ objUser) {
-	List<request^>^ listaRequest = buscarRequestAll();
-	request^ objRequest = gcnew request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, objUser);
-	listaRequest->Add(objRequest);
-	escribirArchivo(listaRequest);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	int codeUser = objUser->getUserID();
+
+	objSentencia->CommandText = "insert into Request(ID, emissionDate, responseDate, type, newOccupation, comment, active, accepted, codeUser) values ('" + emissionDate + 
+		"','" + responseDate + "','" + type + "','" + newOccupation + "','" + comment + "'," + Convert::ToInt32(active) + "," + Convert::ToInt32(active) + "," + codeUser + ")";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
+
 void RequestCtrl::eliminarRequest(int ID) {
-	List<request^>^ listaRequest = buscarRequestAll();
-	for (int i = 0; i < listaRequest->Count; i++) {
-		if (listaRequest[i]->getID() == ID) {
-			listaRequest->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaRequest);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Request where ID =" + ID;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 void RequestCtrl::actualizarRequest(int ID, String^ emissionDate, String^ responseDate, String^ type, String^ newOccupation, String^ comment, bool active, bool accepted, user^ objUser) {
-	List<request^>^ listaRequest = buscarRequestAll();
-	for (int i = 0; i < listaRequest->Count; i++) {
-		if (listaRequest[i]->getID() == ID) {
-			listaRequest[i]->setEmissionDate(emissionDate);
-			listaRequest[i]->setResponseDate(responseDate);
-			listaRequest[i]->setType(type);
-			listaRequest[i]->setNewOccupation(newOccupation);
-			listaRequest[i]->setComment(comment);
-			listaRequest[i]->setActive(active);
-			listaRequest[i]->setAccepted(accepted);
-			listaRequest[i]->setUser(objUser);
-			break;
-		}
-	}
-	escribirArchivo(listaRequest);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	int codeUser = objUser->getUserID();
+
+	objSentencia->CommandText = "UPDATE Request SET emissionDate ='" + emissionDate + "', responseDate ='" + responseDate + "', type ='" + type +
+		"', newOccupation ='" + newOccupation + "', comment ='" + comment + "', active =" + Convert::ToInt32(active) + ", accepted =" + Convert::ToInt32(accepted) + 
+		", codeUser =" + codeUser + " WHERE ID = " + ID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

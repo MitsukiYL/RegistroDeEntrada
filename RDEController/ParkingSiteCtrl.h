@@ -18,8 +18,8 @@ namespace RDEController {
 		List <parkingSite^>^ AllEstacionamientos();
 		parkingSite^ BuscarSiteXID(String^ IDsearch);
 
-		void agregarEstacionamiento(String^ ID, bool reserved, bool active, String^ lotID);
-		void actualizarEstac(String^ ID, bool reserved, bool active, String^ lotID);
+		void agregarEstacionamiento(String^ ID, bool reserved, bool active, bool busy, String^ lotID);
+		void actualizarEstac(String^ ID, bool reserved, bool active, bool busy, String^ lotID);
 		void eliminarEstac(String^ ID);
 	};
 }
