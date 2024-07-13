@@ -4,140 +4,126 @@ using namespace RDEController;
 using namespace System::IO;
 
 PersonCtrl::PersonCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
 List<person^>^ PersonCtrl::buscarPersonAll() {
 	List<person^>^ listaPerson = gcnew List<person^>();
-	array<String^>^ lineas = File::ReadAllLines("Person.txt");
-	String^ separadores = ";"; 
-	for each (String ^ lineaPerson in lineas) {
 
-		array<String^>^ datos = lineaPerson->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Person";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		/*****FORMATO*******
-		INT ; STRING ; INT ; STRING ; STRING ; STRING ; BOOL ; STRING ; STRING ; INT ; BOOL
-		*/
+	while (objData->Read()) {
 
-			int DNI = Convert::ToInt32(datos[0]);
-			String^ name = datos[1];
-			int code = Convert::ToInt32(datos[2]);
-			String^ mail = datos[3];
-			String^ phone = datos[4];
-			String^ password = datos[5];
-			bool permission = Convert::ToBoolean(datos[6]);
-			String^ occupation = datos[7];
-			String^ gender = datos[8];
-			int age = Convert::ToInt32(datos[9]);
+		int DNI = safe_cast<int>(objData[0]);
+		String^ name = safe_cast<String^>(objData[1]);
+		int code = safe_cast<int>(objData[2]);
+		String^ mail = safe_cast<String^>(objData[3]);
+		String^ phone = safe_cast<String^>(objData[4]);
+		String^ password = safe_cast<String^>(objData[5]);
+		int age = safe_cast<int>(objData[6]);
+		bool permission = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		String^ occupation = safe_cast<String^>(objData[8]);
+		String^ gender = safe_cast<String^>(objData[9]);
 
-			person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
-			listaPerson->Add(objPerson);
-		
+		person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
+		listaPerson->Add(objPerson);
 	}
+	cerrarConexion();
 	return listaPerson;
 }
 
 person^ PersonCtrl::buscarPersonxDNI(int DNIb) {
 	person^ objPerson;
-	array<String^>^ lineas = File::ReadAllLines("Person.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaPerson in lineas) {
-		
-		array<String^>^ datos = lineaPerson->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Person where DNI='" + DNIb + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int DNI = Convert::ToInt32(datos[0]);
-		String^ name = datos[1];
-		int code = Convert::ToInt32(datos[2]);
-		String^ mail = datos[3];
-		String^ phone = datos[4];
-		String^ password = datos[5];
-		bool permission = Convert::ToBoolean(datos[6]);
-		String^ occupation = datos[7];
-		String^ gender = datos[8];
-		int age = Convert::ToInt32(datos[9]);
+	while (objData->Read()) {
 
-		if (DNI == DNIb) {
-			objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
-			break;
-		}
+		int DNI = safe_cast<int>(objData[0]);
+		String^ name = safe_cast<String^>(objData[1]);
+		String^ password = safe_cast<String^>(objData[2]);
+		int code = safe_cast<int>(objData[3]);
+		String^ mail = safe_cast<String^>(objData[4]);
+		bool permission = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int age = safe_cast<int>(objData[6]);
+		String^ occupation = safe_cast<String^>(objData[7]);
+		String^ gender = safe_cast<String^>(objData[8]);
+		String^ phone = safe_cast<String^>(objData[9]);
+
+		objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
 	}
+
+	cerrarConexion();
 	return objPerson;
 }
 
 person^ PersonCtrl::buscarPersonxPassword(String^ passwordSearch) {
 	person^ objPerson;
-	array<String^>^ lineas = File::ReadAllLines("Person.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaPerson in lineas) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Person where password='" + passwordSearch + "'";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		array<String^>^ datos = lineaPerson->Split(separadores->ToCharArray());
+	while (objData->Read()) {
 
-		int DNI = Convert::ToInt32(datos[0]);
-		String^ name = datos[1];
-		int code = Convert::ToInt32(datos[2]);
-		String^ mail = datos[3];
-		String^ phone = datos[4];
-		String^ password = datos[5];
-		bool permission = Convert::ToBoolean(datos[6]);
-		String^ occupation = datos[7];
-		String^ gender = datos[8];
-		int age = Convert::ToInt32(datos[9]);
+		int DNI = safe_cast<int>(objData[0]);
+		String^ name = safe_cast<String^>(objData[1]);
+		String^ password = safe_cast<String^>(objData[2]);
+		int code = safe_cast<int>(objData[3]);
+		String^ mail = safe_cast<String^>(objData[4]);
+		bool permission = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int age = safe_cast<int>(objData[6]);
+		String^ occupation = safe_cast<String^>(objData[7]);
+		String^ gender = safe_cast<String^>(objData[8]);
+		String^ phone = safe_cast<String^>(objData[9]);
 
-		if (password == passwordSearch) {
-			objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
-			break;
-		}
+		objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
 	}
+
+	cerrarConexion();
 	return objPerson;
 }
 
-void PersonCtrl::escribirArchivo(List<person^>^ listaPerson) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaPerson->Count);
-	for (int i = 0; i < listaPerson->Count; i++) {
-		person^ objPerson = listaPerson[i];
-		lineasArchivo[i] = Convert::ToString(objPerson->getDNI()) + ";" + objPerson->getName()  + ";" + Convert::ToString(objPerson->getCode())
-						+ ";" + objPerson->getMail() + ";" + objPerson->getPhone() + ";" + objPerson->getPassword() 
-						+ ";" + Convert::ToString(objPerson->getPermission()) + ";" + objPerson->getOccupation() + ";" + objPerson->getGender()
-						+ ";" + Convert::ToString(objPerson->getAge());
-	}
-	File::WriteAllLines("Person.txt", lineasArchivo);
-}
-
 void PersonCtrl::agregarNewPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age) {
-	List<person^>^ listaPerson = buscarPersonAll();
-	person^ objPerson = gcnew person(DNI, name, code, mail, phone, password, permission, occupation, gender, age);
-	listaPerson->Add(objPerson);
-	escribirArchivo(listaPerson);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "insert into Person(DNI, name, password, code, mail, permission, age, occupation, gender, phone) values ('" + 
+		Convert::ToString(DNI) + "','" + name + "','" + password + "'," + Convert::ToString(code) + "," + mail + "," + Convert::ToString(permission) + 
+		"," + Convert::ToString(age) + "," + occupation + "," + gender + "," + phone + ")";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void PersonCtrl::eliminarPerson(int DNI) {
-	List<person^>^ listaPerson = buscarPersonAll();
-	for (int i = 0; i < listaPerson->Count; i++) {
-		if (listaPerson[i]->getDNI() == DNI) {
-			listaPerson->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaPerson);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Person where ID ='" + DNI + "'";
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void PersonCtrl::actualizarPerson(int DNI, String^ name, int code, String^ mail, String^ phone, String^ password, bool permission, String^ occupation, String^ gender, int age) {
-	List<person^>^ listaPerson = buscarPersonAll();
-	for (int i = 0; i < listaPerson->Count; i++) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
 
-		if (listaPerson[i]->getDNI() == DNI) {
-			listaPerson[i]->setName(name);
-			listaPerson[i]->setPassword(password);
-			listaPerson[i]->setCode(code);
-			listaPerson[i]->setMail(mail);
-			listaPerson[i]->setPermission(permission);
-			listaPerson[i]->setOccupation(occupation);
-			listaPerson[i]->setGender(gender);
-			listaPerson[i]->setPhone(phone);
-			listaPerson[i]->setAge(age);
-
-			break;
-		}
-	}
-	escribirArchivo(listaPerson);
+	objSentencia->CommandText = "UPDATE Person SET name ='" + name + "', password ='" + password + "', code =" + Convert::ToString(code) + ", mail =" + mail + 
+		", permission =" + Convert::ToString(permission) + ", age =" + Convert::ToString(age) + ", occupation =" +  occupation + ", gender =" + gender +
+		", phone =" + phone + " WHERE DNI = '" + DNI + "'";
+	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

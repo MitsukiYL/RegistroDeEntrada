@@ -5,7 +5,7 @@ using namespace RDEController;
 using namespace System::IO;
 
 AdminCtrl::AdminCtrl() {
-
+	this->objConexion = gcnew SqlConnection();
 }
 
 void AdminCtrl::abrirConexion() {
@@ -23,7 +23,7 @@ admin^ AdminCtrl::BuscarAdminxID(int adminIDbuscar){
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from Admin where adminID='" + adminIDbuscar + "'";
+	objSentencia->CommandText = "select * from Admin where adminID=" + adminIDbuscar;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -51,7 +51,7 @@ admin^ AdminCtrl::BuscarAdminxPersonDNI(int DNIbuscar) {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from Admin where personDNI='" + DNIbuscar + "'";
+	objSentencia->CommandText = "select * from Admin where personDNI=" + DNIbuscar;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -113,8 +113,10 @@ void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, Strin
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	int personDNI = objPerson->getDNI();
 
-	objSentencia->CommandText = "insert into Admin(adminID, area, adminType, registrationDate, expirationDate, contractID, personDNI) values ('" + Convert::ToString(adminID) + "','" + area + "','" + adminType + "'," + registrationDate + "," + expirationDate + "," + Convert::ToString(contractID) + "," + Convert::ToString(personDNI) + ")";
-	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->CommandText = "insert into Admin(adminID, area, adminType, registrationDate, expirationDate, contractID, personDNI) values (" + 
+		adminID + ",'" + area + "','" + adminType + "','" + registrationDate + "','" + expirationDate + "'," + contractID + "," 
+		+ personDNI + ")";
+	
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }
@@ -127,8 +129,10 @@ void AdminCtrl::actualizarAdmin(int adminID, String^ area, String^ adminType, St
 	PersonCtrl^ objPersonCtrl = gcnew PersonCtrl();
 	int personDNI = objPerson->getDNI();
 
-	objSentencia->CommandText = "UPDATE Admin SET area ='" + area + "', adminType ='" + adminType + "', registrationDate =" + registrationDate + ", expirationDate =" + expirationDate + ", contractID =" + Convert::ToString(contractID) + ", personDNI =" + Convert::ToString(personDNI) + " WHERE ID = '" + adminID + "'";
-	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
+	objSentencia->CommandText = "UPDATE Admin SET area ='" + area + "', adminType ='" + adminType + "', registrationDate ='" + registrationDate + 
+		"', expirationDate ='" + expirationDate + "', contractID =" + contractID + ", personDNI =" + personDNI + 
+		" WHERE ID = " + adminID;
+	
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }
@@ -138,7 +142,7 @@ void AdminCtrl::eliminarAdmin(int adminID) {
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "delete from Admin where ID ='" + adminID + "'";
+	objSentencia->CommandText = "delete from Admin where ID =" + adminID;
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }

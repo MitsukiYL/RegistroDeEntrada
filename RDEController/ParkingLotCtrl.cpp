@@ -41,7 +41,6 @@ void ParkingLotCtrl::cerrarConexion() {
 		 int N_reserved = safe_cast<int>(objData[4]);
 		 int N_inactive = safe_cast<int>(objData[5]);
 		 int codeZone = safe_cast<int>(objData[6]);
-		 
 
 		 ZoneCtrl^ objZoneCtrl = gcnew ZoneCtrl();
 		 zone^ objZone = objZoneCtrl->buscarZonaxID(codeZone);
@@ -66,7 +65,7 @@ void ParkingLotCtrl::cerrarConexion() {
 	 /*Aqui estoy indicando que mi sentencia se va a ejecutar en mi conexion de BD*/
 	 objSentencia->Connection = this->objConexion;
 	 /*Aqui voy a indicar cual es la sentencia que deseo ejecutar*/
-	 objSentencia->CommandText = "select * from ParkingLot where codeZone=" + Convert::ToString(IDzone);
+	 objSentencia->CommandText = "select * from ParkingLot where codeZone=" + IDzone;
 	 SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	 while (objData->Read()) {

@@ -130,8 +130,9 @@ void ParkingSiteCtrl::agregarEstacionamiento(String^ ID, bool reserved, bool act
 	*/
 
 	ParkingLotCtrl^ ctrlLot = gcnew ParkingLotCtrl();
-	int codeUser = ctrlLot->BuscarplayaxID(lotID)->getZone()->getID();
-	objSentencia->CommandText = "insert into ParkingSite(ID,reserved,active,busy,lotID,codeUser) values ('" + ID + "'," + Convert::ToString( reservedint)+ "," + Convert::ToString(activeint) + "," + Convert::ToString(0) + ",'" + lotID + "'," + Convert::ToString(codeUser) + ")";
+	int zoneID = ctrlLot->BuscarplayaxID(lotID)->getZone()->getID();
+
+	objSentencia->CommandText = "insert into ParkingSite(ID,reserved,active,busy,lotID,codeUser) values ('" + ID + "'," + reservedint + "," + activeint + "," + 0 + ",'" + lotID + "'," + zoneID + ")";
 	/*Cuando la sentencia es un insert, se debe ejecutar con ExecuteNonQuery*/
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
