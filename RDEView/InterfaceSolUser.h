@@ -22,6 +22,20 @@ namespace RDEView {
 		InterfaceSolUser(void)
 		{
 			InitializeComponent();
+			this->text_plate->Enabled = true;
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+		InterfaceSolUser(user^ objUser)
+		{
+			InitializeComponent();
+			this->objUser = objUser;
+			this->label4->Visible = false;
+			this->combox_occupation->Visible = false;
+			this->label3->Visible = false; 
+			this->text_plate->Visible = false;
+			this->checkBox1->Visible = false;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -43,18 +57,20 @@ namespace RDEView {
 
 	protected:
 	private: System::Windows::Forms::Label^ label1;
-
-
+	private: user^ objUser;
 	private: System::Windows::Forms::RichTextBox^ rtxt_comment;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ combox_type;
-
 	private: System::Windows::Forms::Label^ label4;
-
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::ComboBox^ combox_occupation;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TextBox^ text_plate;
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+
+
 
 	protected:
 
@@ -82,74 +98,88 @@ namespace RDEView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->combox_occupation = (gcnew System::Windows::Forms::ComboBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->text_plate = (gcnew System::Windows::Forms::TextBox());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// txt_user
 			// 
-			this->txt_user->Location = System::Drawing::Point(124, 59);
+			this->txt_user->Location = System::Drawing::Point(165, 73);
+			this->txt_user->Margin = System::Windows::Forms::Padding(4);
 			this->txt_user->Name = L"txt_user";
-			this->txt_user->Size = System::Drawing::Size(174, 20);
+			this->txt_user->Size = System::Drawing::Size(231, 22);
 			this->txt_user->TabIndex = 0;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(20, 62);
+			this->label1->Location = System::Drawing::Point(27, 76);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(26, 13);
+			this->label1->Size = System::Drawing::Size(30, 16);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"DNI";
 			// 
 			// rtxt_comment
 			// 
-			this->rtxt_comment->Location = System::Drawing::Point(124, 162);
+			this->rtxt_comment->Location = System::Drawing::Point(165, 199);
+			this->rtxt_comment->Margin = System::Windows::Forms::Padding(4);
 			this->rtxt_comment->Name = L"rtxt_comment";
-			this->rtxt_comment->Size = System::Drawing::Size(174, 96);
+			this->rtxt_comment->Size = System::Drawing::Size(231, 117);
 			this->rtxt_comment->TabIndex = 126;
 			this->rtxt_comment->Text = L"";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(20, 165);
+			this->label5->Location = System::Drawing::Point(27, 203);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(60, 13);
+			this->label5->Size = System::Drawing::Size(76, 16);
 			this->label5->TabIndex = 125;
 			this->label5->Text = L"Comentario";
 			// 
 			// combox_type
 			// 
 			this->combox_type->FormattingEnabled = true;
-			this->combox_type->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Nuevo Cargo", L"Nueva Tarjeta", L"Otro" });
-			this->combox_type->Location = System::Drawing::Point(124, 85);
+			this->combox_type->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"Nuevo Cargo", L"Nueva Tarjeta", L"Nuevo Vehículo",
+					L"Otro"
+			});
+			this->combox_type->Location = System::Drawing::Point(165, 105);
+			this->combox_type->Margin = System::Windows::Forms::Padding(4);
 			this->combox_type->Name = L"combox_type";
-			this->combox_type->Size = System::Drawing::Size(174, 21);
+			this->combox_type->Size = System::Drawing::Size(231, 24);
 			this->combox_type->TabIndex = 131;
-			this->combox_type->TextChanged += gcnew System::EventHandler(this, &InterfaceSolUser::combox_type_TextChanged);
+			this->combox_type->SelectedIndexChanged += gcnew System::EventHandler(this, &InterfaceSolUser::combox_type_SelectedIndexChanged);
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(20, 116);
+			this->label4->Location = System::Drawing::Point(27, 143);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(70, 13);
+			this->label4->Size = System::Drawing::Size(87, 16);
 			this->label4->TabIndex = 129;
 			this->label4->Text = L"Nuevo Cargo";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(20, 90);
+			this->label6->Location = System::Drawing::Point(27, 111);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(28, 13);
+			this->label6->Size = System::Drawing::Size(35, 16);
 			this->label6->TabIndex = 127;
 			this->label6->Text = L"Tipo";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(107, 272);
+			this->button1->Location = System::Drawing::Point(143, 335);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(94, 33);
+			this->button1->Size = System::Drawing::Size(125, 41);
 			this->button1->TabIndex = 132;
 			this->button1->Text = L"Crear solicitud";
 			this->button1->UseVisualStyleBackColor = true;
@@ -158,9 +188,10 @@ namespace RDEView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(20, 21);
+			this->label2->Location = System::Drawing::Point(27, 26);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(167, 13);
+			this->label2->Size = System::Drawing::Size(210, 16);
 			this->label2->TabIndex = 133;
 			this->label2->Text = L"Coloque los datos de su solicitud :";
 			// 
@@ -172,16 +203,49 @@ namespace RDEView {
 				L"Estudiante", L"Jefe de Práctica", L"Docente",
 					L"Personal Académico", L"Personal Administrativo", L"Personal de Mantenimiento", L"Administrador"
 			});
-			this->combox_occupation->Location = System::Drawing::Point(124, 112);
+			this->combox_occupation->Location = System::Drawing::Point(165, 138);
+			this->combox_occupation->Margin = System::Windows::Forms::Padding(4);
 			this->combox_occupation->Name = L"combox_occupation";
-			this->combox_occupation->Size = System::Drawing::Size(174, 21);
+			this->combox_occupation->Size = System::Drawing::Size(231, 24);
 			this->combox_occupation->TabIndex = 134;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(27, 143);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(132, 16);
+			this->label3->TabIndex = 135;
+			this->label3->Text = L"Vehículo Registrado:";
+			// 
+			// text_plate
+			// 
+			this->text_plate->Enabled = false;
+			this->text_plate->Location = System::Drawing::Point(167, 139);
+			this->text_plate->Margin = System::Windows::Forms::Padding(4);
+			this->text_plate->Name = L"text_plate";
+			this->text_plate->Size = System::Drawing::Size(204, 22);
+			this->text_plate->TabIndex = 136;
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Enabled = false;
+			this->checkBox1->Location = System::Drawing::Point(378, 143);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(18, 17);
+			this->checkBox1->TabIndex = 137;
+			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
 			// InterfaceSolUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(314, 317);
+			this->ClientSize = System::Drawing::Size(419, 390);
+			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->text_plate);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->combox_occupation);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button1);
@@ -192,8 +256,10 @@ namespace RDEView {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->txt_user);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"InterfaceSolUser";
 			this->Text = L"InterfaceSolUser";
+			this->Load += gcnew System::EventHandler(this, &InterfaceSolUser::InterfaceSolUser_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -233,14 +299,39 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		objRequestCtrl->agregarNewRequest(IDnew, emissionDate, responseDate, type, newoccupation, comment, active, accepted, objUser);
 		MessageBox::Show("La solicitud se creó con exito.");
 	}
-private: System::Void combox_type_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+private: System::Void InterfaceSolUser_Load(System::Object^ sender, System::EventArgs^ e) {
+	if (this->objUser != nullptr) {
+		this->txt_user->Text = Convert::ToString(this->objUser->getPerson()->getDNI());
+		this->txt_user->Enabled = false;
+	}
+}
+private: System::Void combox_type_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	String^ txt = this->combox_type->Text;
 	if (txt == "Nuevo Cargo") {
+		this->label4->Visible = true;
+		this->combox_occupation->Visible = true;
 		this->combox_occupation->Enabled = true;
+		this->label3->Visible = false;
+		this->text_plate->Visible = false;
+		this->checkBox1->Visible = false;
+
+	}
+	else if (txt == "Nuevo Vehículo") {
+		this->label3->Visible = true;
+		this->text_plate->Visible = true;
+		this->checkBox1->Visible = true;
+		this->label4->Visible = false;
+		this->combox_occupation->Visible = false;
+		this->combox_occupation->Enabled = false;
 	}
 	else{
+		this->label4->Visible = false;
+		this->combox_occupation->Visible = false;
 		this->combox_occupation->Enabled = false;
-		this->combox_occupation->Text = "";
+		this->label3->Visible = false;
+		this->text_plate->Visible = false;
+		this->checkBox1->Visible = false;
 	}
 }
 };

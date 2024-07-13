@@ -55,6 +55,7 @@ namespace RDEView {
 			this->objUser= objUser;
 			this->MantToolStripMenuItem->Visible = false;
 			this->reportesToolStripMenuItem->Visible = false;
+			this->InterfaceToolStripMenuItem->Visible = false;
 		}
 
 	protected:
@@ -97,6 +98,9 @@ namespace RDEView {
 	private: System::Windows::Forms::ToolStripMenuItem^ pruebaComSerialToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ estacionamientoXZonaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ sensoresToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ solicitudesToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ nuevaSolicitudToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ verTusSolicitudesToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -137,6 +141,9 @@ namespace RDEView {
 			this->registroDePuertaXPuertaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->estacionamientoXZonaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->solicitudesToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->nuevaSolicitudToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->verTusSolicitudesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -144,9 +151,9 @@ namespace RDEView {
 			// 
 			this->menuStrip1->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->InterfaceToolStripMenuItem,
-					this->MantToolStripMenuItem, this->reportesToolStripMenuItem, this->salirToolStripMenuItem
+					this->MantToolStripMenuItem, this->reportesToolStripMenuItem, this->solicitudesToolStripMenuItem1, this->salirToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -224,70 +231,70 @@ namespace RDEView {
 			// usuariosToolStripMenuItem
 			// 
 			this->usuariosToolStripMenuItem->Name = L"usuariosToolStripMenuItem";
-			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->usuariosToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->usuariosToolStripMenuItem->Text = L"Personas";
 			this->usuariosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::usuariosToolStripMenuItem_Click);
 			// 
 			// personasToolStripMenuItem
 			// 
 			this->personasToolStripMenuItem->Name = L"personasToolStripMenuItem";
-			this->personasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->personasToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->personasToolStripMenuItem->Text = L"Usuarios";
 			this->personasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::personasToolStripMenuItem_Click);
 			// 
 			// administradoresToolStripMenuItem
 			// 
 			this->administradoresToolStripMenuItem->Name = L"administradoresToolStripMenuItem";
-			this->administradoresToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->administradoresToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->administradoresToolStripMenuItem->Text = L"Administradores";
 			this->administradoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::administradoresToolStripMenuItem_Click);
 			// 
 			// solicitudesToolStripMenuItem
 			// 
 			this->solicitudesToolStripMenuItem->Name = L"solicitudesToolStripMenuItem";
-			this->solicitudesToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->solicitudesToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->solicitudesToolStripMenuItem->Text = L"Solicitudes";
 			this->solicitudesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::solicitudesToolStripMenuItem_Click);
 			// 
 			// tarjetasToolStripMenuItem
 			// 
 			this->tarjetasToolStripMenuItem->Name = L"tarjetasToolStripMenuItem";
-			this->tarjetasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->tarjetasToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->tarjetasToolStripMenuItem->Text = L"Tarjetas";
 			this->tarjetasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::tarjetasToolStripMenuItem_Click);
 			// 
 			// vehiculosToolStripMenuItem
 			// 
 			this->vehiculosToolStripMenuItem->Name = L"vehiculosToolStripMenuItem";
-			this->vehiculosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->vehiculosToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->vehiculosToolStripMenuItem->Text = L"Vehiculos";
 			this->vehiculosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::vehiculosToolStripMenuItem_Click);
 			// 
 			// estacionamientosToolStripMenuItem
 			// 
 			this->estacionamientosToolStripMenuItem->Name = L"estacionamientosToolStripMenuItem";
-			this->estacionamientosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->estacionamientosToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->estacionamientosToolStripMenuItem->Text = L"Estacionamientos";
 			this->estacionamientosToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::estacionamientosToolStripMenuItem_Click);
 			// 
 			// playasToolStripMenuItem
 			// 
 			this->playasToolStripMenuItem->Name = L"playasToolStripMenuItem";
-			this->playasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->playasToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->playasToolStripMenuItem->Text = L"Playas";
 			this->playasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::playasToolStripMenuItem_Click);
 			// 
 			// zonasToolStripMenuItem
 			// 
 			this->zonasToolStripMenuItem->Name = L"zonasToolStripMenuItem";
-			this->zonasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->zonasToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->zonasToolStripMenuItem->Text = L"Zonas";
 			this->zonasToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::zonasToolStripMenuItem_Click);
 			// 
 			// sensoresToolStripMenuItem
 			// 
 			this->sensoresToolStripMenuItem->Name = L"sensoresToolStripMenuItem";
-			this->sensoresToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->sensoresToolStripMenuItem->Size = System::Drawing::Size(208, 26);
 			this->sensoresToolStripMenuItem->Text = L"Sensores";
 			this->sensoresToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::sensoresToolStripMenuItem_Click);
 			// 
@@ -344,6 +351,30 @@ namespace RDEView {
 			this->salirToolStripMenuItem->Text = L"Salir";
 			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::salirToolStripMenuItem_Click);
 			// 
+			// solicitudesToolStripMenuItem1
+			// 
+			this->solicitudesToolStripMenuItem1->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->nuevaSolicitudToolStripMenuItem,
+					this->verTusSolicitudesToolStripMenuItem
+			});
+			this->solicitudesToolStripMenuItem1->Name = L"solicitudesToolStripMenuItem1";
+			this->solicitudesToolStripMenuItem1->Size = System::Drawing::Size(95, 24);
+			this->solicitudesToolStripMenuItem1->Text = L"Solicitudes";
+			// 
+			// nuevaSolicitudToolStripMenuItem
+			// 
+			this->nuevaSolicitudToolStripMenuItem->Name = L"nuevaSolicitudToolStripMenuItem";
+			this->nuevaSolicitudToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->nuevaSolicitudToolStripMenuItem->Text = L"Nueva Solicitud";
+			this->nuevaSolicitudToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::nuevaSolicitudToolStripMenuItem_Click);
+			// 
+			// verTusSolicitudesToolStripMenuItem
+			// 
+			this->verTusSolicitudesToolStripMenuItem->Name = L"verTusSolicitudesToolStripMenuItem";
+			this->verTusSolicitudesToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->verTusSolicitudesToolStripMenuItem->Text = L"Ver tus solicitudes";
+			this->verTusSolicitudesToolStripMenuItem->Click += gcnew System::EventHandler(this, &RDEMasterMenu::verTusSolicitudesToolStripMenuItem_Click);
+			// 
 			// RDEMasterMenu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -352,7 +383,7 @@ namespace RDEView {
 			this->Controls->Add(this->menuStrip1);
 			this->IsMdiContainer = true;
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"RDEMasterMenu";
 			this->Text = L"RDEMasterMenu";
 			this->Load += gcnew System::EventHandler(this, &RDEMasterMenu::RDEMasterMenu_Load);
@@ -461,6 +492,19 @@ private: System::Void sensoresToolStripMenuItem_Click(System::Object^ sender, Sy
 	mantsensorform->Show();
 }
 private: System::Void RDEMasterMenu_Load(System::Object^ sender, System::EventArgs^ e) {//EVENTO LOAD
+	if (this->objUser != nullptr) {
+		InterfaceProfile^ perfilUsuario = gcnew InterfaceProfile(this->objUser);
+		perfilUsuario->MdiParent = this;
+		perfilUsuario->Show();
+	}
+}
+private: System::Void nuevaSolicitudToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {//NUEVA SOLICITUD - MODO USUAIRO
+	if (this->objUser != nullptr) {
+		InterfaceSolUser^ interfaceSolUser = gcnew InterfaceSolUser(this->objUser);
+		interfaceSolUser->Show();
+	}
+}
+private: System::Void verTusSolicitudesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {//LISTA DE SOLICITUDES - MODO USUARIO
 	if (this->objUser != nullptr) {
 		InterfaceProfile^ perfilUsuario = gcnew InterfaceProfile(this->objUser);
 		perfilUsuario->MdiParent = this;

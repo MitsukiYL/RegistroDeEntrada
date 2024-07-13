@@ -533,7 +533,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	VehicleCtrl^ objVehicleCtrl = gcnew VehicleCtrl();
 
-	int ID = Convert::ToInt32(this->txt_ID->Text);
+	int ID = 0;
 	int userID = Convert::ToInt32(this->txt_userID->Text);
 	String^ vehicleType = this->txt_vehicleType->Text;
 	String^ plate = this->txt_plate->Text;

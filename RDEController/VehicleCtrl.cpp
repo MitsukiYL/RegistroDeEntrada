@@ -27,16 +27,16 @@ List<vehicle^>^ VehicleCtrl::buscarVehicleAll() {
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
-		String^ vehicleType = safe_cast<String^>(objData[3]);
-		String^ registrationDate = safe_cast<String^>(objData[3]);
-		String^ plate = safe_cast<String^>(objData[3]);
+		String^ vehicleType = safe_cast<String^>(objData[0]);
+		String^ registrationDate = safe_cast<String^>(objData[1]);
+		String^ plate = safe_cast<String^>(objData[2]);
 		String^ brand = safe_cast<String^>(objData[3]);
-		String^ model = safe_cast<String^>(objData[3]);
-		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
-		int userID = safe_cast<int>(objData[0]);
-		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
-		int ID = safe_cast<int>(objData[1]);
-		int IDRequest = safe_cast<int>(objData[2]);
+		String^ model = safe_cast<String^>(objData[4]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int userID = safe_cast<int>(objData[6]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int ID = safe_cast<int>(objData[8]);
+		int IDRequest = safe_cast<int>(objData[9]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -61,16 +61,16 @@ List<vehicle^>^ VehicleCtrl::buscarVehiclexUser(int userIDsearch) {
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
-		String^ vehicleType = safe_cast<String^>(objData[3]);
-		String^ registrationDate = safe_cast<String^>(objData[3]);
-		String^ plate = safe_cast<String^>(objData[3]);
+		String^ vehicleType = safe_cast<String^>(objData[0]);
+		String^ registrationDate = safe_cast<String^>(objData[1]);
+		String^ plate = safe_cast<String^>(objData[2]);
 		String^ brand = safe_cast<String^>(objData[3]);
-		String^ model = safe_cast<String^>(objData[3]);
-		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
-		int userID = safe_cast<int>(objData[0]);
-		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
-		int ID = safe_cast<int>(objData[1]);
-		int IDRequest = safe_cast<int>(objData[2]);
+		String^ model = safe_cast<String^>(objData[4]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int userID = safe_cast<int>(objData[6]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int ID = safe_cast<int>(objData[8]);
+		int IDRequest = safe_cast<int>(objData[9]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -96,16 +96,16 @@ vehicle^ VehicleCtrl::buscarVehiclexPlate(String^ plateB) {
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
-		String^ vehicleType = safe_cast<String^>(objData[3]);
-		String^ registrationDate = safe_cast<String^>(objData[3]);
-		String^ plate = safe_cast<String^>(objData[3]);
+		String^ vehicleType = safe_cast<String^>(objData[0]);
+		String^ registrationDate = safe_cast<String^>(objData[1]);
+		String^ plate = safe_cast<String^>(objData[2]);
 		String^ brand = safe_cast<String^>(objData[3]);
-		String^ model = safe_cast<String^>(objData[3]);
-		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
-		int userID = safe_cast<int>(objData[0]);
-		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
-		int ID = safe_cast<int>(objData[1]);
-		int IDRequest = safe_cast<int>(objData[2]);
+		String^ model = safe_cast<String^>(objData[4]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int userID = safe_cast<int>(objData[6]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int ID = safe_cast<int>(objData[8]);
+		int IDRequest = safe_cast<int>(objData[9]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -130,16 +130,16 @@ vehicle^ VehicleCtrl::buscarVehiclexID(int IDsearch) {
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
-		String^ vehicleType = safe_cast<String^>(objData[3]);
-		String^ registrationDate = safe_cast<String^>(objData[3]);
-		String^ plate = safe_cast<String^>(objData[3]);
+		String^ vehicleType = safe_cast<String^>(objData[0]);
+		String^ registrationDate = safe_cast<String^>(objData[1]);
+		String^ plate = safe_cast<String^>(objData[2]);
 		String^ brand = safe_cast<String^>(objData[3]);
-		String^ model = safe_cast<String^>(objData[3]);
-		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[3]));
-		int userID = safe_cast<int>(objData[0]);
-		bool active = Convert::ToBoolean(safe_cast<int>(objData[4]));
-		int ID = safe_cast<int>(objData[1]);
-		int IDRequest = safe_cast<int>(objData[2]);
+		String^ model = safe_cast<String^>(objData[4]);
+		bool insurance = Convert::ToBoolean(safe_cast<int>(objData[5]));
+		int userID = safe_cast<int>(objData[6]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[7]));
+		int ID = safe_cast<int>(objData[8]);
+		int IDRequest = safe_cast<int>(objData[9]);
 
 		UserCtrl^ objUserCtrl = gcnew UserCtrl();
 		RequestCtrl^ objRequestCtrl = gcnew RequestCtrl();
@@ -162,9 +162,9 @@ void VehicleCtrl::agregarNewVehicle(int ID, String^ vehicleType, String^ registr
 	int userID = objUser->getUserID();
 	int IDRequest = objRequest->getID();
 
-	objSentencia->CommandText = "insert into Vehicle(vehicleType, registrationDate, plate, brand, model, insurance, userID, active, ID, IDRequest) values ('" + 
+	objSentencia->CommandText = "insert into Vehicle(vehicleType, registrationDate, plate, brand, model, insurance, userID, active, IDRequest) values ('" + 
 		vehicleType + "','" + registrationDate + "','" + plate + "','" + brand + "','" + model + "'," + Convert::ToInt32(insurance) + "," + userID + "," + 
-		Convert::ToInt32(active) + "," + ID + "," + IDRequest + ")";
+		Convert::ToInt32(active) + "," + IDRequest + ")";
 
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
@@ -190,7 +190,7 @@ void VehicleCtrl::actualizarVehicle(int ID, String^ vehicleType, String^ registr
 
 	objSentencia->CommandText = "UPDATE Motor SET vehicleType ='" + vehicleType + "', registrationDate ='" + registrationDate + "', plate ='" +
 		plate + "', brand ='" + brand + "', model ='" + model + "', insurance = " + Convert::ToBoolean(insurance) + ", userID =" + userID +
-		", active= " + Convert::ToInt32(active) + ", ID =" + ID + ", IDRequest =" + IDRequest + "WHERE ID = " + ID;
+		", active= " + Convert::ToInt32(active) + ", IDRequest =" + IDRequest + "WHERE ID = " + ID;
 
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();

@@ -358,7 +358,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	String^ ID = this->txt_ID->Text;
 	ParkingSiteCtrl^ estacinctrl = gcnew ParkingSiteCtrl();
 	estacinctrl->eliminarEstac(ID);
-	MessageBox::Show("El estacionamiento se elimino con exito.");
+	MessageBox::Show("El estacionamiento se eliminó con éxito.");
 	txt_ID->Clear();
 
 	ParkingSiteCtrl^ objParkSiteCtrl = gcnew ParkingSiteCtrl();
