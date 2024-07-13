@@ -5,10 +5,15 @@ namespace RDEController {
 	using namespace System::Collections::Generic;
 	using namespace RDEModel;
 	using namespace System;
+	using namespace System::Data::SqlClient;
 
 	public ref class CardCtrl {
+	private:
+		SqlConnection^ objConexion;
 	public:
 		CardCtrl();
+		void abrirConexion();
+		void cerrarConexion();
 
 		List<card^>^ buscarCardAll();
 		card^ buscarCardxCode(String^ codeSearch);

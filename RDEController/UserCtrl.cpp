@@ -25,7 +25,7 @@ List<user^>^ UserCtrl::buscarUserAll() {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from User";
+	objSentencia->CommandText = "select * from Usuario";
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -60,7 +60,7 @@ user^ UserCtrl::buscarUserxUserID(int userIDb) {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from User where userID=" + userIDb;
+	objSentencia->CommandText = "select * from Usuario where userID=" + userIDb;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -94,7 +94,7 @@ user^ UserCtrl::buscarUserxPersonDNI(int DNIbuscar) {
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
-	objSentencia->CommandText = "select * from User where personDNI=" + DNIbuscar;
+	objSentencia->CommandText = "select * from Usuario where personDNI=" + DNIbuscar;
 	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
 	while (objData->Read()) {
@@ -131,7 +131,7 @@ void UserCtrl::agregarNewUser(int userID, String^ userType, bool active, bool in
 	String^ parkingSiteID = objParkingSite->getID();
 	int personDNI = objPerson->getDNI();
 
-	objSentencia->CommandText = "insert into User(userType, active, inside, registrationDate, parkingSiteID, personDNI) values ('" + userType + "'," + 
+	objSentencia->CommandText = "insert into Usuario(userType, active, inside, registrationDate, parkingSiteID, personDNI) values ('" + userType + "'," + 
 		Convert::ToInt32(active) + "," + Convert::ToInt32(inside) + ",'" + registrationDate + "','" + parkingSiteID + "'," + personDNI + ")";
 
 	objSentencia->ExecuteNonQuery();
@@ -143,7 +143,7 @@ void UserCtrl::eliminarUser(int userID) {
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "delete from User where userID =" + userID;
+	objSentencia->CommandText = "delete from Usuario where userID =" + userID;
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
 }
@@ -156,7 +156,7 @@ void UserCtrl::actualizarUser(int userID, String^ userType, bool active, bool in
 	String^ parkingSiteID = objParkingSite->getID();
 	int personDNI = objPerson->getDNI();
 
-	objSentencia->CommandText = "UPDATE User SET userType ='" + userType + "', active =" + Convert::ToInt32(active) + ", inside =" + Convert::ToInt32(inside) +
+	objSentencia->CommandText = "UPDATE Usuario SET userType ='" + userType + "', active =" + Convert::ToInt32(active) + ", inside =" + Convert::ToInt32(inside) +
 		", registrationDate ='" + registrationDate + "', parkingSiteID ='" + parkingSiteID + "', personDNI =" + personDNI + " WHERE ID = " + userID;
 
 	objSentencia->ExecuteNonQuery();
@@ -168,7 +168,7 @@ void UserCtrl::actualizarUserInside(int userID, bool inside) {
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;
 
-	objSentencia->CommandText = "UPDATE User SET inside ='" + Convert::ToBoolean(inside) + " WHERE ID = " + userID;
+	objSentencia->CommandText = "UPDATE Usuario SET inside ='" + Convert::ToBoolean(inside) + " WHERE ID = " + userID;
 
 	objSentencia->ExecuteNonQuery();
 	cerrarConexion();
