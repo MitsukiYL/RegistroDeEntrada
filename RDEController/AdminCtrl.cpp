@@ -105,7 +105,6 @@ List <admin^>^ AdminCtrl::AllAdministradores() {
 	
 
 void AdminCtrl::agregarAdmin(int adminID, String^ area, String^ adminType, String^ registrationDate, String^ expirationDate, int contractID, person^ objPerson) {
-
 	abrirConexion();
 	SqlCommand^ objSentencia = gcnew SqlCommand();
 	objSentencia->Connection = this->objConexion;

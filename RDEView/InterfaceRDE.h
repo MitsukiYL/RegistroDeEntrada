@@ -175,14 +175,17 @@ private: void GenerarDoorRegister(card^ objCard, int sensorID) {
 	DoorRegisterCtrl^ objDoorRegisterCtrl = gcnew DoorRegisterCtrl();
 
 	sensor^ objSensor = objSensorCtrl->buscarSensorxID(sensorID);
-	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");//agregar en el txt
+	door^ objDoor = objDoorCtrl->buscarDoorxN("Principal");
 
 	user^ objUser = objCard->getObjUser();
 	
 	if (objUser != nullptr) {
+		
 		bool isInside = objUser->getInside();
 		int userID = objUser->getUserID();
+
 		String^ cardPerm = objCard->getPermissionType();
+
 		if (cardPerm == "General") {
 			this->label_reservedparksite->Visible = false;
 			this->txt_reservedparksite->Visible = false;

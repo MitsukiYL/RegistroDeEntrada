@@ -5,104 +5,103 @@ using namespace RDEController;
 using namespace System::IO;
 
 SensorCtrl::SensorCtrl() {
+	this->objConexion = gcnew SqlConnection();
+}
 
+void SensorCtrl::abrirConexion() {
+	this->objConexion->ConnectionString = "Server=a20216803.casa5ormk2bu.us-east-1.rds.amazonaws.com;DataBase=RDE;User id=admin;Password=lpoo6803";
+	this->objConexion->Open();
+}
+
+void SensorCtrl::cerrarConexion() {
+	this->objConexion->Close();
 }
 
 List<sensor^>^ SensorCtrl::buscarSensorAll() {
-	List<sensor^>^ listaSensor = gcnew List<sensor^>();
-	array<String^>^ lineas = File::ReadAllLines("Sensor.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaCard in lineas) {
+	List<sensor^>^ lista = gcnew List<sensor^>();
 
-		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Sensor";
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int pin = Convert::ToInt32(datos[0]);
-		String^ protocole = datos[1];
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int ID = Convert::ToInt32(datos[5]);
-		String^ model = datos[6];
+	while (objData->Read()) {
 
-		CardCtrl^ objCardCtrl = gcnew CardCtrl();
-		List<card^>^ listCard = objCardCtrl->buscarCardAll();
+		int pin = safe_cast<int>(objData[0]);
+		String^ protocol = safe_cast<String^>(objData[1]);
+		String^ producer = safe_cast<String^>(objData[2]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		String^ registrationDate = safe_cast<String^>(objData[4]);
+		int ID = safe_cast<int>(objData[5]);
+		String^ model = safe_cast<String^>(objData[6]);
 
-		sensor^ objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
-		listaSensor->Add(objSensor);
+		sensor^ objSensor = gcnew sensor(pin, protocol, producer, active, registrationDate, ID, model);
+		lista->Add(objSensor);
 	}
-	return listaSensor;
+
+	cerrarConexion();
+	return lista;
 }
 
 sensor^ SensorCtrl::buscarSensorxID(int IDb) {
 	sensor^ objSensor;
-	array<String^>^ lineas = File::ReadAllLines("Sensor.txt");
-	String^ separadores = ";";
-	for each (String ^ lineaCard in lineas) {
 
-		array<String^>^ datos = lineaCard->Split(separadores->ToCharArray());
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+	objSentencia->CommandText = "select * from Sensor where ID = " + IDb;
+	SqlDataReader^ objData = objSentencia->ExecuteReader();
 
-		int pin = Convert::ToInt32(datos[0]);
-		String^ protocole = datos[1];
-		String^ producer = datos[2];
-		bool active = Convert::ToBoolean(datos[3]);
-		String^ registrationDate = datos[4];
-		int ID = Convert::ToInt32(datos[5]);
-		String^ model = datos[6];
+	while (objData->Read()) {
 
-		CardCtrl^ objCardCtrl = gcnew CardCtrl();
-		List<card^>^ listCard = objCardCtrl->buscarCardAll();
+		int pin = safe_cast<int>(objData[0]);
+		String^ protocol = safe_cast<String^>(objData[1]);
+		String^ producer = safe_cast<String^>(objData[2]);
+		bool active = Convert::ToBoolean(safe_cast<int>(objData[3]));
+		String^ registrationDate = safe_cast<String^>(objData[4]);
+		int ID = safe_cast<int>(objData[5]);
+		String^ model = safe_cast<String^>(objData[6]);
 
-		if (ID == IDb) {
-
-			objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
-			break;
-		}
-
+		objSensor = gcnew sensor(pin, protocol, producer, active, registrationDate, ID, model);
 	}
+
+	cerrarConexion();
 	return objSensor;
 }
 
-void SensorCtrl::escribirArchivo(List<sensor^>^ listaSensor) {
-	array<String^>^ lineasArchivo = gcnew array<String^>(listaSensor->Count);
-	for (int i = 0; i < listaSensor->Count; i++) {
-		sensor^ objSensor = listaSensor[i];
-		lineasArchivo[i] = Convert::ToString(objSensor->getPin()) + ";" + objSensor->getProtocole() + ";" + objSensor->getProducer() + ";" + Convert::ToString(objSensor->getActive())
-			+ ";" + objSensor->getRegistrationDate() + ";" + Convert::ToString(objSensor->getID()) + ";" + Convert::ToString(objSensor->getModel());
-	}
-	File::WriteAllLines("Sensor.txt", lineasArchivo);
-}
 
-void SensorCtrl::agregarNewSensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard) {
-	List<sensor^>^ listaSensor = buscarSensorAll();
-	sensor^ objSensor = gcnew sensor(pin, protocole, producer, active, registrationDate, ID, model, listCard);
-	listaSensor->Add(objSensor);
-	escribirArchivo(listaSensor);
+void SensorCtrl::agregarNewSensor(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID, String^ model) {
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "insert into Sensor(pin, protocol, producer, active, registrationDate, model) values (" + pin + ",'" + protocol + "','" +
+		producer + "'," + Convert::ToInt32(active) + ",'" + registrationDate + "','" + model + "')";
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
 void SensorCtrl::eliminarSensor(int IDb) {
-	List<sensor^>^ listaSensor = buscarSensorAll();
-	for (int i = 0; i < listaSensor->Count; i++) {
-		if (listaSensor[i]->getID() == IDb) {
-			listaSensor->RemoveAt(i);
-			break;
-		}
-	}
-	escribirArchivo(listaSensor);
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "delete from Sensor where ID =" + IDb;
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }
 
-void SensorCtrl::actualizarSensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard){
-	List<sensor^>^ listaSensor = buscarSensorAll();
-	for (int i = 0; i < listaSensor->Count; i++) {
-		if (listaSensor[i]->getID() == ID) {
-			listaSensor[i]->setPin(pin);
-			listaSensor[i]->setProtocole(protocole);
-			listaSensor[i]->setProducer(producer);
-			listaSensor[i]->setActive(active);
-			listaSensor[i]->setRegistrationDate(registrationDate);
-			listaSensor[i]->setModel(model);
-			listaSensor[i]->setListCard(listCard);
-			break;
-		}
-	}
-	escribirArchivo(listaSensor);
+void SensorCtrl::actualizarSensor(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID, String^ model){
+	abrirConexion();
+	SqlCommand^ objSentencia = gcnew SqlCommand();
+	objSentencia->Connection = this->objConexion;
+
+	objSentencia->CommandText = "UPDATE Sensor SET pin =" + pin + ", protocol ='" + protocol + "', producer ='" + producer +
+		"', active =" + Convert::ToInt32(active) + ", registrationDate ='" + registrationDate + "', model ='" + model +
+		"' WHERE ID = " + ID;
+
+	objSentencia->ExecuteNonQuery();
+	cerrarConexion();
 }

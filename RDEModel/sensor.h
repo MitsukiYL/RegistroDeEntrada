@@ -13,23 +13,22 @@ namespace RDEModel {
 	public ref class sensor {
     private:
         int pin;
-        String^ protocole;
+        String^ protocol;
         String^ producer;
         bool active;
         String^ registrationDate;
         int ID;
         String^ model;
-        List<card^>^ listCard;
 
     public:
         sensor();
-        sensor(int pin, String^ protocole, String^ producer, bool active, String^ registrationDate, int ID, String^ model, List<card^>^ listCard);
+        sensor(int pin, String^ protocol, String^ producer, bool active, String^ registrationDate, int ID, String^ model);
 
         int getPin();
         void setPin(int pin);
 
-        String^ getProtocole();
-        void setProtocole(String^ protocole);
+        String^ getProtocol();
+        void setProtocol(String^ protocol);
 
         String^ getProducer();
         void setProducer(String^ producer);
@@ -45,9 +44,6 @@ namespace RDEModel {
 
         String^ getModel();
         void setModel(String^ model);
-
-        List<card^>^ getListCard();
-        void setListCard(List<card^>^ listCard);
     };
 }
 
